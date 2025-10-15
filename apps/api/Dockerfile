@@ -1,59 +1,89 @@
+# ==================================
+# Multi-stage Dockerfile for NestJS API
+# ==================================
 
-# Multi-stage build for NestJS API
-
-# Stage 1: Build
-FROM node:20-alpine AS builder
-
+# Stage 1: Base dependencies
+FROM node:18-alpine AS base
 WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
-COPY tsconfig*.json ./
-COPY nest-cli.json ./
+# Install dependencies needed for native modules
+RUN apk add --no-cache libc6-compat openssl
 
-# Install dependencies
+# Copy root package files
+COPY package*.json ./
+COPY turbo.json ./
+
+# Stage 2: Install all dependencies
+FROM base AS deps
+WORKDIR /app
+
+# Copy workspace configuration
+COPY package*.json ./
+COPY packages/config/package.json ./packages/config/
+COPY packages/database/package.json ./packages/database/
+COPY apps/api/package.json ./apps/api/
+
+# Install all dependencies including devDependencies for build
 RUN npm ci
 
-# Copy source code
-COPY src ./src
-
-# Build application
-RUN npm run build
-
-# Stage 2: Production
-FROM node:20-alpine AS production
-
+# Stage 3: Build application
+FROM base AS builder
 WORKDIR /app
 
-# Install dumb-init for proper signal handling
-RUN apk add --no-cache dumb-init
+# Copy dependencies from deps stage
+COPY --from=deps /app/node_modules ./node_modules
 
-# Create non-root user
-RUN addgroup -g 1001 -S nodejs && \
-    adduser -S nestjs -u 1001
-
-# Copy package files
+# Copy all source files
+COPY packages/config ./packages/config
+COPY packages/database ./packages/database
+COPY apps/api ./apps/api
 COPY package*.json ./
+COPY tsconfig.json ./
+
+# Generate Prisma client
+RUN npx prisma generate --schema=./packages/database/prisma/schema.prisma
+
+# Build the API
+RUN npm run build --workspace=apps/api
+
+# Stage 4: Production runtime
+FROM node:18-alpine AS runner
+WORKDIR /app
 
 # Install production dependencies only
-RUN npm ci --only=production && \
-    npm cache clean --force
+RUN apk add --no-cache libc6-compat openssl curl
 
-# Copy built application from builder stage
-COPY --from=builder --chown=nestjs:nodejs /app/dist ./dist
+# Create non-root user for security
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nestjs
+
+# Copy workspace configuration
+COPY package*.json ./
+COPY packages/config/package.json ./packages/config/
+COPY packages/database/package.json ./packages/database/
+COPY apps/api/package.json ./apps/api/
+
+# Install production dependencies only
+RUN npm ci --omit=dev && npm cache clean --force
+
+# Copy built application from builder
+COPY --from=builder --chown=nestjs:nodejs /app/apps/api/dist ./apps/api/dist
+COPY --from=builder --chown=nestjs:nodejs /app/packages/config ./packages/config
+COPY --from=builder --chown=nestjs:nodejs /app/packages/database ./packages/database
+
+# Copy Prisma files for migrations
+COPY --from=builder --chown=nestjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
+COPY --from=builder --chown=nestjs:nodejs /app/node_modules/@prisma ./node_modules/@prisma
 
 # Switch to non-root user
 USER nestjs
 
-# Expose port
+# Expose API port
 EXPOSE 3001
 
 # Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD node -e "require('http').get('http://localhost:3001/api/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"
-
-# Use dumb-init to run the application
-ENTRYPOINT ["dumb-init", "--"]
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+  CMD curl -f http://localhost:3001/health || exit 1
 
 # Start the application
-CMD ["node", "dist/main.js"]
+CMD ["node", "apps/api/dist/main.js"]
