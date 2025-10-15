@@ -1,0 +1,12 @@
+
+{
+  "name": "@municipal-platform/admin",
+  "version": "1.0.0",
+  "description": "Admin dashboard for Municipal Transparency Platform",
+  "scripts": {
+    "dev": "echo 'Admin app - to be implemented in future phase'",
+    "build": "echo 'Admin app - to be implemented in future phase'"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

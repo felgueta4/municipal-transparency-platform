@@ -1,0 +1,12 @@
+
+{
+  "name": "@municipal-platform/worker",
+  "version": "1.0.0",
+  "description": "Background worker for data ingestion and processing",
+  "scripts": {
+    "dev": "echo 'Worker app - to be implemented in future phase'",
+    "build": "echo 'Worker app - to be implemented in future phase'"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

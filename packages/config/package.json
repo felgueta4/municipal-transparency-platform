@@ -1,0 +1,13 @@
+
+{
+  "name": "@municipal-platform/config",
+  "version": "1.0.0",
+  "description": "Shared configuration for Municipal Transparency Platform",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

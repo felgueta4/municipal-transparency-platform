@@ -1,0 +1,13 @@
+
+{
+  "name": "@municipal-platform/ui",
+  "version": "1.0.0",
+  "description": "Shared UI components for Municipal Transparency Platform",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "echo 'UI package - to be implemented'",
+    "dev": "echo 'UI package - to be implemented'"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

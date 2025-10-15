@@ -1,0 +1,25 @@
+{
+  "name": "@municipal-platform/database",
+  "version": "1.0.0",
+  "description": "Database package with Prisma schema and migrations",
+  "main": "src/index.ts",
+  "scripts": {
+    "migrate": "prisma migrate dev",
+    "migrate:deploy": "prisma migrate deploy",
+    "migrate:reset": "prisma migrate reset",
+    "studio": "prisma studio",
+    "generate": "prisma generate",
+    "seed": "tsx prisma/seed.ts",
+    "format": "prisma format"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.8.1"
+  },
+  "devDependencies": {
+    "prisma": "^5.8.1",
+    "tsx": "^4.7.0"
+  },
+  "prisma": {
+    "schema": "prisma/schema.prisma"
+  }
+}

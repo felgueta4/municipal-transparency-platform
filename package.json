@@ -1,0 +1,48 @@
+{
+  "name": "municipal-transparency-platform",
+  "version": "1.0.0",
+  "description": "Plataforma de transparencia municipal para Chile - Fase 1A",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "typecheck": "tsc --noEmit",
+    "clean": "npm run clean --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "db:migrate": "npm run migrate --workspace=@municipal-platform/database",
+    "db:studio": "npm run studio --workspace=@municipal-platform/database",
+    "db:generate": "npm run generate --workspace=@municipal-platform/database",
+    "db:seed": "npm run seed --workspace=@municipal-platform/database"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "prettier": "^3.2.4",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "keywords": [
+    "transparency",
+    "municipal",
+    "chile",
+    "budget",
+    "expenditure",
+    "open-data"
+  ],
+  "author": "Municipal Transparency Platform Team",
+  "license": "MIT"
+}

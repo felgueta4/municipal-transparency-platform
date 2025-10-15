@@ -1,0 +1,12 @@
+
+{
+  "name": "@municipal-platform/public",
+  "version": "1.0.0",
+  "description": "Public-facing web app for Municipal Transparency Platform",
+  "scripts": {
+    "dev": "echo 'Public app - to be implemented in future phase'",
+    "build": "echo 'Public app - to be implemented in future phase'"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
