@@ -5,8 +5,8 @@ import { IsOptional, IsString, IsEnum } from 'class-validator';
 
 export enum UserRole {
   ADMIN_MUNI = 'admin_muni',
-  EDITOR_MUNI = 'editor_muni',
-  VIEWER_MUNI = 'viewer_muni',
+  FUNCIONARIO_MUNI = 'funcionario_muni',
+  VISUALIZADOR = 'visualizador',
 }
 
 export class UpdateUserDto {

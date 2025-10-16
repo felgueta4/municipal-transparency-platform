@@ -1,12 +1,54 @@
 
 
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, ConflictException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { UpdateUserDto, UserFilterDto } from './dto';
+import { CreateUserDto, UpdateUserDto, UserFilterDto } from './dto';
+import * as bcrypt from 'bcryptjs';
 
 @Injectable()
 export class UserService {
   constructor(private prisma: PrismaService) {}
+
+  /**
+   * Crear nuevo usuario
+   */
+  async create(createUserDto: CreateUserDto) {
+    const { email, password, role, municipalityId } = createUserDto;
+
+    // Verificar si el email ya existe
+    const existingUser = await this.prisma.user.findUnique({
+      where: { email },
+    });
+
+    if (existingUser) {
+      throw new ConflictException('El email ya está registrado');
+    }
+
+    // Hash de la contraseña
+    const passwordHash = await bcrypt.hash(password, 10);
+
+    // Crear usuario
+    const newUser = await this.prisma.user.create({
+      data: {
+        email,
+        passwordHash,
+        role,
+        municipalityId,
+      },
+      select: {
+        id: true,
+        email: true,
+        role: true,
+        municipalityId: true,
+        lastLoginAt: true,
+        createdAt: true,
+        updatedAt: true,
+        municipality: true,
+      },
+    });
+
+    return newUser;
+  }
 
   /**
    * Obtener usuarios con filtros y paginación

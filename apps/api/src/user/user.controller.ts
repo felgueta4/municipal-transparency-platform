@@ -3,6 +3,7 @@
 import {
   Controller,
   Get,
+  Post,
   Body,
   Patch,
   Param,
@@ -14,7 +15,7 @@ import {
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { UserService } from './user.service';
-import { UpdateUserDto, UserFilterDto } from './dto';
+import { CreateUserDto, UpdateUserDto, UserFilterDto } from './dto';
 import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../common/guards/roles.guard';
 import { Roles } from '../common/decorators/roles.decorator';
@@ -25,6 +26,25 @@ import { Roles } from '../common/decorators/roles.decorator';
 @ApiBearerAuth()
 export class UserController {
   constructor(private readonly userService: UserService) {}
+
+  @Post()
+  @Roles('admin_muni')
+  @ApiOperation({ summary: 'Crear nuevo usuario (solo admin)' })
+  @ApiResponse({
+    status: 201,
+    description: 'Usuario creado exitosamente',
+  })
+  @ApiResponse({
+    status: 409,
+    description: 'El email ya está registrado',
+  })
+  @ApiResponse({
+    status: 403,
+    description: 'No autorizado',
+  })
+  create(@Body() createUserDto: CreateUserDto) {
+    return this.userService.create(createUserDto);
+  }
 
   @Get()
   @Roles('admin_muni')

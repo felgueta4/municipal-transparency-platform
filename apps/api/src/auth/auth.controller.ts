@@ -1,5 +1,5 @@
 
-import { Controller, Post, Body, UseGuards, HttpCode, HttpStatus } from '@nestjs/common';
+import { Controller, Post, Get, Body, UseGuards, HttpCode, HttpStatus } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { LoginDto, RegisterDto, TokenResponseDto, RefreshTokenDto } from './dto';
@@ -84,5 +84,21 @@ export class AuthController {
   })
   async logout(@CurrentUser('userId') userId: string): Promise<{ message: string }> {
     return this.authService.logout(userId);
+  }
+
+  @Get('me')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Obtener información del usuario actual' })
+  @ApiResponse({
+    status: 200,
+    description: 'Información del usuario actual',
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'No autorizado',
+  })
+  async getCurrentUser(@CurrentUser('userId') userId: string) {
+    return this.authService.getUserById(userId);
   }
 }

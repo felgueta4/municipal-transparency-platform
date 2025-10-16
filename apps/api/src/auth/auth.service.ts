@@ -123,6 +123,37 @@ export class AuthService {
   }
 
   /**
+   * Obtener usuario por ID (sin password)
+   */
+  async getUserById(userId: string) {
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId },
+      select: {
+        id: true,
+        email: true,
+        role: true,
+        municipalityId: true,
+        lastLoginAt: true,
+        createdAt: true,
+        updatedAt: true,
+        municipality: {
+          select: {
+            id: true,
+            name: true,
+            region: true,
+          },
+        },
+      },
+    });
+
+    if (!user) {
+      throw new UnauthorizedException('User not found');
+    }
+
+    return user;
+  }
+
+  /**
    * Genera access y refresh tokens
    */
   private async generateTokens(
