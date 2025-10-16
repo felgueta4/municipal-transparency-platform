@@ -30,6 +30,7 @@ async function main() {
     await prisma.ingestionRun.deleteMany();
     await prisma.dataset.deleteMany();
     await prisma.user.deleteMany();
+    await prisma.contract.deleteMany();
     await prisma.project.deleteMany();
     await prisma.fundingSource.deleteMany();
     await prisma.expenditure.deleteMany();
@@ -828,7 +829,174 @@ async function main() {
     }
     console.log(`✅ ${projects.length} proyectos creados\n`);
 
-    // 8. Crear Usuarios
+    // 8. Crear Contratos
+    console.log('📝 Creando contratos...');
+
+    const contractsData = [
+      {
+        title: 'Construcción de Centro Comunitario Norte',
+        description:
+          'Contrato para la construcción de un centro comunitario en el sector norte de la ciudad, incluyendo salas multiuso, biblioteca y espacio deportivo.',
+        amount: 350000000,
+        status: 'active',
+        startDate: new Date('2024-01-15'),
+        endDate: new Date('2024-12-31'),
+        contractNumber: 'CT-2024-001',
+      },
+      {
+        title: 'Mantención de Parques y Plazas',
+        description:
+          'Contrato anual para el mantenimiento de áreas verdes, poda de árboles, riego y limpieza de parques y plazas municipales.',
+        amount: 85000000,
+        status: 'active',
+        startDate: new Date('2024-01-01'),
+        endDate: new Date('2024-12-31'),
+        contractNumber: 'CT-2024-002',
+      },
+      {
+        title: 'Reparación de Vías Urbanas',
+        description:
+          'Reparación y bacheo de calles principales y secundarias, incluyendo señalización vial y demarcación.',
+        amount: 120000000,
+        status: 'active',
+        startDate: new Date('2024-02-01'),
+        endDate: new Date('2024-07-31'),
+        contractNumber: 'CT-2024-003',
+      },
+      {
+        title: 'Suministro de Mobiliario Urbano',
+        description:
+          'Adquisición e instalación de bancas, basureros, bolardos y otros elementos de mobiliario urbano para espacios públicos.',
+        amount: 45000000,
+        status: 'completed',
+        startDate: new Date('2023-09-01'),
+        endDate: new Date('2023-12-31'),
+        contractNumber: 'CT-2023-045',
+      },
+      {
+        title: 'Servicio de Recolección de Residuos',
+        description:
+          'Contrato plurianual para el servicio de recolección, transporte y disposición final de residuos domiciliarios.',
+        amount: 450000000,
+        status: 'active',
+        startDate: new Date('2024-01-01'),
+        endDate: new Date('2026-12-31'),
+        contractNumber: 'CT-2024-004',
+      },
+      {
+        title: 'Implementación de Señalética Turística',
+        description:
+          'Diseño, fabricación e instalación de señalética turística en puntos estratégicos de la comuna.',
+        amount: 28000000,
+        status: 'active',
+        startDate: new Date('2024-03-01'),
+        endDate: new Date('2024-06-30'),
+        contractNumber: 'CT-2024-005',
+      },
+      {
+        title: 'Construcción de Ciclovías Urbanas',
+        description:
+          'Proyecto de construcción de 5 km de ciclovías conectando principales avenidas y parques.',
+        amount: 280000000,
+        status: 'active',
+        startDate: new Date('2024-02-15'),
+        endDate: new Date('2024-11-30'),
+        contractNumber: 'CT-2024-006',
+      },
+      {
+        title: 'Remodelación de Biblioteca Municipal',
+        description:
+          'Remodelación integral de la biblioteca municipal, incluyendo actualización de instalaciones, mobiliario y tecnología.',
+        amount: 95000000,
+        status: 'in_progress',
+        startDate: new Date('2024-01-20'),
+        endDate: new Date('2024-08-31'),
+        contractNumber: 'CT-2024-007',
+      },
+    ];
+
+    const contracts = [];
+    for (const contractData of contractsData) {
+      const municipality = randomElement(municipalities);
+      const supplier = randomElement(suppliers);
+
+      const contract = await prisma.contract.create({
+        data: {
+          municipalityId: municipality.id,
+          supplierId: supplier.id,
+          title: contractData.title,
+          description: contractData.description,
+          amount: contractData.amount,
+          currency: 'CLP',
+          startDate: contractData.startDate,
+          endDate: contractData.endDate,
+          status: contractData.status,
+          contractNumber: contractData.contractNumber,
+        },
+      });
+
+      contracts.push(contract);
+    }
+
+    // Crear contratos adicionales aleatorios
+    const additionalContracts = 20;
+    const contractStatuses = ['draft', 'active', 'completed', 'terminated', 'cancelled'];
+    const contractTitles = [
+      'Servicio de Vigilancia',
+      'Mantención de Alumbrado Público',
+      'Limpieza de Edificios Municipales',
+      'Construcción de Cancha Deportiva',
+      'Servicio de Tecnología',
+      'Reparación de Alcantarillado',
+      'Pavimentación de Calles',
+      'Instalación de Juegos Infantiles',
+      'Construcción de Sede Vecinal',
+      'Servicio de Jardinería',
+      'Mejoramiento de Plaza',
+      'Construcción de Skatepark',
+      'Reparación de Puente Peatonal',
+      'Instalación de Cámaras de Seguridad',
+      'Construcción de Multicancha',
+      'Mejoramiento de Vereda',
+      'Construcción de Centro Cultural',
+      'Reparación de Escuela',
+      'Instalación de Paneles Solares',
+      'Construcción de Estacionamiento',
+    ];
+
+    for (let i = 0; i < additionalContracts; i++) {
+      const municipality = randomElement(municipalities);
+      const supplier = randomElement(suppliers);
+      const status = randomElement(contractStatuses);
+      const title = randomElement(contractTitles);
+
+      const startDate = randomDate(new Date('2023-01-01'), new Date('2024-06-30'));
+      const durationMonths = randomAmount(3, 24);
+      const endDate = new Date(startDate);
+      endDate.setMonth(endDate.getMonth() + durationMonths);
+
+      const amount = randomAmount(10000000, 500000000);
+
+      const contract = await prisma.contract.create({
+        data: {
+          municipalityId: municipality.id,
+          supplierId: supplier.id,
+          title: `${title} - ${municipality.name.split(' ').pop()}`,
+          description: `Contrato para ${title.toLowerCase()} en la comuna de ${municipality.name.split(' ').pop()}.`,
+          amount,
+          currency: 'CLP',
+          startDate,
+          endDate,
+          status,
+          contractNumber: `CT-${startDate.getFullYear()}-${String(i + 100).padStart(3, '0')}`,
+        },
+      });
+
+      contracts.push(contract);
+    }
+    console.log(`✅ ${contracts.length} contratos creados\n`);
+
+    // 9. Crear Usuarios
     console.log('👤 Creando usuarios...');
 
     const passwordHash = await bcrypt.hash('demo123', 10);
@@ -878,6 +1046,7 @@ async function main() {
     console.log(`   - Presupuestos: ${budgets.length}`);
     console.log(`   - Gastos: ${expenditures.length}`);
     console.log(`   - Proyectos: ${projects.length}`);
+    console.log(`   - Contratos: ${contracts.length}`);
     console.log(`   - Usuarios: ${users.length}`);
     console.log('\n✅ Seed completado exitosamente!');
     console.log('\n📝 Credenciales de acceso:');

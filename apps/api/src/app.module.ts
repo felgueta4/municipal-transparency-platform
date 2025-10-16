@@ -7,6 +7,11 @@ import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
 import { BudgetModule } from './budget/budget.module';
 import { ExpenditureModule } from './expenditure/expenditure.module';
+import { MunicipalityModule } from './municipality/municipality.module';
+import { ProjectModule } from './project/project.module';
+import { SupplierModule } from './supplier/supplier.module';
+import { ContractModule } from './contract/contract.module';
+import { UserModule } from './user/user.module';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { RolesGuard } from './common/guards/roles.guard';
 import { GlobalExceptionFilter } from './common/filters/http-exception.filter';
@@ -52,6 +57,11 @@ import { envValidationSchema } from './config/env.validation';
     AuthModule,
     BudgetModule,
     ExpenditureModule,
+    MunicipalityModule,
+    ProjectModule,
+    SupplierModule,
+    ContractModule,
+    UserModule,
   ],
   providers: [
     // JWT Guard global (por defecto todos los endpoints requieren autenticación)

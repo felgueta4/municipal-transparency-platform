@@ -211,6 +211,22 @@ exports.Prisma.SupplierScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.ContractScalarFieldEnum = {
+  id: 'id',
+  municipalityId: 'municipalityId',
+  supplierId: 'supplierId',
+  title: 'title',
+  description: 'description',
+  amount: 'amount',
+  currency: 'currency',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  status: 'status',
+  contractNumber: 'contractNumber',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.DatasetScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -296,6 +312,7 @@ exports.Prisma.ModelName = {
   Project: 'Project',
   FundingSource: 'FundingSource',
   Supplier: 'Supplier',
+  Contract: 'Contract',
   Dataset: 'Dataset',
   IngestionRun: 'IngestionRun',
   User: 'User',

@@ -49,6 +49,11 @@ export type FundingSource = $Result.DefaultSelection<Prisma.$FundingSourcePayloa
  */
 export type Supplier = $Result.DefaultSelection<Prisma.$SupplierPayload>
 /**
+ * Model Contract
+ * Contract: Contrato con proveedor
+ */
+export type Contract = $Result.DefaultSelection<Prisma.$ContractPayload>
+/**
  * Model Dataset
  * Dataset: Conjunto de datos a ingerir
  */
@@ -261,6 +266,16 @@ export class PrismaClient<
     * ```
     */
   get supplier(): Prisma.SupplierDelegate<ExtArgs>;
+
+  /**
+   * `prisma.contract`: Exposes CRUD operations for the **Contract** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Contracts
+    * const contracts = await prisma.contract.findMany()
+    * ```
+    */
+  get contract(): Prisma.ContractDelegate<ExtArgs>;
 
   /**
    * `prisma.dataset`: Exposes CRUD operations for the **Dataset** model.
@@ -749,6 +764,7 @@ export namespace Prisma {
     Project: 'Project',
     FundingSource: 'FundingSource',
     Supplier: 'Supplier',
+    Contract: 'Contract',
     Dataset: 'Dataset',
     IngestionRun: 'IngestionRun',
     User: 'User',
@@ -768,7 +784,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "municipality" | "fiscalYear" | "budget" | "expenditure" | "project" | "fundingSource" | "supplier" | "dataset" | "ingestionRun" | "user" | "queryAudit"
+      modelProps: "municipality" | "fiscalYear" | "budget" | "expenditure" | "project" | "fundingSource" | "supplier" | "contract" | "dataset" | "ingestionRun" | "user" | "queryAudit"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1262,6 +1278,76 @@ export namespace Prisma {
           }
         }
       }
+      Contract: {
+        payload: Prisma.$ContractPayload<ExtArgs>
+        fields: Prisma.ContractFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ContractFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ContractFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractPayload>
+          }
+          findFirst: {
+            args: Prisma.ContractFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ContractFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractPayload>
+          }
+          findMany: {
+            args: Prisma.ContractFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractPayload>[]
+          }
+          create: {
+            args: Prisma.ContractCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractPayload>
+          }
+          createMany: {
+            args: Prisma.ContractCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ContractCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractPayload>[]
+          }
+          delete: {
+            args: Prisma.ContractDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractPayload>
+          }
+          update: {
+            args: Prisma.ContractUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractPayload>
+          }
+          deleteMany: {
+            args: Prisma.ContractDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ContractUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ContractUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractPayload>
+          }
+          aggregate: {
+            args: Prisma.ContractAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateContract>
+          }
+          groupBy: {
+            args: Prisma.ContractGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ContractGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ContractCountArgs<ExtArgs>
+            result: $Utils.Optional<ContractCountAggregateOutputType> | number
+          }
+        }
+      }
       Dataset: {
         payload: Prisma.$DatasetPayload<ExtArgs>
         fields: Prisma.DatasetFieldRefs
@@ -1706,6 +1792,7 @@ export namespace Prisma {
     budgets: number
     expenditures: number
     projects: number
+    contracts: number
     users: number
   }
 
@@ -1713,6 +1800,7 @@ export namespace Prisma {
     budgets?: boolean | MunicipalityCountOutputTypeCountBudgetsArgs
     expenditures?: boolean | MunicipalityCountOutputTypeCountExpendituresArgs
     projects?: boolean | MunicipalityCountOutputTypeCountProjectsArgs
+    contracts?: boolean | MunicipalityCountOutputTypeCountContractsArgs
     users?: boolean | MunicipalityCountOutputTypeCountUsersArgs
   }
 
@@ -1746,6 +1834,13 @@ export namespace Prisma {
    */
   export type MunicipalityCountOutputTypeCountProjectsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ProjectWhereInput
+  }
+
+  /**
+   * MunicipalityCountOutputType without action
+   */
+  export type MunicipalityCountOutputTypeCountContractsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContractWhereInput
   }
 
   /**
@@ -1833,10 +1928,12 @@ export namespace Prisma {
 
   export type SupplierCountOutputType = {
     expenditures: number
+    contracts: number
   }
 
   export type SupplierCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     expenditures?: boolean | SupplierCountOutputTypeCountExpendituresArgs
+    contracts?: boolean | SupplierCountOutputTypeCountContractsArgs
   }
 
   // Custom InputTypes
@@ -1855,6 +1952,13 @@ export namespace Prisma {
    */
   export type SupplierCountOutputTypeCountExpendituresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ExpenditureWhereInput
+  }
+
+  /**
+   * SupplierCountOutputType without action
+   */
+  export type SupplierCountOutputTypeCountContractsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContractWhereInput
   }
 
 
@@ -2084,6 +2188,7 @@ export namespace Prisma {
     budgets?: boolean | Municipality$budgetsArgs<ExtArgs>
     expenditures?: boolean | Municipality$expendituresArgs<ExtArgs>
     projects?: boolean | Municipality$projectsArgs<ExtArgs>
+    contracts?: boolean | Municipality$contractsArgs<ExtArgs>
     users?: boolean | Municipality$usersArgs<ExtArgs>
     _count?: boolean | MunicipalityCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["municipality"]>
@@ -2114,6 +2219,7 @@ export namespace Prisma {
     budgets?: boolean | Municipality$budgetsArgs<ExtArgs>
     expenditures?: boolean | Municipality$expendituresArgs<ExtArgs>
     projects?: boolean | Municipality$projectsArgs<ExtArgs>
+    contracts?: boolean | Municipality$contractsArgs<ExtArgs>
     users?: boolean | Municipality$usersArgs<ExtArgs>
     _count?: boolean | MunicipalityCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -2125,6 +2231,7 @@ export namespace Prisma {
       budgets: Prisma.$BudgetPayload<ExtArgs>[]
       expenditures: Prisma.$ExpenditurePayload<ExtArgs>[]
       projects: Prisma.$ProjectPayload<ExtArgs>[]
+      contracts: Prisma.$ContractPayload<ExtArgs>[]
       users: Prisma.$UserPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -2503,6 +2610,7 @@ export namespace Prisma {
     budgets<T extends Municipality$budgetsArgs<ExtArgs> = {}>(args?: Subset<T, Municipality$budgetsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BudgetPayload<ExtArgs>, T, "findMany"> | Null>
     expenditures<T extends Municipality$expendituresArgs<ExtArgs> = {}>(args?: Subset<T, Municipality$expendituresArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExpenditurePayload<ExtArgs>, T, "findMany"> | Null>
     projects<T extends Municipality$projectsArgs<ExtArgs> = {}>(args?: Subset<T, Municipality$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany"> | Null>
+    contracts<T extends Municipality$contractsArgs<ExtArgs> = {}>(args?: Subset<T, Municipality$contractsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, "findMany"> | Null>
     users<T extends Municipality$usersArgs<ExtArgs> = {}>(args?: Subset<T, Municipality$usersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2912,6 +3020,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ProjectScalarFieldEnum | ProjectScalarFieldEnum[]
+  }
+
+  /**
+   * Municipality.contracts
+   */
+  export type Municipality$contractsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contract
+     */
+    select?: ContractSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractInclude<ExtArgs> | null
+    where?: ContractWhereInput
+    orderBy?: ContractOrderByWithRelationInput | ContractOrderByWithRelationInput[]
+    cursor?: ContractWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ContractScalarFieldEnum | ContractScalarFieldEnum[]
   }
 
   /**
@@ -8379,6 +8507,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     expenditures?: boolean | Supplier$expendituresArgs<ExtArgs>
+    contracts?: boolean | Supplier$contractsArgs<ExtArgs>
     _count?: boolean | SupplierCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["supplier"]>
 
@@ -8404,6 +8533,7 @@ export namespace Prisma {
 
   export type SupplierInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     expenditures?: boolean | Supplier$expendituresArgs<ExtArgs>
+    contracts?: boolean | Supplier$contractsArgs<ExtArgs>
     _count?: boolean | SupplierCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type SupplierIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -8412,6 +8542,7 @@ export namespace Prisma {
     name: "Supplier"
     objects: {
       expenditures: Prisma.$ExpenditurePayload<ExtArgs>[]
+      contracts: Prisma.$ContractPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8786,6 +8917,7 @@ export namespace Prisma {
   export interface Prisma__SupplierClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     expenditures<T extends Supplier$expendituresArgs<ExtArgs> = {}>(args?: Subset<T, Supplier$expendituresArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExpenditurePayload<ExtArgs>, T, "findMany"> | Null>
+    contracts<T extends Supplier$contractsArgs<ExtArgs> = {}>(args?: Subset<T, Supplier$contractsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9156,6 +9288,26 @@ export namespace Prisma {
   }
 
   /**
+   * Supplier.contracts
+   */
+  export type Supplier$contractsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contract
+     */
+    select?: ContractSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractInclude<ExtArgs> | null
+    where?: ContractWhereInput
+    orderBy?: ContractOrderByWithRelationInput | ContractOrderByWithRelationInput[]
+    cursor?: ContractWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ContractScalarFieldEnum | ContractScalarFieldEnum[]
+  }
+
+  /**
    * Supplier without action
    */
   export type SupplierDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9167,6 +9319,1075 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: SupplierInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Contract
+   */
+
+  export type AggregateContract = {
+    _count: ContractCountAggregateOutputType | null
+    _avg: ContractAvgAggregateOutputType | null
+    _sum: ContractSumAggregateOutputType | null
+    _min: ContractMinAggregateOutputType | null
+    _max: ContractMaxAggregateOutputType | null
+  }
+
+  export type ContractAvgAggregateOutputType = {
+    amount: Decimal | null
+  }
+
+  export type ContractSumAggregateOutputType = {
+    amount: Decimal | null
+  }
+
+  export type ContractMinAggregateOutputType = {
+    id: string | null
+    municipalityId: string | null
+    supplierId: string | null
+    title: string | null
+    description: string | null
+    amount: Decimal | null
+    currency: string | null
+    startDate: Date | null
+    endDate: Date | null
+    status: string | null
+    contractNumber: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ContractMaxAggregateOutputType = {
+    id: string | null
+    municipalityId: string | null
+    supplierId: string | null
+    title: string | null
+    description: string | null
+    amount: Decimal | null
+    currency: string | null
+    startDate: Date | null
+    endDate: Date | null
+    status: string | null
+    contractNumber: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ContractCountAggregateOutputType = {
+    id: number
+    municipalityId: number
+    supplierId: number
+    title: number
+    description: number
+    amount: number
+    currency: number
+    startDate: number
+    endDate: number
+    status: number
+    contractNumber: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ContractAvgAggregateInputType = {
+    amount?: true
+  }
+
+  export type ContractSumAggregateInputType = {
+    amount?: true
+  }
+
+  export type ContractMinAggregateInputType = {
+    id?: true
+    municipalityId?: true
+    supplierId?: true
+    title?: true
+    description?: true
+    amount?: true
+    currency?: true
+    startDate?: true
+    endDate?: true
+    status?: true
+    contractNumber?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ContractMaxAggregateInputType = {
+    id?: true
+    municipalityId?: true
+    supplierId?: true
+    title?: true
+    description?: true
+    amount?: true
+    currency?: true
+    startDate?: true
+    endDate?: true
+    status?: true
+    contractNumber?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ContractCountAggregateInputType = {
+    id?: true
+    municipalityId?: true
+    supplierId?: true
+    title?: true
+    description?: true
+    amount?: true
+    currency?: true
+    startDate?: true
+    endDate?: true
+    status?: true
+    contractNumber?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ContractAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Contract to aggregate.
+     */
+    where?: ContractWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Contracts to fetch.
+     */
+    orderBy?: ContractOrderByWithRelationInput | ContractOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ContractWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Contracts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Contracts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Contracts
+    **/
+    _count?: true | ContractCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ContractAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ContractSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ContractMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ContractMaxAggregateInputType
+  }
+
+  export type GetContractAggregateType<T extends ContractAggregateArgs> = {
+        [P in keyof T & keyof AggregateContract]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateContract[P]>
+      : GetScalarType<T[P], AggregateContract[P]>
+  }
+
+
+
+
+  export type ContractGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContractWhereInput
+    orderBy?: ContractOrderByWithAggregationInput | ContractOrderByWithAggregationInput[]
+    by: ContractScalarFieldEnum[] | ContractScalarFieldEnum
+    having?: ContractScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ContractCountAggregateInputType | true
+    _avg?: ContractAvgAggregateInputType
+    _sum?: ContractSumAggregateInputType
+    _min?: ContractMinAggregateInputType
+    _max?: ContractMaxAggregateInputType
+  }
+
+  export type ContractGroupByOutputType = {
+    id: string
+    municipalityId: string
+    supplierId: string
+    title: string
+    description: string
+    amount: Decimal
+    currency: string
+    startDate: Date
+    endDate: Date | null
+    status: string
+    contractNumber: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: ContractCountAggregateOutputType | null
+    _avg: ContractAvgAggregateOutputType | null
+    _sum: ContractSumAggregateOutputType | null
+    _min: ContractMinAggregateOutputType | null
+    _max: ContractMaxAggregateOutputType | null
+  }
+
+  type GetContractGroupByPayload<T extends ContractGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ContractGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ContractGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ContractGroupByOutputType[P]>
+            : GetScalarType<T[P], ContractGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ContractSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    municipalityId?: boolean
+    supplierId?: boolean
+    title?: boolean
+    description?: boolean
+    amount?: boolean
+    currency?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    status?: boolean
+    contractNumber?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    municipality?: boolean | MunicipalityDefaultArgs<ExtArgs>
+    supplier?: boolean | SupplierDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["contract"]>
+
+  export type ContractSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    municipalityId?: boolean
+    supplierId?: boolean
+    title?: boolean
+    description?: boolean
+    amount?: boolean
+    currency?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    status?: boolean
+    contractNumber?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    municipality?: boolean | MunicipalityDefaultArgs<ExtArgs>
+    supplier?: boolean | SupplierDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["contract"]>
+
+  export type ContractSelectScalar = {
+    id?: boolean
+    municipalityId?: boolean
+    supplierId?: boolean
+    title?: boolean
+    description?: boolean
+    amount?: boolean
+    currency?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    status?: boolean
+    contractNumber?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ContractInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    municipality?: boolean | MunicipalityDefaultArgs<ExtArgs>
+    supplier?: boolean | SupplierDefaultArgs<ExtArgs>
+  }
+  export type ContractIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    municipality?: boolean | MunicipalityDefaultArgs<ExtArgs>
+    supplier?: boolean | SupplierDefaultArgs<ExtArgs>
+  }
+
+  export type $ContractPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Contract"
+    objects: {
+      municipality: Prisma.$MunicipalityPayload<ExtArgs>
+      supplier: Prisma.$SupplierPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      municipalityId: string
+      supplierId: string
+      title: string
+      description: string
+      amount: Prisma.Decimal
+      currency: string
+      startDate: Date
+      endDate: Date | null
+      status: string
+      contractNumber: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["contract"]>
+    composites: {}
+  }
+
+  type ContractGetPayload<S extends boolean | null | undefined | ContractDefaultArgs> = $Result.GetResult<Prisma.$ContractPayload, S>
+
+  type ContractCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ContractFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ContractCountAggregateInputType | true
+    }
+
+  export interface ContractDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Contract'], meta: { name: 'Contract' } }
+    /**
+     * Find zero or one Contract that matches the filter.
+     * @param {ContractFindUniqueArgs} args - Arguments to find a Contract
+     * @example
+     * // Get one Contract
+     * const contract = await prisma.contract.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ContractFindUniqueArgs>(args: SelectSubset<T, ContractFindUniqueArgs<ExtArgs>>): Prisma__ContractClient<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Contract that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {ContractFindUniqueOrThrowArgs} args - Arguments to find a Contract
+     * @example
+     * // Get one Contract
+     * const contract = await prisma.contract.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ContractFindUniqueOrThrowArgs>(args: SelectSubset<T, ContractFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ContractClient<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Contract that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContractFindFirstArgs} args - Arguments to find a Contract
+     * @example
+     * // Get one Contract
+     * const contract = await prisma.contract.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ContractFindFirstArgs>(args?: SelectSubset<T, ContractFindFirstArgs<ExtArgs>>): Prisma__ContractClient<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Contract that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContractFindFirstOrThrowArgs} args - Arguments to find a Contract
+     * @example
+     * // Get one Contract
+     * const contract = await prisma.contract.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ContractFindFirstOrThrowArgs>(args?: SelectSubset<T, ContractFindFirstOrThrowArgs<ExtArgs>>): Prisma__ContractClient<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Contracts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContractFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Contracts
+     * const contracts = await prisma.contract.findMany()
+     * 
+     * // Get first 10 Contracts
+     * const contracts = await prisma.contract.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const contractWithIdOnly = await prisma.contract.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ContractFindManyArgs>(args?: SelectSubset<T, ContractFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Contract.
+     * @param {ContractCreateArgs} args - Arguments to create a Contract.
+     * @example
+     * // Create one Contract
+     * const Contract = await prisma.contract.create({
+     *   data: {
+     *     // ... data to create a Contract
+     *   }
+     * })
+     * 
+     */
+    create<T extends ContractCreateArgs>(args: SelectSubset<T, ContractCreateArgs<ExtArgs>>): Prisma__ContractClient<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Contracts.
+     * @param {ContractCreateManyArgs} args - Arguments to create many Contracts.
+     * @example
+     * // Create many Contracts
+     * const contract = await prisma.contract.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ContractCreateManyArgs>(args?: SelectSubset<T, ContractCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Contracts and returns the data saved in the database.
+     * @param {ContractCreateManyAndReturnArgs} args - Arguments to create many Contracts.
+     * @example
+     * // Create many Contracts
+     * const contract = await prisma.contract.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Contracts and only return the `id`
+     * const contractWithIdOnly = await prisma.contract.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ContractCreateManyAndReturnArgs>(args?: SelectSubset<T, ContractCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a Contract.
+     * @param {ContractDeleteArgs} args - Arguments to delete one Contract.
+     * @example
+     * // Delete one Contract
+     * const Contract = await prisma.contract.delete({
+     *   where: {
+     *     // ... filter to delete one Contract
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ContractDeleteArgs>(args: SelectSubset<T, ContractDeleteArgs<ExtArgs>>): Prisma__ContractClient<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Contract.
+     * @param {ContractUpdateArgs} args - Arguments to update one Contract.
+     * @example
+     * // Update one Contract
+     * const contract = await prisma.contract.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ContractUpdateArgs>(args: SelectSubset<T, ContractUpdateArgs<ExtArgs>>): Prisma__ContractClient<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Contracts.
+     * @param {ContractDeleteManyArgs} args - Arguments to filter Contracts to delete.
+     * @example
+     * // Delete a few Contracts
+     * const { count } = await prisma.contract.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ContractDeleteManyArgs>(args?: SelectSubset<T, ContractDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Contracts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContractUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Contracts
+     * const contract = await prisma.contract.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ContractUpdateManyArgs>(args: SelectSubset<T, ContractUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Contract.
+     * @param {ContractUpsertArgs} args - Arguments to update or create a Contract.
+     * @example
+     * // Update or create a Contract
+     * const contract = await prisma.contract.upsert({
+     *   create: {
+     *     // ... data to create a Contract
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Contract we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ContractUpsertArgs>(args: SelectSubset<T, ContractUpsertArgs<ExtArgs>>): Prisma__ContractClient<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Contracts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContractCountArgs} args - Arguments to filter Contracts to count.
+     * @example
+     * // Count the number of Contracts
+     * const count = await prisma.contract.count({
+     *   where: {
+     *     // ... the filter for the Contracts we want to count
+     *   }
+     * })
+    **/
+    count<T extends ContractCountArgs>(
+      args?: Subset<T, ContractCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ContractCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Contract.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContractAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ContractAggregateArgs>(args: Subset<T, ContractAggregateArgs>): Prisma.PrismaPromise<GetContractAggregateType<T>>
+
+    /**
+     * Group by Contract.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContractGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ContractGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ContractGroupByArgs['orderBy'] }
+        : { orderBy?: ContractGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ContractGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetContractGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Contract model
+   */
+  readonly fields: ContractFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Contract.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ContractClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    municipality<T extends MunicipalityDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MunicipalityDefaultArgs<ExtArgs>>): Prisma__MunicipalityClient<$Result.GetResult<Prisma.$MunicipalityPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    supplier<T extends SupplierDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SupplierDefaultArgs<ExtArgs>>): Prisma__SupplierClient<$Result.GetResult<Prisma.$SupplierPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Contract model
+   */ 
+  interface ContractFieldRefs {
+    readonly id: FieldRef<"Contract", 'String'>
+    readonly municipalityId: FieldRef<"Contract", 'String'>
+    readonly supplierId: FieldRef<"Contract", 'String'>
+    readonly title: FieldRef<"Contract", 'String'>
+    readonly description: FieldRef<"Contract", 'String'>
+    readonly amount: FieldRef<"Contract", 'Decimal'>
+    readonly currency: FieldRef<"Contract", 'String'>
+    readonly startDate: FieldRef<"Contract", 'DateTime'>
+    readonly endDate: FieldRef<"Contract", 'DateTime'>
+    readonly status: FieldRef<"Contract", 'String'>
+    readonly contractNumber: FieldRef<"Contract", 'String'>
+    readonly createdAt: FieldRef<"Contract", 'DateTime'>
+    readonly updatedAt: FieldRef<"Contract", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Contract findUnique
+   */
+  export type ContractFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contract
+     */
+    select?: ContractSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractInclude<ExtArgs> | null
+    /**
+     * Filter, which Contract to fetch.
+     */
+    where: ContractWhereUniqueInput
+  }
+
+  /**
+   * Contract findUniqueOrThrow
+   */
+  export type ContractFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contract
+     */
+    select?: ContractSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractInclude<ExtArgs> | null
+    /**
+     * Filter, which Contract to fetch.
+     */
+    where: ContractWhereUniqueInput
+  }
+
+  /**
+   * Contract findFirst
+   */
+  export type ContractFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contract
+     */
+    select?: ContractSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractInclude<ExtArgs> | null
+    /**
+     * Filter, which Contract to fetch.
+     */
+    where?: ContractWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Contracts to fetch.
+     */
+    orderBy?: ContractOrderByWithRelationInput | ContractOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Contracts.
+     */
+    cursor?: ContractWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Contracts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Contracts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Contracts.
+     */
+    distinct?: ContractScalarFieldEnum | ContractScalarFieldEnum[]
+  }
+
+  /**
+   * Contract findFirstOrThrow
+   */
+  export type ContractFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contract
+     */
+    select?: ContractSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractInclude<ExtArgs> | null
+    /**
+     * Filter, which Contract to fetch.
+     */
+    where?: ContractWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Contracts to fetch.
+     */
+    orderBy?: ContractOrderByWithRelationInput | ContractOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Contracts.
+     */
+    cursor?: ContractWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Contracts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Contracts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Contracts.
+     */
+    distinct?: ContractScalarFieldEnum | ContractScalarFieldEnum[]
+  }
+
+  /**
+   * Contract findMany
+   */
+  export type ContractFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contract
+     */
+    select?: ContractSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractInclude<ExtArgs> | null
+    /**
+     * Filter, which Contracts to fetch.
+     */
+    where?: ContractWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Contracts to fetch.
+     */
+    orderBy?: ContractOrderByWithRelationInput | ContractOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Contracts.
+     */
+    cursor?: ContractWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Contracts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Contracts.
+     */
+    skip?: number
+    distinct?: ContractScalarFieldEnum | ContractScalarFieldEnum[]
+  }
+
+  /**
+   * Contract create
+   */
+  export type ContractCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contract
+     */
+    select?: ContractSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Contract.
+     */
+    data: XOR<ContractCreateInput, ContractUncheckedCreateInput>
+  }
+
+  /**
+   * Contract createMany
+   */
+  export type ContractCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Contracts.
+     */
+    data: ContractCreateManyInput | ContractCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Contract createManyAndReturn
+   */
+  export type ContractCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contract
+     */
+    select?: ContractSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many Contracts.
+     */
+    data: ContractCreateManyInput | ContractCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Contract update
+   */
+  export type ContractUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contract
+     */
+    select?: ContractSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Contract.
+     */
+    data: XOR<ContractUpdateInput, ContractUncheckedUpdateInput>
+    /**
+     * Choose, which Contract to update.
+     */
+    where: ContractWhereUniqueInput
+  }
+
+  /**
+   * Contract updateMany
+   */
+  export type ContractUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Contracts.
+     */
+    data: XOR<ContractUpdateManyMutationInput, ContractUncheckedUpdateManyInput>
+    /**
+     * Filter which Contracts to update
+     */
+    where?: ContractWhereInput
+  }
+
+  /**
+   * Contract upsert
+   */
+  export type ContractUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contract
+     */
+    select?: ContractSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Contract to update in case it exists.
+     */
+    where: ContractWhereUniqueInput
+    /**
+     * In case the Contract found by the `where` argument doesn't exist, create a new Contract with this data.
+     */
+    create: XOR<ContractCreateInput, ContractUncheckedCreateInput>
+    /**
+     * In case the Contract was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ContractUpdateInput, ContractUncheckedUpdateInput>
+  }
+
+  /**
+   * Contract delete
+   */
+  export type ContractDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contract
+     */
+    select?: ContractSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractInclude<ExtArgs> | null
+    /**
+     * Filter which Contract to delete.
+     */
+    where: ContractWhereUniqueInput
+  }
+
+  /**
+   * Contract deleteMany
+   */
+  export type ContractDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Contracts to delete
+     */
+    where?: ContractWhereInput
+  }
+
+  /**
+   * Contract without action
+   */
+  export type ContractDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contract
+     */
+    select?: ContractSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContractInclude<ExtArgs> | null
   }
 
 
@@ -13281,6 +14502,25 @@ export namespace Prisma {
   export type SupplierScalarFieldEnum = (typeof SupplierScalarFieldEnum)[keyof typeof SupplierScalarFieldEnum]
 
 
+  export const ContractScalarFieldEnum: {
+    id: 'id',
+    municipalityId: 'municipalityId',
+    supplierId: 'supplierId',
+    title: 'title',
+    description: 'description',
+    amount: 'amount',
+    currency: 'currency',
+    startDate: 'startDate',
+    endDate: 'endDate',
+    status: 'status',
+    contractNumber: 'contractNumber',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ContractScalarFieldEnum = (typeof ContractScalarFieldEnum)[keyof typeof ContractScalarFieldEnum]
+
+
   export const DatasetScalarFieldEnum: {
     id: 'id',
     name: 'name',
@@ -13484,6 +14724,7 @@ export namespace Prisma {
     budgets?: BudgetListRelationFilter
     expenditures?: ExpenditureListRelationFilter
     projects?: ProjectListRelationFilter
+    contracts?: ContractListRelationFilter
     users?: UserListRelationFilter
   }
 
@@ -13499,6 +14740,7 @@ export namespace Prisma {
     budgets?: BudgetOrderByRelationAggregateInput
     expenditures?: ExpenditureOrderByRelationAggregateInput
     projects?: ProjectOrderByRelationAggregateInput
+    contracts?: ContractOrderByRelationAggregateInput
     users?: UserOrderByRelationAggregateInput
   }
 
@@ -13517,6 +14759,7 @@ export namespace Prisma {
     budgets?: BudgetListRelationFilter
     expenditures?: ExpenditureListRelationFilter
     projects?: ProjectListRelationFilter
+    contracts?: ContractListRelationFilter
     users?: UserListRelationFilter
   }, "id">
 
@@ -13998,6 +15241,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Supplier"> | Date | string
     updatedAt?: DateTimeFilter<"Supplier"> | Date | string
     expenditures?: ExpenditureListRelationFilter
+    contracts?: ContractListRelationFilter
   }
 
   export type SupplierOrderByWithRelationInput = {
@@ -14009,6 +15253,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     expenditures?: ExpenditureOrderByRelationAggregateInput
+    contracts?: ContractOrderByRelationAggregateInput
   }
 
   export type SupplierWhereUniqueInput = Prisma.AtLeast<{
@@ -14023,6 +15268,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Supplier"> | Date | string
     updatedAt?: DateTimeFilter<"Supplier"> | Date | string
     expenditures?: ExpenditureListRelationFilter
+    contracts?: ContractListRelationFilter
   }, "id" | "taxId">
 
   export type SupplierOrderByWithAggregationInput = {
@@ -14049,6 +15295,106 @@ export namespace Prisma {
     locality?: StringNullableWithAggregatesFilter<"Supplier"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Supplier"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Supplier"> | Date | string
+  }
+
+  export type ContractWhereInput = {
+    AND?: ContractWhereInput | ContractWhereInput[]
+    OR?: ContractWhereInput[]
+    NOT?: ContractWhereInput | ContractWhereInput[]
+    id?: StringFilter<"Contract"> | string
+    municipalityId?: StringFilter<"Contract"> | string
+    supplierId?: StringFilter<"Contract"> | string
+    title?: StringFilter<"Contract"> | string
+    description?: StringFilter<"Contract"> | string
+    amount?: DecimalFilter<"Contract"> | Decimal | DecimalJsLike | number | string
+    currency?: StringFilter<"Contract"> | string
+    startDate?: DateTimeFilter<"Contract"> | Date | string
+    endDate?: DateTimeNullableFilter<"Contract"> | Date | string | null
+    status?: StringFilter<"Contract"> | string
+    contractNumber?: StringNullableFilter<"Contract"> | string | null
+    createdAt?: DateTimeFilter<"Contract"> | Date | string
+    updatedAt?: DateTimeFilter<"Contract"> | Date | string
+    municipality?: XOR<MunicipalityRelationFilter, MunicipalityWhereInput>
+    supplier?: XOR<SupplierRelationFilter, SupplierWhereInput>
+  }
+
+  export type ContractOrderByWithRelationInput = {
+    id?: SortOrder
+    municipalityId?: SortOrder
+    supplierId?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    amount?: SortOrder
+    currency?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrderInput | SortOrder
+    status?: SortOrder
+    contractNumber?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    municipality?: MunicipalityOrderByWithRelationInput
+    supplier?: SupplierOrderByWithRelationInput
+  }
+
+  export type ContractWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    contractNumber?: string
+    AND?: ContractWhereInput | ContractWhereInput[]
+    OR?: ContractWhereInput[]
+    NOT?: ContractWhereInput | ContractWhereInput[]
+    municipalityId?: StringFilter<"Contract"> | string
+    supplierId?: StringFilter<"Contract"> | string
+    title?: StringFilter<"Contract"> | string
+    description?: StringFilter<"Contract"> | string
+    amount?: DecimalFilter<"Contract"> | Decimal | DecimalJsLike | number | string
+    currency?: StringFilter<"Contract"> | string
+    startDate?: DateTimeFilter<"Contract"> | Date | string
+    endDate?: DateTimeNullableFilter<"Contract"> | Date | string | null
+    status?: StringFilter<"Contract"> | string
+    createdAt?: DateTimeFilter<"Contract"> | Date | string
+    updatedAt?: DateTimeFilter<"Contract"> | Date | string
+    municipality?: XOR<MunicipalityRelationFilter, MunicipalityWhereInput>
+    supplier?: XOR<SupplierRelationFilter, SupplierWhereInput>
+  }, "id" | "contractNumber">
+
+  export type ContractOrderByWithAggregationInput = {
+    id?: SortOrder
+    municipalityId?: SortOrder
+    supplierId?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    amount?: SortOrder
+    currency?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrderInput | SortOrder
+    status?: SortOrder
+    contractNumber?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ContractCountOrderByAggregateInput
+    _avg?: ContractAvgOrderByAggregateInput
+    _max?: ContractMaxOrderByAggregateInput
+    _min?: ContractMinOrderByAggregateInput
+    _sum?: ContractSumOrderByAggregateInput
+  }
+
+  export type ContractScalarWhereWithAggregatesInput = {
+    AND?: ContractScalarWhereWithAggregatesInput | ContractScalarWhereWithAggregatesInput[]
+    OR?: ContractScalarWhereWithAggregatesInput[]
+    NOT?: ContractScalarWhereWithAggregatesInput | ContractScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Contract"> | string
+    municipalityId?: StringWithAggregatesFilter<"Contract"> | string
+    supplierId?: StringWithAggregatesFilter<"Contract"> | string
+    title?: StringWithAggregatesFilter<"Contract"> | string
+    description?: StringWithAggregatesFilter<"Contract"> | string
+    amount?: DecimalWithAggregatesFilter<"Contract"> | Decimal | DecimalJsLike | number | string
+    currency?: StringWithAggregatesFilter<"Contract"> | string
+    startDate?: DateTimeWithAggregatesFilter<"Contract"> | Date | string
+    endDate?: DateTimeNullableWithAggregatesFilter<"Contract"> | Date | string | null
+    status?: StringWithAggregatesFilter<"Contract"> | string
+    contractNumber?: StringNullableWithAggregatesFilter<"Contract"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Contract"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Contract"> | Date | string
   }
 
   export type DatasetWhereInput = {
@@ -14374,6 +15720,7 @@ export namespace Prisma {
     budgets?: BudgetCreateNestedManyWithoutMunicipalityInput
     expenditures?: ExpenditureCreateNestedManyWithoutMunicipalityInput
     projects?: ProjectCreateNestedManyWithoutMunicipalityInput
+    contracts?: ContractCreateNestedManyWithoutMunicipalityInput
     users?: UserCreateNestedManyWithoutMunicipalityInput
   }
 
@@ -14389,6 +15736,7 @@ export namespace Prisma {
     budgets?: BudgetUncheckedCreateNestedManyWithoutMunicipalityInput
     expenditures?: ExpenditureUncheckedCreateNestedManyWithoutMunicipalityInput
     projects?: ProjectUncheckedCreateNestedManyWithoutMunicipalityInput
+    contracts?: ContractUncheckedCreateNestedManyWithoutMunicipalityInput
     users?: UserUncheckedCreateNestedManyWithoutMunicipalityInput
   }
 
@@ -14404,6 +15752,7 @@ export namespace Prisma {
     budgets?: BudgetUpdateManyWithoutMunicipalityNestedInput
     expenditures?: ExpenditureUpdateManyWithoutMunicipalityNestedInput
     projects?: ProjectUpdateManyWithoutMunicipalityNestedInput
+    contracts?: ContractUpdateManyWithoutMunicipalityNestedInput
     users?: UserUpdateManyWithoutMunicipalityNestedInput
   }
 
@@ -14419,6 +15768,7 @@ export namespace Prisma {
     budgets?: BudgetUncheckedUpdateManyWithoutMunicipalityNestedInput
     expenditures?: ExpenditureUncheckedUpdateManyWithoutMunicipalityNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutMunicipalityNestedInput
+    contracts?: ContractUncheckedUpdateManyWithoutMunicipalityNestedInput
     users?: UserUncheckedUpdateManyWithoutMunicipalityNestedInput
   }
 
@@ -14945,6 +16295,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     expenditures?: ExpenditureCreateNestedManyWithoutSupplierInput
+    contracts?: ContractCreateNestedManyWithoutSupplierInput
   }
 
   export type SupplierUncheckedCreateInput = {
@@ -14956,6 +16307,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     expenditures?: ExpenditureUncheckedCreateNestedManyWithoutSupplierInput
+    contracts?: ContractUncheckedCreateNestedManyWithoutSupplierInput
   }
 
   export type SupplierUpdateInput = {
@@ -14967,6 +16319,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     expenditures?: ExpenditureUpdateManyWithoutSupplierNestedInput
+    contracts?: ContractUpdateManyWithoutSupplierNestedInput
   }
 
   export type SupplierUncheckedUpdateInput = {
@@ -14978,6 +16331,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     expenditures?: ExpenditureUncheckedUpdateManyWithoutSupplierNestedInput
+    contracts?: ContractUncheckedUpdateManyWithoutSupplierNestedInput
   }
 
   export type SupplierCreateManyInput = {
@@ -15006,6 +16360,116 @@ export namespace Prisma {
     taxId?: NullableStringFieldUpdateOperationsInput | string | null
     sector?: NullableStringFieldUpdateOperationsInput | string | null
     locality?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContractCreateInput = {
+    id?: string
+    title: string
+    description: string
+    amount: Decimal | DecimalJsLike | number | string
+    currency?: string
+    startDate: Date | string
+    endDate?: Date | string | null
+    status: string
+    contractNumber?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    municipality: MunicipalityCreateNestedOneWithoutContractsInput
+    supplier: SupplierCreateNestedOneWithoutContractsInput
+  }
+
+  export type ContractUncheckedCreateInput = {
+    id?: string
+    municipalityId: string
+    supplierId: string
+    title: string
+    description: string
+    amount: Decimal | DecimalJsLike | number | string
+    currency?: string
+    startDate: Date | string
+    endDate?: Date | string | null
+    status: string
+    contractNumber?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContractUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    contractNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    municipality?: MunicipalityUpdateOneRequiredWithoutContractsNestedInput
+    supplier?: SupplierUpdateOneRequiredWithoutContractsNestedInput
+  }
+
+  export type ContractUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    municipalityId?: StringFieldUpdateOperationsInput | string
+    supplierId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    contractNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContractCreateManyInput = {
+    id?: string
+    municipalityId: string
+    supplierId: string
+    title: string
+    description: string
+    amount: Decimal | DecimalJsLike | number | string
+    currency?: string
+    startDate: Date | string
+    endDate?: Date | string | null
+    status: string
+    contractNumber?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContractUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    contractNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContractUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    municipalityId?: StringFieldUpdateOperationsInput | string
+    supplierId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    contractNumber?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15406,6 +16870,12 @@ export namespace Prisma {
     none?: ProjectWhereInput
   }
 
+  export type ContractListRelationFilter = {
+    every?: ContractWhereInput
+    some?: ContractWhereInput
+    none?: ContractWhereInput
+  }
+
   export type UserListRelationFilter = {
     every?: UserWhereInput
     some?: UserWhereInput
@@ -15421,6 +16891,10 @@ export namespace Prisma {
   }
 
   export type ProjectOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ContractOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -15925,6 +17399,67 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type SupplierRelationFilter = {
+    is?: SupplierWhereInput
+    isNot?: SupplierWhereInput
+  }
+
+  export type ContractCountOrderByAggregateInput = {
+    id?: SortOrder
+    municipalityId?: SortOrder
+    supplierId?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    amount?: SortOrder
+    currency?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    status?: SortOrder
+    contractNumber?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContractAvgOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
+  export type ContractMaxOrderByAggregateInput = {
+    id?: SortOrder
+    municipalityId?: SortOrder
+    supplierId?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    amount?: SortOrder
+    currency?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    status?: SortOrder
+    contractNumber?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContractMinOrderByAggregateInput = {
+    id?: SortOrder
+    municipalityId?: SortOrder
+    supplierId?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    amount?: SortOrder
+    currency?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    status?: SortOrder
+    contractNumber?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContractSumOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
   export type IngestionRunListRelationFilter = {
     every?: IngestionRunWhereInput
     some?: IngestionRunWhereInput
@@ -16212,6 +17747,13 @@ export namespace Prisma {
     connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
   }
 
+  export type ContractCreateNestedManyWithoutMunicipalityInput = {
+    create?: XOR<ContractCreateWithoutMunicipalityInput, ContractUncheckedCreateWithoutMunicipalityInput> | ContractCreateWithoutMunicipalityInput[] | ContractUncheckedCreateWithoutMunicipalityInput[]
+    connectOrCreate?: ContractCreateOrConnectWithoutMunicipalityInput | ContractCreateOrConnectWithoutMunicipalityInput[]
+    createMany?: ContractCreateManyMunicipalityInputEnvelope
+    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+  }
+
   export type UserCreateNestedManyWithoutMunicipalityInput = {
     create?: XOR<UserCreateWithoutMunicipalityInput, UserUncheckedCreateWithoutMunicipalityInput> | UserCreateWithoutMunicipalityInput[] | UserUncheckedCreateWithoutMunicipalityInput[]
     connectOrCreate?: UserCreateOrConnectWithoutMunicipalityInput | UserCreateOrConnectWithoutMunicipalityInput[]
@@ -16238,6 +17780,13 @@ export namespace Prisma {
     connectOrCreate?: ProjectCreateOrConnectWithoutMunicipalityInput | ProjectCreateOrConnectWithoutMunicipalityInput[]
     createMany?: ProjectCreateManyMunicipalityInputEnvelope
     connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+  }
+
+  export type ContractUncheckedCreateNestedManyWithoutMunicipalityInput = {
+    create?: XOR<ContractCreateWithoutMunicipalityInput, ContractUncheckedCreateWithoutMunicipalityInput> | ContractCreateWithoutMunicipalityInput[] | ContractUncheckedCreateWithoutMunicipalityInput[]
+    connectOrCreate?: ContractCreateOrConnectWithoutMunicipalityInput | ContractCreateOrConnectWithoutMunicipalityInput[]
+    createMany?: ContractCreateManyMunicipalityInputEnvelope
+    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
   }
 
   export type UserUncheckedCreateNestedManyWithoutMunicipalityInput = {
@@ -16297,6 +17846,20 @@ export namespace Prisma {
     deleteMany?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
   }
 
+  export type ContractUpdateManyWithoutMunicipalityNestedInput = {
+    create?: XOR<ContractCreateWithoutMunicipalityInput, ContractUncheckedCreateWithoutMunicipalityInput> | ContractCreateWithoutMunicipalityInput[] | ContractUncheckedCreateWithoutMunicipalityInput[]
+    connectOrCreate?: ContractCreateOrConnectWithoutMunicipalityInput | ContractCreateOrConnectWithoutMunicipalityInput[]
+    upsert?: ContractUpsertWithWhereUniqueWithoutMunicipalityInput | ContractUpsertWithWhereUniqueWithoutMunicipalityInput[]
+    createMany?: ContractCreateManyMunicipalityInputEnvelope
+    set?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    disconnect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    delete?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    update?: ContractUpdateWithWhereUniqueWithoutMunicipalityInput | ContractUpdateWithWhereUniqueWithoutMunicipalityInput[]
+    updateMany?: ContractUpdateManyWithWhereWithoutMunicipalityInput | ContractUpdateManyWithWhereWithoutMunicipalityInput[]
+    deleteMany?: ContractScalarWhereInput | ContractScalarWhereInput[]
+  }
+
   export type UserUpdateManyWithoutMunicipalityNestedInput = {
     create?: XOR<UserCreateWithoutMunicipalityInput, UserUncheckedCreateWithoutMunicipalityInput> | UserCreateWithoutMunicipalityInput[] | UserUncheckedCreateWithoutMunicipalityInput[]
     connectOrCreate?: UserCreateOrConnectWithoutMunicipalityInput | UserCreateOrConnectWithoutMunicipalityInput[]
@@ -16351,6 +17914,20 @@ export namespace Prisma {
     update?: ProjectUpdateWithWhereUniqueWithoutMunicipalityInput | ProjectUpdateWithWhereUniqueWithoutMunicipalityInput[]
     updateMany?: ProjectUpdateManyWithWhereWithoutMunicipalityInput | ProjectUpdateManyWithWhereWithoutMunicipalityInput[]
     deleteMany?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
+  }
+
+  export type ContractUncheckedUpdateManyWithoutMunicipalityNestedInput = {
+    create?: XOR<ContractCreateWithoutMunicipalityInput, ContractUncheckedCreateWithoutMunicipalityInput> | ContractCreateWithoutMunicipalityInput[] | ContractUncheckedCreateWithoutMunicipalityInput[]
+    connectOrCreate?: ContractCreateOrConnectWithoutMunicipalityInput | ContractCreateOrConnectWithoutMunicipalityInput[]
+    upsert?: ContractUpsertWithWhereUniqueWithoutMunicipalityInput | ContractUpsertWithWhereUniqueWithoutMunicipalityInput[]
+    createMany?: ContractCreateManyMunicipalityInputEnvelope
+    set?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    disconnect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    delete?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    update?: ContractUpdateWithWhereUniqueWithoutMunicipalityInput | ContractUpdateWithWhereUniqueWithoutMunicipalityInput[]
+    updateMany?: ContractUpdateManyWithWhereWithoutMunicipalityInput | ContractUpdateManyWithWhereWithoutMunicipalityInput[]
+    deleteMany?: ContractScalarWhereInput | ContractScalarWhereInput[]
   }
 
   export type UserUncheckedUpdateManyWithoutMunicipalityNestedInput = {
@@ -16634,11 +18211,25 @@ export namespace Prisma {
     connect?: ExpenditureWhereUniqueInput | ExpenditureWhereUniqueInput[]
   }
 
+  export type ContractCreateNestedManyWithoutSupplierInput = {
+    create?: XOR<ContractCreateWithoutSupplierInput, ContractUncheckedCreateWithoutSupplierInput> | ContractCreateWithoutSupplierInput[] | ContractUncheckedCreateWithoutSupplierInput[]
+    connectOrCreate?: ContractCreateOrConnectWithoutSupplierInput | ContractCreateOrConnectWithoutSupplierInput[]
+    createMany?: ContractCreateManySupplierInputEnvelope
+    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+  }
+
   export type ExpenditureUncheckedCreateNestedManyWithoutSupplierInput = {
     create?: XOR<ExpenditureCreateWithoutSupplierInput, ExpenditureUncheckedCreateWithoutSupplierInput> | ExpenditureCreateWithoutSupplierInput[] | ExpenditureUncheckedCreateWithoutSupplierInput[]
     connectOrCreate?: ExpenditureCreateOrConnectWithoutSupplierInput | ExpenditureCreateOrConnectWithoutSupplierInput[]
     createMany?: ExpenditureCreateManySupplierInputEnvelope
     connect?: ExpenditureWhereUniqueInput | ExpenditureWhereUniqueInput[]
+  }
+
+  export type ContractUncheckedCreateNestedManyWithoutSupplierInput = {
+    create?: XOR<ContractCreateWithoutSupplierInput, ContractUncheckedCreateWithoutSupplierInput> | ContractCreateWithoutSupplierInput[] | ContractUncheckedCreateWithoutSupplierInput[]
+    connectOrCreate?: ContractCreateOrConnectWithoutSupplierInput | ContractCreateOrConnectWithoutSupplierInput[]
+    createMany?: ContractCreateManySupplierInputEnvelope
+    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
   }
 
   export type ExpenditureUpdateManyWithoutSupplierNestedInput = {
@@ -16655,6 +18246,20 @@ export namespace Prisma {
     deleteMany?: ExpenditureScalarWhereInput | ExpenditureScalarWhereInput[]
   }
 
+  export type ContractUpdateManyWithoutSupplierNestedInput = {
+    create?: XOR<ContractCreateWithoutSupplierInput, ContractUncheckedCreateWithoutSupplierInput> | ContractCreateWithoutSupplierInput[] | ContractUncheckedCreateWithoutSupplierInput[]
+    connectOrCreate?: ContractCreateOrConnectWithoutSupplierInput | ContractCreateOrConnectWithoutSupplierInput[]
+    upsert?: ContractUpsertWithWhereUniqueWithoutSupplierInput | ContractUpsertWithWhereUniqueWithoutSupplierInput[]
+    createMany?: ContractCreateManySupplierInputEnvelope
+    set?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    disconnect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    delete?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    update?: ContractUpdateWithWhereUniqueWithoutSupplierInput | ContractUpdateWithWhereUniqueWithoutSupplierInput[]
+    updateMany?: ContractUpdateManyWithWhereWithoutSupplierInput | ContractUpdateManyWithWhereWithoutSupplierInput[]
+    deleteMany?: ContractScalarWhereInput | ContractScalarWhereInput[]
+  }
+
   export type ExpenditureUncheckedUpdateManyWithoutSupplierNestedInput = {
     create?: XOR<ExpenditureCreateWithoutSupplierInput, ExpenditureUncheckedCreateWithoutSupplierInput> | ExpenditureCreateWithoutSupplierInput[] | ExpenditureUncheckedCreateWithoutSupplierInput[]
     connectOrCreate?: ExpenditureCreateOrConnectWithoutSupplierInput | ExpenditureCreateOrConnectWithoutSupplierInput[]
@@ -16667,6 +18272,48 @@ export namespace Prisma {
     update?: ExpenditureUpdateWithWhereUniqueWithoutSupplierInput | ExpenditureUpdateWithWhereUniqueWithoutSupplierInput[]
     updateMany?: ExpenditureUpdateManyWithWhereWithoutSupplierInput | ExpenditureUpdateManyWithWhereWithoutSupplierInput[]
     deleteMany?: ExpenditureScalarWhereInput | ExpenditureScalarWhereInput[]
+  }
+
+  export type ContractUncheckedUpdateManyWithoutSupplierNestedInput = {
+    create?: XOR<ContractCreateWithoutSupplierInput, ContractUncheckedCreateWithoutSupplierInput> | ContractCreateWithoutSupplierInput[] | ContractUncheckedCreateWithoutSupplierInput[]
+    connectOrCreate?: ContractCreateOrConnectWithoutSupplierInput | ContractCreateOrConnectWithoutSupplierInput[]
+    upsert?: ContractUpsertWithWhereUniqueWithoutSupplierInput | ContractUpsertWithWhereUniqueWithoutSupplierInput[]
+    createMany?: ContractCreateManySupplierInputEnvelope
+    set?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    disconnect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    delete?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    connect?: ContractWhereUniqueInput | ContractWhereUniqueInput[]
+    update?: ContractUpdateWithWhereUniqueWithoutSupplierInput | ContractUpdateWithWhereUniqueWithoutSupplierInput[]
+    updateMany?: ContractUpdateManyWithWhereWithoutSupplierInput | ContractUpdateManyWithWhereWithoutSupplierInput[]
+    deleteMany?: ContractScalarWhereInput | ContractScalarWhereInput[]
+  }
+
+  export type MunicipalityCreateNestedOneWithoutContractsInput = {
+    create?: XOR<MunicipalityCreateWithoutContractsInput, MunicipalityUncheckedCreateWithoutContractsInput>
+    connectOrCreate?: MunicipalityCreateOrConnectWithoutContractsInput
+    connect?: MunicipalityWhereUniqueInput
+  }
+
+  export type SupplierCreateNestedOneWithoutContractsInput = {
+    create?: XOR<SupplierCreateWithoutContractsInput, SupplierUncheckedCreateWithoutContractsInput>
+    connectOrCreate?: SupplierCreateOrConnectWithoutContractsInput
+    connect?: SupplierWhereUniqueInput
+  }
+
+  export type MunicipalityUpdateOneRequiredWithoutContractsNestedInput = {
+    create?: XOR<MunicipalityCreateWithoutContractsInput, MunicipalityUncheckedCreateWithoutContractsInput>
+    connectOrCreate?: MunicipalityCreateOrConnectWithoutContractsInput
+    upsert?: MunicipalityUpsertWithoutContractsInput
+    connect?: MunicipalityWhereUniqueInput
+    update?: XOR<XOR<MunicipalityUpdateToOneWithWhereWithoutContractsInput, MunicipalityUpdateWithoutContractsInput>, MunicipalityUncheckedUpdateWithoutContractsInput>
+  }
+
+  export type SupplierUpdateOneRequiredWithoutContractsNestedInput = {
+    create?: XOR<SupplierCreateWithoutContractsInput, SupplierUncheckedCreateWithoutContractsInput>
+    connectOrCreate?: SupplierCreateOrConnectWithoutContractsInput
+    upsert?: SupplierUpsertWithoutContractsInput
+    connect?: SupplierWhereUniqueInput
+    update?: XOR<XOR<SupplierUpdateToOneWithWhereWithoutContractsInput, SupplierUpdateWithoutContractsInput>, SupplierUncheckedUpdateWithoutContractsInput>
   }
 
   export type IngestionRunCreateNestedManyWithoutDatasetInput = {
@@ -17150,6 +18797,46 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ContractCreateWithoutMunicipalityInput = {
+    id?: string
+    title: string
+    description: string
+    amount: Decimal | DecimalJsLike | number | string
+    currency?: string
+    startDate: Date | string
+    endDate?: Date | string | null
+    status: string
+    contractNumber?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    supplier: SupplierCreateNestedOneWithoutContractsInput
+  }
+
+  export type ContractUncheckedCreateWithoutMunicipalityInput = {
+    id?: string
+    supplierId: string
+    title: string
+    description: string
+    amount: Decimal | DecimalJsLike | number | string
+    currency?: string
+    startDate: Date | string
+    endDate?: Date | string | null
+    status: string
+    contractNumber?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContractCreateOrConnectWithoutMunicipalityInput = {
+    where: ContractWhereUniqueInput
+    create: XOR<ContractCreateWithoutMunicipalityInput, ContractUncheckedCreateWithoutMunicipalityInput>
+  }
+
+  export type ContractCreateManyMunicipalityInputEnvelope = {
+    data: ContractCreateManyMunicipalityInput | ContractCreateManyMunicipalityInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserCreateWithoutMunicipalityInput = {
     id?: string
     email: string
@@ -17287,6 +18974,41 @@ export namespace Prisma {
     location?: StringNullableFilter<"Project"> | string | null
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
+  }
+
+  export type ContractUpsertWithWhereUniqueWithoutMunicipalityInput = {
+    where: ContractWhereUniqueInput
+    update: XOR<ContractUpdateWithoutMunicipalityInput, ContractUncheckedUpdateWithoutMunicipalityInput>
+    create: XOR<ContractCreateWithoutMunicipalityInput, ContractUncheckedCreateWithoutMunicipalityInput>
+  }
+
+  export type ContractUpdateWithWhereUniqueWithoutMunicipalityInput = {
+    where: ContractWhereUniqueInput
+    data: XOR<ContractUpdateWithoutMunicipalityInput, ContractUncheckedUpdateWithoutMunicipalityInput>
+  }
+
+  export type ContractUpdateManyWithWhereWithoutMunicipalityInput = {
+    where: ContractScalarWhereInput
+    data: XOR<ContractUpdateManyMutationInput, ContractUncheckedUpdateManyWithoutMunicipalityInput>
+  }
+
+  export type ContractScalarWhereInput = {
+    AND?: ContractScalarWhereInput | ContractScalarWhereInput[]
+    OR?: ContractScalarWhereInput[]
+    NOT?: ContractScalarWhereInput | ContractScalarWhereInput[]
+    id?: StringFilter<"Contract"> | string
+    municipalityId?: StringFilter<"Contract"> | string
+    supplierId?: StringFilter<"Contract"> | string
+    title?: StringFilter<"Contract"> | string
+    description?: StringFilter<"Contract"> | string
+    amount?: DecimalFilter<"Contract"> | Decimal | DecimalJsLike | number | string
+    currency?: StringFilter<"Contract"> | string
+    startDate?: DateTimeFilter<"Contract"> | Date | string
+    endDate?: DateTimeNullableFilter<"Contract"> | Date | string | null
+    status?: StringFilter<"Contract"> | string
+    contractNumber?: StringNullableFilter<"Contract"> | string | null
+    createdAt?: DateTimeFilter<"Contract"> | Date | string
+    updatedAt?: DateTimeFilter<"Contract"> | Date | string
   }
 
   export type UserUpsertWithWhereUniqueWithoutMunicipalityInput = {
@@ -17446,6 +19168,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     expenditures?: ExpenditureCreateNestedManyWithoutMunicipalityInput
     projects?: ProjectCreateNestedManyWithoutMunicipalityInput
+    contracts?: ContractCreateNestedManyWithoutMunicipalityInput
     users?: UserCreateNestedManyWithoutMunicipalityInput
   }
 
@@ -17460,6 +19183,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     expenditures?: ExpenditureUncheckedCreateNestedManyWithoutMunicipalityInput
     projects?: ProjectUncheckedCreateNestedManyWithoutMunicipalityInput
+    contracts?: ContractUncheckedCreateNestedManyWithoutMunicipalityInput
     users?: UserUncheckedCreateNestedManyWithoutMunicipalityInput
   }
 
@@ -17511,6 +19235,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     expenditures?: ExpenditureUpdateManyWithoutMunicipalityNestedInput
     projects?: ProjectUpdateManyWithoutMunicipalityNestedInput
+    contracts?: ContractUpdateManyWithoutMunicipalityNestedInput
     users?: UserUpdateManyWithoutMunicipalityNestedInput
   }
 
@@ -17525,6 +19250,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     expenditures?: ExpenditureUncheckedUpdateManyWithoutMunicipalityNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutMunicipalityNestedInput
+    contracts?: ContractUncheckedUpdateManyWithoutMunicipalityNestedInput
     users?: UserUncheckedUpdateManyWithoutMunicipalityNestedInput
   }
 
@@ -17566,6 +19292,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     budgets?: BudgetCreateNestedManyWithoutMunicipalityInput
     projects?: ProjectCreateNestedManyWithoutMunicipalityInput
+    contracts?: ContractCreateNestedManyWithoutMunicipalityInput
     users?: UserCreateNestedManyWithoutMunicipalityInput
   }
 
@@ -17580,6 +19307,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     budgets?: BudgetUncheckedCreateNestedManyWithoutMunicipalityInput
     projects?: ProjectUncheckedCreateNestedManyWithoutMunicipalityInput
+    contracts?: ContractUncheckedCreateNestedManyWithoutMunicipalityInput
     users?: UserUncheckedCreateNestedManyWithoutMunicipalityInput
   }
 
@@ -17617,6 +19345,7 @@ export namespace Prisma {
     locality?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    contracts?: ContractCreateNestedManyWithoutSupplierInput
   }
 
   export type SupplierUncheckedCreateWithoutExpendituresInput = {
@@ -17627,6 +19356,7 @@ export namespace Prisma {
     locality?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    contracts?: ContractUncheckedCreateNestedManyWithoutSupplierInput
   }
 
   export type SupplierCreateOrConnectWithoutExpendituresInput = {
@@ -17656,6 +19386,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     budgets?: BudgetUpdateManyWithoutMunicipalityNestedInput
     projects?: ProjectUpdateManyWithoutMunicipalityNestedInput
+    contracts?: ContractUpdateManyWithoutMunicipalityNestedInput
     users?: UserUpdateManyWithoutMunicipalityNestedInput
   }
 
@@ -17670,6 +19401,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     budgets?: BudgetUncheckedUpdateManyWithoutMunicipalityNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutMunicipalityNestedInput
+    contracts?: ContractUncheckedUpdateManyWithoutMunicipalityNestedInput
     users?: UserUncheckedUpdateManyWithoutMunicipalityNestedInput
   }
 
@@ -17719,6 +19451,7 @@ export namespace Prisma {
     locality?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    contracts?: ContractUpdateManyWithoutSupplierNestedInput
   }
 
   export type SupplierUncheckedUpdateWithoutExpendituresInput = {
@@ -17729,6 +19462,7 @@ export namespace Prisma {
     locality?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    contracts?: ContractUncheckedUpdateManyWithoutSupplierNestedInput
   }
 
   export type MunicipalityCreateWithoutProjectsInput = {
@@ -17742,6 +19476,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     budgets?: BudgetCreateNestedManyWithoutMunicipalityInput
     expenditures?: ExpenditureCreateNestedManyWithoutMunicipalityInput
+    contracts?: ContractCreateNestedManyWithoutMunicipalityInput
     users?: UserCreateNestedManyWithoutMunicipalityInput
   }
 
@@ -17756,6 +19491,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     budgets?: BudgetUncheckedCreateNestedManyWithoutMunicipalityInput
     expenditures?: ExpenditureUncheckedCreateNestedManyWithoutMunicipalityInput
+    contracts?: ContractUncheckedCreateNestedManyWithoutMunicipalityInput
     users?: UserUncheckedCreateNestedManyWithoutMunicipalityInput
   }
 
@@ -17809,6 +19545,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     budgets?: BudgetUpdateManyWithoutMunicipalityNestedInput
     expenditures?: ExpenditureUpdateManyWithoutMunicipalityNestedInput
+    contracts?: ContractUpdateManyWithoutMunicipalityNestedInput
     users?: UserUpdateManyWithoutMunicipalityNestedInput
   }
 
@@ -17823,6 +19560,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     budgets?: BudgetUncheckedUpdateManyWithoutMunicipalityNestedInput
     expenditures?: ExpenditureUncheckedUpdateManyWithoutMunicipalityNestedInput
+    contracts?: ContractUncheckedUpdateManyWithoutMunicipalityNestedInput
     users?: UserUncheckedUpdateManyWithoutMunicipalityNestedInput
   }
 
@@ -17961,6 +19699,46 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ContractCreateWithoutSupplierInput = {
+    id?: string
+    title: string
+    description: string
+    amount: Decimal | DecimalJsLike | number | string
+    currency?: string
+    startDate: Date | string
+    endDate?: Date | string | null
+    status: string
+    contractNumber?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    municipality: MunicipalityCreateNestedOneWithoutContractsInput
+  }
+
+  export type ContractUncheckedCreateWithoutSupplierInput = {
+    id?: string
+    municipalityId: string
+    title: string
+    description: string
+    amount: Decimal | DecimalJsLike | number | string
+    currency?: string
+    startDate: Date | string
+    endDate?: Date | string | null
+    status: string
+    contractNumber?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContractCreateOrConnectWithoutSupplierInput = {
+    where: ContractWhereUniqueInput
+    create: XOR<ContractCreateWithoutSupplierInput, ContractUncheckedCreateWithoutSupplierInput>
+  }
+
+  export type ContractCreateManySupplierInputEnvelope = {
+    data: ContractCreateManySupplierInput | ContractCreateManySupplierInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ExpenditureUpsertWithWhereUniqueWithoutSupplierInput = {
     where: ExpenditureWhereUniqueInput
     update: XOR<ExpenditureUpdateWithoutSupplierInput, ExpenditureUncheckedUpdateWithoutSupplierInput>
@@ -17975,6 +19753,158 @@ export namespace Prisma {
   export type ExpenditureUpdateManyWithWhereWithoutSupplierInput = {
     where: ExpenditureScalarWhereInput
     data: XOR<ExpenditureUpdateManyMutationInput, ExpenditureUncheckedUpdateManyWithoutSupplierInput>
+  }
+
+  export type ContractUpsertWithWhereUniqueWithoutSupplierInput = {
+    where: ContractWhereUniqueInput
+    update: XOR<ContractUpdateWithoutSupplierInput, ContractUncheckedUpdateWithoutSupplierInput>
+    create: XOR<ContractCreateWithoutSupplierInput, ContractUncheckedCreateWithoutSupplierInput>
+  }
+
+  export type ContractUpdateWithWhereUniqueWithoutSupplierInput = {
+    where: ContractWhereUniqueInput
+    data: XOR<ContractUpdateWithoutSupplierInput, ContractUncheckedUpdateWithoutSupplierInput>
+  }
+
+  export type ContractUpdateManyWithWhereWithoutSupplierInput = {
+    where: ContractScalarWhereInput
+    data: XOR<ContractUpdateManyMutationInput, ContractUncheckedUpdateManyWithoutSupplierInput>
+  }
+
+  export type MunicipalityCreateWithoutContractsInput = {
+    id?: string
+    name: string
+    country?: string
+    region: string
+    locale?: string
+    timezone?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    budgets?: BudgetCreateNestedManyWithoutMunicipalityInput
+    expenditures?: ExpenditureCreateNestedManyWithoutMunicipalityInput
+    projects?: ProjectCreateNestedManyWithoutMunicipalityInput
+    users?: UserCreateNestedManyWithoutMunicipalityInput
+  }
+
+  export type MunicipalityUncheckedCreateWithoutContractsInput = {
+    id?: string
+    name: string
+    country?: string
+    region: string
+    locale?: string
+    timezone?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    budgets?: BudgetUncheckedCreateNestedManyWithoutMunicipalityInput
+    expenditures?: ExpenditureUncheckedCreateNestedManyWithoutMunicipalityInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutMunicipalityInput
+    users?: UserUncheckedCreateNestedManyWithoutMunicipalityInput
+  }
+
+  export type MunicipalityCreateOrConnectWithoutContractsInput = {
+    where: MunicipalityWhereUniqueInput
+    create: XOR<MunicipalityCreateWithoutContractsInput, MunicipalityUncheckedCreateWithoutContractsInput>
+  }
+
+  export type SupplierCreateWithoutContractsInput = {
+    id?: string
+    name: string
+    taxId?: string | null
+    sector?: string | null
+    locality?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    expenditures?: ExpenditureCreateNestedManyWithoutSupplierInput
+  }
+
+  export type SupplierUncheckedCreateWithoutContractsInput = {
+    id?: string
+    name: string
+    taxId?: string | null
+    sector?: string | null
+    locality?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    expenditures?: ExpenditureUncheckedCreateNestedManyWithoutSupplierInput
+  }
+
+  export type SupplierCreateOrConnectWithoutContractsInput = {
+    where: SupplierWhereUniqueInput
+    create: XOR<SupplierCreateWithoutContractsInput, SupplierUncheckedCreateWithoutContractsInput>
+  }
+
+  export type MunicipalityUpsertWithoutContractsInput = {
+    update: XOR<MunicipalityUpdateWithoutContractsInput, MunicipalityUncheckedUpdateWithoutContractsInput>
+    create: XOR<MunicipalityCreateWithoutContractsInput, MunicipalityUncheckedCreateWithoutContractsInput>
+    where?: MunicipalityWhereInput
+  }
+
+  export type MunicipalityUpdateToOneWithWhereWithoutContractsInput = {
+    where?: MunicipalityWhereInput
+    data: XOR<MunicipalityUpdateWithoutContractsInput, MunicipalityUncheckedUpdateWithoutContractsInput>
+  }
+
+  export type MunicipalityUpdateWithoutContractsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    region?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    budgets?: BudgetUpdateManyWithoutMunicipalityNestedInput
+    expenditures?: ExpenditureUpdateManyWithoutMunicipalityNestedInput
+    projects?: ProjectUpdateManyWithoutMunicipalityNestedInput
+    users?: UserUpdateManyWithoutMunicipalityNestedInput
+  }
+
+  export type MunicipalityUncheckedUpdateWithoutContractsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    region?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    budgets?: BudgetUncheckedUpdateManyWithoutMunicipalityNestedInput
+    expenditures?: ExpenditureUncheckedUpdateManyWithoutMunicipalityNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutMunicipalityNestedInput
+    users?: UserUncheckedUpdateManyWithoutMunicipalityNestedInput
+  }
+
+  export type SupplierUpsertWithoutContractsInput = {
+    update: XOR<SupplierUpdateWithoutContractsInput, SupplierUncheckedUpdateWithoutContractsInput>
+    create: XOR<SupplierCreateWithoutContractsInput, SupplierUncheckedCreateWithoutContractsInput>
+    where?: SupplierWhereInput
+  }
+
+  export type SupplierUpdateToOneWithWhereWithoutContractsInput = {
+    where?: SupplierWhereInput
+    data: XOR<SupplierUpdateWithoutContractsInput, SupplierUncheckedUpdateWithoutContractsInput>
+  }
+
+  export type SupplierUpdateWithoutContractsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    taxId?: NullableStringFieldUpdateOperationsInput | string | null
+    sector?: NullableStringFieldUpdateOperationsInput | string | null
+    locality?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expenditures?: ExpenditureUpdateManyWithoutSupplierNestedInput
+  }
+
+  export type SupplierUncheckedUpdateWithoutContractsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    taxId?: NullableStringFieldUpdateOperationsInput | string | null
+    sector?: NullableStringFieldUpdateOperationsInput | string | null
+    locality?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expenditures?: ExpenditureUncheckedUpdateManyWithoutSupplierNestedInput
   }
 
   export type IngestionRunCreateWithoutDatasetInput = {
@@ -18123,6 +20053,7 @@ export namespace Prisma {
     budgets?: BudgetCreateNestedManyWithoutMunicipalityInput
     expenditures?: ExpenditureCreateNestedManyWithoutMunicipalityInput
     projects?: ProjectCreateNestedManyWithoutMunicipalityInput
+    contracts?: ContractCreateNestedManyWithoutMunicipalityInput
   }
 
   export type MunicipalityUncheckedCreateWithoutUsersInput = {
@@ -18137,6 +20068,7 @@ export namespace Prisma {
     budgets?: BudgetUncheckedCreateNestedManyWithoutMunicipalityInput
     expenditures?: ExpenditureUncheckedCreateNestedManyWithoutMunicipalityInput
     projects?: ProjectUncheckedCreateNestedManyWithoutMunicipalityInput
+    contracts?: ContractUncheckedCreateNestedManyWithoutMunicipalityInput
   }
 
   export type MunicipalityCreateOrConnectWithoutUsersInput = {
@@ -18167,6 +20099,7 @@ export namespace Prisma {
     budgets?: BudgetUpdateManyWithoutMunicipalityNestedInput
     expenditures?: ExpenditureUpdateManyWithoutMunicipalityNestedInput
     projects?: ProjectUpdateManyWithoutMunicipalityNestedInput
+    contracts?: ContractUpdateManyWithoutMunicipalityNestedInput
   }
 
   export type MunicipalityUncheckedUpdateWithoutUsersInput = {
@@ -18181,6 +20114,7 @@ export namespace Prisma {
     budgets?: BudgetUncheckedUpdateManyWithoutMunicipalityNestedInput
     expenditures?: ExpenditureUncheckedUpdateManyWithoutMunicipalityNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutMunicipalityNestedInput
+    contracts?: ContractUncheckedUpdateManyWithoutMunicipalityNestedInput
   }
 
   export type BudgetCreateManyMunicipalityInput = {
@@ -18228,6 +20162,21 @@ export namespace Prisma {
     approvedBudget?: Decimal | DecimalJsLike | number | string | null
     fundingSourceId?: string | null
     location?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContractCreateManyMunicipalityInput = {
+    id?: string
+    supplierId: string
+    title: string
+    description: string
+    amount: Decimal | DecimalJsLike | number | string
+    currency?: string
+    startDate: Date | string
+    endDate?: Date | string | null
+    status: string
+    contractNumber?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -18385,6 +20334,51 @@ export namespace Prisma {
     approvedBudget?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     fundingSourceId?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContractUpdateWithoutMunicipalityInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    contractNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    supplier?: SupplierUpdateOneRequiredWithoutContractsNestedInput
+  }
+
+  export type ContractUncheckedUpdateWithoutMunicipalityInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    supplierId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    contractNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContractUncheckedUpdateManyWithoutMunicipalityInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    supplierId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    contractNumber?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -18633,6 +20627,21 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type ContractCreateManySupplierInput = {
+    id?: string
+    municipalityId: string
+    title: string
+    description: string
+    amount: Decimal | DecimalJsLike | number | string
+    currency?: string
+    startDate: Date | string
+    endDate?: Date | string | null
+    status: string
+    contractNumber?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type ExpenditureUpdateWithoutSupplierInput = {
     id?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18683,6 +20692,51 @@ export namespace Prisma {
     currency?: StringFieldUpdateOperationsInput | string
     procurementRef?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContractUpdateWithoutSupplierInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    contractNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    municipality?: MunicipalityUpdateOneRequiredWithoutContractsNestedInput
+  }
+
+  export type ContractUncheckedUpdateWithoutSupplierInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    municipalityId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    contractNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContractUncheckedUpdateManyWithoutSupplierInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    municipalityId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    contractNumber?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -18788,6 +20842,10 @@ export namespace Prisma {
      * @deprecated Use SupplierDefaultArgs instead
      */
     export type SupplierArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = SupplierDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ContractDefaultArgs instead
+     */
+    export type ContractArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ContractDefaultArgs<ExtArgs>
     /**
      * @deprecated Use DatasetDefaultArgs instead
      */
