@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { HttpModule } from '@nestjs/axios';
 import { PrismaModule } from '../prisma/prisma.module';
+import { ValidationModule } from '../validation/validation.module';
+import { TransformationModule } from '../transformation/transformation.module';
 import { ConnectorsController } from './connectors.controller';
 import {
   ConnectorConfigService,
@@ -19,6 +21,8 @@ import {
       maxRedirects: 5,
     }),
     PrismaModule,
+    ValidationModule,
+    TransformationModule,
   ],
   controllers: [ConnectorsController],
   providers: [

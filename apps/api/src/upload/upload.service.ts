@@ -1,5 +1,7 @@
 import { Injectable, Logger, BadRequestException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import { ValidationService } from '../validation/validation.service';
+import { TransformationService } from '../transformation/transformation.service';
 import { FileParserUtil } from './utils/file-parser.util';
 import { DateParserUtil } from './utils/date-parser.util';
 import { CurrencyParserUtil } from './utils/currency-parser.util';
@@ -15,7 +17,11 @@ import { Decimal } from '@prisma/client/runtime/library';
 export class UploadService {
   private readonly logger = new Logger(UploadService.name);
 
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private _validationService: ValidationService,
+    private _transformationService: TransformationService,
+  ) {}
 
   /**
    * Helper method to safely extract error message

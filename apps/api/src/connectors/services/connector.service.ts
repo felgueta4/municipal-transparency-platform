@@ -3,6 +3,8 @@ import { HttpService } from '@nestjs/axios';
 import { ConnectorConfigService } from './connector-config.service';
 import { ConnectorLogService } from './connector-log.service';
 import { PrismaService } from '../../prisma/prisma.service';
+import { ValidationService } from '../../validation/validation.service';
+import { TransformationService } from '../../transformation/transformation.service';
 import {
   ChileCompraConnector,
   BudgetSourceConnector,
@@ -30,6 +32,8 @@ export class ConnectorService {
     private readonly logService: ConnectorLogService,
     private readonly httpService: HttpService,
     private readonly prisma: PrismaService,
+    private readonly validationService: ValidationService,
+    private readonly transformationService: TransformationService,
   ) {}
 
   /**
@@ -75,6 +79,8 @@ export class ConnectorService {
           this.httpService,
           this.logService,
           this.prisma,
+          this.validationService,
+          this.transformationService,
         );
         break;
 
@@ -84,6 +90,8 @@ export class ConnectorService {
           this.httpService,
           this.logService,
           this.prisma,
+          this.validationService,
+          this.transformationService,
         );
         break;
 

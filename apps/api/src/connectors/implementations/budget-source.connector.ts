@@ -12,6 +12,8 @@ import {
   EntityType,
 } from '../interfaces';
 import { PrismaService } from '../../prisma/prisma.service';
+import { ValidationService } from '../../validation/validation.service';
+import { TransformationService } from '../../transformation/transformation.service';
 import { Decimal } from '@prisma/client/runtime/library';
 
 /**
@@ -29,6 +31,8 @@ export class BudgetSourceConnector extends BaseConnector implements ISyncable {
     httpService: HttpService,
     logService: ConnectorLogService,
     private readonly prisma: PrismaService,
+    private readonly validationService?: ValidationService,
+    private readonly transformationService?: TransformationService,
   ) {
     super(config, httpService, logService);
   }
@@ -190,12 +194,61 @@ export class BudgetSourceConnector extends BaseConnector implements ISyncable {
 
   /**
    * Transform external data to internal format
+   * Enhanced version using TransformationService and ValidationService
    */
   async transformData(externalData: any[], entityType: EntityType): Promise<any[]> {
     if (entityType !== EntityType.BUDGET) {
       throw new Error(`BudgetSource connector only supports ${EntityType.BUDGET} transformation`);
     }
 
+    // If transformation service is available, use it
+    if (this.transformationService) {
+      const currentYear = new Date().getFullYear();
+      
+      // Normalize field names
+      const normalizedData = externalData.map((item) => ({
+        fiscalYear: item.year || item.año || currentYear,
+        department: item.department || item.unidad || 'General',
+        program: item.program || item.programa || 'General',
+        category: item.category || item.categoria || 'Otros',
+        subcategory: item.subcategory || item.subcategoria || 'General',
+        amountPlanned: item.amount || item.monto || 0,
+        currency: item.currency || item.moneda || 'CLP',
+        notes: item.notes || item.observaciones || null,
+      }));
+
+      // Transform using TransformationService
+      const transformedResults = this.transformationService.transformBatch(
+        'budget',
+        normalizedData,
+      );
+
+      // Validate if validation service is available
+      const validatedData: any[] = [];
+      
+      if (this.validationService) {
+        for (const result of transformedResults) {
+          const validation = await this.validationService.validateBudget(
+            result.data,
+            { entityType: 'budget', skipForeignKeyValidation: true },
+          );
+
+          if (validation.isValid) {
+            validatedData.push(result.data);
+          } else {
+            this.logger.warn(
+              `Skipping invalid record: ${validation.errors.map(e => e.message).join(', ')}`,
+            );
+          }
+        }
+        
+        return validatedData;
+      } else {
+        return transformedResults.map(r => r.data);
+      }
+    }
+
+    // Fallback to basic transformation
     return externalData.map((item) => ({
       department: item.department || item.unidad || 'General',
       program: item.program || item.programa || 'General',

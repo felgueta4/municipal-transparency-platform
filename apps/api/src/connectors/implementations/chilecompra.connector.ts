@@ -12,6 +12,8 @@ import {
   EntityType,
 } from '../interfaces';
 import { PrismaService } from '../../prisma/prisma.service';
+import { ValidationService } from '../../validation/validation.service';
+import { TransformationService } from '../../transformation/transformation.service';
 
 /**
  * ChileCompra Connector
@@ -29,6 +31,8 @@ export class ChileCompraConnector extends BaseConnector implements ISyncable {
     httpService: HttpService,
     logService: ConnectorLogService,
     private readonly prisma: PrismaService,
+    private readonly _validationService?: ValidationService,
+    private readonly _transformationService?: TransformationService,
   ) {
     super(config, httpService, logService);
   }
