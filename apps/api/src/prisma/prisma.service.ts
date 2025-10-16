@@ -1,6 +1,6 @@
 
 import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@municipal-platform/database';
 
 /**
  * PrismaService - Servicio global para interactuar con la base de datos

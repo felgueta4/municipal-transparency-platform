@@ -999,7 +999,7 @@ async function main() {
     // 9. Crear Usuarios
     console.log('👤 Creando usuarios...');
 
-    const passwordHash = await bcrypt.hash('demo123', 10);
+    const passwordHash = await bcrypt.hash('demo12345', 10);
 
     const users = await Promise.all([
       prisma.user.create({
@@ -1051,7 +1051,7 @@ async function main() {
     console.log('\n✅ Seed completado exitosamente!');
     console.log('\n📝 Credenciales de acceso:');
     console.log('   Email: admin@santiago.cl | editor@santiago.cl | viewer@santiago.cl | admin@valparaiso.cl');
-    console.log('   Password: demo123');
+    console.log('   Password: demo12345');
   } catch (error) {
     console.error('❌ Error durante el seed:', error);
     throw error;

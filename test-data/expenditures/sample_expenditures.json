@@ -1,0 +1,67 @@
+
+[
+  {
+    "date": "15-01-2024",
+    "fiscalYear": 2024,
+    "department": "Educación",
+    "program": "Educación Básica",
+    "category": "Personal",
+    "subcategory": "Sueldos y Salarios",
+    "concept": "Pago mensual docentes enero",
+    "amountActual": 48500000,
+    "currency": "CLP"
+  },
+  {
+    "date": "20-01-2024",
+    "fiscalYear": 2024,
+    "department": "Salud",
+    "program": "Atención Primaria",
+    "category": "Bienes y Servicios",
+    "subcategory": "Medicamentos",
+    "concept": "Compra medicamentos mes enero",
+    "amountActual": 2300000,
+    "currency": "CLP",
+    "supplierName": "Farmacia SalMed",
+    "supplierTaxId": "76.123.456-7",
+    "procurementRef": "PRC-2024-001"
+  },
+  {
+    "date": "25-01-2024",
+    "fiscalYear": 2024,
+    "department": "Obras Públicas",
+    "program": "Infraestructura Vial",
+    "category": "Inversión",
+    "subcategory": "Construcción",
+    "concept": "Pavimentación Av. Principal tramo 1",
+    "amountActual": 15000000,
+    "currency": "CLP",
+    "supplierName": "Constructora VialChile S.A.",
+    "supplierTaxId": "96.789.123-4",
+    "procurementRef": "LIC-2023-045"
+  },
+  {
+    "date": "30-01-2024",
+    "fiscalYear": 2024,
+    "department": "Servicios Comunitarios",
+    "program": "Áreas Verdes",
+    "category": "Bienes y Servicios",
+    "subcategory": "Mantención",
+    "concept": "Mantención parques enero",
+    "amountActual": 1200000,
+    "currency": "CLP",
+    "supplierName": "Jardinería Verde Ltda.",
+    "supplierTaxId": "77.456.789-1",
+    "procurementRef": "PRC-2024-003"
+  },
+  {
+    "date": "15-02-2024",
+    "fiscalYear": 2024,
+    "department": "Educación",
+    "program": "Educación Básica",
+    "category": "Personal",
+    "subcategory": "Sueldos y Salarios",
+    "concept": "Pago mensual docentes febrero",
+    "amountActual": 48500000,
+    "currency": "CLP"
+  }
+]

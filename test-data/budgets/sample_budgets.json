@@ -1,0 +1,53 @@
+
+[
+  {
+    "fiscalYear": 2024,
+    "department": "Educación",
+    "program": "Educación Básica",
+    "category": "Personal",
+    "subcategory": "Sueldos y Salarios",
+    "amountPlanned": 50000000,
+    "currency": "CLP",
+    "notes": "Presupuesto para docentes de educación básica"
+  },
+  {
+    "fiscalYear": 2024,
+    "department": "Educación",
+    "program": "Educación Media",
+    "category": "Personal",
+    "subcategory": "Sueldos y Salarios",
+    "amountPlanned": 35000000,
+    "currency": "CLP",
+    "notes": "Presupuesto para docentes de educación media"
+  },
+  {
+    "fiscalYear": 2024,
+    "department": "Salud",
+    "program": "Atención Primaria",
+    "category": "Personal",
+    "subcategory": "Sueldos y Salarios",
+    "amountPlanned": 80000000,
+    "currency": "CLP",
+    "notes": "Personal médico y enfermería"
+  },
+  {
+    "fiscalYear": 2024,
+    "department": "Salud",
+    "program": "Atención Primaria",
+    "category": "Bienes y Servicios",
+    "subcategory": "Medicamentos",
+    "amountPlanned": 25000000,
+    "currency": "CLP",
+    "notes": "Compra de medicamentos para consultorio"
+  },
+  {
+    "fiscalYear": 2024,
+    "department": "Obras Públicas",
+    "program": "Infraestructura Vial",
+    "category": "Inversión",
+    "subcategory": "Construcción",
+    "amountPlanned": 120000000,
+    "currency": "CLP",
+    "notes": "Pavimentación de calles sector norte"
+  }
+]

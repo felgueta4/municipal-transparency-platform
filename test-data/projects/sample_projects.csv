@@ -1,0 +1,11 @@
+title,description,status,department,category,startDate,endDate,requestedBudget,approvedBudget,fundingSourceName
+Pavimentación Sector Norte,"Pavimentación de calles en sectores de Villa Norte, mejorando la conectividad vial",en_progreso,Obras Públicas,Infraestructura,01-01-2024,30-06-2024,120000000,115000000,Fondo Nacional de Desarrollo Regional
+Mejoramiento Plaza Central,"Renovación integral de la plaza central con juegos infantiles, áreas verdes y mobiliario urbano",planificado,Servicios Comunitarios,Espacios Públicos,15-03-2024,15-08-2024,35000000,32000000,Presupuesto Municipal
+Construcción Centro de Salud Familiar,"Construcción de nuevo CESFAM en sector sur de la comuna",en_progreso,Salud,Infraestructura de Salud,01-06-2023,31-12-2024,450000000,445000000,Gobierno Regional
+Implementación Ciclovías,"Red de ciclovías conectando principales puntos de la comuna",planificado,Obras Públicas,Movilidad,01-04-2024,30-11-2024,85000000,80000000,Fondo Nacional de Desarrollo Regional
+Programa Deporte Comunitario,"Talleres deportivos gratuitos para niños y adultos mayores en diversos sectores",en_progreso,Servicios Comunitarios,Deporte y Recreación,01-01-2024,31-12-2024,12000000,12000000,Presupuesto Municipal
+Mejoramiento Iluminación Pública,"Recambio de luminarias tradicionales por LED en toda la comuna",en_progreso,Seguridad Ciudadana,Seguridad,01-02-2024,30-09-2024,25000000,24000000,Programa de Eficiencia Energética
+Digitalización Trámites Municipales,"Implementación de plataforma digital para trámites en línea",planificado,Administración,Modernización,01-05-2024,31-10-2024,18000000,16000000,Presupuesto Municipal
+Centro Cultural Comunitario,"Construcción de centro cultural con sala de teatro y biblioteca",planificado,Cultura,Infraestructura Cultural,01-07-2024,30-06-2025,95000000,,Fondo del Libro y la Lectura
+Programa Capacitación Laboral,"Cursos de capacitación técnica para personas en búsqueda de empleo",en_progreso,Desarrollo Social,Capacitación,01-03-2024,31-12-2024,8000000,8000000,Servicio Nacional de Capacitación
+Restauración Patrimonio Histórico,"Restauración de edificio patrimonial del centro histórico",suspendido,Cultura,Patrimonio,01-11-2023,30-06-2024,55000000,50000000,Consejo de Monumentos Nacionales

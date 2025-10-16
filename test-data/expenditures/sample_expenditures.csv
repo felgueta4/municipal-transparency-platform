@@ -1,0 +1,11 @@
+date,fiscalYear,department,program,category,subcategory,concept,amountActual,currency,supplierName,supplierTaxId,procurementRef
+15-01-2024,2024,Educación,Educación Básica,Personal,Sueldos y Salarios,Pago mensual docentes enero,48500000,CLP,,,
+20-01-2024,2024,Salud,Atención Primaria,Bienes y Servicios,Medicamentos,Compra medicamentos mes enero,2300000,CLP,Farmacia SalMed,76.123.456-7,PRC-2024-001
+25-01-2024,2024,Obras Públicas,Infraestructura Vial,Inversión,Construcción,Pavimentación Av. Principal tramo 1,15000000,CLP,Constructora VialChile S.A.,96.789.123-4,LIC-2023-045
+30-01-2024,2024,Servicios Comunitarios,Áreas Verdes,Bienes y Servicios,Mantención,Mantención parques enero,1200000,CLP,Jardinería Verde Ltda.,77.456.789-1,PRC-2024-003
+15-02-2024,2024,Educación,Educación Básica,Personal,Sueldos y Salarios,Pago mensual docentes febrero,48500000,CLP,,,
+18-02-2024,2024,Salud,Atención Primaria,Bienes y Servicios,Medicamentos,Compra medicamentos mes febrero,2450000,CLP,Farmacia SalMed,76.123.456-7,PRC-2024-008
+22-02-2024,2024,Obras Públicas,Infraestructura Vial,Inversión,Construcción,Pavimentación Av. Principal tramo 2,15000000,CLP,Constructora VialChile S.A.,96.789.123-4,LIC-2023-045
+28-02-2024,2024,Servicios Comunitarios,Deporte,Inversión,Equipamiento,Compra implementos deportivos,980000,CLP,Deportes Total,78.234.567-8,PRC-2024-010
+05-03-2024,2024,Seguridad Ciudadana,Prevención,Bienes y Servicios,Iluminación,Instalación luminarias LED sector sur,750000,CLP,Iluminación Eficiente,79.345.678-9,PRC-2024-012
+15-03-2024,2024,Educación,Educación Básica,Personal,Sueldos y Salarios,Pago mensual docentes marzo,48500000,CLP,,,

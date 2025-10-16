@@ -253,6 +253,40 @@ exports.Prisma.IngestionRunScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.ConnectorConfigScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  type: 'type',
+  description: 'description',
+  baseUrl: 'baseUrl',
+  apiKey: 'apiKey',
+  authType: 'authType',
+  authConfig: 'authConfig',
+  config: 'config',
+  headers: 'headers',
+  timeout: 'timeout',
+  retryCount: 'retryCount',
+  rateLimit: 'rateLimit',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ConnectorLogScalarFieldEnum = {
+  id: 'id',
+  connectorConfigId: 'connectorConfigId',
+  endpoint: 'endpoint',
+  method: 'method',
+  requestHeaders: 'requestHeaders',
+  requestBody: 'requestBody',
+  responseStatus: 'responseStatus',
+  responseHeaders: 'responseHeaders',
+  responseBody: 'responseBody',
+  duration: 'duration',
+  error: 'error',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
@@ -315,6 +349,8 @@ exports.Prisma.ModelName = {
   Contract: 'Contract',
   Dataset: 'Dataset',
   IngestionRun: 'IngestionRun',
+  ConnectorConfig: 'ConnectorConfig',
+  ConnectorLog: 'ConnectorLog',
   User: 'User',
   QueryAudit: 'QueryAudit'
 };

@@ -253,6 +253,61 @@ model IngestionRun {
 }
 
 // ===========================
+// API Connectors Entities
+// ===========================
+
+/// ConnectorConfig: Configuration for external API connectors
+model ConnectorConfig {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  type        String // e.g., 'chilecompra', 'budget-source', 'custom'
+  description String?  @db.Text
+  baseUrl     String
+  apiKey      String? // Encrypted API key
+  authType    String   @default("none") // 'none', 'api-key', 'oauth', 'bearer'
+  authConfig  Json? // Additional auth configuration
+  config      Json? // Additional connector-specific configuration
+  headers     Json? // Custom headers
+  timeout     Int      @default(30000) // Request timeout in ms
+  retryCount  Int      @default(3) // Number of retries
+  rateLimit   Int? // Requests per minute
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  logs ConnectorLog[]
+
+  @@index([type, isActive])
+  @@index([name])
+  @@map("connector_configs")
+}
+
+/// ConnectorLog: Request/response logging for API connectors
+model ConnectorLog {
+  id                String   @id @default(cuid())
+  connectorConfigId String
+  endpoint          String
+  method            String // GET, POST, PUT, DELETE
+  requestHeaders    Json?
+  requestBody       Json?
+  responseStatus    Int?
+  responseHeaders   Json?
+  responseBody      Json?
+  duration          Int? // Duration in milliseconds
+  error             String?  @db.Text
+  createdAt         DateTime @default(now())
+
+  // Relations
+  connectorConfig ConnectorConfig @relation(fields: [connectorConfigId], references: [id], onDelete: Cascade)
+
+  @@index([connectorConfigId, createdAt])
+  @@index([createdAt])
+  @@index([responseStatus])
+  @@map("connector_logs")
+}
+
+// ===========================
 // User & Audit Entities
 // ===========================
 

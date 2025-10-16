@@ -1,0 +1,11 @@
+fiscalYear,department,program,category,subcategory,amountPlanned,currency,notes
+2024,Educación,Educación Básica,Personal,Sueldos y Salarios,50000000,CLP,Presupuesto para docentes de educación básica
+2024,Educación,Educación Media,Personal,Sueldos y Salarios,35000000,CLP,Presupuesto para docentes de educación media
+2024,Salud,Atención Primaria,Personal,Sueldos y Salarios,80000000,CLP,Personal médico y enfermería
+2024,Salud,Atención Primaria,Bienes y Servicios,Medicamentos,25000000,CLP,Compra de medicamentos para consultorio
+2024,Obras Públicas,Infraestructura Vial,Inversión,Construcción,120000000,CLP,Pavimentación de calles sector norte
+2024,Obras Públicas,Infraestructura Vial,Inversión,Mantención,30000000,CLP,Mantención de vías principales
+2024,Servicios Comunitarios,Áreas Verdes,Bienes y Servicios,Mantención,15000000,CLP,Mantención de parques y plazas
+2024,Servicios Comunitarios,Deporte,Inversión,Equipamiento,10000000,CLP,Compra de equipamiento deportivo
+2024,Seguridad Ciudadana,Prevención,Bienes y Servicios,Iluminación,8000000,CLP,Mejoramiento de iluminación pública
+2024,Administración,Gestión Municipal,Personal,Sueldos y Salarios,45000000,CLP,Personal administrativo

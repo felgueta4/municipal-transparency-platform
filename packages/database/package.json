@@ -2,7 +2,7 @@
   "name": "@municipal-platform/database",
   "version": "1.0.0",
   "description": "Database package with Prisma schema and migrations",
-  "main": "src/index.ts",
+  "main": "src/index.js",
   "scripts": {
     "migrate": "prisma migrate dev",
     "migrate:deploy": "prisma migrate deploy",

@@ -41,9 +41,6 @@ export class UserService {
       where,
       skip,
       take: limit,
-      include: {
-        municipality: true,
-      },
       orderBy: {
         createdAt: 'desc',
       },
@@ -76,9 +73,6 @@ export class UserService {
   async findOne(id: string) {
     const user = await this.prisma.user.findUnique({
       where: { id },
-      include: {
-        municipality: true,
-      },
       select: {
         id: true,
         email: true,
@@ -108,9 +102,6 @@ export class UserService {
     const updatedUser = await this.prisma.user.update({
       where: { id },
       data: updateUserDto,
-      include: {
-        municipality: true,
-      },
       select: {
         id: true,
         email: true,

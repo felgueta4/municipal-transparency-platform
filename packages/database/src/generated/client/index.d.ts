@@ -64,6 +64,16 @@ export type Dataset = $Result.DefaultSelection<Prisma.$DatasetPayload>
  */
 export type IngestionRun = $Result.DefaultSelection<Prisma.$IngestionRunPayload>
 /**
+ * Model ConnectorConfig
+ * ConnectorConfig: Configuration for external API connectors
+ */
+export type ConnectorConfig = $Result.DefaultSelection<Prisma.$ConnectorConfigPayload>
+/**
+ * Model ConnectorLog
+ * ConnectorLog: Request/response logging for API connectors
+ */
+export type ConnectorLog = $Result.DefaultSelection<Prisma.$ConnectorLogPayload>
+/**
  * Model User
  * User: Usuario del sistema
  */
@@ -296,6 +306,26 @@ export class PrismaClient<
     * ```
     */
   get ingestionRun(): Prisma.IngestionRunDelegate<ExtArgs>;
+
+  /**
+   * `prisma.connectorConfig`: Exposes CRUD operations for the **ConnectorConfig** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ConnectorConfigs
+    * const connectorConfigs = await prisma.connectorConfig.findMany()
+    * ```
+    */
+  get connectorConfig(): Prisma.ConnectorConfigDelegate<ExtArgs>;
+
+  /**
+   * `prisma.connectorLog`: Exposes CRUD operations for the **ConnectorLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ConnectorLogs
+    * const connectorLogs = await prisma.connectorLog.findMany()
+    * ```
+    */
+  get connectorLog(): Prisma.ConnectorLogDelegate<ExtArgs>;
 
   /**
    * `prisma.user`: Exposes CRUD operations for the **User** model.
@@ -767,6 +797,8 @@ export namespace Prisma {
     Contract: 'Contract',
     Dataset: 'Dataset',
     IngestionRun: 'IngestionRun',
+    ConnectorConfig: 'ConnectorConfig',
+    ConnectorLog: 'ConnectorLog',
     User: 'User',
     QueryAudit: 'QueryAudit'
   };
@@ -784,7 +816,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "municipality" | "fiscalYear" | "budget" | "expenditure" | "project" | "fundingSource" | "supplier" | "contract" | "dataset" | "ingestionRun" | "user" | "queryAudit"
+      modelProps: "municipality" | "fiscalYear" | "budget" | "expenditure" | "project" | "fundingSource" | "supplier" | "contract" | "dataset" | "ingestionRun" | "connectorConfig" | "connectorLog" | "user" | "queryAudit"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1488,6 +1520,146 @@ export namespace Prisma {
           }
         }
       }
+      ConnectorConfig: {
+        payload: Prisma.$ConnectorConfigPayload<ExtArgs>
+        fields: Prisma.ConnectorConfigFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ConnectorConfigFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConnectorConfigPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ConnectorConfigFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConnectorConfigPayload>
+          }
+          findFirst: {
+            args: Prisma.ConnectorConfigFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConnectorConfigPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ConnectorConfigFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConnectorConfigPayload>
+          }
+          findMany: {
+            args: Prisma.ConnectorConfigFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConnectorConfigPayload>[]
+          }
+          create: {
+            args: Prisma.ConnectorConfigCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConnectorConfigPayload>
+          }
+          createMany: {
+            args: Prisma.ConnectorConfigCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ConnectorConfigCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConnectorConfigPayload>[]
+          }
+          delete: {
+            args: Prisma.ConnectorConfigDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConnectorConfigPayload>
+          }
+          update: {
+            args: Prisma.ConnectorConfigUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConnectorConfigPayload>
+          }
+          deleteMany: {
+            args: Prisma.ConnectorConfigDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ConnectorConfigUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ConnectorConfigUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConnectorConfigPayload>
+          }
+          aggregate: {
+            args: Prisma.ConnectorConfigAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateConnectorConfig>
+          }
+          groupBy: {
+            args: Prisma.ConnectorConfigGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ConnectorConfigGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ConnectorConfigCountArgs<ExtArgs>
+            result: $Utils.Optional<ConnectorConfigCountAggregateOutputType> | number
+          }
+        }
+      }
+      ConnectorLog: {
+        payload: Prisma.$ConnectorLogPayload<ExtArgs>
+        fields: Prisma.ConnectorLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ConnectorLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConnectorLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ConnectorLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConnectorLogPayload>
+          }
+          findFirst: {
+            args: Prisma.ConnectorLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConnectorLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ConnectorLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConnectorLogPayload>
+          }
+          findMany: {
+            args: Prisma.ConnectorLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConnectorLogPayload>[]
+          }
+          create: {
+            args: Prisma.ConnectorLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConnectorLogPayload>
+          }
+          createMany: {
+            args: Prisma.ConnectorLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ConnectorLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConnectorLogPayload>[]
+          }
+          delete: {
+            args: Prisma.ConnectorLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConnectorLogPayload>
+          }
+          update: {
+            args: Prisma.ConnectorLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConnectorLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.ConnectorLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ConnectorLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ConnectorLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConnectorLogPayload>
+          }
+          aggregate: {
+            args: Prisma.ConnectorLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateConnectorLog>
+          }
+          groupBy: {
+            args: Prisma.ConnectorLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ConnectorLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ConnectorLogCountArgs<ExtArgs>
+            result: $Utils.Optional<ConnectorLogCountAggregateOutputType> | number
+          }
+        }
+      }
       User: {
         payload: Prisma.$UserPayload<ExtArgs>
         fields: Prisma.UserFieldRefs
@@ -1990,6 +2162,37 @@ export namespace Prisma {
    */
   export type DatasetCountOutputTypeCountIngestionRunsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: IngestionRunWhereInput
+  }
+
+
+  /**
+   * Count Type ConnectorConfigCountOutputType
+   */
+
+  export type ConnectorConfigCountOutputType = {
+    logs: number
+  }
+
+  export type ConnectorConfigCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    logs?: boolean | ConnectorConfigCountOutputTypeCountLogsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ConnectorConfigCountOutputType without action
+   */
+  export type ConnectorConfigCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConnectorConfigCountOutputType
+     */
+    select?: ConnectorConfigCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ConnectorConfigCountOutputType without action
+   */
+  export type ConnectorConfigCountOutputTypeCountLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ConnectorLogWhereInput
   }
 
 
@@ -12431,6 +12634,2155 @@ export namespace Prisma {
 
 
   /**
+   * Model ConnectorConfig
+   */
+
+  export type AggregateConnectorConfig = {
+    _count: ConnectorConfigCountAggregateOutputType | null
+    _avg: ConnectorConfigAvgAggregateOutputType | null
+    _sum: ConnectorConfigSumAggregateOutputType | null
+    _min: ConnectorConfigMinAggregateOutputType | null
+    _max: ConnectorConfigMaxAggregateOutputType | null
+  }
+
+  export type ConnectorConfigAvgAggregateOutputType = {
+    timeout: number | null
+    retryCount: number | null
+    rateLimit: number | null
+  }
+
+  export type ConnectorConfigSumAggregateOutputType = {
+    timeout: number | null
+    retryCount: number | null
+    rateLimit: number | null
+  }
+
+  export type ConnectorConfigMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    type: string | null
+    description: string | null
+    baseUrl: string | null
+    apiKey: string | null
+    authType: string | null
+    timeout: number | null
+    retryCount: number | null
+    rateLimit: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ConnectorConfigMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    type: string | null
+    description: string | null
+    baseUrl: string | null
+    apiKey: string | null
+    authType: string | null
+    timeout: number | null
+    retryCount: number | null
+    rateLimit: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ConnectorConfigCountAggregateOutputType = {
+    id: number
+    name: number
+    type: number
+    description: number
+    baseUrl: number
+    apiKey: number
+    authType: number
+    authConfig: number
+    config: number
+    headers: number
+    timeout: number
+    retryCount: number
+    rateLimit: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ConnectorConfigAvgAggregateInputType = {
+    timeout?: true
+    retryCount?: true
+    rateLimit?: true
+  }
+
+  export type ConnectorConfigSumAggregateInputType = {
+    timeout?: true
+    retryCount?: true
+    rateLimit?: true
+  }
+
+  export type ConnectorConfigMinAggregateInputType = {
+    id?: true
+    name?: true
+    type?: true
+    description?: true
+    baseUrl?: true
+    apiKey?: true
+    authType?: true
+    timeout?: true
+    retryCount?: true
+    rateLimit?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ConnectorConfigMaxAggregateInputType = {
+    id?: true
+    name?: true
+    type?: true
+    description?: true
+    baseUrl?: true
+    apiKey?: true
+    authType?: true
+    timeout?: true
+    retryCount?: true
+    rateLimit?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ConnectorConfigCountAggregateInputType = {
+    id?: true
+    name?: true
+    type?: true
+    description?: true
+    baseUrl?: true
+    apiKey?: true
+    authType?: true
+    authConfig?: true
+    config?: true
+    headers?: true
+    timeout?: true
+    retryCount?: true
+    rateLimit?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ConnectorConfigAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ConnectorConfig to aggregate.
+     */
+    where?: ConnectorConfigWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ConnectorConfigs to fetch.
+     */
+    orderBy?: ConnectorConfigOrderByWithRelationInput | ConnectorConfigOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ConnectorConfigWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ConnectorConfigs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ConnectorConfigs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ConnectorConfigs
+    **/
+    _count?: true | ConnectorConfigCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ConnectorConfigAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ConnectorConfigSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ConnectorConfigMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ConnectorConfigMaxAggregateInputType
+  }
+
+  export type GetConnectorConfigAggregateType<T extends ConnectorConfigAggregateArgs> = {
+        [P in keyof T & keyof AggregateConnectorConfig]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateConnectorConfig[P]>
+      : GetScalarType<T[P], AggregateConnectorConfig[P]>
+  }
+
+
+
+
+  export type ConnectorConfigGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ConnectorConfigWhereInput
+    orderBy?: ConnectorConfigOrderByWithAggregationInput | ConnectorConfigOrderByWithAggregationInput[]
+    by: ConnectorConfigScalarFieldEnum[] | ConnectorConfigScalarFieldEnum
+    having?: ConnectorConfigScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ConnectorConfigCountAggregateInputType | true
+    _avg?: ConnectorConfigAvgAggregateInputType
+    _sum?: ConnectorConfigSumAggregateInputType
+    _min?: ConnectorConfigMinAggregateInputType
+    _max?: ConnectorConfigMaxAggregateInputType
+  }
+
+  export type ConnectorConfigGroupByOutputType = {
+    id: string
+    name: string
+    type: string
+    description: string | null
+    baseUrl: string
+    apiKey: string | null
+    authType: string
+    authConfig: JsonValue | null
+    config: JsonValue | null
+    headers: JsonValue | null
+    timeout: number
+    retryCount: number
+    rateLimit: number | null
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: ConnectorConfigCountAggregateOutputType | null
+    _avg: ConnectorConfigAvgAggregateOutputType | null
+    _sum: ConnectorConfigSumAggregateOutputType | null
+    _min: ConnectorConfigMinAggregateOutputType | null
+    _max: ConnectorConfigMaxAggregateOutputType | null
+  }
+
+  type GetConnectorConfigGroupByPayload<T extends ConnectorConfigGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ConnectorConfigGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ConnectorConfigGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ConnectorConfigGroupByOutputType[P]>
+            : GetScalarType<T[P], ConnectorConfigGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ConnectorConfigSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    type?: boolean
+    description?: boolean
+    baseUrl?: boolean
+    apiKey?: boolean
+    authType?: boolean
+    authConfig?: boolean
+    config?: boolean
+    headers?: boolean
+    timeout?: boolean
+    retryCount?: boolean
+    rateLimit?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    logs?: boolean | ConnectorConfig$logsArgs<ExtArgs>
+    _count?: boolean | ConnectorConfigCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["connectorConfig"]>
+
+  export type ConnectorConfigSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    type?: boolean
+    description?: boolean
+    baseUrl?: boolean
+    apiKey?: boolean
+    authType?: boolean
+    authConfig?: boolean
+    config?: boolean
+    headers?: boolean
+    timeout?: boolean
+    retryCount?: boolean
+    rateLimit?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["connectorConfig"]>
+
+  export type ConnectorConfigSelectScalar = {
+    id?: boolean
+    name?: boolean
+    type?: boolean
+    description?: boolean
+    baseUrl?: boolean
+    apiKey?: boolean
+    authType?: boolean
+    authConfig?: boolean
+    config?: boolean
+    headers?: boolean
+    timeout?: boolean
+    retryCount?: boolean
+    rateLimit?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ConnectorConfigInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    logs?: boolean | ConnectorConfig$logsArgs<ExtArgs>
+    _count?: boolean | ConnectorConfigCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ConnectorConfigIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $ConnectorConfigPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ConnectorConfig"
+    objects: {
+      logs: Prisma.$ConnectorLogPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      type: string
+      description: string | null
+      baseUrl: string
+      apiKey: string | null
+      authType: string
+      authConfig: Prisma.JsonValue | null
+      config: Prisma.JsonValue | null
+      headers: Prisma.JsonValue | null
+      timeout: number
+      retryCount: number
+      rateLimit: number | null
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["connectorConfig"]>
+    composites: {}
+  }
+
+  type ConnectorConfigGetPayload<S extends boolean | null | undefined | ConnectorConfigDefaultArgs> = $Result.GetResult<Prisma.$ConnectorConfigPayload, S>
+
+  type ConnectorConfigCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ConnectorConfigFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ConnectorConfigCountAggregateInputType | true
+    }
+
+  export interface ConnectorConfigDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ConnectorConfig'], meta: { name: 'ConnectorConfig' } }
+    /**
+     * Find zero or one ConnectorConfig that matches the filter.
+     * @param {ConnectorConfigFindUniqueArgs} args - Arguments to find a ConnectorConfig
+     * @example
+     * // Get one ConnectorConfig
+     * const connectorConfig = await prisma.connectorConfig.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ConnectorConfigFindUniqueArgs>(args: SelectSubset<T, ConnectorConfigFindUniqueArgs<ExtArgs>>): Prisma__ConnectorConfigClient<$Result.GetResult<Prisma.$ConnectorConfigPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one ConnectorConfig that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {ConnectorConfigFindUniqueOrThrowArgs} args - Arguments to find a ConnectorConfig
+     * @example
+     * // Get one ConnectorConfig
+     * const connectorConfig = await prisma.connectorConfig.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ConnectorConfigFindUniqueOrThrowArgs>(args: SelectSubset<T, ConnectorConfigFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ConnectorConfigClient<$Result.GetResult<Prisma.$ConnectorConfigPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first ConnectorConfig that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConnectorConfigFindFirstArgs} args - Arguments to find a ConnectorConfig
+     * @example
+     * // Get one ConnectorConfig
+     * const connectorConfig = await prisma.connectorConfig.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ConnectorConfigFindFirstArgs>(args?: SelectSubset<T, ConnectorConfigFindFirstArgs<ExtArgs>>): Prisma__ConnectorConfigClient<$Result.GetResult<Prisma.$ConnectorConfigPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first ConnectorConfig that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConnectorConfigFindFirstOrThrowArgs} args - Arguments to find a ConnectorConfig
+     * @example
+     * // Get one ConnectorConfig
+     * const connectorConfig = await prisma.connectorConfig.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ConnectorConfigFindFirstOrThrowArgs>(args?: SelectSubset<T, ConnectorConfigFindFirstOrThrowArgs<ExtArgs>>): Prisma__ConnectorConfigClient<$Result.GetResult<Prisma.$ConnectorConfigPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more ConnectorConfigs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConnectorConfigFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ConnectorConfigs
+     * const connectorConfigs = await prisma.connectorConfig.findMany()
+     * 
+     * // Get first 10 ConnectorConfigs
+     * const connectorConfigs = await prisma.connectorConfig.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const connectorConfigWithIdOnly = await prisma.connectorConfig.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ConnectorConfigFindManyArgs>(args?: SelectSubset<T, ConnectorConfigFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConnectorConfigPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a ConnectorConfig.
+     * @param {ConnectorConfigCreateArgs} args - Arguments to create a ConnectorConfig.
+     * @example
+     * // Create one ConnectorConfig
+     * const ConnectorConfig = await prisma.connectorConfig.create({
+     *   data: {
+     *     // ... data to create a ConnectorConfig
+     *   }
+     * })
+     * 
+     */
+    create<T extends ConnectorConfigCreateArgs>(args: SelectSubset<T, ConnectorConfigCreateArgs<ExtArgs>>): Prisma__ConnectorConfigClient<$Result.GetResult<Prisma.$ConnectorConfigPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many ConnectorConfigs.
+     * @param {ConnectorConfigCreateManyArgs} args - Arguments to create many ConnectorConfigs.
+     * @example
+     * // Create many ConnectorConfigs
+     * const connectorConfig = await prisma.connectorConfig.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ConnectorConfigCreateManyArgs>(args?: SelectSubset<T, ConnectorConfigCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ConnectorConfigs and returns the data saved in the database.
+     * @param {ConnectorConfigCreateManyAndReturnArgs} args - Arguments to create many ConnectorConfigs.
+     * @example
+     * // Create many ConnectorConfigs
+     * const connectorConfig = await prisma.connectorConfig.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ConnectorConfigs and only return the `id`
+     * const connectorConfigWithIdOnly = await prisma.connectorConfig.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ConnectorConfigCreateManyAndReturnArgs>(args?: SelectSubset<T, ConnectorConfigCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConnectorConfigPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a ConnectorConfig.
+     * @param {ConnectorConfigDeleteArgs} args - Arguments to delete one ConnectorConfig.
+     * @example
+     * // Delete one ConnectorConfig
+     * const ConnectorConfig = await prisma.connectorConfig.delete({
+     *   where: {
+     *     // ... filter to delete one ConnectorConfig
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ConnectorConfigDeleteArgs>(args: SelectSubset<T, ConnectorConfigDeleteArgs<ExtArgs>>): Prisma__ConnectorConfigClient<$Result.GetResult<Prisma.$ConnectorConfigPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one ConnectorConfig.
+     * @param {ConnectorConfigUpdateArgs} args - Arguments to update one ConnectorConfig.
+     * @example
+     * // Update one ConnectorConfig
+     * const connectorConfig = await prisma.connectorConfig.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ConnectorConfigUpdateArgs>(args: SelectSubset<T, ConnectorConfigUpdateArgs<ExtArgs>>): Prisma__ConnectorConfigClient<$Result.GetResult<Prisma.$ConnectorConfigPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more ConnectorConfigs.
+     * @param {ConnectorConfigDeleteManyArgs} args - Arguments to filter ConnectorConfigs to delete.
+     * @example
+     * // Delete a few ConnectorConfigs
+     * const { count } = await prisma.connectorConfig.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ConnectorConfigDeleteManyArgs>(args?: SelectSubset<T, ConnectorConfigDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ConnectorConfigs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConnectorConfigUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ConnectorConfigs
+     * const connectorConfig = await prisma.connectorConfig.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ConnectorConfigUpdateManyArgs>(args: SelectSubset<T, ConnectorConfigUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ConnectorConfig.
+     * @param {ConnectorConfigUpsertArgs} args - Arguments to update or create a ConnectorConfig.
+     * @example
+     * // Update or create a ConnectorConfig
+     * const connectorConfig = await prisma.connectorConfig.upsert({
+     *   create: {
+     *     // ... data to create a ConnectorConfig
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ConnectorConfig we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ConnectorConfigUpsertArgs>(args: SelectSubset<T, ConnectorConfigUpsertArgs<ExtArgs>>): Prisma__ConnectorConfigClient<$Result.GetResult<Prisma.$ConnectorConfigPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of ConnectorConfigs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConnectorConfigCountArgs} args - Arguments to filter ConnectorConfigs to count.
+     * @example
+     * // Count the number of ConnectorConfigs
+     * const count = await prisma.connectorConfig.count({
+     *   where: {
+     *     // ... the filter for the ConnectorConfigs we want to count
+     *   }
+     * })
+    **/
+    count<T extends ConnectorConfigCountArgs>(
+      args?: Subset<T, ConnectorConfigCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ConnectorConfigCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ConnectorConfig.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConnectorConfigAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ConnectorConfigAggregateArgs>(args: Subset<T, ConnectorConfigAggregateArgs>): Prisma.PrismaPromise<GetConnectorConfigAggregateType<T>>
+
+    /**
+     * Group by ConnectorConfig.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConnectorConfigGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ConnectorConfigGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ConnectorConfigGroupByArgs['orderBy'] }
+        : { orderBy?: ConnectorConfigGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ConnectorConfigGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetConnectorConfigGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ConnectorConfig model
+   */
+  readonly fields: ConnectorConfigFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ConnectorConfig.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ConnectorConfigClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    logs<T extends ConnectorConfig$logsArgs<ExtArgs> = {}>(args?: Subset<T, ConnectorConfig$logsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConnectorLogPayload<ExtArgs>, T, "findMany"> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ConnectorConfig model
+   */ 
+  interface ConnectorConfigFieldRefs {
+    readonly id: FieldRef<"ConnectorConfig", 'String'>
+    readonly name: FieldRef<"ConnectorConfig", 'String'>
+    readonly type: FieldRef<"ConnectorConfig", 'String'>
+    readonly description: FieldRef<"ConnectorConfig", 'String'>
+    readonly baseUrl: FieldRef<"ConnectorConfig", 'String'>
+    readonly apiKey: FieldRef<"ConnectorConfig", 'String'>
+    readonly authType: FieldRef<"ConnectorConfig", 'String'>
+    readonly authConfig: FieldRef<"ConnectorConfig", 'Json'>
+    readonly config: FieldRef<"ConnectorConfig", 'Json'>
+    readonly headers: FieldRef<"ConnectorConfig", 'Json'>
+    readonly timeout: FieldRef<"ConnectorConfig", 'Int'>
+    readonly retryCount: FieldRef<"ConnectorConfig", 'Int'>
+    readonly rateLimit: FieldRef<"ConnectorConfig", 'Int'>
+    readonly isActive: FieldRef<"ConnectorConfig", 'Boolean'>
+    readonly createdAt: FieldRef<"ConnectorConfig", 'DateTime'>
+    readonly updatedAt: FieldRef<"ConnectorConfig", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ConnectorConfig findUnique
+   */
+  export type ConnectorConfigFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConnectorConfig
+     */
+    select?: ConnectorConfigSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConnectorConfigInclude<ExtArgs> | null
+    /**
+     * Filter, which ConnectorConfig to fetch.
+     */
+    where: ConnectorConfigWhereUniqueInput
+  }
+
+  /**
+   * ConnectorConfig findUniqueOrThrow
+   */
+  export type ConnectorConfigFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConnectorConfig
+     */
+    select?: ConnectorConfigSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConnectorConfigInclude<ExtArgs> | null
+    /**
+     * Filter, which ConnectorConfig to fetch.
+     */
+    where: ConnectorConfigWhereUniqueInput
+  }
+
+  /**
+   * ConnectorConfig findFirst
+   */
+  export type ConnectorConfigFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConnectorConfig
+     */
+    select?: ConnectorConfigSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConnectorConfigInclude<ExtArgs> | null
+    /**
+     * Filter, which ConnectorConfig to fetch.
+     */
+    where?: ConnectorConfigWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ConnectorConfigs to fetch.
+     */
+    orderBy?: ConnectorConfigOrderByWithRelationInput | ConnectorConfigOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ConnectorConfigs.
+     */
+    cursor?: ConnectorConfigWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ConnectorConfigs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ConnectorConfigs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ConnectorConfigs.
+     */
+    distinct?: ConnectorConfigScalarFieldEnum | ConnectorConfigScalarFieldEnum[]
+  }
+
+  /**
+   * ConnectorConfig findFirstOrThrow
+   */
+  export type ConnectorConfigFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConnectorConfig
+     */
+    select?: ConnectorConfigSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConnectorConfigInclude<ExtArgs> | null
+    /**
+     * Filter, which ConnectorConfig to fetch.
+     */
+    where?: ConnectorConfigWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ConnectorConfigs to fetch.
+     */
+    orderBy?: ConnectorConfigOrderByWithRelationInput | ConnectorConfigOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ConnectorConfigs.
+     */
+    cursor?: ConnectorConfigWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ConnectorConfigs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ConnectorConfigs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ConnectorConfigs.
+     */
+    distinct?: ConnectorConfigScalarFieldEnum | ConnectorConfigScalarFieldEnum[]
+  }
+
+  /**
+   * ConnectorConfig findMany
+   */
+  export type ConnectorConfigFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConnectorConfig
+     */
+    select?: ConnectorConfigSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConnectorConfigInclude<ExtArgs> | null
+    /**
+     * Filter, which ConnectorConfigs to fetch.
+     */
+    where?: ConnectorConfigWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ConnectorConfigs to fetch.
+     */
+    orderBy?: ConnectorConfigOrderByWithRelationInput | ConnectorConfigOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ConnectorConfigs.
+     */
+    cursor?: ConnectorConfigWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ConnectorConfigs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ConnectorConfigs.
+     */
+    skip?: number
+    distinct?: ConnectorConfigScalarFieldEnum | ConnectorConfigScalarFieldEnum[]
+  }
+
+  /**
+   * ConnectorConfig create
+   */
+  export type ConnectorConfigCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConnectorConfig
+     */
+    select?: ConnectorConfigSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConnectorConfigInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ConnectorConfig.
+     */
+    data: XOR<ConnectorConfigCreateInput, ConnectorConfigUncheckedCreateInput>
+  }
+
+  /**
+   * ConnectorConfig createMany
+   */
+  export type ConnectorConfigCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ConnectorConfigs.
+     */
+    data: ConnectorConfigCreateManyInput | ConnectorConfigCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ConnectorConfig createManyAndReturn
+   */
+  export type ConnectorConfigCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConnectorConfig
+     */
+    select?: ConnectorConfigSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many ConnectorConfigs.
+     */
+    data: ConnectorConfigCreateManyInput | ConnectorConfigCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ConnectorConfig update
+   */
+  export type ConnectorConfigUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConnectorConfig
+     */
+    select?: ConnectorConfigSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConnectorConfigInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ConnectorConfig.
+     */
+    data: XOR<ConnectorConfigUpdateInput, ConnectorConfigUncheckedUpdateInput>
+    /**
+     * Choose, which ConnectorConfig to update.
+     */
+    where: ConnectorConfigWhereUniqueInput
+  }
+
+  /**
+   * ConnectorConfig updateMany
+   */
+  export type ConnectorConfigUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ConnectorConfigs.
+     */
+    data: XOR<ConnectorConfigUpdateManyMutationInput, ConnectorConfigUncheckedUpdateManyInput>
+    /**
+     * Filter which ConnectorConfigs to update
+     */
+    where?: ConnectorConfigWhereInput
+  }
+
+  /**
+   * ConnectorConfig upsert
+   */
+  export type ConnectorConfigUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConnectorConfig
+     */
+    select?: ConnectorConfigSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConnectorConfigInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ConnectorConfig to update in case it exists.
+     */
+    where: ConnectorConfigWhereUniqueInput
+    /**
+     * In case the ConnectorConfig found by the `where` argument doesn't exist, create a new ConnectorConfig with this data.
+     */
+    create: XOR<ConnectorConfigCreateInput, ConnectorConfigUncheckedCreateInput>
+    /**
+     * In case the ConnectorConfig was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ConnectorConfigUpdateInput, ConnectorConfigUncheckedUpdateInput>
+  }
+
+  /**
+   * ConnectorConfig delete
+   */
+  export type ConnectorConfigDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConnectorConfig
+     */
+    select?: ConnectorConfigSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConnectorConfigInclude<ExtArgs> | null
+    /**
+     * Filter which ConnectorConfig to delete.
+     */
+    where: ConnectorConfigWhereUniqueInput
+  }
+
+  /**
+   * ConnectorConfig deleteMany
+   */
+  export type ConnectorConfigDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ConnectorConfigs to delete
+     */
+    where?: ConnectorConfigWhereInput
+  }
+
+  /**
+   * ConnectorConfig.logs
+   */
+  export type ConnectorConfig$logsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConnectorLog
+     */
+    select?: ConnectorLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConnectorLogInclude<ExtArgs> | null
+    where?: ConnectorLogWhereInput
+    orderBy?: ConnectorLogOrderByWithRelationInput | ConnectorLogOrderByWithRelationInput[]
+    cursor?: ConnectorLogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ConnectorLogScalarFieldEnum | ConnectorLogScalarFieldEnum[]
+  }
+
+  /**
+   * ConnectorConfig without action
+   */
+  export type ConnectorConfigDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConnectorConfig
+     */
+    select?: ConnectorConfigSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConnectorConfigInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ConnectorLog
+   */
+
+  export type AggregateConnectorLog = {
+    _count: ConnectorLogCountAggregateOutputType | null
+    _avg: ConnectorLogAvgAggregateOutputType | null
+    _sum: ConnectorLogSumAggregateOutputType | null
+    _min: ConnectorLogMinAggregateOutputType | null
+    _max: ConnectorLogMaxAggregateOutputType | null
+  }
+
+  export type ConnectorLogAvgAggregateOutputType = {
+    responseStatus: number | null
+    duration: number | null
+  }
+
+  export type ConnectorLogSumAggregateOutputType = {
+    responseStatus: number | null
+    duration: number | null
+  }
+
+  export type ConnectorLogMinAggregateOutputType = {
+    id: string | null
+    connectorConfigId: string | null
+    endpoint: string | null
+    method: string | null
+    responseStatus: number | null
+    duration: number | null
+    error: string | null
+    createdAt: Date | null
+  }
+
+  export type ConnectorLogMaxAggregateOutputType = {
+    id: string | null
+    connectorConfigId: string | null
+    endpoint: string | null
+    method: string | null
+    responseStatus: number | null
+    duration: number | null
+    error: string | null
+    createdAt: Date | null
+  }
+
+  export type ConnectorLogCountAggregateOutputType = {
+    id: number
+    connectorConfigId: number
+    endpoint: number
+    method: number
+    requestHeaders: number
+    requestBody: number
+    responseStatus: number
+    responseHeaders: number
+    responseBody: number
+    duration: number
+    error: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ConnectorLogAvgAggregateInputType = {
+    responseStatus?: true
+    duration?: true
+  }
+
+  export type ConnectorLogSumAggregateInputType = {
+    responseStatus?: true
+    duration?: true
+  }
+
+  export type ConnectorLogMinAggregateInputType = {
+    id?: true
+    connectorConfigId?: true
+    endpoint?: true
+    method?: true
+    responseStatus?: true
+    duration?: true
+    error?: true
+    createdAt?: true
+  }
+
+  export type ConnectorLogMaxAggregateInputType = {
+    id?: true
+    connectorConfigId?: true
+    endpoint?: true
+    method?: true
+    responseStatus?: true
+    duration?: true
+    error?: true
+    createdAt?: true
+  }
+
+  export type ConnectorLogCountAggregateInputType = {
+    id?: true
+    connectorConfigId?: true
+    endpoint?: true
+    method?: true
+    requestHeaders?: true
+    requestBody?: true
+    responseStatus?: true
+    responseHeaders?: true
+    responseBody?: true
+    duration?: true
+    error?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ConnectorLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ConnectorLog to aggregate.
+     */
+    where?: ConnectorLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ConnectorLogs to fetch.
+     */
+    orderBy?: ConnectorLogOrderByWithRelationInput | ConnectorLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ConnectorLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ConnectorLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ConnectorLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ConnectorLogs
+    **/
+    _count?: true | ConnectorLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ConnectorLogAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ConnectorLogSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ConnectorLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ConnectorLogMaxAggregateInputType
+  }
+
+  export type GetConnectorLogAggregateType<T extends ConnectorLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateConnectorLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateConnectorLog[P]>
+      : GetScalarType<T[P], AggregateConnectorLog[P]>
+  }
+
+
+
+
+  export type ConnectorLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ConnectorLogWhereInput
+    orderBy?: ConnectorLogOrderByWithAggregationInput | ConnectorLogOrderByWithAggregationInput[]
+    by: ConnectorLogScalarFieldEnum[] | ConnectorLogScalarFieldEnum
+    having?: ConnectorLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ConnectorLogCountAggregateInputType | true
+    _avg?: ConnectorLogAvgAggregateInputType
+    _sum?: ConnectorLogSumAggregateInputType
+    _min?: ConnectorLogMinAggregateInputType
+    _max?: ConnectorLogMaxAggregateInputType
+  }
+
+  export type ConnectorLogGroupByOutputType = {
+    id: string
+    connectorConfigId: string
+    endpoint: string
+    method: string
+    requestHeaders: JsonValue | null
+    requestBody: JsonValue | null
+    responseStatus: number | null
+    responseHeaders: JsonValue | null
+    responseBody: JsonValue | null
+    duration: number | null
+    error: string | null
+    createdAt: Date
+    _count: ConnectorLogCountAggregateOutputType | null
+    _avg: ConnectorLogAvgAggregateOutputType | null
+    _sum: ConnectorLogSumAggregateOutputType | null
+    _min: ConnectorLogMinAggregateOutputType | null
+    _max: ConnectorLogMaxAggregateOutputType | null
+  }
+
+  type GetConnectorLogGroupByPayload<T extends ConnectorLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ConnectorLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ConnectorLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ConnectorLogGroupByOutputType[P]>
+            : GetScalarType<T[P], ConnectorLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ConnectorLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    connectorConfigId?: boolean
+    endpoint?: boolean
+    method?: boolean
+    requestHeaders?: boolean
+    requestBody?: boolean
+    responseStatus?: boolean
+    responseHeaders?: boolean
+    responseBody?: boolean
+    duration?: boolean
+    error?: boolean
+    createdAt?: boolean
+    connectorConfig?: boolean | ConnectorConfigDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["connectorLog"]>
+
+  export type ConnectorLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    connectorConfigId?: boolean
+    endpoint?: boolean
+    method?: boolean
+    requestHeaders?: boolean
+    requestBody?: boolean
+    responseStatus?: boolean
+    responseHeaders?: boolean
+    responseBody?: boolean
+    duration?: boolean
+    error?: boolean
+    createdAt?: boolean
+    connectorConfig?: boolean | ConnectorConfigDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["connectorLog"]>
+
+  export type ConnectorLogSelectScalar = {
+    id?: boolean
+    connectorConfigId?: boolean
+    endpoint?: boolean
+    method?: boolean
+    requestHeaders?: boolean
+    requestBody?: boolean
+    responseStatus?: boolean
+    responseHeaders?: boolean
+    responseBody?: boolean
+    duration?: boolean
+    error?: boolean
+    createdAt?: boolean
+  }
+
+  export type ConnectorLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    connectorConfig?: boolean | ConnectorConfigDefaultArgs<ExtArgs>
+  }
+  export type ConnectorLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    connectorConfig?: boolean | ConnectorConfigDefaultArgs<ExtArgs>
+  }
+
+  export type $ConnectorLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ConnectorLog"
+    objects: {
+      connectorConfig: Prisma.$ConnectorConfigPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      connectorConfigId: string
+      endpoint: string
+      method: string
+      requestHeaders: Prisma.JsonValue | null
+      requestBody: Prisma.JsonValue | null
+      responseStatus: number | null
+      responseHeaders: Prisma.JsonValue | null
+      responseBody: Prisma.JsonValue | null
+      duration: number | null
+      error: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["connectorLog"]>
+    composites: {}
+  }
+
+  type ConnectorLogGetPayload<S extends boolean | null | undefined | ConnectorLogDefaultArgs> = $Result.GetResult<Prisma.$ConnectorLogPayload, S>
+
+  type ConnectorLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ConnectorLogFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ConnectorLogCountAggregateInputType | true
+    }
+
+  export interface ConnectorLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ConnectorLog'], meta: { name: 'ConnectorLog' } }
+    /**
+     * Find zero or one ConnectorLog that matches the filter.
+     * @param {ConnectorLogFindUniqueArgs} args - Arguments to find a ConnectorLog
+     * @example
+     * // Get one ConnectorLog
+     * const connectorLog = await prisma.connectorLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ConnectorLogFindUniqueArgs>(args: SelectSubset<T, ConnectorLogFindUniqueArgs<ExtArgs>>): Prisma__ConnectorLogClient<$Result.GetResult<Prisma.$ConnectorLogPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one ConnectorLog that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {ConnectorLogFindUniqueOrThrowArgs} args - Arguments to find a ConnectorLog
+     * @example
+     * // Get one ConnectorLog
+     * const connectorLog = await prisma.connectorLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ConnectorLogFindUniqueOrThrowArgs>(args: SelectSubset<T, ConnectorLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ConnectorLogClient<$Result.GetResult<Prisma.$ConnectorLogPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first ConnectorLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConnectorLogFindFirstArgs} args - Arguments to find a ConnectorLog
+     * @example
+     * // Get one ConnectorLog
+     * const connectorLog = await prisma.connectorLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ConnectorLogFindFirstArgs>(args?: SelectSubset<T, ConnectorLogFindFirstArgs<ExtArgs>>): Prisma__ConnectorLogClient<$Result.GetResult<Prisma.$ConnectorLogPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first ConnectorLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConnectorLogFindFirstOrThrowArgs} args - Arguments to find a ConnectorLog
+     * @example
+     * // Get one ConnectorLog
+     * const connectorLog = await prisma.connectorLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ConnectorLogFindFirstOrThrowArgs>(args?: SelectSubset<T, ConnectorLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__ConnectorLogClient<$Result.GetResult<Prisma.$ConnectorLogPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more ConnectorLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConnectorLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ConnectorLogs
+     * const connectorLogs = await prisma.connectorLog.findMany()
+     * 
+     * // Get first 10 ConnectorLogs
+     * const connectorLogs = await prisma.connectorLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const connectorLogWithIdOnly = await prisma.connectorLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ConnectorLogFindManyArgs>(args?: SelectSubset<T, ConnectorLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConnectorLogPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a ConnectorLog.
+     * @param {ConnectorLogCreateArgs} args - Arguments to create a ConnectorLog.
+     * @example
+     * // Create one ConnectorLog
+     * const ConnectorLog = await prisma.connectorLog.create({
+     *   data: {
+     *     // ... data to create a ConnectorLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends ConnectorLogCreateArgs>(args: SelectSubset<T, ConnectorLogCreateArgs<ExtArgs>>): Prisma__ConnectorLogClient<$Result.GetResult<Prisma.$ConnectorLogPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many ConnectorLogs.
+     * @param {ConnectorLogCreateManyArgs} args - Arguments to create many ConnectorLogs.
+     * @example
+     * // Create many ConnectorLogs
+     * const connectorLog = await prisma.connectorLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ConnectorLogCreateManyArgs>(args?: SelectSubset<T, ConnectorLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ConnectorLogs and returns the data saved in the database.
+     * @param {ConnectorLogCreateManyAndReturnArgs} args - Arguments to create many ConnectorLogs.
+     * @example
+     * // Create many ConnectorLogs
+     * const connectorLog = await prisma.connectorLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ConnectorLogs and only return the `id`
+     * const connectorLogWithIdOnly = await prisma.connectorLog.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ConnectorLogCreateManyAndReturnArgs>(args?: SelectSubset<T, ConnectorLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConnectorLogPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a ConnectorLog.
+     * @param {ConnectorLogDeleteArgs} args - Arguments to delete one ConnectorLog.
+     * @example
+     * // Delete one ConnectorLog
+     * const ConnectorLog = await prisma.connectorLog.delete({
+     *   where: {
+     *     // ... filter to delete one ConnectorLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ConnectorLogDeleteArgs>(args: SelectSubset<T, ConnectorLogDeleteArgs<ExtArgs>>): Prisma__ConnectorLogClient<$Result.GetResult<Prisma.$ConnectorLogPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one ConnectorLog.
+     * @param {ConnectorLogUpdateArgs} args - Arguments to update one ConnectorLog.
+     * @example
+     * // Update one ConnectorLog
+     * const connectorLog = await prisma.connectorLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ConnectorLogUpdateArgs>(args: SelectSubset<T, ConnectorLogUpdateArgs<ExtArgs>>): Prisma__ConnectorLogClient<$Result.GetResult<Prisma.$ConnectorLogPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more ConnectorLogs.
+     * @param {ConnectorLogDeleteManyArgs} args - Arguments to filter ConnectorLogs to delete.
+     * @example
+     * // Delete a few ConnectorLogs
+     * const { count } = await prisma.connectorLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ConnectorLogDeleteManyArgs>(args?: SelectSubset<T, ConnectorLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ConnectorLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConnectorLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ConnectorLogs
+     * const connectorLog = await prisma.connectorLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ConnectorLogUpdateManyArgs>(args: SelectSubset<T, ConnectorLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ConnectorLog.
+     * @param {ConnectorLogUpsertArgs} args - Arguments to update or create a ConnectorLog.
+     * @example
+     * // Update or create a ConnectorLog
+     * const connectorLog = await prisma.connectorLog.upsert({
+     *   create: {
+     *     // ... data to create a ConnectorLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ConnectorLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ConnectorLogUpsertArgs>(args: SelectSubset<T, ConnectorLogUpsertArgs<ExtArgs>>): Prisma__ConnectorLogClient<$Result.GetResult<Prisma.$ConnectorLogPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of ConnectorLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConnectorLogCountArgs} args - Arguments to filter ConnectorLogs to count.
+     * @example
+     * // Count the number of ConnectorLogs
+     * const count = await prisma.connectorLog.count({
+     *   where: {
+     *     // ... the filter for the ConnectorLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends ConnectorLogCountArgs>(
+      args?: Subset<T, ConnectorLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ConnectorLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ConnectorLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConnectorLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ConnectorLogAggregateArgs>(args: Subset<T, ConnectorLogAggregateArgs>): Prisma.PrismaPromise<GetConnectorLogAggregateType<T>>
+
+    /**
+     * Group by ConnectorLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConnectorLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ConnectorLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ConnectorLogGroupByArgs['orderBy'] }
+        : { orderBy?: ConnectorLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ConnectorLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetConnectorLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ConnectorLog model
+   */
+  readonly fields: ConnectorLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ConnectorLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ConnectorLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    connectorConfig<T extends ConnectorConfigDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ConnectorConfigDefaultArgs<ExtArgs>>): Prisma__ConnectorConfigClient<$Result.GetResult<Prisma.$ConnectorConfigPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ConnectorLog model
+   */ 
+  interface ConnectorLogFieldRefs {
+    readonly id: FieldRef<"ConnectorLog", 'String'>
+    readonly connectorConfigId: FieldRef<"ConnectorLog", 'String'>
+    readonly endpoint: FieldRef<"ConnectorLog", 'String'>
+    readonly method: FieldRef<"ConnectorLog", 'String'>
+    readonly requestHeaders: FieldRef<"ConnectorLog", 'Json'>
+    readonly requestBody: FieldRef<"ConnectorLog", 'Json'>
+    readonly responseStatus: FieldRef<"ConnectorLog", 'Int'>
+    readonly responseHeaders: FieldRef<"ConnectorLog", 'Json'>
+    readonly responseBody: FieldRef<"ConnectorLog", 'Json'>
+    readonly duration: FieldRef<"ConnectorLog", 'Int'>
+    readonly error: FieldRef<"ConnectorLog", 'String'>
+    readonly createdAt: FieldRef<"ConnectorLog", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ConnectorLog findUnique
+   */
+  export type ConnectorLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConnectorLog
+     */
+    select?: ConnectorLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConnectorLogInclude<ExtArgs> | null
+    /**
+     * Filter, which ConnectorLog to fetch.
+     */
+    where: ConnectorLogWhereUniqueInput
+  }
+
+  /**
+   * ConnectorLog findUniqueOrThrow
+   */
+  export type ConnectorLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConnectorLog
+     */
+    select?: ConnectorLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConnectorLogInclude<ExtArgs> | null
+    /**
+     * Filter, which ConnectorLog to fetch.
+     */
+    where: ConnectorLogWhereUniqueInput
+  }
+
+  /**
+   * ConnectorLog findFirst
+   */
+  export type ConnectorLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConnectorLog
+     */
+    select?: ConnectorLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConnectorLogInclude<ExtArgs> | null
+    /**
+     * Filter, which ConnectorLog to fetch.
+     */
+    where?: ConnectorLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ConnectorLogs to fetch.
+     */
+    orderBy?: ConnectorLogOrderByWithRelationInput | ConnectorLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ConnectorLogs.
+     */
+    cursor?: ConnectorLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ConnectorLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ConnectorLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ConnectorLogs.
+     */
+    distinct?: ConnectorLogScalarFieldEnum | ConnectorLogScalarFieldEnum[]
+  }
+
+  /**
+   * ConnectorLog findFirstOrThrow
+   */
+  export type ConnectorLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConnectorLog
+     */
+    select?: ConnectorLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConnectorLogInclude<ExtArgs> | null
+    /**
+     * Filter, which ConnectorLog to fetch.
+     */
+    where?: ConnectorLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ConnectorLogs to fetch.
+     */
+    orderBy?: ConnectorLogOrderByWithRelationInput | ConnectorLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ConnectorLogs.
+     */
+    cursor?: ConnectorLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ConnectorLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ConnectorLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ConnectorLogs.
+     */
+    distinct?: ConnectorLogScalarFieldEnum | ConnectorLogScalarFieldEnum[]
+  }
+
+  /**
+   * ConnectorLog findMany
+   */
+  export type ConnectorLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConnectorLog
+     */
+    select?: ConnectorLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConnectorLogInclude<ExtArgs> | null
+    /**
+     * Filter, which ConnectorLogs to fetch.
+     */
+    where?: ConnectorLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ConnectorLogs to fetch.
+     */
+    orderBy?: ConnectorLogOrderByWithRelationInput | ConnectorLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ConnectorLogs.
+     */
+    cursor?: ConnectorLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ConnectorLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ConnectorLogs.
+     */
+    skip?: number
+    distinct?: ConnectorLogScalarFieldEnum | ConnectorLogScalarFieldEnum[]
+  }
+
+  /**
+   * ConnectorLog create
+   */
+  export type ConnectorLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConnectorLog
+     */
+    select?: ConnectorLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConnectorLogInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ConnectorLog.
+     */
+    data: XOR<ConnectorLogCreateInput, ConnectorLogUncheckedCreateInput>
+  }
+
+  /**
+   * ConnectorLog createMany
+   */
+  export type ConnectorLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ConnectorLogs.
+     */
+    data: ConnectorLogCreateManyInput | ConnectorLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ConnectorLog createManyAndReturn
+   */
+  export type ConnectorLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConnectorLog
+     */
+    select?: ConnectorLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many ConnectorLogs.
+     */
+    data: ConnectorLogCreateManyInput | ConnectorLogCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConnectorLogIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ConnectorLog update
+   */
+  export type ConnectorLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConnectorLog
+     */
+    select?: ConnectorLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConnectorLogInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ConnectorLog.
+     */
+    data: XOR<ConnectorLogUpdateInput, ConnectorLogUncheckedUpdateInput>
+    /**
+     * Choose, which ConnectorLog to update.
+     */
+    where: ConnectorLogWhereUniqueInput
+  }
+
+  /**
+   * ConnectorLog updateMany
+   */
+  export type ConnectorLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ConnectorLogs.
+     */
+    data: XOR<ConnectorLogUpdateManyMutationInput, ConnectorLogUncheckedUpdateManyInput>
+    /**
+     * Filter which ConnectorLogs to update
+     */
+    where?: ConnectorLogWhereInput
+  }
+
+  /**
+   * ConnectorLog upsert
+   */
+  export type ConnectorLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConnectorLog
+     */
+    select?: ConnectorLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConnectorLogInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ConnectorLog to update in case it exists.
+     */
+    where: ConnectorLogWhereUniqueInput
+    /**
+     * In case the ConnectorLog found by the `where` argument doesn't exist, create a new ConnectorLog with this data.
+     */
+    create: XOR<ConnectorLogCreateInput, ConnectorLogUncheckedCreateInput>
+    /**
+     * In case the ConnectorLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ConnectorLogUpdateInput, ConnectorLogUncheckedUpdateInput>
+  }
+
+  /**
+   * ConnectorLog delete
+   */
+  export type ConnectorLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConnectorLog
+     */
+    select?: ConnectorLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConnectorLogInclude<ExtArgs> | null
+    /**
+     * Filter which ConnectorLog to delete.
+     */
+    where: ConnectorLogWhereUniqueInput
+  }
+
+  /**
+   * ConnectorLog deleteMany
+   */
+  export type ConnectorLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ConnectorLogs to delete
+     */
+    where?: ConnectorLogWhereInput
+  }
+
+  /**
+   * ConnectorLog without action
+   */
+  export type ConnectorLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConnectorLog
+     */
+    select?: ConnectorLogSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConnectorLogInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model User
    */
 
@@ -14553,6 +16905,46 @@ export namespace Prisma {
   export type IngestionRunScalarFieldEnum = (typeof IngestionRunScalarFieldEnum)[keyof typeof IngestionRunScalarFieldEnum]
 
 
+  export const ConnectorConfigScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    type: 'type',
+    description: 'description',
+    baseUrl: 'baseUrl',
+    apiKey: 'apiKey',
+    authType: 'authType',
+    authConfig: 'authConfig',
+    config: 'config',
+    headers: 'headers',
+    timeout: 'timeout',
+    retryCount: 'retryCount',
+    rateLimit: 'rateLimit',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ConnectorConfigScalarFieldEnum = (typeof ConnectorConfigScalarFieldEnum)[keyof typeof ConnectorConfigScalarFieldEnum]
+
+
+  export const ConnectorLogScalarFieldEnum: {
+    id: 'id',
+    connectorConfigId: 'connectorConfigId',
+    endpoint: 'endpoint',
+    method: 'method',
+    requestHeaders: 'requestHeaders',
+    requestBody: 'requestBody',
+    responseStatus: 'responseStatus',
+    responseHeaders: 'responseHeaders',
+    responseBody: 'responseBody',
+    duration: 'duration',
+    error: 'error',
+    createdAt: 'createdAt'
+  };
+
+  export type ConnectorLogScalarFieldEnum = (typeof ConnectorLogScalarFieldEnum)[keyof typeof ConnectorLogScalarFieldEnum]
+
+
   export const UserScalarFieldEnum: {
     id: 'id',
     email: 'email',
@@ -14689,6 +17081,13 @@ export namespace Prisma {
    * Reference to a field of type 'Json'
    */
   export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -15557,6 +17956,210 @@ export namespace Prisma {
     logUri?: StringNullableWithAggregatesFilter<"IngestionRun"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"IngestionRun"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"IngestionRun"> | Date | string
+  }
+
+  export type ConnectorConfigWhereInput = {
+    AND?: ConnectorConfigWhereInput | ConnectorConfigWhereInput[]
+    OR?: ConnectorConfigWhereInput[]
+    NOT?: ConnectorConfigWhereInput | ConnectorConfigWhereInput[]
+    id?: StringFilter<"ConnectorConfig"> | string
+    name?: StringFilter<"ConnectorConfig"> | string
+    type?: StringFilter<"ConnectorConfig"> | string
+    description?: StringNullableFilter<"ConnectorConfig"> | string | null
+    baseUrl?: StringFilter<"ConnectorConfig"> | string
+    apiKey?: StringNullableFilter<"ConnectorConfig"> | string | null
+    authType?: StringFilter<"ConnectorConfig"> | string
+    authConfig?: JsonNullableFilter<"ConnectorConfig">
+    config?: JsonNullableFilter<"ConnectorConfig">
+    headers?: JsonNullableFilter<"ConnectorConfig">
+    timeout?: IntFilter<"ConnectorConfig"> | number
+    retryCount?: IntFilter<"ConnectorConfig"> | number
+    rateLimit?: IntNullableFilter<"ConnectorConfig"> | number | null
+    isActive?: BoolFilter<"ConnectorConfig"> | boolean
+    createdAt?: DateTimeFilter<"ConnectorConfig"> | Date | string
+    updatedAt?: DateTimeFilter<"ConnectorConfig"> | Date | string
+    logs?: ConnectorLogListRelationFilter
+  }
+
+  export type ConnectorConfigOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    description?: SortOrderInput | SortOrder
+    baseUrl?: SortOrder
+    apiKey?: SortOrderInput | SortOrder
+    authType?: SortOrder
+    authConfig?: SortOrderInput | SortOrder
+    config?: SortOrderInput | SortOrder
+    headers?: SortOrderInput | SortOrder
+    timeout?: SortOrder
+    retryCount?: SortOrder
+    rateLimit?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    logs?: ConnectorLogOrderByRelationAggregateInput
+  }
+
+  export type ConnectorConfigWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    name?: string
+    AND?: ConnectorConfigWhereInput | ConnectorConfigWhereInput[]
+    OR?: ConnectorConfigWhereInput[]
+    NOT?: ConnectorConfigWhereInput | ConnectorConfigWhereInput[]
+    type?: StringFilter<"ConnectorConfig"> | string
+    description?: StringNullableFilter<"ConnectorConfig"> | string | null
+    baseUrl?: StringFilter<"ConnectorConfig"> | string
+    apiKey?: StringNullableFilter<"ConnectorConfig"> | string | null
+    authType?: StringFilter<"ConnectorConfig"> | string
+    authConfig?: JsonNullableFilter<"ConnectorConfig">
+    config?: JsonNullableFilter<"ConnectorConfig">
+    headers?: JsonNullableFilter<"ConnectorConfig">
+    timeout?: IntFilter<"ConnectorConfig"> | number
+    retryCount?: IntFilter<"ConnectorConfig"> | number
+    rateLimit?: IntNullableFilter<"ConnectorConfig"> | number | null
+    isActive?: BoolFilter<"ConnectorConfig"> | boolean
+    createdAt?: DateTimeFilter<"ConnectorConfig"> | Date | string
+    updatedAt?: DateTimeFilter<"ConnectorConfig"> | Date | string
+    logs?: ConnectorLogListRelationFilter
+  }, "id" | "name">
+
+  export type ConnectorConfigOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    description?: SortOrderInput | SortOrder
+    baseUrl?: SortOrder
+    apiKey?: SortOrderInput | SortOrder
+    authType?: SortOrder
+    authConfig?: SortOrderInput | SortOrder
+    config?: SortOrderInput | SortOrder
+    headers?: SortOrderInput | SortOrder
+    timeout?: SortOrder
+    retryCount?: SortOrder
+    rateLimit?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ConnectorConfigCountOrderByAggregateInput
+    _avg?: ConnectorConfigAvgOrderByAggregateInput
+    _max?: ConnectorConfigMaxOrderByAggregateInput
+    _min?: ConnectorConfigMinOrderByAggregateInput
+    _sum?: ConnectorConfigSumOrderByAggregateInput
+  }
+
+  export type ConnectorConfigScalarWhereWithAggregatesInput = {
+    AND?: ConnectorConfigScalarWhereWithAggregatesInput | ConnectorConfigScalarWhereWithAggregatesInput[]
+    OR?: ConnectorConfigScalarWhereWithAggregatesInput[]
+    NOT?: ConnectorConfigScalarWhereWithAggregatesInput | ConnectorConfigScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ConnectorConfig"> | string
+    name?: StringWithAggregatesFilter<"ConnectorConfig"> | string
+    type?: StringWithAggregatesFilter<"ConnectorConfig"> | string
+    description?: StringNullableWithAggregatesFilter<"ConnectorConfig"> | string | null
+    baseUrl?: StringWithAggregatesFilter<"ConnectorConfig"> | string
+    apiKey?: StringNullableWithAggregatesFilter<"ConnectorConfig"> | string | null
+    authType?: StringWithAggregatesFilter<"ConnectorConfig"> | string
+    authConfig?: JsonNullableWithAggregatesFilter<"ConnectorConfig">
+    config?: JsonNullableWithAggregatesFilter<"ConnectorConfig">
+    headers?: JsonNullableWithAggregatesFilter<"ConnectorConfig">
+    timeout?: IntWithAggregatesFilter<"ConnectorConfig"> | number
+    retryCount?: IntWithAggregatesFilter<"ConnectorConfig"> | number
+    rateLimit?: IntNullableWithAggregatesFilter<"ConnectorConfig"> | number | null
+    isActive?: BoolWithAggregatesFilter<"ConnectorConfig"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"ConnectorConfig"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ConnectorConfig"> | Date | string
+  }
+
+  export type ConnectorLogWhereInput = {
+    AND?: ConnectorLogWhereInput | ConnectorLogWhereInput[]
+    OR?: ConnectorLogWhereInput[]
+    NOT?: ConnectorLogWhereInput | ConnectorLogWhereInput[]
+    id?: StringFilter<"ConnectorLog"> | string
+    connectorConfigId?: StringFilter<"ConnectorLog"> | string
+    endpoint?: StringFilter<"ConnectorLog"> | string
+    method?: StringFilter<"ConnectorLog"> | string
+    requestHeaders?: JsonNullableFilter<"ConnectorLog">
+    requestBody?: JsonNullableFilter<"ConnectorLog">
+    responseStatus?: IntNullableFilter<"ConnectorLog"> | number | null
+    responseHeaders?: JsonNullableFilter<"ConnectorLog">
+    responseBody?: JsonNullableFilter<"ConnectorLog">
+    duration?: IntNullableFilter<"ConnectorLog"> | number | null
+    error?: StringNullableFilter<"ConnectorLog"> | string | null
+    createdAt?: DateTimeFilter<"ConnectorLog"> | Date | string
+    connectorConfig?: XOR<ConnectorConfigRelationFilter, ConnectorConfigWhereInput>
+  }
+
+  export type ConnectorLogOrderByWithRelationInput = {
+    id?: SortOrder
+    connectorConfigId?: SortOrder
+    endpoint?: SortOrder
+    method?: SortOrder
+    requestHeaders?: SortOrderInput | SortOrder
+    requestBody?: SortOrderInput | SortOrder
+    responseStatus?: SortOrderInput | SortOrder
+    responseHeaders?: SortOrderInput | SortOrder
+    responseBody?: SortOrderInput | SortOrder
+    duration?: SortOrderInput | SortOrder
+    error?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    connectorConfig?: ConnectorConfigOrderByWithRelationInput
+  }
+
+  export type ConnectorLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ConnectorLogWhereInput | ConnectorLogWhereInput[]
+    OR?: ConnectorLogWhereInput[]
+    NOT?: ConnectorLogWhereInput | ConnectorLogWhereInput[]
+    connectorConfigId?: StringFilter<"ConnectorLog"> | string
+    endpoint?: StringFilter<"ConnectorLog"> | string
+    method?: StringFilter<"ConnectorLog"> | string
+    requestHeaders?: JsonNullableFilter<"ConnectorLog">
+    requestBody?: JsonNullableFilter<"ConnectorLog">
+    responseStatus?: IntNullableFilter<"ConnectorLog"> | number | null
+    responseHeaders?: JsonNullableFilter<"ConnectorLog">
+    responseBody?: JsonNullableFilter<"ConnectorLog">
+    duration?: IntNullableFilter<"ConnectorLog"> | number | null
+    error?: StringNullableFilter<"ConnectorLog"> | string | null
+    createdAt?: DateTimeFilter<"ConnectorLog"> | Date | string
+    connectorConfig?: XOR<ConnectorConfigRelationFilter, ConnectorConfigWhereInput>
+  }, "id">
+
+  export type ConnectorLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    connectorConfigId?: SortOrder
+    endpoint?: SortOrder
+    method?: SortOrder
+    requestHeaders?: SortOrderInput | SortOrder
+    requestBody?: SortOrderInput | SortOrder
+    responseStatus?: SortOrderInput | SortOrder
+    responseHeaders?: SortOrderInput | SortOrder
+    responseBody?: SortOrderInput | SortOrder
+    duration?: SortOrderInput | SortOrder
+    error?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: ConnectorLogCountOrderByAggregateInput
+    _avg?: ConnectorLogAvgOrderByAggregateInput
+    _max?: ConnectorLogMaxOrderByAggregateInput
+    _min?: ConnectorLogMinOrderByAggregateInput
+    _sum?: ConnectorLogSumOrderByAggregateInput
+  }
+
+  export type ConnectorLogScalarWhereWithAggregatesInput = {
+    AND?: ConnectorLogScalarWhereWithAggregatesInput | ConnectorLogScalarWhereWithAggregatesInput[]
+    OR?: ConnectorLogScalarWhereWithAggregatesInput[]
+    NOT?: ConnectorLogScalarWhereWithAggregatesInput | ConnectorLogScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ConnectorLog"> | string
+    connectorConfigId?: StringWithAggregatesFilter<"ConnectorLog"> | string
+    endpoint?: StringWithAggregatesFilter<"ConnectorLog"> | string
+    method?: StringWithAggregatesFilter<"ConnectorLog"> | string
+    requestHeaders?: JsonNullableWithAggregatesFilter<"ConnectorLog">
+    requestBody?: JsonNullableWithAggregatesFilter<"ConnectorLog">
+    responseStatus?: IntNullableWithAggregatesFilter<"ConnectorLog"> | number | null
+    responseHeaders?: JsonNullableWithAggregatesFilter<"ConnectorLog">
+    responseBody?: JsonNullableWithAggregatesFilter<"ConnectorLog">
+    duration?: IntNullableWithAggregatesFilter<"ConnectorLog"> | number | null
+    error?: StringNullableWithAggregatesFilter<"ConnectorLog"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"ConnectorLog"> | Date | string
   }
 
   export type UserWhereInput = {
@@ -16659,6 +19262,247 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ConnectorConfigCreateInput = {
+    id?: string
+    name: string
+    type: string
+    description?: string | null
+    baseUrl: string
+    apiKey?: string | null
+    authType?: string
+    authConfig?: NullableJsonNullValueInput | InputJsonValue
+    config?: NullableJsonNullValueInput | InputJsonValue
+    headers?: NullableJsonNullValueInput | InputJsonValue
+    timeout?: number
+    retryCount?: number
+    rateLimit?: number | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    logs?: ConnectorLogCreateNestedManyWithoutConnectorConfigInput
+  }
+
+  export type ConnectorConfigUncheckedCreateInput = {
+    id?: string
+    name: string
+    type: string
+    description?: string | null
+    baseUrl: string
+    apiKey?: string | null
+    authType?: string
+    authConfig?: NullableJsonNullValueInput | InputJsonValue
+    config?: NullableJsonNullValueInput | InputJsonValue
+    headers?: NullableJsonNullValueInput | InputJsonValue
+    timeout?: number
+    retryCount?: number
+    rateLimit?: number | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    logs?: ConnectorLogUncheckedCreateNestedManyWithoutConnectorConfigInput
+  }
+
+  export type ConnectorConfigUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    baseUrl?: StringFieldUpdateOperationsInput | string
+    apiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    authType?: StringFieldUpdateOperationsInput | string
+    authConfig?: NullableJsonNullValueInput | InputJsonValue
+    config?: NullableJsonNullValueInput | InputJsonValue
+    headers?: NullableJsonNullValueInput | InputJsonValue
+    timeout?: IntFieldUpdateOperationsInput | number
+    retryCount?: IntFieldUpdateOperationsInput | number
+    rateLimit?: NullableIntFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    logs?: ConnectorLogUpdateManyWithoutConnectorConfigNestedInput
+  }
+
+  export type ConnectorConfigUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    baseUrl?: StringFieldUpdateOperationsInput | string
+    apiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    authType?: StringFieldUpdateOperationsInput | string
+    authConfig?: NullableJsonNullValueInput | InputJsonValue
+    config?: NullableJsonNullValueInput | InputJsonValue
+    headers?: NullableJsonNullValueInput | InputJsonValue
+    timeout?: IntFieldUpdateOperationsInput | number
+    retryCount?: IntFieldUpdateOperationsInput | number
+    rateLimit?: NullableIntFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    logs?: ConnectorLogUncheckedUpdateManyWithoutConnectorConfigNestedInput
+  }
+
+  export type ConnectorConfigCreateManyInput = {
+    id?: string
+    name: string
+    type: string
+    description?: string | null
+    baseUrl: string
+    apiKey?: string | null
+    authType?: string
+    authConfig?: NullableJsonNullValueInput | InputJsonValue
+    config?: NullableJsonNullValueInput | InputJsonValue
+    headers?: NullableJsonNullValueInput | InputJsonValue
+    timeout?: number
+    retryCount?: number
+    rateLimit?: number | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ConnectorConfigUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    baseUrl?: StringFieldUpdateOperationsInput | string
+    apiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    authType?: StringFieldUpdateOperationsInput | string
+    authConfig?: NullableJsonNullValueInput | InputJsonValue
+    config?: NullableJsonNullValueInput | InputJsonValue
+    headers?: NullableJsonNullValueInput | InputJsonValue
+    timeout?: IntFieldUpdateOperationsInput | number
+    retryCount?: IntFieldUpdateOperationsInput | number
+    rateLimit?: NullableIntFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConnectorConfigUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    baseUrl?: StringFieldUpdateOperationsInput | string
+    apiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    authType?: StringFieldUpdateOperationsInput | string
+    authConfig?: NullableJsonNullValueInput | InputJsonValue
+    config?: NullableJsonNullValueInput | InputJsonValue
+    headers?: NullableJsonNullValueInput | InputJsonValue
+    timeout?: IntFieldUpdateOperationsInput | number
+    retryCount?: IntFieldUpdateOperationsInput | number
+    rateLimit?: NullableIntFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConnectorLogCreateInput = {
+    id?: string
+    endpoint: string
+    method: string
+    requestHeaders?: NullableJsonNullValueInput | InputJsonValue
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseStatus?: number | null
+    responseHeaders?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    duration?: number | null
+    error?: string | null
+    createdAt?: Date | string
+    connectorConfig: ConnectorConfigCreateNestedOneWithoutLogsInput
+  }
+
+  export type ConnectorLogUncheckedCreateInput = {
+    id?: string
+    connectorConfigId: string
+    endpoint: string
+    method: string
+    requestHeaders?: NullableJsonNullValueInput | InputJsonValue
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseStatus?: number | null
+    responseHeaders?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    duration?: number | null
+    error?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ConnectorLogUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    endpoint?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    requestHeaders?: NullableJsonNullValueInput | InputJsonValue
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseStatus?: NullableIntFieldUpdateOperationsInput | number | null
+    responseHeaders?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    error?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    connectorConfig?: ConnectorConfigUpdateOneRequiredWithoutLogsNestedInput
+  }
+
+  export type ConnectorLogUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    connectorConfigId?: StringFieldUpdateOperationsInput | string
+    endpoint?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    requestHeaders?: NullableJsonNullValueInput | InputJsonValue
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseStatus?: NullableIntFieldUpdateOperationsInput | number | null
+    responseHeaders?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    error?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConnectorLogCreateManyInput = {
+    id?: string
+    connectorConfigId: string
+    endpoint: string
+    method: string
+    requestHeaders?: NullableJsonNullValueInput | InputJsonValue
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseStatus?: number | null
+    responseHeaders?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    duration?: number | null
+    error?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ConnectorLogUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    endpoint?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    requestHeaders?: NullableJsonNullValueInput | InputJsonValue
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseStatus?: NullableIntFieldUpdateOperationsInput | number | null
+    responseHeaders?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    error?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConnectorLogUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    connectorConfigId?: StringFieldUpdateOperationsInput | string
+    endpoint?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    requestHeaders?: NullableJsonNullValueInput | InputJsonValue
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseStatus?: NullableIntFieldUpdateOperationsInput | number | null
+    responseHeaders?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    error?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -17562,6 +20406,218 @@ export namespace Prisma {
     rowsIngested?: SortOrder
     rowsInvalid?: SortOrder
   }
+  export type JsonNullableFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type ConnectorLogListRelationFilter = {
+    every?: ConnectorLogWhereInput
+    some?: ConnectorLogWhereInput
+    none?: ConnectorLogWhereInput
+  }
+
+  export type ConnectorLogOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ConnectorConfigCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    description?: SortOrder
+    baseUrl?: SortOrder
+    apiKey?: SortOrder
+    authType?: SortOrder
+    authConfig?: SortOrder
+    config?: SortOrder
+    headers?: SortOrder
+    timeout?: SortOrder
+    retryCount?: SortOrder
+    rateLimit?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ConnectorConfigAvgOrderByAggregateInput = {
+    timeout?: SortOrder
+    retryCount?: SortOrder
+    rateLimit?: SortOrder
+  }
+
+  export type ConnectorConfigMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    description?: SortOrder
+    baseUrl?: SortOrder
+    apiKey?: SortOrder
+    authType?: SortOrder
+    timeout?: SortOrder
+    retryCount?: SortOrder
+    rateLimit?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ConnectorConfigMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    description?: SortOrder
+    baseUrl?: SortOrder
+    apiKey?: SortOrder
+    authType?: SortOrder
+    timeout?: SortOrder
+    retryCount?: SortOrder
+    rateLimit?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ConnectorConfigSumOrderByAggregateInput = {
+    timeout?: SortOrder
+    retryCount?: SortOrder
+    rateLimit?: SortOrder
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type ConnectorConfigRelationFilter = {
+    is?: ConnectorConfigWhereInput
+    isNot?: ConnectorConfigWhereInput
+  }
+
+  export type ConnectorLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    connectorConfigId?: SortOrder
+    endpoint?: SortOrder
+    method?: SortOrder
+    requestHeaders?: SortOrder
+    requestBody?: SortOrder
+    responseStatus?: SortOrder
+    responseHeaders?: SortOrder
+    responseBody?: SortOrder
+    duration?: SortOrder
+    error?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ConnectorLogAvgOrderByAggregateInput = {
+    responseStatus?: SortOrder
+    duration?: SortOrder
+  }
+
+  export type ConnectorLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    connectorConfigId?: SortOrder
+    endpoint?: SortOrder
+    method?: SortOrder
+    responseStatus?: SortOrder
+    duration?: SortOrder
+    error?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ConnectorLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    connectorConfigId?: SortOrder
+    endpoint?: SortOrder
+    method?: SortOrder
+    responseStatus?: SortOrder
+    duration?: SortOrder
+    error?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ConnectorLogSumOrderByAggregateInput = {
+    responseStatus?: SortOrder
+    duration?: SortOrder
+  }
 
   export type MunicipalityNullableRelationFilter = {
     is?: MunicipalityWhereInput | null
@@ -17600,28 +20656,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
-  export type JsonNullableFilter<$PrismaModel = never> = 
-    | PatchUndefined<
-        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonNullableFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
-
-  export type JsonNullableFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-  }
 
   export type StringNullableListFilter<$PrismaModel = never> = {
     equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -17629,17 +20663,6 @@ export namespace Prisma {
     hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
     hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
     isEmpty?: boolean
-  }
-
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type QueryAuditCountOrderByAggregateInput = {
@@ -17683,47 +20706,6 @@ export namespace Prisma {
   export type QueryAuditSumOrderByAggregateInput = {
     rowsReturned?: SortOrder
     latencyMs?: SortOrder
-  }
-  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> = 
-    | PatchUndefined<
-        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
-
-  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedJsonNullableFilter<$PrismaModel>
-    _max?: NestedJsonNullableFilter<$PrismaModel>
-  }
-
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type BudgetCreateNestedManyWithoutMunicipalityInput = {
@@ -18372,6 +21354,74 @@ export namespace Prisma {
     update?: XOR<XOR<DatasetUpdateToOneWithWhereWithoutIngestionRunsInput, DatasetUpdateWithoutIngestionRunsInput>, DatasetUncheckedUpdateWithoutIngestionRunsInput>
   }
 
+  export type ConnectorLogCreateNestedManyWithoutConnectorConfigInput = {
+    create?: XOR<ConnectorLogCreateWithoutConnectorConfigInput, ConnectorLogUncheckedCreateWithoutConnectorConfigInput> | ConnectorLogCreateWithoutConnectorConfigInput[] | ConnectorLogUncheckedCreateWithoutConnectorConfigInput[]
+    connectOrCreate?: ConnectorLogCreateOrConnectWithoutConnectorConfigInput | ConnectorLogCreateOrConnectWithoutConnectorConfigInput[]
+    createMany?: ConnectorLogCreateManyConnectorConfigInputEnvelope
+    connect?: ConnectorLogWhereUniqueInput | ConnectorLogWhereUniqueInput[]
+  }
+
+  export type ConnectorLogUncheckedCreateNestedManyWithoutConnectorConfigInput = {
+    create?: XOR<ConnectorLogCreateWithoutConnectorConfigInput, ConnectorLogUncheckedCreateWithoutConnectorConfigInput> | ConnectorLogCreateWithoutConnectorConfigInput[] | ConnectorLogUncheckedCreateWithoutConnectorConfigInput[]
+    connectOrCreate?: ConnectorLogCreateOrConnectWithoutConnectorConfigInput | ConnectorLogCreateOrConnectWithoutConnectorConfigInput[]
+    createMany?: ConnectorLogCreateManyConnectorConfigInputEnvelope
+    connect?: ConnectorLogWhereUniqueInput | ConnectorLogWhereUniqueInput[]
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type ConnectorLogUpdateManyWithoutConnectorConfigNestedInput = {
+    create?: XOR<ConnectorLogCreateWithoutConnectorConfigInput, ConnectorLogUncheckedCreateWithoutConnectorConfigInput> | ConnectorLogCreateWithoutConnectorConfigInput[] | ConnectorLogUncheckedCreateWithoutConnectorConfigInput[]
+    connectOrCreate?: ConnectorLogCreateOrConnectWithoutConnectorConfigInput | ConnectorLogCreateOrConnectWithoutConnectorConfigInput[]
+    upsert?: ConnectorLogUpsertWithWhereUniqueWithoutConnectorConfigInput | ConnectorLogUpsertWithWhereUniqueWithoutConnectorConfigInput[]
+    createMany?: ConnectorLogCreateManyConnectorConfigInputEnvelope
+    set?: ConnectorLogWhereUniqueInput | ConnectorLogWhereUniqueInput[]
+    disconnect?: ConnectorLogWhereUniqueInput | ConnectorLogWhereUniqueInput[]
+    delete?: ConnectorLogWhereUniqueInput | ConnectorLogWhereUniqueInput[]
+    connect?: ConnectorLogWhereUniqueInput | ConnectorLogWhereUniqueInput[]
+    update?: ConnectorLogUpdateWithWhereUniqueWithoutConnectorConfigInput | ConnectorLogUpdateWithWhereUniqueWithoutConnectorConfigInput[]
+    updateMany?: ConnectorLogUpdateManyWithWhereWithoutConnectorConfigInput | ConnectorLogUpdateManyWithWhereWithoutConnectorConfigInput[]
+    deleteMany?: ConnectorLogScalarWhereInput | ConnectorLogScalarWhereInput[]
+  }
+
+  export type ConnectorLogUncheckedUpdateManyWithoutConnectorConfigNestedInput = {
+    create?: XOR<ConnectorLogCreateWithoutConnectorConfigInput, ConnectorLogUncheckedCreateWithoutConnectorConfigInput> | ConnectorLogCreateWithoutConnectorConfigInput[] | ConnectorLogUncheckedCreateWithoutConnectorConfigInput[]
+    connectOrCreate?: ConnectorLogCreateOrConnectWithoutConnectorConfigInput | ConnectorLogCreateOrConnectWithoutConnectorConfigInput[]
+    upsert?: ConnectorLogUpsertWithWhereUniqueWithoutConnectorConfigInput | ConnectorLogUpsertWithWhereUniqueWithoutConnectorConfigInput[]
+    createMany?: ConnectorLogCreateManyConnectorConfigInputEnvelope
+    set?: ConnectorLogWhereUniqueInput | ConnectorLogWhereUniqueInput[]
+    disconnect?: ConnectorLogWhereUniqueInput | ConnectorLogWhereUniqueInput[]
+    delete?: ConnectorLogWhereUniqueInput | ConnectorLogWhereUniqueInput[]
+    connect?: ConnectorLogWhereUniqueInput | ConnectorLogWhereUniqueInput[]
+    update?: ConnectorLogUpdateWithWhereUniqueWithoutConnectorConfigInput | ConnectorLogUpdateWithWhereUniqueWithoutConnectorConfigInput[]
+    updateMany?: ConnectorLogUpdateManyWithWhereWithoutConnectorConfigInput | ConnectorLogUpdateManyWithWhereWithoutConnectorConfigInput[]
+    deleteMany?: ConnectorLogScalarWhereInput | ConnectorLogScalarWhereInput[]
+  }
+
+  export type ConnectorConfigCreateNestedOneWithoutLogsInput = {
+    create?: XOR<ConnectorConfigCreateWithoutLogsInput, ConnectorConfigUncheckedCreateWithoutLogsInput>
+    connectOrCreate?: ConnectorConfigCreateOrConnectWithoutLogsInput
+    connect?: ConnectorConfigWhereUniqueInput
+  }
+
+  export type ConnectorConfigUpdateOneRequiredWithoutLogsNestedInput = {
+    create?: XOR<ConnectorConfigCreateWithoutLogsInput, ConnectorConfigUncheckedCreateWithoutLogsInput>
+    connectOrCreate?: ConnectorConfigCreateOrConnectWithoutLogsInput
+    upsert?: ConnectorConfigUpsertWithoutLogsInput
+    connect?: ConnectorConfigWhereUniqueInput
+    update?: XOR<XOR<ConnectorConfigUpdateToOneWithWhereWithoutLogsInput, ConnectorConfigUpdateWithoutLogsInput>, ConnectorConfigUncheckedUpdateWithoutLogsInput>
+  }
+
   export type MunicipalityCreateNestedOneWithoutUsersInput = {
     create?: XOR<MunicipalityCreateWithoutUsersInput, MunicipalityUncheckedCreateWithoutUsersInput>
     connectOrCreate?: MunicipalityCreateOrConnectWithoutUsersInput
@@ -18395,14 +21445,6 @@ export namespace Prisma {
   export type QueryAuditUpdatedatasetsUsedInput = {
     set?: string[]
     push?: string | string[]
-  }
-
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -18619,6 +21661,11 @@ export namespace Prisma {
     _min?: NestedDecimalNullableFilter<$PrismaModel>
     _max?: NestedDecimalNullableFilter<$PrismaModel>
   }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
   export type NestedJsonNullableFilter<$PrismaModel = never> = 
     | PatchUndefined<
         Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
@@ -18667,6 +21714,14 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type BudgetCreateWithoutMunicipalityInput = {
@@ -20041,6 +23096,170 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ConnectorLogCreateWithoutConnectorConfigInput = {
+    id?: string
+    endpoint: string
+    method: string
+    requestHeaders?: NullableJsonNullValueInput | InputJsonValue
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseStatus?: number | null
+    responseHeaders?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    duration?: number | null
+    error?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ConnectorLogUncheckedCreateWithoutConnectorConfigInput = {
+    id?: string
+    endpoint: string
+    method: string
+    requestHeaders?: NullableJsonNullValueInput | InputJsonValue
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseStatus?: number | null
+    responseHeaders?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    duration?: number | null
+    error?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ConnectorLogCreateOrConnectWithoutConnectorConfigInput = {
+    where: ConnectorLogWhereUniqueInput
+    create: XOR<ConnectorLogCreateWithoutConnectorConfigInput, ConnectorLogUncheckedCreateWithoutConnectorConfigInput>
+  }
+
+  export type ConnectorLogCreateManyConnectorConfigInputEnvelope = {
+    data: ConnectorLogCreateManyConnectorConfigInput | ConnectorLogCreateManyConnectorConfigInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ConnectorLogUpsertWithWhereUniqueWithoutConnectorConfigInput = {
+    where: ConnectorLogWhereUniqueInput
+    update: XOR<ConnectorLogUpdateWithoutConnectorConfigInput, ConnectorLogUncheckedUpdateWithoutConnectorConfigInput>
+    create: XOR<ConnectorLogCreateWithoutConnectorConfigInput, ConnectorLogUncheckedCreateWithoutConnectorConfigInput>
+  }
+
+  export type ConnectorLogUpdateWithWhereUniqueWithoutConnectorConfigInput = {
+    where: ConnectorLogWhereUniqueInput
+    data: XOR<ConnectorLogUpdateWithoutConnectorConfigInput, ConnectorLogUncheckedUpdateWithoutConnectorConfigInput>
+  }
+
+  export type ConnectorLogUpdateManyWithWhereWithoutConnectorConfigInput = {
+    where: ConnectorLogScalarWhereInput
+    data: XOR<ConnectorLogUpdateManyMutationInput, ConnectorLogUncheckedUpdateManyWithoutConnectorConfigInput>
+  }
+
+  export type ConnectorLogScalarWhereInput = {
+    AND?: ConnectorLogScalarWhereInput | ConnectorLogScalarWhereInput[]
+    OR?: ConnectorLogScalarWhereInput[]
+    NOT?: ConnectorLogScalarWhereInput | ConnectorLogScalarWhereInput[]
+    id?: StringFilter<"ConnectorLog"> | string
+    connectorConfigId?: StringFilter<"ConnectorLog"> | string
+    endpoint?: StringFilter<"ConnectorLog"> | string
+    method?: StringFilter<"ConnectorLog"> | string
+    requestHeaders?: JsonNullableFilter<"ConnectorLog">
+    requestBody?: JsonNullableFilter<"ConnectorLog">
+    responseStatus?: IntNullableFilter<"ConnectorLog"> | number | null
+    responseHeaders?: JsonNullableFilter<"ConnectorLog">
+    responseBody?: JsonNullableFilter<"ConnectorLog">
+    duration?: IntNullableFilter<"ConnectorLog"> | number | null
+    error?: StringNullableFilter<"ConnectorLog"> | string | null
+    createdAt?: DateTimeFilter<"ConnectorLog"> | Date | string
+  }
+
+  export type ConnectorConfigCreateWithoutLogsInput = {
+    id?: string
+    name: string
+    type: string
+    description?: string | null
+    baseUrl: string
+    apiKey?: string | null
+    authType?: string
+    authConfig?: NullableJsonNullValueInput | InputJsonValue
+    config?: NullableJsonNullValueInput | InputJsonValue
+    headers?: NullableJsonNullValueInput | InputJsonValue
+    timeout?: number
+    retryCount?: number
+    rateLimit?: number | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ConnectorConfigUncheckedCreateWithoutLogsInput = {
+    id?: string
+    name: string
+    type: string
+    description?: string | null
+    baseUrl: string
+    apiKey?: string | null
+    authType?: string
+    authConfig?: NullableJsonNullValueInput | InputJsonValue
+    config?: NullableJsonNullValueInput | InputJsonValue
+    headers?: NullableJsonNullValueInput | InputJsonValue
+    timeout?: number
+    retryCount?: number
+    rateLimit?: number | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ConnectorConfigCreateOrConnectWithoutLogsInput = {
+    where: ConnectorConfigWhereUniqueInput
+    create: XOR<ConnectorConfigCreateWithoutLogsInput, ConnectorConfigUncheckedCreateWithoutLogsInput>
+  }
+
+  export type ConnectorConfigUpsertWithoutLogsInput = {
+    update: XOR<ConnectorConfigUpdateWithoutLogsInput, ConnectorConfigUncheckedUpdateWithoutLogsInput>
+    create: XOR<ConnectorConfigCreateWithoutLogsInput, ConnectorConfigUncheckedCreateWithoutLogsInput>
+    where?: ConnectorConfigWhereInput
+  }
+
+  export type ConnectorConfigUpdateToOneWithWhereWithoutLogsInput = {
+    where?: ConnectorConfigWhereInput
+    data: XOR<ConnectorConfigUpdateWithoutLogsInput, ConnectorConfigUncheckedUpdateWithoutLogsInput>
+  }
+
+  export type ConnectorConfigUpdateWithoutLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    baseUrl?: StringFieldUpdateOperationsInput | string
+    apiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    authType?: StringFieldUpdateOperationsInput | string
+    authConfig?: NullableJsonNullValueInput | InputJsonValue
+    config?: NullableJsonNullValueInput | InputJsonValue
+    headers?: NullableJsonNullValueInput | InputJsonValue
+    timeout?: IntFieldUpdateOperationsInput | number
+    retryCount?: IntFieldUpdateOperationsInput | number
+    rateLimit?: NullableIntFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConnectorConfigUncheckedUpdateWithoutLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    baseUrl?: StringFieldUpdateOperationsInput | string
+    apiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    authType?: StringFieldUpdateOperationsInput | string
+    authConfig?: NullableJsonNullValueInput | InputJsonValue
+    config?: NullableJsonNullValueInput | InputJsonValue
+    headers?: NullableJsonNullValueInput | InputJsonValue
+    timeout?: IntFieldUpdateOperationsInput | number
+    retryCount?: IntFieldUpdateOperationsInput | number
+    rateLimit?: NullableIntFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type MunicipalityCreateWithoutUsersInput = {
     id?: string
     name: string
@@ -20789,6 +24008,62 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ConnectorLogCreateManyConnectorConfigInput = {
+    id?: string
+    endpoint: string
+    method: string
+    requestHeaders?: NullableJsonNullValueInput | InputJsonValue
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseStatus?: number | null
+    responseHeaders?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    duration?: number | null
+    error?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ConnectorLogUpdateWithoutConnectorConfigInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    endpoint?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    requestHeaders?: NullableJsonNullValueInput | InputJsonValue
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseStatus?: NullableIntFieldUpdateOperationsInput | number | null
+    responseHeaders?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    error?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConnectorLogUncheckedUpdateWithoutConnectorConfigInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    endpoint?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    requestHeaders?: NullableJsonNullValueInput | InputJsonValue
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseStatus?: NullableIntFieldUpdateOperationsInput | number | null
+    responseHeaders?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    error?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConnectorLogUncheckedUpdateManyWithoutConnectorConfigInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    endpoint?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    requestHeaders?: NullableJsonNullValueInput | InputJsonValue
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseStatus?: NullableIntFieldUpdateOperationsInput | number | null
+    responseHeaders?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    error?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
 
 
   /**
@@ -20814,6 +24089,10 @@ export namespace Prisma {
      * @deprecated Use DatasetCountOutputTypeDefaultArgs instead
      */
     export type DatasetCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = DatasetCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ConnectorConfigCountOutputTypeDefaultArgs instead
+     */
+    export type ConnectorConfigCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ConnectorConfigCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use MunicipalityDefaultArgs instead
      */
@@ -20854,6 +24133,14 @@ export namespace Prisma {
      * @deprecated Use IngestionRunDefaultArgs instead
      */
     export type IngestionRunArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = IngestionRunDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ConnectorConfigDefaultArgs instead
+     */
+    export type ConnectorConfigArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ConnectorConfigDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ConnectorLogDefaultArgs instead
+     */
+    export type ConnectorLogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ConnectorLogDefaultArgs<ExtArgs>
     /**
      * @deprecated Use UserDefaultArgs instead
      */
