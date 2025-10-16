@@ -44,5 +44,8 @@
     "open-data"
   ],
   "author": "Municipal Transparency Platform Team",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "csv-parse": "^6.1.0"
+  }
 }
