@@ -10,6 +10,7 @@ import {
   UseGuards,
   HttpCode,
   HttpStatus,
+  Req,
 } from '@nestjs/common';
 import {
   ApiTags,
@@ -52,8 +53,9 @@ export class VersionsController {
     status: 403,
     description: 'No autorizado',
   })
-  create(@Body() createDto: CreateSoftwareVersionDto) {
-    return this.versionsService.create(createDto);
+  create(@Body() createDto: CreateSoftwareVersionDto, @Req() req: any) {
+    const userId = req.user?.id || req.user?.sub;
+    return this.versionsService.create(createDto, userId);
   }
 
   @Get()
@@ -117,8 +119,9 @@ export class VersionsController {
     status: 403,
     description: 'No autorizado',
   })
-  update(@Param('id') id: string, @Body() updateDto: UpdateSoftwareVersionDto) {
-    return this.versionsService.update(id, updateDto);
+  update(@Param('id') id: string, @Body() updateDto: UpdateSoftwareVersionDto, @Req() req: any) {
+    const userId = req.user?.id || req.user?.sub;
+    return this.versionsService.update(id, updateDto, userId);
   }
 
   @Delete(':id')

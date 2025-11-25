@@ -3,8 +3,11 @@ import {
   NotFoundException,
   BadRequestException,
   ConflictException,
+  Inject,
+  forwardRef,
 } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import { NotificationsService } from '../notifications/notifications.service';
 import {
   CreateSoftwareVersionDto,
   UpdateSoftwareVersionDto,
@@ -14,12 +17,16 @@ import {
 
 @Injectable()
 export class VersionsService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    @Inject(forwardRef(() => NotificationsService))
+    private notificationsService: NotificationsService,
+  ) {}
 
   /**
    * Crear una nueva versión de software
    */
-  async create(createDto: CreateSoftwareVersionDto) {
+  async create(createDto: CreateSoftwareVersionDto, userId?: string) {
     // Verificar que la versión no exista
     const existingVersion = await this.prisma.softwareVersion.findUnique({
       where: { version: createDto.version },
@@ -31,7 +38,7 @@ export class VersionsService {
       );
     }
 
-    return this.prisma.softwareVersion.create({
+    const newVersion = await this.prisma.softwareVersion.create({
       data: {
         version: createDto.version,
         name: createDto.name,
@@ -43,6 +50,22 @@ export class VersionsService {
         status: createDto.status || VersionStatus.DRAFT,
       },
     });
+
+    // Si la versión es estable y tenemos userId, crear notificaciones
+    if (newVersion.status === VersionStatus.STABLE && userId) {
+      try {
+        await this.notificationsService.createVersionUpdateNotification(
+          newVersion.version,
+          newVersion.name,
+          userId,
+        );
+      } catch (error) {
+        // Log error but don't fail the version creation
+        console.error('Error creating version notifications:', error);
+      }
+    }
+
+    return newVersion;
   }
 
   /**
@@ -167,7 +190,7 @@ export class VersionsService {
   /**
    * Actualizar una versión
    */
-  async update(id: string, updateDto: UpdateSoftwareVersionDto) {
+  async update(id: string, updateDto: UpdateSoftwareVersionDto, userId?: string) {
     // Verificar que la versión existe
     const existingVersion = await this.prisma.softwareVersion.findUnique({
       where: { id },
@@ -200,10 +223,30 @@ export class VersionsService {
       updateData.status = updateDto.status;
     }
 
-    return this.prisma.softwareVersion.update({
+    const updatedVersion = await this.prisma.softwareVersion.update({
       where: { id },
       data: updateData,
     });
+
+    // Si la versión cambió a 'stable' y no lo era antes, crear notificaciones
+    if (
+      updateDto.status === VersionStatus.STABLE &&
+      existingVersion.status !== VersionStatus.STABLE &&
+      userId
+    ) {
+      try {
+        await this.notificationsService.createVersionUpdateNotification(
+          updatedVersion.version,
+          updatedVersion.name,
+          userId,
+        );
+      } catch (error) {
+        // Log error but don't fail the version update
+        console.error('Error creating version notifications:', error);
+      }
+    }
+
+    return updatedVersion;
   }
 
   /**
@@ -260,5 +303,69 @@ export class VersionsService {
     }
 
     return true;
+  }
+
+  /**
+   * Obtener la versión anterior desde el historial de un municipio
+   */
+  async getPreviousVersion(municipalityId: string): Promise<string | null> {
+    // Buscar la última entrada del historial que tenga un fromVersion
+    const lastHistory = await this.prisma.versionHistory.findFirst({
+      where: {
+        municipalityId,
+        fromVersion: { not: null },
+      },
+      orderBy: { updatedAt: 'desc' },
+      select: {
+        fromVersion: true,
+      },
+    });
+
+    return lastHistory?.fromVersion || null;
+  }
+
+  /**
+   * Validar que se puede realizar un rollback
+   */
+  async validateRollback(
+    municipalityId: string,
+  ): Promise<{ canRollback: boolean; previousVersion: string | null; reason?: string }> {
+    // Obtener versión anterior
+    const previousVersion = await this.getPreviousVersion(municipalityId);
+
+    if (!previousVersion) {
+      return {
+        canRollback: false,
+        previousVersion: null,
+        reason: 'No hay una versión anterior disponible en el historial',
+      };
+    }
+
+    // Verificar que la versión anterior aún existe
+    const versionExists = await this.prisma.softwareVersion.findUnique({
+      where: { version: previousVersion },
+    });
+
+    if (!versionExists) {
+      return {
+        canRollback: false,
+        previousVersion,
+        reason: `La versión anterior ${previousVersion} ya no existe en el sistema`,
+      };
+    }
+
+    // Verificar que la versión anterior está estable
+    if (versionExists.status !== VersionStatus.STABLE) {
+      return {
+        canRollback: false,
+        previousVersion,
+        reason: `La versión anterior ${previousVersion} no está en estado estable (${versionExists.status})`,
+      };
+    }
+
+    return {
+      canRollback: true,
+      previousVersion,
+    };
   }
 }

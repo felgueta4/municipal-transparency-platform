@@ -174,4 +174,51 @@ export class MunicipalityController {
   ) {
     return this.municipalityService.getVersionHistory(id, page, limit);
   }
+
+  @Post(':id/version/rollback')
+  @Roles('super_admin')
+  @ApiOperation({
+    summary: 'Rollback a la versión anterior del municipio (solo superadmin)',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Rollback realizado exitosamente',
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'No se puede realizar el rollback',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Municipio no encontrado',
+  })
+  @ApiResponse({
+    status: 403,
+    description: 'No autorizado',
+  })
+  rollbackVersion(@Param('id') id: string, @Req() req: any) {
+    const userId = req.user?.id || req.user?.sub;
+    return this.municipalityService.rollbackVersion(id, userId);
+  }
+
+  @Get(':id/version/previous')
+  @Roles('super_admin')
+  @ApiOperation({
+    summary: 'Obtener información de la versión anterior disponible para rollback',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Información de la versión anterior',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Municipio no encontrado',
+  })
+  @ApiResponse({
+    status: 403,
+    description: 'No autorizado',
+  })
+  getPreviousVersion(@Param('id') id: string) {
+    return this.municipalityService.getPreviousVersionInfo(id);
+  }
 }

@@ -1,12 +1,19 @@
 
 
-import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
+import { Injectable, NotFoundException, BadRequestException, Inject, forwardRef } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateMunicipalityDto, UpdateMunicipalityDto, MunicipalityFilterDto } from './dto';
+import { VersionsService } from '../versions/versions.service';
+import { NotificationsService } from '../notifications/notifications.service';
 
 @Injectable()
 export class MunicipalityService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    @Inject(forwardRef(() => VersionsService))
+    private versionsService: VersionsService,
+    private notificationsService: NotificationsService,
+  ) {}
 
   /**
    * Crear municipio
@@ -293,6 +300,148 @@ export class MunicipalityService {
         total,
         totalPages: Math.ceil(total / limit),
       },
+    };
+  }
+
+  /**
+   * Rollback a la versión anterior del municipio
+   */
+  async rollbackVersion(id: string, userId: string) {
+    // Verificar que el municipio existe
+    const municipality = await this.prisma.municipality.findUnique({
+      where: { id },
+    });
+
+    if (!municipality) {
+      throw new NotFoundException(`Municipio con ID ${id} no encontrado`);
+    }
+
+    // Validar que se puede hacer rollback
+    const validation = await this.versionsService.validateRollback(id);
+
+    if (!validation.canRollback) {
+      throw new BadRequestException(
+        validation.reason || 'No se puede realizar el rollback',
+      );
+    }
+
+    const previousVersion = validation.previousVersion!;
+    const currentVersion = municipality.softwareVersion;
+
+    // Realizar el rollback en una transacción
+    const result = await this.prisma.$transaction(async (tx) => {
+      // Actualizar el municipio
+      const updatedMunicipality = await tx.municipality.update({
+        where: { id },
+        data: {
+          softwareVersion: previousVersion,
+        },
+        include: {
+          version: true,
+        },
+      });
+
+      // Crear registro en el historial
+      const historyRecord = await tx.versionHistory.create({
+        data: {
+          municipalityId: id,
+          fromVersion: currentVersion,
+          toVersion: previousVersion,
+          updatedBy: userId,
+          notes: `Rollback desde ${currentVersion} a ${previousVersion}`,
+        },
+        include: {
+          municipality: {
+            select: {
+              id: true,
+              name: true,
+              region: true,
+            },
+          },
+          softwareVersion: {
+            select: {
+              version: true,
+              name: true,
+              description: true,
+            },
+          },
+          user: {
+            select: {
+              id: true,
+              email: true,
+            },
+          },
+        },
+      });
+
+      // Crear notificación sobre el rollback
+      await tx.notification.create({
+        data: {
+          title: 'Rollback de versión realizado',
+          message: `Se ha revertido la versión del sistema desde ${currentVersion} a ${previousVersion}.`,
+          type: 'warning',
+          municipalityId: id,
+          createdBy: userId,
+          metadata: {
+            fromVersion: currentVersion,
+            toVersion: previousVersion,
+            action: 'rollback',
+          },
+        },
+      });
+
+      return {
+        municipality: updatedMunicipality,
+        historyRecord,
+        message: `Rollback exitoso: ${currentVersion} → ${previousVersion}`,
+      };
+    });
+
+    return result;
+  }
+
+  /**
+   * Obtener información de la versión anterior disponible para rollback
+   */
+  async getPreviousVersionInfo(id: string) {
+    // Verificar que el municipio existe
+    const municipality = await this.prisma.municipality.findUnique({
+      where: { id },
+    });
+
+    if (!municipality) {
+      throw new NotFoundException(`Municipio con ID ${id} no encontrado`);
+    }
+
+    // Validar rollback
+    const validation = await this.versionsService.validateRollback(id);
+
+    if (!validation.canRollback) {
+      return {
+        canRollback: false,
+        currentVersion: municipality.softwareVersion,
+        previousVersion: null,
+        reason: validation.reason,
+      };
+    }
+
+    // Obtener detalles de la versión anterior
+    const previousVersionDetails = await this.prisma.softwareVersion.findUnique({
+      where: { version: validation.previousVersion! },
+      select: {
+        version: true,
+        name: true,
+        description: true,
+        releaseDate: true,
+        status: true,
+      },
+    });
+
+    return {
+      canRollback: true,
+      currentVersion: municipality.softwareVersion,
+      previousVersion: validation.previousVersion,
+      previousVersionDetails,
     };
   }
 }

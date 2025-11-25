@@ -310,6 +310,20 @@ exports.Prisma.VersionHistoryScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.NotificationScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  message: 'message',
+  type: 'type',
+  municipalityId: 'municipalityId',
+  createdBy: 'createdBy',
+  isRead: 'isRead',
+  readAt: 'readAt',
+  metadata: 'metadata',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
@@ -376,6 +390,7 @@ exports.Prisma.ModelName = {
   ConnectorLog: 'ConnectorLog',
   SoftwareVersion: 'SoftwareVersion',
   VersionHistory: 'VersionHistory',
+  Notification: 'Notification',
   User: 'User',
   QueryAudit: 'QueryAudit'
 };
