@@ -29,6 +29,7 @@ async function main() {
     await prisma.queryAudit.deleteMany();
     await prisma.ingestionRun.deleteMany();
     await prisma.dataset.deleteMany();
+    await prisma.versionHistory.deleteMany(); // Primero el historial
     await prisma.user.deleteMany();
     await prisma.contract.deleteMany();
     await prisma.project.deleteMany();
@@ -38,6 +39,7 @@ async function main() {
     await prisma.budget.deleteMany();
     await prisma.fiscalYear.deleteMany();
     await prisma.municipality.deleteMany();
+    await prisma.softwareVersion.deleteMany(); // Por último las versiones
     console.log('✅ Base de datos limpiada\n');
 
     // 1. Crear Municipalidades
@@ -1037,6 +1039,216 @@ async function main() {
     ]);
     console.log(`✅ ${users.length} usuarios creados\n`);
 
+    // 10. Crear Superadmin
+    console.log('👑 Creando usuario superadmin...');
+    const superadmin = await prisma.user.create({
+      data: {
+        email: 'superadmin@transparencia.cl',
+        passwordHash,
+        role: 'super_admin',
+      },
+    });
+    console.log(`✅ Superadmin creado: ${superadmin.email}\n`);
+
+    // 11. Crear Versiones de Software
+    console.log('📦 Creando versiones de software...');
+    
+    // Versión 1.0.0 - Versión Inicial (deprecated, 6 meses atrás)
+    const version100 = await prisma.softwareVersion.create({
+      data: {
+        version: '1.0.0',
+        name: 'Versión Inicial',
+        description: 'Primera versión del sistema de transparencia municipal',
+        changelog: `
+- Sistema de gestión de presupuestos
+- Módulo de gastos básico
+- Panel de administración simple
+- Reportes básicos en PDF
+        `.trim(),
+        releaseDate: new Date(Date.now() - 180 * 24 * 60 * 60 * 1000), // 6 meses atrás
+        status: 'deprecated',
+      },
+    });
+
+    // Versión 1.1.0 - Mejoras en Dashboard (deprecated, 4 meses atrás)
+    const version110 = await prisma.softwareVersion.create({
+      data: {
+        version: '1.1.0',
+        name: 'Mejoras en Dashboard',
+        description: 'Dashboard mejorado con nuevas visualizaciones y KPIs',
+        changelog: `
+- Dashboard interactivo con gráficos
+- KPIs en tiempo real
+- Filtros avanzados por año fiscal
+- Exportación de datos a Excel
+- Mejoras de rendimiento
+        `.trim(),
+        releaseDate: new Date(Date.now() - 120 * 24 * 60 * 60 * 1000), // 4 meses atrás
+        status: 'deprecated',
+      },
+    });
+
+    // Versión 1.2.0 - Módulo de Mapas Comunales (stable, 2 meses atrás)
+    const version120 = await prisma.softwareVersion.create({
+      data: {
+        version: '1.2.0',
+        name: 'Módulo de Mapas Comunales',
+        description: 'Visualización geoespacial de proyectos y presupuestos',
+        changelog: `
+- Mapas interactivos con Leaflet
+- Visualización de proyectos por ubicación
+- Filtros geográficos por sector
+- Capas de datos para presupuestos y gastos
+- Exportación de mapas en imagen
+        `.trim(),
+        releaseDate: new Date(Date.now() - 60 * 24 * 60 * 60 * 1000), // 2 meses atrás
+        status: 'stable',
+      },
+    });
+
+    // Versión 1.3.0 - Consultas con IA (stable, 1 mes atrás, latest)
+    const version130 = await prisma.softwareVersion.create({
+      data: {
+        version: '1.3.0',
+        name: 'Consultas con IA',
+        description: 'Integración de consultas en lenguaje natural con IA',
+        changelog: `
+- Chatbot integrado para consultas ciudadanas
+- Respuestas basadas en datos reales del municipio
+- Análisis de tendencias con IA
+- Generación automática de insights
+- API de integración con sistemas externos
+        `.trim(),
+        releaseDate: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000), // 1 mes atrás
+        status: 'stable',
+      },
+    });
+
+    // Versión 1.4.0 - Mejoras de Performance (draft, futura)
+    const version140 = await prisma.softwareVersion.create({
+      data: {
+        version: '1.4.0',
+        name: 'Mejoras de Performance',
+        description: 'Optimizaciones de rendimiento y nuevas características',
+        changelog: `
+- Caché optimizado para consultas frecuentes
+- Carga lazy de componentes pesados
+- Compresión de imágenes automática
+- Sistema de notificaciones en tiempo real
+- Modo offline con sincronización
+        `.trim(),
+        releaseDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 1 mes en el futuro
+        status: 'draft',
+      },
+    });
+
+    console.log(`✅ ${version100.version} - ${version100.name} (${version100.status})`);
+    console.log(`✅ ${version110.version} - ${version110.name} (${version110.status})`);
+    console.log(`✅ ${version120.version} - ${version120.name} (${version120.status})`);
+    console.log(`✅ ${version130.version} - ${version130.name} (${version130.status})`);
+    console.log(`✅ ${version140.version} - ${version140.name} (${version140.status})\n`);
+
+    const softwareVersions = [version100, version110, version120, version130, version140];
+
+    // 12. Asignar Versiones a Municipalidades
+    console.log('🔗 Asignando versiones a municipalidades...');
+    
+    // Santiago → Versión 1.3.0 (la más reciente estable)
+    await prisma.municipality.update({
+      where: { id: santiago.id },
+      data: { softwareVersion: version130.version },
+    });
+    console.log(`✅ ${santiago.name} → ${version130.version}`);
+
+    // Valparaíso → Versión 1.2.0 (una versión anterior)
+    await prisma.municipality.update({
+      where: { id: valparaiso.id },
+      data: { softwareVersion: version120.version },
+    });
+    console.log(`✅ ${valparaiso.name} → ${version120.version}`);
+
+    // Concepción → Versión 1.1.0 (versión antigua)
+    await prisma.municipality.update({
+      where: { id: concepcion.id },
+      data: { softwareVersion: version110.version },
+    });
+    console.log(`✅ ${concepcion.name} → ${version110.version}\n`);
+
+    // 13. Crear Historial de Versiones
+    console.log('📜 Creando historial de versiones...');
+    
+    const versionHistoryEntries = await Promise.all([
+      // Santiago: 1.0.0 → 1.1.0
+      prisma.versionHistory.create({
+        data: {
+          municipalityId: santiago.id,
+          fromVersion: version100.version,
+          toVersion: version110.version,
+          updatedBy: superadmin.id,
+          notes: 'Actualización programada - Mejoras en dashboard',
+          updatedAt: new Date(Date.now() - 90 * 24 * 60 * 60 * 1000), // 3 meses atrás
+        },
+      }),
+      // Santiago: 1.1.0 → 1.2.0
+      prisma.versionHistory.create({
+        data: {
+          municipalityId: santiago.id,
+          fromVersion: version110.version,
+          toVersion: version120.version,
+          updatedBy: superadmin.id,
+          notes: 'Incorporación de módulo de mapas comunales',
+          updatedAt: new Date(Date.now() - 45 * 24 * 60 * 60 * 1000), // 1.5 meses atrás
+        },
+      }),
+      // Santiago: 1.2.0 → 1.3.0
+      prisma.versionHistory.create({
+        data: {
+          municipalityId: santiago.id,
+          fromVersion: version120.version,
+          toVersion: version130.version,
+          updatedBy: superadmin.id,
+          notes: 'Activación de consultas con IA para mejorar atención ciudadana',
+          updatedAt: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000), // 15 días atrás
+        },
+      }),
+      // Valparaíso: 1.0.0 → 1.1.0
+      prisma.versionHistory.create({
+        data: {
+          municipalityId: valparaiso.id,
+          fromVersion: version100.version,
+          toVersion: version110.version,
+          updatedBy: superadmin.id,
+          notes: 'Actualización inicial',
+          updatedAt: new Date(Date.now() - 80 * 24 * 60 * 60 * 1000), // ~2.5 meses atrás
+        },
+      }),
+      // Valparaíso: 1.1.0 → 1.2.0
+      prisma.versionHistory.create({
+        data: {
+          municipalityId: valparaiso.id,
+          fromVersion: version110.version,
+          toVersion: version120.version,
+          updatedBy: superadmin.id,
+          notes: 'Migración a versión con mapas',
+          updatedAt: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000), // 1 mes atrás
+        },
+      }),
+      // Concepción: 1.0.0 → 1.1.0
+      prisma.versionHistory.create({
+        data: {
+          municipalityId: concepcion.id,
+          fromVersion: version100.version,
+          toVersion: version110.version,
+          updatedBy: superadmin.id,
+          notes: 'Primera actualización del sistema',
+          updatedAt: new Date(Date.now() - 60 * 24 * 60 * 60 * 1000), // 2 meses atrás
+        },
+      }),
+    ]);
+
+    console.log(`✅ ${versionHistoryEntries.length} entradas de historial creadas\n`);
+
+
     // Resumen final
     console.log('📈 Resumen de datos creados:');
     console.log(`   - Municipalidades: ${municipalities.length}`);
@@ -1047,11 +1259,13 @@ async function main() {
     console.log(`   - Gastos: ${expenditures.length}`);
     console.log(`   - Proyectos: ${projects.length}`);
     console.log(`   - Contratos: ${contracts.length}`);
-    console.log(`   - Usuarios: ${users.length}`);
+    console.log(`   - Usuarios: ${users.length + 1} (incluyendo superadmin)`);
+    console.log(`   - Versiones de Software: ${softwareVersions.length}`);
+    console.log(`   - Historial de Versiones: ${versionHistoryEntries.length}`);
     console.log('\n✅ Seed completado exitosamente!');
     console.log('\n📝 Credenciales de acceso:');
-    console.log('   Email: admin@santiago.cl | editor@santiago.cl | viewer@santiago.cl | admin@valparaiso.cl');
-    console.log('   Password: demo12345');
+    console.log('   Superadmin: superadmin@transparencia.cl | Password: demo12345');
+    console.log('   Municipios: admin@santiago.cl | editor@santiago.cl | viewer@santiago.cl | admin@valparaiso.cl | Password: demo12345');
   } catch (error) {
     console.error('❌ Error durante el seed:', error);
     throw error;

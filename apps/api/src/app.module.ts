@@ -14,6 +14,8 @@ import { ContractModule } from './contract/contract.module';
 import { UserModule } from './user/user.module';
 import { UploadModule } from './upload/upload.module';
 import { ConnectorsModule } from './connectors/connectors.module';
+import { VersionsModule } from './versions/versions.module';
+import { VersionHistoryModule } from './version-history/version-history.module';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { RolesGuard } from './common/guards/roles.guard';
 import { GlobalExceptionFilter } from './common/filters/http-exception.filter';
@@ -66,6 +68,8 @@ import { envValidationSchema } from './config/env.validation';
     UserModule,
     UploadModule,
     ConnectorsModule,
+    VersionsModule,
+    VersionHistoryModule,
   ],
   providers: [
     // JWT Guard global (por defecto todos los endpoints requieren autenticación)

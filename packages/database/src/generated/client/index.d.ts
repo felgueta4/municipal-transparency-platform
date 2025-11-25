@@ -74,6 +74,16 @@ export type ConnectorConfig = $Result.DefaultSelection<Prisma.$ConnectorConfigPa
  */
 export type ConnectorLog = $Result.DefaultSelection<Prisma.$ConnectorLogPayload>
 /**
+ * Model SoftwareVersion
+ * SoftwareVersion: Version control for platform releases
+ */
+export type SoftwareVersion = $Result.DefaultSelection<Prisma.$SoftwareVersionPayload>
+/**
+ * Model VersionHistory
+ * VersionHistory: Track version changes for municipalities
+ */
+export type VersionHistory = $Result.DefaultSelection<Prisma.$VersionHistoryPayload>
+/**
  * Model User
  * User: Usuario del sistema
  */
@@ -326,6 +336,26 @@ export class PrismaClient<
     * ```
     */
   get connectorLog(): Prisma.ConnectorLogDelegate<ExtArgs>;
+
+  /**
+   * `prisma.softwareVersion`: Exposes CRUD operations for the **SoftwareVersion** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SoftwareVersions
+    * const softwareVersions = await prisma.softwareVersion.findMany()
+    * ```
+    */
+  get softwareVersion(): Prisma.SoftwareVersionDelegate<ExtArgs>;
+
+  /**
+   * `prisma.versionHistory`: Exposes CRUD operations for the **VersionHistory** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more VersionHistories
+    * const versionHistories = await prisma.versionHistory.findMany()
+    * ```
+    */
+  get versionHistory(): Prisma.VersionHistoryDelegate<ExtArgs>;
 
   /**
    * `prisma.user`: Exposes CRUD operations for the **User** model.
@@ -799,6 +829,8 @@ export namespace Prisma {
     IngestionRun: 'IngestionRun',
     ConnectorConfig: 'ConnectorConfig',
     ConnectorLog: 'ConnectorLog',
+    SoftwareVersion: 'SoftwareVersion',
+    VersionHistory: 'VersionHistory',
     User: 'User',
     QueryAudit: 'QueryAudit'
   };
@@ -816,7 +848,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "municipality" | "fiscalYear" | "budget" | "expenditure" | "project" | "fundingSource" | "supplier" | "contract" | "dataset" | "ingestionRun" | "connectorConfig" | "connectorLog" | "user" | "queryAudit"
+      modelProps: "municipality" | "fiscalYear" | "budget" | "expenditure" | "project" | "fundingSource" | "supplier" | "contract" | "dataset" | "ingestionRun" | "connectorConfig" | "connectorLog" | "softwareVersion" | "versionHistory" | "user" | "queryAudit"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1660,6 +1692,146 @@ export namespace Prisma {
           }
         }
       }
+      SoftwareVersion: {
+        payload: Prisma.$SoftwareVersionPayload<ExtArgs>
+        fields: Prisma.SoftwareVersionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SoftwareVersionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoftwareVersionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SoftwareVersionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoftwareVersionPayload>
+          }
+          findFirst: {
+            args: Prisma.SoftwareVersionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoftwareVersionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SoftwareVersionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoftwareVersionPayload>
+          }
+          findMany: {
+            args: Prisma.SoftwareVersionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoftwareVersionPayload>[]
+          }
+          create: {
+            args: Prisma.SoftwareVersionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoftwareVersionPayload>
+          }
+          createMany: {
+            args: Prisma.SoftwareVersionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SoftwareVersionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoftwareVersionPayload>[]
+          }
+          delete: {
+            args: Prisma.SoftwareVersionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoftwareVersionPayload>
+          }
+          update: {
+            args: Prisma.SoftwareVersionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoftwareVersionPayload>
+          }
+          deleteMany: {
+            args: Prisma.SoftwareVersionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SoftwareVersionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.SoftwareVersionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoftwareVersionPayload>
+          }
+          aggregate: {
+            args: Prisma.SoftwareVersionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSoftwareVersion>
+          }
+          groupBy: {
+            args: Prisma.SoftwareVersionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SoftwareVersionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SoftwareVersionCountArgs<ExtArgs>
+            result: $Utils.Optional<SoftwareVersionCountAggregateOutputType> | number
+          }
+        }
+      }
+      VersionHistory: {
+        payload: Prisma.$VersionHistoryPayload<ExtArgs>
+        fields: Prisma.VersionHistoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.VersionHistoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VersionHistoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.VersionHistoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VersionHistoryPayload>
+          }
+          findFirst: {
+            args: Prisma.VersionHistoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VersionHistoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.VersionHistoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VersionHistoryPayload>
+          }
+          findMany: {
+            args: Prisma.VersionHistoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VersionHistoryPayload>[]
+          }
+          create: {
+            args: Prisma.VersionHistoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VersionHistoryPayload>
+          }
+          createMany: {
+            args: Prisma.VersionHistoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.VersionHistoryCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VersionHistoryPayload>[]
+          }
+          delete: {
+            args: Prisma.VersionHistoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VersionHistoryPayload>
+          }
+          update: {
+            args: Prisma.VersionHistoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VersionHistoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.VersionHistoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.VersionHistoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.VersionHistoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VersionHistoryPayload>
+          }
+          aggregate: {
+            args: Prisma.VersionHistoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateVersionHistory>
+          }
+          groupBy: {
+            args: Prisma.VersionHistoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<VersionHistoryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.VersionHistoryCountArgs<ExtArgs>
+            result: $Utils.Optional<VersionHistoryCountAggregateOutputType> | number
+          }
+        }
+      }
       User: {
         payload: Prisma.$UserPayload<ExtArgs>
         fields: Prisma.UserFieldRefs
@@ -1966,6 +2138,7 @@ export namespace Prisma {
     projects: number
     contracts: number
     users: number
+    versionHistory: number
   }
 
   export type MunicipalityCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1974,6 +2147,7 @@ export namespace Prisma {
     projects?: boolean | MunicipalityCountOutputTypeCountProjectsArgs
     contracts?: boolean | MunicipalityCountOutputTypeCountContractsArgs
     users?: boolean | MunicipalityCountOutputTypeCountUsersArgs
+    versionHistory?: boolean | MunicipalityCountOutputTypeCountVersionHistoryArgs
   }
 
   // Custom InputTypes
@@ -2020,6 +2194,13 @@ export namespace Prisma {
    */
   export type MunicipalityCountOutputTypeCountUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: UserWhereInput
+  }
+
+  /**
+   * MunicipalityCountOutputType without action
+   */
+  export type MunicipalityCountOutputTypeCountVersionHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VersionHistoryWhereInput
   }
 
 
@@ -2197,6 +2378,77 @@ export namespace Prisma {
 
 
   /**
+   * Count Type SoftwareVersionCountOutputType
+   */
+
+  export type SoftwareVersionCountOutputType = {
+    municipalities: number
+    versionHistory: number
+  }
+
+  export type SoftwareVersionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    municipalities?: boolean | SoftwareVersionCountOutputTypeCountMunicipalitiesArgs
+    versionHistory?: boolean | SoftwareVersionCountOutputTypeCountVersionHistoryArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * SoftwareVersionCountOutputType without action
+   */
+  export type SoftwareVersionCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoftwareVersionCountOutputType
+     */
+    select?: SoftwareVersionCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * SoftwareVersionCountOutputType without action
+   */
+  export type SoftwareVersionCountOutputTypeCountMunicipalitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MunicipalityWhereInput
+  }
+
+  /**
+   * SoftwareVersionCountOutputType without action
+   */
+  export type SoftwareVersionCountOutputTypeCountVersionHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VersionHistoryWhereInput
+  }
+
+
+  /**
+   * Count Type UserCountOutputType
+   */
+
+  export type UserCountOutputType = {
+    versionHistory: number
+  }
+
+  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    versionHistory?: boolean | UserCountOutputTypeCountVersionHistoryArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCountOutputType
+     */
+    select?: UserCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountVersionHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VersionHistoryWhereInput
+  }
+
+
+  /**
    * Models
    */
 
@@ -2217,6 +2469,7 @@ export namespace Prisma {
     region: string | null
     locale: string | null
     timezone: string | null
+    softwareVersion: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2228,6 +2481,7 @@ export namespace Prisma {
     region: string | null
     locale: string | null
     timezone: string | null
+    softwareVersion: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2239,6 +2493,7 @@ export namespace Prisma {
     region: number
     locale: number
     timezone: number
+    softwareVersion: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -2252,6 +2507,7 @@ export namespace Prisma {
     region?: true
     locale?: true
     timezone?: true
+    softwareVersion?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2263,6 +2519,7 @@ export namespace Prisma {
     region?: true
     locale?: true
     timezone?: true
+    softwareVersion?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2274,6 +2531,7 @@ export namespace Prisma {
     region?: true
     locale?: true
     timezone?: true
+    softwareVersion?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -2358,6 +2616,7 @@ export namespace Prisma {
     region: string
     locale: string
     timezone: string
+    softwareVersion: string | null
     createdAt: Date
     updatedAt: Date
     _count: MunicipalityCountAggregateOutputType | null
@@ -2386,6 +2645,7 @@ export namespace Prisma {
     region?: boolean
     locale?: boolean
     timezone?: boolean
+    softwareVersion?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     budgets?: boolean | Municipality$budgetsArgs<ExtArgs>
@@ -2393,6 +2653,8 @@ export namespace Prisma {
     projects?: boolean | Municipality$projectsArgs<ExtArgs>
     contracts?: boolean | Municipality$contractsArgs<ExtArgs>
     users?: boolean | Municipality$usersArgs<ExtArgs>
+    versionHistory?: boolean | Municipality$versionHistoryArgs<ExtArgs>
+    version?: boolean | Municipality$versionArgs<ExtArgs>
     _count?: boolean | MunicipalityCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["municipality"]>
 
@@ -2403,8 +2665,10 @@ export namespace Prisma {
     region?: boolean
     locale?: boolean
     timezone?: boolean
+    softwareVersion?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    version?: boolean | Municipality$versionArgs<ExtArgs>
   }, ExtArgs["result"]["municipality"]>
 
   export type MunicipalitySelectScalar = {
@@ -2414,6 +2678,7 @@ export namespace Prisma {
     region?: boolean
     locale?: boolean
     timezone?: boolean
+    softwareVersion?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -2424,9 +2689,13 @@ export namespace Prisma {
     projects?: boolean | Municipality$projectsArgs<ExtArgs>
     contracts?: boolean | Municipality$contractsArgs<ExtArgs>
     users?: boolean | Municipality$usersArgs<ExtArgs>
+    versionHistory?: boolean | Municipality$versionHistoryArgs<ExtArgs>
+    version?: boolean | Municipality$versionArgs<ExtArgs>
     _count?: boolean | MunicipalityCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type MunicipalityIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type MunicipalityIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    version?: boolean | Municipality$versionArgs<ExtArgs>
+  }
 
   export type $MunicipalityPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Municipality"
@@ -2436,6 +2705,8 @@ export namespace Prisma {
       projects: Prisma.$ProjectPayload<ExtArgs>[]
       contracts: Prisma.$ContractPayload<ExtArgs>[]
       users: Prisma.$UserPayload<ExtArgs>[]
+      versionHistory: Prisma.$VersionHistoryPayload<ExtArgs>[]
+      version: Prisma.$SoftwareVersionPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2444,6 +2715,7 @@ export namespace Prisma {
       region: string
       locale: string
       timezone: string
+      softwareVersion: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["municipality"]>
@@ -2815,6 +3087,8 @@ export namespace Prisma {
     projects<T extends Municipality$projectsArgs<ExtArgs> = {}>(args?: Subset<T, Municipality$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany"> | Null>
     contracts<T extends Municipality$contractsArgs<ExtArgs> = {}>(args?: Subset<T, Municipality$contractsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, "findMany"> | Null>
     users<T extends Municipality$usersArgs<ExtArgs> = {}>(args?: Subset<T, Municipality$usersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany"> | Null>
+    versionHistory<T extends Municipality$versionHistoryArgs<ExtArgs> = {}>(args?: Subset<T, Municipality$versionHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VersionHistoryPayload<ExtArgs>, T, "findMany"> | Null>
+    version<T extends Municipality$versionArgs<ExtArgs> = {}>(args?: Subset<T, Municipality$versionArgs<ExtArgs>>): Prisma__SoftwareVersionClient<$Result.GetResult<Prisma.$SoftwareVersionPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2850,6 +3124,7 @@ export namespace Prisma {
     readonly region: FieldRef<"Municipality", 'String'>
     readonly locale: FieldRef<"Municipality", 'String'>
     readonly timezone: FieldRef<"Municipality", 'String'>
+    readonly softwareVersion: FieldRef<"Municipality", 'String'>
     readonly createdAt: FieldRef<"Municipality", 'DateTime'>
     readonly updatedAt: FieldRef<"Municipality", 'DateTime'>
   }
@@ -3073,6 +3348,10 @@ export namespace Prisma {
      */
     data: MunicipalityCreateManyInput | MunicipalityCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -3263,6 +3542,41 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+  /**
+   * Municipality.versionHistory
+   */
+  export type Municipality$versionHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VersionHistory
+     */
+    select?: VersionHistorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionHistoryInclude<ExtArgs> | null
+    where?: VersionHistoryWhereInput
+    orderBy?: VersionHistoryOrderByWithRelationInput | VersionHistoryOrderByWithRelationInput[]
+    cursor?: VersionHistoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: VersionHistoryScalarFieldEnum | VersionHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * Municipality.version
+   */
+  export type Municipality$versionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoftwareVersion
+     */
+    select?: SoftwareVersionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoftwareVersionInclude<ExtArgs> | null
+    where?: SoftwareVersionWhereInput
   }
 
   /**
@@ -14783,6 +15097,1995 @@ export namespace Prisma {
 
 
   /**
+   * Model SoftwareVersion
+   */
+
+  export type AggregateSoftwareVersion = {
+    _count: SoftwareVersionCountAggregateOutputType | null
+    _min: SoftwareVersionMinAggregateOutputType | null
+    _max: SoftwareVersionMaxAggregateOutputType | null
+  }
+
+  export type SoftwareVersionMinAggregateOutputType = {
+    id: string | null
+    version: string | null
+    name: string | null
+    description: string | null
+    changelog: string | null
+    releaseDate: Date | null
+    status: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SoftwareVersionMaxAggregateOutputType = {
+    id: string | null
+    version: string | null
+    name: string | null
+    description: string | null
+    changelog: string | null
+    releaseDate: Date | null
+    status: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SoftwareVersionCountAggregateOutputType = {
+    id: number
+    version: number
+    name: number
+    description: number
+    changelog: number
+    releaseDate: number
+    status: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type SoftwareVersionMinAggregateInputType = {
+    id?: true
+    version?: true
+    name?: true
+    description?: true
+    changelog?: true
+    releaseDate?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SoftwareVersionMaxAggregateInputType = {
+    id?: true
+    version?: true
+    name?: true
+    description?: true
+    changelog?: true
+    releaseDate?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SoftwareVersionCountAggregateInputType = {
+    id?: true
+    version?: true
+    name?: true
+    description?: true
+    changelog?: true
+    releaseDate?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type SoftwareVersionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SoftwareVersion to aggregate.
+     */
+    where?: SoftwareVersionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SoftwareVersions to fetch.
+     */
+    orderBy?: SoftwareVersionOrderByWithRelationInput | SoftwareVersionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SoftwareVersionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SoftwareVersions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SoftwareVersions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SoftwareVersions
+    **/
+    _count?: true | SoftwareVersionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SoftwareVersionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SoftwareVersionMaxAggregateInputType
+  }
+
+  export type GetSoftwareVersionAggregateType<T extends SoftwareVersionAggregateArgs> = {
+        [P in keyof T & keyof AggregateSoftwareVersion]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSoftwareVersion[P]>
+      : GetScalarType<T[P], AggregateSoftwareVersion[P]>
+  }
+
+
+
+
+  export type SoftwareVersionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SoftwareVersionWhereInput
+    orderBy?: SoftwareVersionOrderByWithAggregationInput | SoftwareVersionOrderByWithAggregationInput[]
+    by: SoftwareVersionScalarFieldEnum[] | SoftwareVersionScalarFieldEnum
+    having?: SoftwareVersionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SoftwareVersionCountAggregateInputType | true
+    _min?: SoftwareVersionMinAggregateInputType
+    _max?: SoftwareVersionMaxAggregateInputType
+  }
+
+  export type SoftwareVersionGroupByOutputType = {
+    id: string
+    version: string
+    name: string
+    description: string | null
+    changelog: string | null
+    releaseDate: Date
+    status: string
+    createdAt: Date
+    updatedAt: Date
+    _count: SoftwareVersionCountAggregateOutputType | null
+    _min: SoftwareVersionMinAggregateOutputType | null
+    _max: SoftwareVersionMaxAggregateOutputType | null
+  }
+
+  type GetSoftwareVersionGroupByPayload<T extends SoftwareVersionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SoftwareVersionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SoftwareVersionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SoftwareVersionGroupByOutputType[P]>
+            : GetScalarType<T[P], SoftwareVersionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SoftwareVersionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    version?: boolean
+    name?: boolean
+    description?: boolean
+    changelog?: boolean
+    releaseDate?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    municipalities?: boolean | SoftwareVersion$municipalitiesArgs<ExtArgs>
+    versionHistory?: boolean | SoftwareVersion$versionHistoryArgs<ExtArgs>
+    _count?: boolean | SoftwareVersionCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["softwareVersion"]>
+
+  export type SoftwareVersionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    version?: boolean
+    name?: boolean
+    description?: boolean
+    changelog?: boolean
+    releaseDate?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["softwareVersion"]>
+
+  export type SoftwareVersionSelectScalar = {
+    id?: boolean
+    version?: boolean
+    name?: boolean
+    description?: boolean
+    changelog?: boolean
+    releaseDate?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type SoftwareVersionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    municipalities?: boolean | SoftwareVersion$municipalitiesArgs<ExtArgs>
+    versionHistory?: boolean | SoftwareVersion$versionHistoryArgs<ExtArgs>
+    _count?: boolean | SoftwareVersionCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type SoftwareVersionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $SoftwareVersionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SoftwareVersion"
+    objects: {
+      municipalities: Prisma.$MunicipalityPayload<ExtArgs>[]
+      versionHistory: Prisma.$VersionHistoryPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      version: string
+      name: string
+      description: string | null
+      changelog: string | null
+      releaseDate: Date
+      status: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["softwareVersion"]>
+    composites: {}
+  }
+
+  type SoftwareVersionGetPayload<S extends boolean | null | undefined | SoftwareVersionDefaultArgs> = $Result.GetResult<Prisma.$SoftwareVersionPayload, S>
+
+  type SoftwareVersionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<SoftwareVersionFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: SoftwareVersionCountAggregateInputType | true
+    }
+
+  export interface SoftwareVersionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SoftwareVersion'], meta: { name: 'SoftwareVersion' } }
+    /**
+     * Find zero or one SoftwareVersion that matches the filter.
+     * @param {SoftwareVersionFindUniqueArgs} args - Arguments to find a SoftwareVersion
+     * @example
+     * // Get one SoftwareVersion
+     * const softwareVersion = await prisma.softwareVersion.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SoftwareVersionFindUniqueArgs>(args: SelectSubset<T, SoftwareVersionFindUniqueArgs<ExtArgs>>): Prisma__SoftwareVersionClient<$Result.GetResult<Prisma.$SoftwareVersionPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one SoftwareVersion that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {SoftwareVersionFindUniqueOrThrowArgs} args - Arguments to find a SoftwareVersion
+     * @example
+     * // Get one SoftwareVersion
+     * const softwareVersion = await prisma.softwareVersion.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SoftwareVersionFindUniqueOrThrowArgs>(args: SelectSubset<T, SoftwareVersionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SoftwareVersionClient<$Result.GetResult<Prisma.$SoftwareVersionPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first SoftwareVersion that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoftwareVersionFindFirstArgs} args - Arguments to find a SoftwareVersion
+     * @example
+     * // Get one SoftwareVersion
+     * const softwareVersion = await prisma.softwareVersion.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SoftwareVersionFindFirstArgs>(args?: SelectSubset<T, SoftwareVersionFindFirstArgs<ExtArgs>>): Prisma__SoftwareVersionClient<$Result.GetResult<Prisma.$SoftwareVersionPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first SoftwareVersion that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoftwareVersionFindFirstOrThrowArgs} args - Arguments to find a SoftwareVersion
+     * @example
+     * // Get one SoftwareVersion
+     * const softwareVersion = await prisma.softwareVersion.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SoftwareVersionFindFirstOrThrowArgs>(args?: SelectSubset<T, SoftwareVersionFindFirstOrThrowArgs<ExtArgs>>): Prisma__SoftwareVersionClient<$Result.GetResult<Prisma.$SoftwareVersionPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more SoftwareVersions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoftwareVersionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SoftwareVersions
+     * const softwareVersions = await prisma.softwareVersion.findMany()
+     * 
+     * // Get first 10 SoftwareVersions
+     * const softwareVersions = await prisma.softwareVersion.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const softwareVersionWithIdOnly = await prisma.softwareVersion.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SoftwareVersionFindManyArgs>(args?: SelectSubset<T, SoftwareVersionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoftwareVersionPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a SoftwareVersion.
+     * @param {SoftwareVersionCreateArgs} args - Arguments to create a SoftwareVersion.
+     * @example
+     * // Create one SoftwareVersion
+     * const SoftwareVersion = await prisma.softwareVersion.create({
+     *   data: {
+     *     // ... data to create a SoftwareVersion
+     *   }
+     * })
+     * 
+     */
+    create<T extends SoftwareVersionCreateArgs>(args: SelectSubset<T, SoftwareVersionCreateArgs<ExtArgs>>): Prisma__SoftwareVersionClient<$Result.GetResult<Prisma.$SoftwareVersionPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many SoftwareVersions.
+     * @param {SoftwareVersionCreateManyArgs} args - Arguments to create many SoftwareVersions.
+     * @example
+     * // Create many SoftwareVersions
+     * const softwareVersion = await prisma.softwareVersion.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SoftwareVersionCreateManyArgs>(args?: SelectSubset<T, SoftwareVersionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SoftwareVersions and returns the data saved in the database.
+     * @param {SoftwareVersionCreateManyAndReturnArgs} args - Arguments to create many SoftwareVersions.
+     * @example
+     * // Create many SoftwareVersions
+     * const softwareVersion = await prisma.softwareVersion.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SoftwareVersions and only return the `id`
+     * const softwareVersionWithIdOnly = await prisma.softwareVersion.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SoftwareVersionCreateManyAndReturnArgs>(args?: SelectSubset<T, SoftwareVersionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoftwareVersionPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a SoftwareVersion.
+     * @param {SoftwareVersionDeleteArgs} args - Arguments to delete one SoftwareVersion.
+     * @example
+     * // Delete one SoftwareVersion
+     * const SoftwareVersion = await prisma.softwareVersion.delete({
+     *   where: {
+     *     // ... filter to delete one SoftwareVersion
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SoftwareVersionDeleteArgs>(args: SelectSubset<T, SoftwareVersionDeleteArgs<ExtArgs>>): Prisma__SoftwareVersionClient<$Result.GetResult<Prisma.$SoftwareVersionPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one SoftwareVersion.
+     * @param {SoftwareVersionUpdateArgs} args - Arguments to update one SoftwareVersion.
+     * @example
+     * // Update one SoftwareVersion
+     * const softwareVersion = await prisma.softwareVersion.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SoftwareVersionUpdateArgs>(args: SelectSubset<T, SoftwareVersionUpdateArgs<ExtArgs>>): Prisma__SoftwareVersionClient<$Result.GetResult<Prisma.$SoftwareVersionPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more SoftwareVersions.
+     * @param {SoftwareVersionDeleteManyArgs} args - Arguments to filter SoftwareVersions to delete.
+     * @example
+     * // Delete a few SoftwareVersions
+     * const { count } = await prisma.softwareVersion.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SoftwareVersionDeleteManyArgs>(args?: SelectSubset<T, SoftwareVersionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SoftwareVersions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoftwareVersionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SoftwareVersions
+     * const softwareVersion = await prisma.softwareVersion.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SoftwareVersionUpdateManyArgs>(args: SelectSubset<T, SoftwareVersionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one SoftwareVersion.
+     * @param {SoftwareVersionUpsertArgs} args - Arguments to update or create a SoftwareVersion.
+     * @example
+     * // Update or create a SoftwareVersion
+     * const softwareVersion = await prisma.softwareVersion.upsert({
+     *   create: {
+     *     // ... data to create a SoftwareVersion
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SoftwareVersion we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SoftwareVersionUpsertArgs>(args: SelectSubset<T, SoftwareVersionUpsertArgs<ExtArgs>>): Prisma__SoftwareVersionClient<$Result.GetResult<Prisma.$SoftwareVersionPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of SoftwareVersions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoftwareVersionCountArgs} args - Arguments to filter SoftwareVersions to count.
+     * @example
+     * // Count the number of SoftwareVersions
+     * const count = await prisma.softwareVersion.count({
+     *   where: {
+     *     // ... the filter for the SoftwareVersions we want to count
+     *   }
+     * })
+    **/
+    count<T extends SoftwareVersionCountArgs>(
+      args?: Subset<T, SoftwareVersionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SoftwareVersionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SoftwareVersion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoftwareVersionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SoftwareVersionAggregateArgs>(args: Subset<T, SoftwareVersionAggregateArgs>): Prisma.PrismaPromise<GetSoftwareVersionAggregateType<T>>
+
+    /**
+     * Group by SoftwareVersion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoftwareVersionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SoftwareVersionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SoftwareVersionGroupByArgs['orderBy'] }
+        : { orderBy?: SoftwareVersionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SoftwareVersionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSoftwareVersionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SoftwareVersion model
+   */
+  readonly fields: SoftwareVersionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SoftwareVersion.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SoftwareVersionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    municipalities<T extends SoftwareVersion$municipalitiesArgs<ExtArgs> = {}>(args?: Subset<T, SoftwareVersion$municipalitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MunicipalityPayload<ExtArgs>, T, "findMany"> | Null>
+    versionHistory<T extends SoftwareVersion$versionHistoryArgs<ExtArgs> = {}>(args?: Subset<T, SoftwareVersion$versionHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VersionHistoryPayload<ExtArgs>, T, "findMany"> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SoftwareVersion model
+   */ 
+  interface SoftwareVersionFieldRefs {
+    readonly id: FieldRef<"SoftwareVersion", 'String'>
+    readonly version: FieldRef<"SoftwareVersion", 'String'>
+    readonly name: FieldRef<"SoftwareVersion", 'String'>
+    readonly description: FieldRef<"SoftwareVersion", 'String'>
+    readonly changelog: FieldRef<"SoftwareVersion", 'String'>
+    readonly releaseDate: FieldRef<"SoftwareVersion", 'DateTime'>
+    readonly status: FieldRef<"SoftwareVersion", 'String'>
+    readonly createdAt: FieldRef<"SoftwareVersion", 'DateTime'>
+    readonly updatedAt: FieldRef<"SoftwareVersion", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SoftwareVersion findUnique
+   */
+  export type SoftwareVersionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoftwareVersion
+     */
+    select?: SoftwareVersionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoftwareVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which SoftwareVersion to fetch.
+     */
+    where: SoftwareVersionWhereUniqueInput
+  }
+
+  /**
+   * SoftwareVersion findUniqueOrThrow
+   */
+  export type SoftwareVersionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoftwareVersion
+     */
+    select?: SoftwareVersionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoftwareVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which SoftwareVersion to fetch.
+     */
+    where: SoftwareVersionWhereUniqueInput
+  }
+
+  /**
+   * SoftwareVersion findFirst
+   */
+  export type SoftwareVersionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoftwareVersion
+     */
+    select?: SoftwareVersionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoftwareVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which SoftwareVersion to fetch.
+     */
+    where?: SoftwareVersionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SoftwareVersions to fetch.
+     */
+    orderBy?: SoftwareVersionOrderByWithRelationInput | SoftwareVersionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SoftwareVersions.
+     */
+    cursor?: SoftwareVersionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SoftwareVersions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SoftwareVersions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SoftwareVersions.
+     */
+    distinct?: SoftwareVersionScalarFieldEnum | SoftwareVersionScalarFieldEnum[]
+  }
+
+  /**
+   * SoftwareVersion findFirstOrThrow
+   */
+  export type SoftwareVersionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoftwareVersion
+     */
+    select?: SoftwareVersionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoftwareVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which SoftwareVersion to fetch.
+     */
+    where?: SoftwareVersionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SoftwareVersions to fetch.
+     */
+    orderBy?: SoftwareVersionOrderByWithRelationInput | SoftwareVersionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SoftwareVersions.
+     */
+    cursor?: SoftwareVersionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SoftwareVersions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SoftwareVersions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SoftwareVersions.
+     */
+    distinct?: SoftwareVersionScalarFieldEnum | SoftwareVersionScalarFieldEnum[]
+  }
+
+  /**
+   * SoftwareVersion findMany
+   */
+  export type SoftwareVersionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoftwareVersion
+     */
+    select?: SoftwareVersionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoftwareVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which SoftwareVersions to fetch.
+     */
+    where?: SoftwareVersionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SoftwareVersions to fetch.
+     */
+    orderBy?: SoftwareVersionOrderByWithRelationInput | SoftwareVersionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SoftwareVersions.
+     */
+    cursor?: SoftwareVersionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SoftwareVersions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SoftwareVersions.
+     */
+    skip?: number
+    distinct?: SoftwareVersionScalarFieldEnum | SoftwareVersionScalarFieldEnum[]
+  }
+
+  /**
+   * SoftwareVersion create
+   */
+  export type SoftwareVersionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoftwareVersion
+     */
+    select?: SoftwareVersionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoftwareVersionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SoftwareVersion.
+     */
+    data: XOR<SoftwareVersionCreateInput, SoftwareVersionUncheckedCreateInput>
+  }
+
+  /**
+   * SoftwareVersion createMany
+   */
+  export type SoftwareVersionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SoftwareVersions.
+     */
+    data: SoftwareVersionCreateManyInput | SoftwareVersionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SoftwareVersion createManyAndReturn
+   */
+  export type SoftwareVersionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoftwareVersion
+     */
+    select?: SoftwareVersionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many SoftwareVersions.
+     */
+    data: SoftwareVersionCreateManyInput | SoftwareVersionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SoftwareVersion update
+   */
+  export type SoftwareVersionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoftwareVersion
+     */
+    select?: SoftwareVersionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoftwareVersionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SoftwareVersion.
+     */
+    data: XOR<SoftwareVersionUpdateInput, SoftwareVersionUncheckedUpdateInput>
+    /**
+     * Choose, which SoftwareVersion to update.
+     */
+    where: SoftwareVersionWhereUniqueInput
+  }
+
+  /**
+   * SoftwareVersion updateMany
+   */
+  export type SoftwareVersionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SoftwareVersions.
+     */
+    data: XOR<SoftwareVersionUpdateManyMutationInput, SoftwareVersionUncheckedUpdateManyInput>
+    /**
+     * Filter which SoftwareVersions to update
+     */
+    where?: SoftwareVersionWhereInput
+  }
+
+  /**
+   * SoftwareVersion upsert
+   */
+  export type SoftwareVersionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoftwareVersion
+     */
+    select?: SoftwareVersionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoftwareVersionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SoftwareVersion to update in case it exists.
+     */
+    where: SoftwareVersionWhereUniqueInput
+    /**
+     * In case the SoftwareVersion found by the `where` argument doesn't exist, create a new SoftwareVersion with this data.
+     */
+    create: XOR<SoftwareVersionCreateInput, SoftwareVersionUncheckedCreateInput>
+    /**
+     * In case the SoftwareVersion was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SoftwareVersionUpdateInput, SoftwareVersionUncheckedUpdateInput>
+  }
+
+  /**
+   * SoftwareVersion delete
+   */
+  export type SoftwareVersionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoftwareVersion
+     */
+    select?: SoftwareVersionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoftwareVersionInclude<ExtArgs> | null
+    /**
+     * Filter which SoftwareVersion to delete.
+     */
+    where: SoftwareVersionWhereUniqueInput
+  }
+
+  /**
+   * SoftwareVersion deleteMany
+   */
+  export type SoftwareVersionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SoftwareVersions to delete
+     */
+    where?: SoftwareVersionWhereInput
+  }
+
+  /**
+   * SoftwareVersion.municipalities
+   */
+  export type SoftwareVersion$municipalitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Municipality
+     */
+    select?: MunicipalitySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityInclude<ExtArgs> | null
+    where?: MunicipalityWhereInput
+    orderBy?: MunicipalityOrderByWithRelationInput | MunicipalityOrderByWithRelationInput[]
+    cursor?: MunicipalityWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MunicipalityScalarFieldEnum | MunicipalityScalarFieldEnum[]
+  }
+
+  /**
+   * SoftwareVersion.versionHistory
+   */
+  export type SoftwareVersion$versionHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VersionHistory
+     */
+    select?: VersionHistorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionHistoryInclude<ExtArgs> | null
+    where?: VersionHistoryWhereInput
+    orderBy?: VersionHistoryOrderByWithRelationInput | VersionHistoryOrderByWithRelationInput[]
+    cursor?: VersionHistoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: VersionHistoryScalarFieldEnum | VersionHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * SoftwareVersion without action
+   */
+  export type SoftwareVersionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoftwareVersion
+     */
+    select?: SoftwareVersionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoftwareVersionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model VersionHistory
+   */
+
+  export type AggregateVersionHistory = {
+    _count: VersionHistoryCountAggregateOutputType | null
+    _min: VersionHistoryMinAggregateOutputType | null
+    _max: VersionHistoryMaxAggregateOutputType | null
+  }
+
+  export type VersionHistoryMinAggregateOutputType = {
+    id: string | null
+    municipalityId: string | null
+    fromVersion: string | null
+    toVersion: string | null
+    updatedBy: string | null
+    notes: string | null
+    updatedAt: Date | null
+  }
+
+  export type VersionHistoryMaxAggregateOutputType = {
+    id: string | null
+    municipalityId: string | null
+    fromVersion: string | null
+    toVersion: string | null
+    updatedBy: string | null
+    notes: string | null
+    updatedAt: Date | null
+  }
+
+  export type VersionHistoryCountAggregateOutputType = {
+    id: number
+    municipalityId: number
+    fromVersion: number
+    toVersion: number
+    updatedBy: number
+    notes: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type VersionHistoryMinAggregateInputType = {
+    id?: true
+    municipalityId?: true
+    fromVersion?: true
+    toVersion?: true
+    updatedBy?: true
+    notes?: true
+    updatedAt?: true
+  }
+
+  export type VersionHistoryMaxAggregateInputType = {
+    id?: true
+    municipalityId?: true
+    fromVersion?: true
+    toVersion?: true
+    updatedBy?: true
+    notes?: true
+    updatedAt?: true
+  }
+
+  export type VersionHistoryCountAggregateInputType = {
+    id?: true
+    municipalityId?: true
+    fromVersion?: true
+    toVersion?: true
+    updatedBy?: true
+    notes?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type VersionHistoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which VersionHistory to aggregate.
+     */
+    where?: VersionHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VersionHistories to fetch.
+     */
+    orderBy?: VersionHistoryOrderByWithRelationInput | VersionHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: VersionHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VersionHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VersionHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned VersionHistories
+    **/
+    _count?: true | VersionHistoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: VersionHistoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: VersionHistoryMaxAggregateInputType
+  }
+
+  export type GetVersionHistoryAggregateType<T extends VersionHistoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateVersionHistory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateVersionHistory[P]>
+      : GetScalarType<T[P], AggregateVersionHistory[P]>
+  }
+
+
+
+
+  export type VersionHistoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VersionHistoryWhereInput
+    orderBy?: VersionHistoryOrderByWithAggregationInput | VersionHistoryOrderByWithAggregationInput[]
+    by: VersionHistoryScalarFieldEnum[] | VersionHistoryScalarFieldEnum
+    having?: VersionHistoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: VersionHistoryCountAggregateInputType | true
+    _min?: VersionHistoryMinAggregateInputType
+    _max?: VersionHistoryMaxAggregateInputType
+  }
+
+  export type VersionHistoryGroupByOutputType = {
+    id: string
+    municipalityId: string
+    fromVersion: string | null
+    toVersion: string
+    updatedBy: string
+    notes: string | null
+    updatedAt: Date
+    _count: VersionHistoryCountAggregateOutputType | null
+    _min: VersionHistoryMinAggregateOutputType | null
+    _max: VersionHistoryMaxAggregateOutputType | null
+  }
+
+  type GetVersionHistoryGroupByPayload<T extends VersionHistoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<VersionHistoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof VersionHistoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], VersionHistoryGroupByOutputType[P]>
+            : GetScalarType<T[P], VersionHistoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type VersionHistorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    municipalityId?: boolean
+    fromVersion?: boolean
+    toVersion?: boolean
+    updatedBy?: boolean
+    notes?: boolean
+    updatedAt?: boolean
+    municipality?: boolean | MunicipalityDefaultArgs<ExtArgs>
+    softwareVersion?: boolean | SoftwareVersionDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["versionHistory"]>
+
+  export type VersionHistorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    municipalityId?: boolean
+    fromVersion?: boolean
+    toVersion?: boolean
+    updatedBy?: boolean
+    notes?: boolean
+    updatedAt?: boolean
+    municipality?: boolean | MunicipalityDefaultArgs<ExtArgs>
+    softwareVersion?: boolean | SoftwareVersionDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["versionHistory"]>
+
+  export type VersionHistorySelectScalar = {
+    id?: boolean
+    municipalityId?: boolean
+    fromVersion?: boolean
+    toVersion?: boolean
+    updatedBy?: boolean
+    notes?: boolean
+    updatedAt?: boolean
+  }
+
+  export type VersionHistoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    municipality?: boolean | MunicipalityDefaultArgs<ExtArgs>
+    softwareVersion?: boolean | SoftwareVersionDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type VersionHistoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    municipality?: boolean | MunicipalityDefaultArgs<ExtArgs>
+    softwareVersion?: boolean | SoftwareVersionDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $VersionHistoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "VersionHistory"
+    objects: {
+      municipality: Prisma.$MunicipalityPayload<ExtArgs>
+      softwareVersion: Prisma.$SoftwareVersionPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      municipalityId: string
+      fromVersion: string | null
+      toVersion: string
+      updatedBy: string
+      notes: string | null
+      updatedAt: Date
+    }, ExtArgs["result"]["versionHistory"]>
+    composites: {}
+  }
+
+  type VersionHistoryGetPayload<S extends boolean | null | undefined | VersionHistoryDefaultArgs> = $Result.GetResult<Prisma.$VersionHistoryPayload, S>
+
+  type VersionHistoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<VersionHistoryFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: VersionHistoryCountAggregateInputType | true
+    }
+
+  export interface VersionHistoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['VersionHistory'], meta: { name: 'VersionHistory' } }
+    /**
+     * Find zero or one VersionHistory that matches the filter.
+     * @param {VersionHistoryFindUniqueArgs} args - Arguments to find a VersionHistory
+     * @example
+     * // Get one VersionHistory
+     * const versionHistory = await prisma.versionHistory.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends VersionHistoryFindUniqueArgs>(args: SelectSubset<T, VersionHistoryFindUniqueArgs<ExtArgs>>): Prisma__VersionHistoryClient<$Result.GetResult<Prisma.$VersionHistoryPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one VersionHistory that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {VersionHistoryFindUniqueOrThrowArgs} args - Arguments to find a VersionHistory
+     * @example
+     * // Get one VersionHistory
+     * const versionHistory = await prisma.versionHistory.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends VersionHistoryFindUniqueOrThrowArgs>(args: SelectSubset<T, VersionHistoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VersionHistoryClient<$Result.GetResult<Prisma.$VersionHistoryPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first VersionHistory that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VersionHistoryFindFirstArgs} args - Arguments to find a VersionHistory
+     * @example
+     * // Get one VersionHistory
+     * const versionHistory = await prisma.versionHistory.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends VersionHistoryFindFirstArgs>(args?: SelectSubset<T, VersionHistoryFindFirstArgs<ExtArgs>>): Prisma__VersionHistoryClient<$Result.GetResult<Prisma.$VersionHistoryPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first VersionHistory that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VersionHistoryFindFirstOrThrowArgs} args - Arguments to find a VersionHistory
+     * @example
+     * // Get one VersionHistory
+     * const versionHistory = await prisma.versionHistory.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends VersionHistoryFindFirstOrThrowArgs>(args?: SelectSubset<T, VersionHistoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__VersionHistoryClient<$Result.GetResult<Prisma.$VersionHistoryPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more VersionHistories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VersionHistoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all VersionHistories
+     * const versionHistories = await prisma.versionHistory.findMany()
+     * 
+     * // Get first 10 VersionHistories
+     * const versionHistories = await prisma.versionHistory.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const versionHistoryWithIdOnly = await prisma.versionHistory.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends VersionHistoryFindManyArgs>(args?: SelectSubset<T, VersionHistoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VersionHistoryPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a VersionHistory.
+     * @param {VersionHistoryCreateArgs} args - Arguments to create a VersionHistory.
+     * @example
+     * // Create one VersionHistory
+     * const VersionHistory = await prisma.versionHistory.create({
+     *   data: {
+     *     // ... data to create a VersionHistory
+     *   }
+     * })
+     * 
+     */
+    create<T extends VersionHistoryCreateArgs>(args: SelectSubset<T, VersionHistoryCreateArgs<ExtArgs>>): Prisma__VersionHistoryClient<$Result.GetResult<Prisma.$VersionHistoryPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many VersionHistories.
+     * @param {VersionHistoryCreateManyArgs} args - Arguments to create many VersionHistories.
+     * @example
+     * // Create many VersionHistories
+     * const versionHistory = await prisma.versionHistory.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends VersionHistoryCreateManyArgs>(args?: SelectSubset<T, VersionHistoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many VersionHistories and returns the data saved in the database.
+     * @param {VersionHistoryCreateManyAndReturnArgs} args - Arguments to create many VersionHistories.
+     * @example
+     * // Create many VersionHistories
+     * const versionHistory = await prisma.versionHistory.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many VersionHistories and only return the `id`
+     * const versionHistoryWithIdOnly = await prisma.versionHistory.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends VersionHistoryCreateManyAndReturnArgs>(args?: SelectSubset<T, VersionHistoryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VersionHistoryPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a VersionHistory.
+     * @param {VersionHistoryDeleteArgs} args - Arguments to delete one VersionHistory.
+     * @example
+     * // Delete one VersionHistory
+     * const VersionHistory = await prisma.versionHistory.delete({
+     *   where: {
+     *     // ... filter to delete one VersionHistory
+     *   }
+     * })
+     * 
+     */
+    delete<T extends VersionHistoryDeleteArgs>(args: SelectSubset<T, VersionHistoryDeleteArgs<ExtArgs>>): Prisma__VersionHistoryClient<$Result.GetResult<Prisma.$VersionHistoryPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one VersionHistory.
+     * @param {VersionHistoryUpdateArgs} args - Arguments to update one VersionHistory.
+     * @example
+     * // Update one VersionHistory
+     * const versionHistory = await prisma.versionHistory.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends VersionHistoryUpdateArgs>(args: SelectSubset<T, VersionHistoryUpdateArgs<ExtArgs>>): Prisma__VersionHistoryClient<$Result.GetResult<Prisma.$VersionHistoryPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more VersionHistories.
+     * @param {VersionHistoryDeleteManyArgs} args - Arguments to filter VersionHistories to delete.
+     * @example
+     * // Delete a few VersionHistories
+     * const { count } = await prisma.versionHistory.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends VersionHistoryDeleteManyArgs>(args?: SelectSubset<T, VersionHistoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more VersionHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VersionHistoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many VersionHistories
+     * const versionHistory = await prisma.versionHistory.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends VersionHistoryUpdateManyArgs>(args: SelectSubset<T, VersionHistoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one VersionHistory.
+     * @param {VersionHistoryUpsertArgs} args - Arguments to update or create a VersionHistory.
+     * @example
+     * // Update or create a VersionHistory
+     * const versionHistory = await prisma.versionHistory.upsert({
+     *   create: {
+     *     // ... data to create a VersionHistory
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the VersionHistory we want to update
+     *   }
+     * })
+     */
+    upsert<T extends VersionHistoryUpsertArgs>(args: SelectSubset<T, VersionHistoryUpsertArgs<ExtArgs>>): Prisma__VersionHistoryClient<$Result.GetResult<Prisma.$VersionHistoryPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of VersionHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VersionHistoryCountArgs} args - Arguments to filter VersionHistories to count.
+     * @example
+     * // Count the number of VersionHistories
+     * const count = await prisma.versionHistory.count({
+     *   where: {
+     *     // ... the filter for the VersionHistories we want to count
+     *   }
+     * })
+    **/
+    count<T extends VersionHistoryCountArgs>(
+      args?: Subset<T, VersionHistoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], VersionHistoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a VersionHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VersionHistoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends VersionHistoryAggregateArgs>(args: Subset<T, VersionHistoryAggregateArgs>): Prisma.PrismaPromise<GetVersionHistoryAggregateType<T>>
+
+    /**
+     * Group by VersionHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VersionHistoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends VersionHistoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: VersionHistoryGroupByArgs['orderBy'] }
+        : { orderBy?: VersionHistoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, VersionHistoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVersionHistoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the VersionHistory model
+   */
+  readonly fields: VersionHistoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for VersionHistory.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__VersionHistoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    municipality<T extends MunicipalityDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MunicipalityDefaultArgs<ExtArgs>>): Prisma__MunicipalityClient<$Result.GetResult<Prisma.$MunicipalityPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    softwareVersion<T extends SoftwareVersionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SoftwareVersionDefaultArgs<ExtArgs>>): Prisma__SoftwareVersionClient<$Result.GetResult<Prisma.$SoftwareVersionPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the VersionHistory model
+   */ 
+  interface VersionHistoryFieldRefs {
+    readonly id: FieldRef<"VersionHistory", 'String'>
+    readonly municipalityId: FieldRef<"VersionHistory", 'String'>
+    readonly fromVersion: FieldRef<"VersionHistory", 'String'>
+    readonly toVersion: FieldRef<"VersionHistory", 'String'>
+    readonly updatedBy: FieldRef<"VersionHistory", 'String'>
+    readonly notes: FieldRef<"VersionHistory", 'String'>
+    readonly updatedAt: FieldRef<"VersionHistory", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * VersionHistory findUnique
+   */
+  export type VersionHistoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VersionHistory
+     */
+    select?: VersionHistorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which VersionHistory to fetch.
+     */
+    where: VersionHistoryWhereUniqueInput
+  }
+
+  /**
+   * VersionHistory findUniqueOrThrow
+   */
+  export type VersionHistoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VersionHistory
+     */
+    select?: VersionHistorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which VersionHistory to fetch.
+     */
+    where: VersionHistoryWhereUniqueInput
+  }
+
+  /**
+   * VersionHistory findFirst
+   */
+  export type VersionHistoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VersionHistory
+     */
+    select?: VersionHistorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which VersionHistory to fetch.
+     */
+    where?: VersionHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VersionHistories to fetch.
+     */
+    orderBy?: VersionHistoryOrderByWithRelationInput | VersionHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for VersionHistories.
+     */
+    cursor?: VersionHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VersionHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VersionHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VersionHistories.
+     */
+    distinct?: VersionHistoryScalarFieldEnum | VersionHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * VersionHistory findFirstOrThrow
+   */
+  export type VersionHistoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VersionHistory
+     */
+    select?: VersionHistorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which VersionHistory to fetch.
+     */
+    where?: VersionHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VersionHistories to fetch.
+     */
+    orderBy?: VersionHistoryOrderByWithRelationInput | VersionHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for VersionHistories.
+     */
+    cursor?: VersionHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VersionHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VersionHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VersionHistories.
+     */
+    distinct?: VersionHistoryScalarFieldEnum | VersionHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * VersionHistory findMany
+   */
+  export type VersionHistoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VersionHistory
+     */
+    select?: VersionHistorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which VersionHistories to fetch.
+     */
+    where?: VersionHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VersionHistories to fetch.
+     */
+    orderBy?: VersionHistoryOrderByWithRelationInput | VersionHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing VersionHistories.
+     */
+    cursor?: VersionHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VersionHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VersionHistories.
+     */
+    skip?: number
+    distinct?: VersionHistoryScalarFieldEnum | VersionHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * VersionHistory create
+   */
+  export type VersionHistoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VersionHistory
+     */
+    select?: VersionHistorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionHistoryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a VersionHistory.
+     */
+    data: XOR<VersionHistoryCreateInput, VersionHistoryUncheckedCreateInput>
+  }
+
+  /**
+   * VersionHistory createMany
+   */
+  export type VersionHistoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many VersionHistories.
+     */
+    data: VersionHistoryCreateManyInput | VersionHistoryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * VersionHistory createManyAndReturn
+   */
+  export type VersionHistoryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VersionHistory
+     */
+    select?: VersionHistorySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many VersionHistories.
+     */
+    data: VersionHistoryCreateManyInput | VersionHistoryCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionHistoryIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * VersionHistory update
+   */
+  export type VersionHistoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VersionHistory
+     */
+    select?: VersionHistorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionHistoryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a VersionHistory.
+     */
+    data: XOR<VersionHistoryUpdateInput, VersionHistoryUncheckedUpdateInput>
+    /**
+     * Choose, which VersionHistory to update.
+     */
+    where: VersionHistoryWhereUniqueInput
+  }
+
+  /**
+   * VersionHistory updateMany
+   */
+  export type VersionHistoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update VersionHistories.
+     */
+    data: XOR<VersionHistoryUpdateManyMutationInput, VersionHistoryUncheckedUpdateManyInput>
+    /**
+     * Filter which VersionHistories to update
+     */
+    where?: VersionHistoryWhereInput
+  }
+
+  /**
+   * VersionHistory upsert
+   */
+  export type VersionHistoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VersionHistory
+     */
+    select?: VersionHistorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionHistoryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the VersionHistory to update in case it exists.
+     */
+    where: VersionHistoryWhereUniqueInput
+    /**
+     * In case the VersionHistory found by the `where` argument doesn't exist, create a new VersionHistory with this data.
+     */
+    create: XOR<VersionHistoryCreateInput, VersionHistoryUncheckedCreateInput>
+    /**
+     * In case the VersionHistory was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<VersionHistoryUpdateInput, VersionHistoryUncheckedUpdateInput>
+  }
+
+  /**
+   * VersionHistory delete
+   */
+  export type VersionHistoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VersionHistory
+     */
+    select?: VersionHistorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionHistoryInclude<ExtArgs> | null
+    /**
+     * Filter which VersionHistory to delete.
+     */
+    where: VersionHistoryWhereUniqueInput
+  }
+
+  /**
+   * VersionHistory deleteMany
+   */
+  export type VersionHistoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which VersionHistories to delete
+     */
+    where?: VersionHistoryWhereInput
+  }
+
+  /**
+   * VersionHistory without action
+   */
+  export type VersionHistoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VersionHistory
+     */
+    select?: VersionHistorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionHistoryInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model User
    */
 
@@ -14971,6 +17274,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     municipality?: boolean | User$municipalityArgs<ExtArgs>
+    versionHistory?: boolean | User$versionHistoryArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -14998,6 +17303,8 @@ export namespace Prisma {
 
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     municipality?: boolean | User$municipalityArgs<ExtArgs>
+    versionHistory?: boolean | User$versionHistoryArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     municipality?: boolean | User$municipalityArgs<ExtArgs>
@@ -15007,6 +17314,7 @@ export namespace Prisma {
     name: "User"
     objects: {
       municipality: Prisma.$MunicipalityPayload<ExtArgs> | null
+      versionHistory: Prisma.$VersionHistoryPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -15382,6 +17690,7 @@ export namespace Prisma {
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     municipality<T extends User$municipalityArgs<ExtArgs> = {}>(args?: Subset<T, User$municipalityArgs<ExtArgs>>): Prisma__MunicipalityClient<$Result.GetResult<Prisma.$MunicipalityPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    versionHistory<T extends User$versionHistoryArgs<ExtArgs> = {}>(args?: Subset<T, User$versionHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VersionHistoryPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -15749,6 +18058,26 @@ export namespace Prisma {
      */
     include?: MunicipalityInclude<ExtArgs> | null
     where?: MunicipalityWhereInput
+  }
+
+  /**
+   * User.versionHistory
+   */
+  export type User$versionHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VersionHistory
+     */
+    select?: VersionHistorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionHistoryInclude<ExtArgs> | null
+    where?: VersionHistoryWhereInput
+    orderBy?: VersionHistoryOrderByWithRelationInput | VersionHistoryOrderByWithRelationInput[]
+    cursor?: VersionHistoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: VersionHistoryScalarFieldEnum | VersionHistoryScalarFieldEnum[]
   }
 
   /**
@@ -16751,6 +19080,7 @@ export namespace Prisma {
     region: 'region',
     locale: 'locale',
     timezone: 'timezone',
+    softwareVersion: 'softwareVersion',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -16945,6 +19275,34 @@ export namespace Prisma {
   export type ConnectorLogScalarFieldEnum = (typeof ConnectorLogScalarFieldEnum)[keyof typeof ConnectorLogScalarFieldEnum]
 
 
+  export const SoftwareVersionScalarFieldEnum: {
+    id: 'id',
+    version: 'version',
+    name: 'name',
+    description: 'description',
+    changelog: 'changelog',
+    releaseDate: 'releaseDate',
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type SoftwareVersionScalarFieldEnum = (typeof SoftwareVersionScalarFieldEnum)[keyof typeof SoftwareVersionScalarFieldEnum]
+
+
+  export const VersionHistoryScalarFieldEnum: {
+    id: 'id',
+    municipalityId: 'municipalityId',
+    fromVersion: 'fromVersion',
+    toVersion: 'toVersion',
+    updatedBy: 'updatedBy',
+    notes: 'notes',
+    updatedAt: 'updatedAt'
+  };
+
+  export type VersionHistoryScalarFieldEnum = (typeof VersionHistoryScalarFieldEnum)[keyof typeof VersionHistoryScalarFieldEnum]
+
+
   export const UserScalarFieldEnum: {
     id: 'id',
     email: 'email',
@@ -17118,6 +19476,7 @@ export namespace Prisma {
     region?: StringFilter<"Municipality"> | string
     locale?: StringFilter<"Municipality"> | string
     timezone?: StringFilter<"Municipality"> | string
+    softwareVersion?: StringNullableFilter<"Municipality"> | string | null
     createdAt?: DateTimeFilter<"Municipality"> | Date | string
     updatedAt?: DateTimeFilter<"Municipality"> | Date | string
     budgets?: BudgetListRelationFilter
@@ -17125,6 +19484,8 @@ export namespace Prisma {
     projects?: ProjectListRelationFilter
     contracts?: ContractListRelationFilter
     users?: UserListRelationFilter
+    versionHistory?: VersionHistoryListRelationFilter
+    version?: XOR<SoftwareVersionNullableRelationFilter, SoftwareVersionWhereInput> | null
   }
 
   export type MunicipalityOrderByWithRelationInput = {
@@ -17134,6 +19495,7 @@ export namespace Prisma {
     region?: SortOrder
     locale?: SortOrder
     timezone?: SortOrder
+    softwareVersion?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     budgets?: BudgetOrderByRelationAggregateInput
@@ -17141,6 +19503,8 @@ export namespace Prisma {
     projects?: ProjectOrderByRelationAggregateInput
     contracts?: ContractOrderByRelationAggregateInput
     users?: UserOrderByRelationAggregateInput
+    versionHistory?: VersionHistoryOrderByRelationAggregateInput
+    version?: SoftwareVersionOrderByWithRelationInput
   }
 
   export type MunicipalityWhereUniqueInput = Prisma.AtLeast<{
@@ -17153,6 +19517,7 @@ export namespace Prisma {
     region?: StringFilter<"Municipality"> | string
     locale?: StringFilter<"Municipality"> | string
     timezone?: StringFilter<"Municipality"> | string
+    softwareVersion?: StringNullableFilter<"Municipality"> | string | null
     createdAt?: DateTimeFilter<"Municipality"> | Date | string
     updatedAt?: DateTimeFilter<"Municipality"> | Date | string
     budgets?: BudgetListRelationFilter
@@ -17160,6 +19525,8 @@ export namespace Prisma {
     projects?: ProjectListRelationFilter
     contracts?: ContractListRelationFilter
     users?: UserListRelationFilter
+    versionHistory?: VersionHistoryListRelationFilter
+    version?: XOR<SoftwareVersionNullableRelationFilter, SoftwareVersionWhereInput> | null
   }, "id">
 
   export type MunicipalityOrderByWithAggregationInput = {
@@ -17169,6 +19536,7 @@ export namespace Prisma {
     region?: SortOrder
     locale?: SortOrder
     timezone?: SortOrder
+    softwareVersion?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: MunicipalityCountOrderByAggregateInput
@@ -17186,6 +19554,7 @@ export namespace Prisma {
     region?: StringWithAggregatesFilter<"Municipality"> | string
     locale?: StringWithAggregatesFilter<"Municipality"> | string
     timezone?: StringWithAggregatesFilter<"Municipality"> | string
+    softwareVersion?: StringNullableWithAggregatesFilter<"Municipality"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Municipality"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Municipality"> | Date | string
   }
@@ -18162,6 +20531,155 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"ConnectorLog"> | Date | string
   }
 
+  export type SoftwareVersionWhereInput = {
+    AND?: SoftwareVersionWhereInput | SoftwareVersionWhereInput[]
+    OR?: SoftwareVersionWhereInput[]
+    NOT?: SoftwareVersionWhereInput | SoftwareVersionWhereInput[]
+    id?: StringFilter<"SoftwareVersion"> | string
+    version?: StringFilter<"SoftwareVersion"> | string
+    name?: StringFilter<"SoftwareVersion"> | string
+    description?: StringNullableFilter<"SoftwareVersion"> | string | null
+    changelog?: StringNullableFilter<"SoftwareVersion"> | string | null
+    releaseDate?: DateTimeFilter<"SoftwareVersion"> | Date | string
+    status?: StringFilter<"SoftwareVersion"> | string
+    createdAt?: DateTimeFilter<"SoftwareVersion"> | Date | string
+    updatedAt?: DateTimeFilter<"SoftwareVersion"> | Date | string
+    municipalities?: MunicipalityListRelationFilter
+    versionHistory?: VersionHistoryListRelationFilter
+  }
+
+  export type SoftwareVersionOrderByWithRelationInput = {
+    id?: SortOrder
+    version?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    changelog?: SortOrderInput | SortOrder
+    releaseDate?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    municipalities?: MunicipalityOrderByRelationAggregateInput
+    versionHistory?: VersionHistoryOrderByRelationAggregateInput
+  }
+
+  export type SoftwareVersionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    version?: string
+    AND?: SoftwareVersionWhereInput | SoftwareVersionWhereInput[]
+    OR?: SoftwareVersionWhereInput[]
+    NOT?: SoftwareVersionWhereInput | SoftwareVersionWhereInput[]
+    name?: StringFilter<"SoftwareVersion"> | string
+    description?: StringNullableFilter<"SoftwareVersion"> | string | null
+    changelog?: StringNullableFilter<"SoftwareVersion"> | string | null
+    releaseDate?: DateTimeFilter<"SoftwareVersion"> | Date | string
+    status?: StringFilter<"SoftwareVersion"> | string
+    createdAt?: DateTimeFilter<"SoftwareVersion"> | Date | string
+    updatedAt?: DateTimeFilter<"SoftwareVersion"> | Date | string
+    municipalities?: MunicipalityListRelationFilter
+    versionHistory?: VersionHistoryListRelationFilter
+  }, "id" | "version">
+
+  export type SoftwareVersionOrderByWithAggregationInput = {
+    id?: SortOrder
+    version?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    changelog?: SortOrderInput | SortOrder
+    releaseDate?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: SoftwareVersionCountOrderByAggregateInput
+    _max?: SoftwareVersionMaxOrderByAggregateInput
+    _min?: SoftwareVersionMinOrderByAggregateInput
+  }
+
+  export type SoftwareVersionScalarWhereWithAggregatesInput = {
+    AND?: SoftwareVersionScalarWhereWithAggregatesInput | SoftwareVersionScalarWhereWithAggregatesInput[]
+    OR?: SoftwareVersionScalarWhereWithAggregatesInput[]
+    NOT?: SoftwareVersionScalarWhereWithAggregatesInput | SoftwareVersionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SoftwareVersion"> | string
+    version?: StringWithAggregatesFilter<"SoftwareVersion"> | string
+    name?: StringWithAggregatesFilter<"SoftwareVersion"> | string
+    description?: StringNullableWithAggregatesFilter<"SoftwareVersion"> | string | null
+    changelog?: StringNullableWithAggregatesFilter<"SoftwareVersion"> | string | null
+    releaseDate?: DateTimeWithAggregatesFilter<"SoftwareVersion"> | Date | string
+    status?: StringWithAggregatesFilter<"SoftwareVersion"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"SoftwareVersion"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"SoftwareVersion"> | Date | string
+  }
+
+  export type VersionHistoryWhereInput = {
+    AND?: VersionHistoryWhereInput | VersionHistoryWhereInput[]
+    OR?: VersionHistoryWhereInput[]
+    NOT?: VersionHistoryWhereInput | VersionHistoryWhereInput[]
+    id?: StringFilter<"VersionHistory"> | string
+    municipalityId?: StringFilter<"VersionHistory"> | string
+    fromVersion?: StringNullableFilter<"VersionHistory"> | string | null
+    toVersion?: StringFilter<"VersionHistory"> | string
+    updatedBy?: StringFilter<"VersionHistory"> | string
+    notes?: StringNullableFilter<"VersionHistory"> | string | null
+    updatedAt?: DateTimeFilter<"VersionHistory"> | Date | string
+    municipality?: XOR<MunicipalityRelationFilter, MunicipalityWhereInput>
+    softwareVersion?: XOR<SoftwareVersionRelationFilter, SoftwareVersionWhereInput>
+    user?: XOR<UserRelationFilter, UserWhereInput>
+  }
+
+  export type VersionHistoryOrderByWithRelationInput = {
+    id?: SortOrder
+    municipalityId?: SortOrder
+    fromVersion?: SortOrderInput | SortOrder
+    toVersion?: SortOrder
+    updatedBy?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    updatedAt?: SortOrder
+    municipality?: MunicipalityOrderByWithRelationInput
+    softwareVersion?: SoftwareVersionOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type VersionHistoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: VersionHistoryWhereInput | VersionHistoryWhereInput[]
+    OR?: VersionHistoryWhereInput[]
+    NOT?: VersionHistoryWhereInput | VersionHistoryWhereInput[]
+    municipalityId?: StringFilter<"VersionHistory"> | string
+    fromVersion?: StringNullableFilter<"VersionHistory"> | string | null
+    toVersion?: StringFilter<"VersionHistory"> | string
+    updatedBy?: StringFilter<"VersionHistory"> | string
+    notes?: StringNullableFilter<"VersionHistory"> | string | null
+    updatedAt?: DateTimeFilter<"VersionHistory"> | Date | string
+    municipality?: XOR<MunicipalityRelationFilter, MunicipalityWhereInput>
+    softwareVersion?: XOR<SoftwareVersionRelationFilter, SoftwareVersionWhereInput>
+    user?: XOR<UserRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type VersionHistoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    municipalityId?: SortOrder
+    fromVersion?: SortOrderInput | SortOrder
+    toVersion?: SortOrder
+    updatedBy?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    updatedAt?: SortOrder
+    _count?: VersionHistoryCountOrderByAggregateInput
+    _max?: VersionHistoryMaxOrderByAggregateInput
+    _min?: VersionHistoryMinOrderByAggregateInput
+  }
+
+  export type VersionHistoryScalarWhereWithAggregatesInput = {
+    AND?: VersionHistoryScalarWhereWithAggregatesInput | VersionHistoryScalarWhereWithAggregatesInput[]
+    OR?: VersionHistoryScalarWhereWithAggregatesInput[]
+    NOT?: VersionHistoryScalarWhereWithAggregatesInput | VersionHistoryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"VersionHistory"> | string
+    municipalityId?: StringWithAggregatesFilter<"VersionHistory"> | string
+    fromVersion?: StringNullableWithAggregatesFilter<"VersionHistory"> | string | null
+    toVersion?: StringWithAggregatesFilter<"VersionHistory"> | string
+    updatedBy?: StringWithAggregatesFilter<"VersionHistory"> | string
+    notes?: StringNullableWithAggregatesFilter<"VersionHistory"> | string | null
+    updatedAt?: DateTimeWithAggregatesFilter<"VersionHistory"> | Date | string
+  }
+
   export type UserWhereInput = {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
@@ -18175,6 +20693,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     municipality?: XOR<MunicipalityNullableRelationFilter, MunicipalityWhereInput> | null
+    versionHistory?: VersionHistoryListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -18187,6 +20706,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     municipality?: MunicipalityOrderByWithRelationInput
+    versionHistory?: VersionHistoryOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -18202,6 +20722,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     municipality?: XOR<MunicipalityNullableRelationFilter, MunicipalityWhereInput> | null
+    versionHistory?: VersionHistoryListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -18325,6 +20846,8 @@ export namespace Prisma {
     projects?: ProjectCreateNestedManyWithoutMunicipalityInput
     contracts?: ContractCreateNestedManyWithoutMunicipalityInput
     users?: UserCreateNestedManyWithoutMunicipalityInput
+    versionHistory?: VersionHistoryCreateNestedManyWithoutMunicipalityInput
+    version?: SoftwareVersionCreateNestedOneWithoutMunicipalitiesInput
   }
 
   export type MunicipalityUncheckedCreateInput = {
@@ -18334,6 +20857,7 @@ export namespace Prisma {
     region: string
     locale?: string
     timezone?: string
+    softwareVersion?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     budgets?: BudgetUncheckedCreateNestedManyWithoutMunicipalityInput
@@ -18341,6 +20865,7 @@ export namespace Prisma {
     projects?: ProjectUncheckedCreateNestedManyWithoutMunicipalityInput
     contracts?: ContractUncheckedCreateNestedManyWithoutMunicipalityInput
     users?: UserUncheckedCreateNestedManyWithoutMunicipalityInput
+    versionHistory?: VersionHistoryUncheckedCreateNestedManyWithoutMunicipalityInput
   }
 
   export type MunicipalityUpdateInput = {
@@ -18357,6 +20882,8 @@ export namespace Prisma {
     projects?: ProjectUpdateManyWithoutMunicipalityNestedInput
     contracts?: ContractUpdateManyWithoutMunicipalityNestedInput
     users?: UserUpdateManyWithoutMunicipalityNestedInput
+    versionHistory?: VersionHistoryUpdateManyWithoutMunicipalityNestedInput
+    version?: SoftwareVersionUpdateOneWithoutMunicipalitiesNestedInput
   }
 
   export type MunicipalityUncheckedUpdateInput = {
@@ -18366,6 +20893,7 @@ export namespace Prisma {
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    softwareVersion?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     budgets?: BudgetUncheckedUpdateManyWithoutMunicipalityNestedInput
@@ -18373,6 +20901,7 @@ export namespace Prisma {
     projects?: ProjectUncheckedUpdateManyWithoutMunicipalityNestedInput
     contracts?: ContractUncheckedUpdateManyWithoutMunicipalityNestedInput
     users?: UserUncheckedUpdateManyWithoutMunicipalityNestedInput
+    versionHistory?: VersionHistoryUncheckedUpdateManyWithoutMunicipalityNestedInput
   }
 
   export type MunicipalityCreateManyInput = {
@@ -18382,6 +20911,7 @@ export namespace Prisma {
     region: string
     locale?: string
     timezone?: string
+    softwareVersion?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -18404,6 +20934,7 @@ export namespace Prisma {
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    softwareVersion?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -19503,6 +22034,165 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type SoftwareVersionCreateInput = {
+    id?: string
+    version: string
+    name: string
+    description?: string | null
+    changelog?: string | null
+    releaseDate?: Date | string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    municipalities?: MunicipalityCreateNestedManyWithoutVersionInput
+    versionHistory?: VersionHistoryCreateNestedManyWithoutSoftwareVersionInput
+  }
+
+  export type SoftwareVersionUncheckedCreateInput = {
+    id?: string
+    version: string
+    name: string
+    description?: string | null
+    changelog?: string | null
+    releaseDate?: Date | string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    municipalities?: MunicipalityUncheckedCreateNestedManyWithoutVersionInput
+    versionHistory?: VersionHistoryUncheckedCreateNestedManyWithoutSoftwareVersionInput
+  }
+
+  export type SoftwareVersionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    version?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    changelog?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    municipalities?: MunicipalityUpdateManyWithoutVersionNestedInput
+    versionHistory?: VersionHistoryUpdateManyWithoutSoftwareVersionNestedInput
+  }
+
+  export type SoftwareVersionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    version?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    changelog?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    municipalities?: MunicipalityUncheckedUpdateManyWithoutVersionNestedInput
+    versionHistory?: VersionHistoryUncheckedUpdateManyWithoutSoftwareVersionNestedInput
+  }
+
+  export type SoftwareVersionCreateManyInput = {
+    id?: string
+    version: string
+    name: string
+    description?: string | null
+    changelog?: string | null
+    releaseDate?: Date | string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SoftwareVersionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    version?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    changelog?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SoftwareVersionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    version?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    changelog?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VersionHistoryCreateInput = {
+    id?: string
+    fromVersion?: string | null
+    notes?: string | null
+    updatedAt?: Date | string
+    municipality: MunicipalityCreateNestedOneWithoutVersionHistoryInput
+    softwareVersion: SoftwareVersionCreateNestedOneWithoutVersionHistoryInput
+    user: UserCreateNestedOneWithoutVersionHistoryInput
+  }
+
+  export type VersionHistoryUncheckedCreateInput = {
+    id?: string
+    municipalityId: string
+    fromVersion?: string | null
+    toVersion: string
+    updatedBy: string
+    notes?: string | null
+    updatedAt?: Date | string
+  }
+
+  export type VersionHistoryUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromVersion?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    municipality?: MunicipalityUpdateOneRequiredWithoutVersionHistoryNestedInput
+    softwareVersion?: SoftwareVersionUpdateOneRequiredWithoutVersionHistoryNestedInput
+    user?: UserUpdateOneRequiredWithoutVersionHistoryNestedInput
+  }
+
+  export type VersionHistoryUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    municipalityId?: StringFieldUpdateOperationsInput | string
+    fromVersion?: NullableStringFieldUpdateOperationsInput | string | null
+    toVersion?: StringFieldUpdateOperationsInput | string
+    updatedBy?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VersionHistoryCreateManyInput = {
+    id?: string
+    municipalityId: string
+    fromVersion?: string | null
+    toVersion: string
+    updatedBy: string
+    notes?: string | null
+    updatedAt?: Date | string
+  }
+
+  export type VersionHistoryUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromVersion?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VersionHistoryUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    municipalityId?: StringFieldUpdateOperationsInput | string
+    fromVersion?: NullableStringFieldUpdateOperationsInput | string | null
+    toVersion?: StringFieldUpdateOperationsInput | string
+    updatedBy?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -19512,6 +22202,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     municipality?: MunicipalityCreateNestedOneWithoutUsersInput
+    versionHistory?: VersionHistoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -19523,6 +22214,7 @@ export namespace Prisma {
     lastLoginAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    versionHistory?: VersionHistoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -19534,6 +22226,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     municipality?: MunicipalityUpdateOneWithoutUsersNestedInput
+    versionHistory?: VersionHistoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -19545,6 +22238,7 @@ export namespace Prisma {
     lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    versionHistory?: VersionHistoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -19685,6 +22379,21 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -19726,6 +22435,22 @@ export namespace Prisma {
     none?: UserWhereInput
   }
 
+  export type VersionHistoryListRelationFilter = {
+    every?: VersionHistoryWhereInput
+    some?: VersionHistoryWhereInput
+    none?: VersionHistoryWhereInput
+  }
+
+  export type SoftwareVersionNullableRelationFilter = {
+    is?: SoftwareVersionWhereInput | null
+    isNot?: SoftwareVersionWhereInput | null
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
   export type BudgetOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -19746,6 +22471,10 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type VersionHistoryOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type MunicipalityCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -19753,6 +22482,7 @@ export namespace Prisma {
     region?: SortOrder
     locale?: SortOrder
     timezone?: SortOrder
+    softwareVersion?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -19764,6 +22494,7 @@ export namespace Prisma {
     region?: SortOrder
     locale?: SortOrder
     timezone?: SortOrder
+    softwareVersion?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -19775,6 +22506,7 @@ export namespace Prisma {
     region?: SortOrder
     locale?: SortOrder
     timezone?: SortOrder
+    softwareVersion?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -19795,6 +22527,24 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -19831,11 +22581,6 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
   }
 
   export type FiscalYearCountOrderByAggregateInput = {
@@ -19906,21 +22651,6 @@ export namespace Prisma {
     gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
-  }
-
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type MunicipalityRelationFilter = {
@@ -20000,24 +22730,6 @@ export namespace Prisma {
     _sum?: NestedDecimalFilter<$PrismaModel>
     _min?: NestedDecimalFilter<$PrismaModel>
     _max?: NestedDecimalFilter<$PrismaModel>
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type SupplierNullableRelationFilter = {
@@ -20619,6 +23331,92 @@ export namespace Prisma {
     duration?: SortOrder
   }
 
+  export type MunicipalityListRelationFilter = {
+    every?: MunicipalityWhereInput
+    some?: MunicipalityWhereInput
+    none?: MunicipalityWhereInput
+  }
+
+  export type MunicipalityOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SoftwareVersionCountOrderByAggregateInput = {
+    id?: SortOrder
+    version?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    changelog?: SortOrder
+    releaseDate?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SoftwareVersionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    version?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    changelog?: SortOrder
+    releaseDate?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SoftwareVersionMinOrderByAggregateInput = {
+    id?: SortOrder
+    version?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    changelog?: SortOrder
+    releaseDate?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SoftwareVersionRelationFilter = {
+    is?: SoftwareVersionWhereInput
+    isNot?: SoftwareVersionWhereInput
+  }
+
+  export type UserRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type VersionHistoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    municipalityId?: SortOrder
+    fromVersion?: SortOrder
+    toVersion?: SortOrder
+    updatedBy?: SortOrder
+    notes?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type VersionHistoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    municipalityId?: SortOrder
+    fromVersion?: SortOrder
+    toVersion?: SortOrder
+    updatedBy?: SortOrder
+    notes?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type VersionHistoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    municipalityId?: SortOrder
+    fromVersion?: SortOrder
+    toVersion?: SortOrder
+    updatedBy?: SortOrder
+    notes?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type MunicipalityNullableRelationFilter = {
     is?: MunicipalityWhereInput | null
     isNot?: MunicipalityWhereInput | null
@@ -20743,6 +23541,19 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
   }
 
+  export type VersionHistoryCreateNestedManyWithoutMunicipalityInput = {
+    create?: XOR<VersionHistoryCreateWithoutMunicipalityInput, VersionHistoryUncheckedCreateWithoutMunicipalityInput> | VersionHistoryCreateWithoutMunicipalityInput[] | VersionHistoryUncheckedCreateWithoutMunicipalityInput[]
+    connectOrCreate?: VersionHistoryCreateOrConnectWithoutMunicipalityInput | VersionHistoryCreateOrConnectWithoutMunicipalityInput[]
+    createMany?: VersionHistoryCreateManyMunicipalityInputEnvelope
+    connect?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
+  }
+
+  export type SoftwareVersionCreateNestedOneWithoutMunicipalitiesInput = {
+    create?: XOR<SoftwareVersionCreateWithoutMunicipalitiesInput, SoftwareVersionUncheckedCreateWithoutMunicipalitiesInput>
+    connectOrCreate?: SoftwareVersionCreateOrConnectWithoutMunicipalitiesInput
+    connect?: SoftwareVersionWhereUniqueInput
+  }
+
   export type BudgetUncheckedCreateNestedManyWithoutMunicipalityInput = {
     create?: XOR<BudgetCreateWithoutMunicipalityInput, BudgetUncheckedCreateWithoutMunicipalityInput> | BudgetCreateWithoutMunicipalityInput[] | BudgetUncheckedCreateWithoutMunicipalityInput[]
     connectOrCreate?: BudgetCreateOrConnectWithoutMunicipalityInput | BudgetCreateOrConnectWithoutMunicipalityInput[]
@@ -20776,6 +23587,13 @@ export namespace Prisma {
     connectOrCreate?: UserCreateOrConnectWithoutMunicipalityInput | UserCreateOrConnectWithoutMunicipalityInput[]
     createMany?: UserCreateManyMunicipalityInputEnvelope
     connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+  }
+
+  export type VersionHistoryUncheckedCreateNestedManyWithoutMunicipalityInput = {
+    create?: XOR<VersionHistoryCreateWithoutMunicipalityInput, VersionHistoryUncheckedCreateWithoutMunicipalityInput> | VersionHistoryCreateWithoutMunicipalityInput[] | VersionHistoryUncheckedCreateWithoutMunicipalityInput[]
+    connectOrCreate?: VersionHistoryCreateOrConnectWithoutMunicipalityInput | VersionHistoryCreateOrConnectWithoutMunicipalityInput[]
+    createMany?: VersionHistoryCreateManyMunicipalityInputEnvelope
+    connect?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -20856,6 +23674,34 @@ export namespace Prisma {
     deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
   }
 
+  export type VersionHistoryUpdateManyWithoutMunicipalityNestedInput = {
+    create?: XOR<VersionHistoryCreateWithoutMunicipalityInput, VersionHistoryUncheckedCreateWithoutMunicipalityInput> | VersionHistoryCreateWithoutMunicipalityInput[] | VersionHistoryUncheckedCreateWithoutMunicipalityInput[]
+    connectOrCreate?: VersionHistoryCreateOrConnectWithoutMunicipalityInput | VersionHistoryCreateOrConnectWithoutMunicipalityInput[]
+    upsert?: VersionHistoryUpsertWithWhereUniqueWithoutMunicipalityInput | VersionHistoryUpsertWithWhereUniqueWithoutMunicipalityInput[]
+    createMany?: VersionHistoryCreateManyMunicipalityInputEnvelope
+    set?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
+    disconnect?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
+    delete?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
+    connect?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
+    update?: VersionHistoryUpdateWithWhereUniqueWithoutMunicipalityInput | VersionHistoryUpdateWithWhereUniqueWithoutMunicipalityInput[]
+    updateMany?: VersionHistoryUpdateManyWithWhereWithoutMunicipalityInput | VersionHistoryUpdateManyWithWhereWithoutMunicipalityInput[]
+    deleteMany?: VersionHistoryScalarWhereInput | VersionHistoryScalarWhereInput[]
+  }
+
+  export type SoftwareVersionUpdateOneWithoutMunicipalitiesNestedInput = {
+    create?: XOR<SoftwareVersionCreateWithoutMunicipalitiesInput, SoftwareVersionUncheckedCreateWithoutMunicipalitiesInput>
+    connectOrCreate?: SoftwareVersionCreateOrConnectWithoutMunicipalitiesInput
+    upsert?: SoftwareVersionUpsertWithoutMunicipalitiesInput
+    disconnect?: SoftwareVersionWhereInput | boolean
+    delete?: SoftwareVersionWhereInput | boolean
+    connect?: SoftwareVersionWhereUniqueInput
+    update?: XOR<XOR<SoftwareVersionUpdateToOneWithWhereWithoutMunicipalitiesInput, SoftwareVersionUpdateWithoutMunicipalitiesInput>, SoftwareVersionUncheckedUpdateWithoutMunicipalitiesInput>
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type BudgetUncheckedUpdateManyWithoutMunicipalityNestedInput = {
     create?: XOR<BudgetCreateWithoutMunicipalityInput, BudgetUncheckedCreateWithoutMunicipalityInput> | BudgetCreateWithoutMunicipalityInput[] | BudgetUncheckedCreateWithoutMunicipalityInput[]
     connectOrCreate?: BudgetCreateOrConnectWithoutMunicipalityInput | BudgetCreateOrConnectWithoutMunicipalityInput[]
@@ -20924,6 +23770,20 @@ export namespace Prisma {
     update?: UserUpdateWithWhereUniqueWithoutMunicipalityInput | UserUpdateWithWhereUniqueWithoutMunicipalityInput[]
     updateMany?: UserUpdateManyWithWhereWithoutMunicipalityInput | UserUpdateManyWithWhereWithoutMunicipalityInput[]
     deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
+  }
+
+  export type VersionHistoryUncheckedUpdateManyWithoutMunicipalityNestedInput = {
+    create?: XOR<VersionHistoryCreateWithoutMunicipalityInput, VersionHistoryUncheckedCreateWithoutMunicipalityInput> | VersionHistoryCreateWithoutMunicipalityInput[] | VersionHistoryUncheckedCreateWithoutMunicipalityInput[]
+    connectOrCreate?: VersionHistoryCreateOrConnectWithoutMunicipalityInput | VersionHistoryCreateOrConnectWithoutMunicipalityInput[]
+    upsert?: VersionHistoryUpsertWithWhereUniqueWithoutMunicipalityInput | VersionHistoryUpsertWithWhereUniqueWithoutMunicipalityInput[]
+    createMany?: VersionHistoryCreateManyMunicipalityInputEnvelope
+    set?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
+    disconnect?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
+    delete?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
+    connect?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
+    update?: VersionHistoryUpdateWithWhereUniqueWithoutMunicipalityInput | VersionHistoryUpdateWithWhereUniqueWithoutMunicipalityInput[]
+    updateMany?: VersionHistoryUpdateManyWithWhereWithoutMunicipalityInput | VersionHistoryUpdateManyWithWhereWithoutMunicipalityInput[]
+    deleteMany?: VersionHistoryScalarWhereInput | VersionHistoryScalarWhereInput[]
   }
 
   export type BudgetCreateNestedManyWithoutFiscalYearInput = {
@@ -21040,10 +23900,6 @@ export namespace Prisma {
     decrement?: Decimal | DecimalJsLike | number | string
     multiply?: Decimal | DecimalJsLike | number | string
     divide?: Decimal | DecimalJsLike | number | string
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type MunicipalityUpdateOneRequiredWithoutBudgetsNestedInput = {
@@ -21422,10 +24278,150 @@ export namespace Prisma {
     update?: XOR<XOR<ConnectorConfigUpdateToOneWithWhereWithoutLogsInput, ConnectorConfigUpdateWithoutLogsInput>, ConnectorConfigUncheckedUpdateWithoutLogsInput>
   }
 
+  export type MunicipalityCreateNestedManyWithoutVersionInput = {
+    create?: XOR<MunicipalityCreateWithoutVersionInput, MunicipalityUncheckedCreateWithoutVersionInput> | MunicipalityCreateWithoutVersionInput[] | MunicipalityUncheckedCreateWithoutVersionInput[]
+    connectOrCreate?: MunicipalityCreateOrConnectWithoutVersionInput | MunicipalityCreateOrConnectWithoutVersionInput[]
+    createMany?: MunicipalityCreateManyVersionInputEnvelope
+    connect?: MunicipalityWhereUniqueInput | MunicipalityWhereUniqueInput[]
+  }
+
+  export type VersionHistoryCreateNestedManyWithoutSoftwareVersionInput = {
+    create?: XOR<VersionHistoryCreateWithoutSoftwareVersionInput, VersionHistoryUncheckedCreateWithoutSoftwareVersionInput> | VersionHistoryCreateWithoutSoftwareVersionInput[] | VersionHistoryUncheckedCreateWithoutSoftwareVersionInput[]
+    connectOrCreate?: VersionHistoryCreateOrConnectWithoutSoftwareVersionInput | VersionHistoryCreateOrConnectWithoutSoftwareVersionInput[]
+    createMany?: VersionHistoryCreateManySoftwareVersionInputEnvelope
+    connect?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
+  }
+
+  export type MunicipalityUncheckedCreateNestedManyWithoutVersionInput = {
+    create?: XOR<MunicipalityCreateWithoutVersionInput, MunicipalityUncheckedCreateWithoutVersionInput> | MunicipalityCreateWithoutVersionInput[] | MunicipalityUncheckedCreateWithoutVersionInput[]
+    connectOrCreate?: MunicipalityCreateOrConnectWithoutVersionInput | MunicipalityCreateOrConnectWithoutVersionInput[]
+    createMany?: MunicipalityCreateManyVersionInputEnvelope
+    connect?: MunicipalityWhereUniqueInput | MunicipalityWhereUniqueInput[]
+  }
+
+  export type VersionHistoryUncheckedCreateNestedManyWithoutSoftwareVersionInput = {
+    create?: XOR<VersionHistoryCreateWithoutSoftwareVersionInput, VersionHistoryUncheckedCreateWithoutSoftwareVersionInput> | VersionHistoryCreateWithoutSoftwareVersionInput[] | VersionHistoryUncheckedCreateWithoutSoftwareVersionInput[]
+    connectOrCreate?: VersionHistoryCreateOrConnectWithoutSoftwareVersionInput | VersionHistoryCreateOrConnectWithoutSoftwareVersionInput[]
+    createMany?: VersionHistoryCreateManySoftwareVersionInputEnvelope
+    connect?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
+  }
+
+  export type MunicipalityUpdateManyWithoutVersionNestedInput = {
+    create?: XOR<MunicipalityCreateWithoutVersionInput, MunicipalityUncheckedCreateWithoutVersionInput> | MunicipalityCreateWithoutVersionInput[] | MunicipalityUncheckedCreateWithoutVersionInput[]
+    connectOrCreate?: MunicipalityCreateOrConnectWithoutVersionInput | MunicipalityCreateOrConnectWithoutVersionInput[]
+    upsert?: MunicipalityUpsertWithWhereUniqueWithoutVersionInput | MunicipalityUpsertWithWhereUniqueWithoutVersionInput[]
+    createMany?: MunicipalityCreateManyVersionInputEnvelope
+    set?: MunicipalityWhereUniqueInput | MunicipalityWhereUniqueInput[]
+    disconnect?: MunicipalityWhereUniqueInput | MunicipalityWhereUniqueInput[]
+    delete?: MunicipalityWhereUniqueInput | MunicipalityWhereUniqueInput[]
+    connect?: MunicipalityWhereUniqueInput | MunicipalityWhereUniqueInput[]
+    update?: MunicipalityUpdateWithWhereUniqueWithoutVersionInput | MunicipalityUpdateWithWhereUniqueWithoutVersionInput[]
+    updateMany?: MunicipalityUpdateManyWithWhereWithoutVersionInput | MunicipalityUpdateManyWithWhereWithoutVersionInput[]
+    deleteMany?: MunicipalityScalarWhereInput | MunicipalityScalarWhereInput[]
+  }
+
+  export type VersionHistoryUpdateManyWithoutSoftwareVersionNestedInput = {
+    create?: XOR<VersionHistoryCreateWithoutSoftwareVersionInput, VersionHistoryUncheckedCreateWithoutSoftwareVersionInput> | VersionHistoryCreateWithoutSoftwareVersionInput[] | VersionHistoryUncheckedCreateWithoutSoftwareVersionInput[]
+    connectOrCreate?: VersionHistoryCreateOrConnectWithoutSoftwareVersionInput | VersionHistoryCreateOrConnectWithoutSoftwareVersionInput[]
+    upsert?: VersionHistoryUpsertWithWhereUniqueWithoutSoftwareVersionInput | VersionHistoryUpsertWithWhereUniqueWithoutSoftwareVersionInput[]
+    createMany?: VersionHistoryCreateManySoftwareVersionInputEnvelope
+    set?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
+    disconnect?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
+    delete?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
+    connect?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
+    update?: VersionHistoryUpdateWithWhereUniqueWithoutSoftwareVersionInput | VersionHistoryUpdateWithWhereUniqueWithoutSoftwareVersionInput[]
+    updateMany?: VersionHistoryUpdateManyWithWhereWithoutSoftwareVersionInput | VersionHistoryUpdateManyWithWhereWithoutSoftwareVersionInput[]
+    deleteMany?: VersionHistoryScalarWhereInput | VersionHistoryScalarWhereInput[]
+  }
+
+  export type MunicipalityUncheckedUpdateManyWithoutVersionNestedInput = {
+    create?: XOR<MunicipalityCreateWithoutVersionInput, MunicipalityUncheckedCreateWithoutVersionInput> | MunicipalityCreateWithoutVersionInput[] | MunicipalityUncheckedCreateWithoutVersionInput[]
+    connectOrCreate?: MunicipalityCreateOrConnectWithoutVersionInput | MunicipalityCreateOrConnectWithoutVersionInput[]
+    upsert?: MunicipalityUpsertWithWhereUniqueWithoutVersionInput | MunicipalityUpsertWithWhereUniqueWithoutVersionInput[]
+    createMany?: MunicipalityCreateManyVersionInputEnvelope
+    set?: MunicipalityWhereUniqueInput | MunicipalityWhereUniqueInput[]
+    disconnect?: MunicipalityWhereUniqueInput | MunicipalityWhereUniqueInput[]
+    delete?: MunicipalityWhereUniqueInput | MunicipalityWhereUniqueInput[]
+    connect?: MunicipalityWhereUniqueInput | MunicipalityWhereUniqueInput[]
+    update?: MunicipalityUpdateWithWhereUniqueWithoutVersionInput | MunicipalityUpdateWithWhereUniqueWithoutVersionInput[]
+    updateMany?: MunicipalityUpdateManyWithWhereWithoutVersionInput | MunicipalityUpdateManyWithWhereWithoutVersionInput[]
+    deleteMany?: MunicipalityScalarWhereInput | MunicipalityScalarWhereInput[]
+  }
+
+  export type VersionHistoryUncheckedUpdateManyWithoutSoftwareVersionNestedInput = {
+    create?: XOR<VersionHistoryCreateWithoutSoftwareVersionInput, VersionHistoryUncheckedCreateWithoutSoftwareVersionInput> | VersionHistoryCreateWithoutSoftwareVersionInput[] | VersionHistoryUncheckedCreateWithoutSoftwareVersionInput[]
+    connectOrCreate?: VersionHistoryCreateOrConnectWithoutSoftwareVersionInput | VersionHistoryCreateOrConnectWithoutSoftwareVersionInput[]
+    upsert?: VersionHistoryUpsertWithWhereUniqueWithoutSoftwareVersionInput | VersionHistoryUpsertWithWhereUniqueWithoutSoftwareVersionInput[]
+    createMany?: VersionHistoryCreateManySoftwareVersionInputEnvelope
+    set?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
+    disconnect?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
+    delete?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
+    connect?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
+    update?: VersionHistoryUpdateWithWhereUniqueWithoutSoftwareVersionInput | VersionHistoryUpdateWithWhereUniqueWithoutSoftwareVersionInput[]
+    updateMany?: VersionHistoryUpdateManyWithWhereWithoutSoftwareVersionInput | VersionHistoryUpdateManyWithWhereWithoutSoftwareVersionInput[]
+    deleteMany?: VersionHistoryScalarWhereInput | VersionHistoryScalarWhereInput[]
+  }
+
+  export type MunicipalityCreateNestedOneWithoutVersionHistoryInput = {
+    create?: XOR<MunicipalityCreateWithoutVersionHistoryInput, MunicipalityUncheckedCreateWithoutVersionHistoryInput>
+    connectOrCreate?: MunicipalityCreateOrConnectWithoutVersionHistoryInput
+    connect?: MunicipalityWhereUniqueInput
+  }
+
+  export type SoftwareVersionCreateNestedOneWithoutVersionHistoryInput = {
+    create?: XOR<SoftwareVersionCreateWithoutVersionHistoryInput, SoftwareVersionUncheckedCreateWithoutVersionHistoryInput>
+    connectOrCreate?: SoftwareVersionCreateOrConnectWithoutVersionHistoryInput
+    connect?: SoftwareVersionWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutVersionHistoryInput = {
+    create?: XOR<UserCreateWithoutVersionHistoryInput, UserUncheckedCreateWithoutVersionHistoryInput>
+    connectOrCreate?: UserCreateOrConnectWithoutVersionHistoryInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type MunicipalityUpdateOneRequiredWithoutVersionHistoryNestedInput = {
+    create?: XOR<MunicipalityCreateWithoutVersionHistoryInput, MunicipalityUncheckedCreateWithoutVersionHistoryInput>
+    connectOrCreate?: MunicipalityCreateOrConnectWithoutVersionHistoryInput
+    upsert?: MunicipalityUpsertWithoutVersionHistoryInput
+    connect?: MunicipalityWhereUniqueInput
+    update?: XOR<XOR<MunicipalityUpdateToOneWithWhereWithoutVersionHistoryInput, MunicipalityUpdateWithoutVersionHistoryInput>, MunicipalityUncheckedUpdateWithoutVersionHistoryInput>
+  }
+
+  export type SoftwareVersionUpdateOneRequiredWithoutVersionHistoryNestedInput = {
+    create?: XOR<SoftwareVersionCreateWithoutVersionHistoryInput, SoftwareVersionUncheckedCreateWithoutVersionHistoryInput>
+    connectOrCreate?: SoftwareVersionCreateOrConnectWithoutVersionHistoryInput
+    upsert?: SoftwareVersionUpsertWithoutVersionHistoryInput
+    connect?: SoftwareVersionWhereUniqueInput
+    update?: XOR<XOR<SoftwareVersionUpdateToOneWithWhereWithoutVersionHistoryInput, SoftwareVersionUpdateWithoutVersionHistoryInput>, SoftwareVersionUncheckedUpdateWithoutVersionHistoryInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutVersionHistoryNestedInput = {
+    create?: XOR<UserCreateWithoutVersionHistoryInput, UserUncheckedCreateWithoutVersionHistoryInput>
+    connectOrCreate?: UserCreateOrConnectWithoutVersionHistoryInput
+    upsert?: UserUpsertWithoutVersionHistoryInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutVersionHistoryInput, UserUpdateWithoutVersionHistoryInput>, UserUncheckedUpdateWithoutVersionHistoryInput>
+  }
+
   export type MunicipalityCreateNestedOneWithoutUsersInput = {
     create?: XOR<MunicipalityCreateWithoutUsersInput, MunicipalityUncheckedCreateWithoutUsersInput>
     connectOrCreate?: MunicipalityCreateOrConnectWithoutUsersInput
     connect?: MunicipalityWhereUniqueInput
+  }
+
+  export type VersionHistoryCreateNestedManyWithoutUserInput = {
+    create?: XOR<VersionHistoryCreateWithoutUserInput, VersionHistoryUncheckedCreateWithoutUserInput> | VersionHistoryCreateWithoutUserInput[] | VersionHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: VersionHistoryCreateOrConnectWithoutUserInput | VersionHistoryCreateOrConnectWithoutUserInput[]
+    createMany?: VersionHistoryCreateManyUserInputEnvelope
+    connect?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
+  }
+
+  export type VersionHistoryUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<VersionHistoryCreateWithoutUserInput, VersionHistoryUncheckedCreateWithoutUserInput> | VersionHistoryCreateWithoutUserInput[] | VersionHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: VersionHistoryCreateOrConnectWithoutUserInput | VersionHistoryCreateOrConnectWithoutUserInput[]
+    createMany?: VersionHistoryCreateManyUserInputEnvelope
+    connect?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
   }
 
   export type MunicipalityUpdateOneWithoutUsersNestedInput = {
@@ -21436,6 +24432,34 @@ export namespace Prisma {
     delete?: MunicipalityWhereInput | boolean
     connect?: MunicipalityWhereUniqueInput
     update?: XOR<XOR<MunicipalityUpdateToOneWithWhereWithoutUsersInput, MunicipalityUpdateWithoutUsersInput>, MunicipalityUncheckedUpdateWithoutUsersInput>
+  }
+
+  export type VersionHistoryUpdateManyWithoutUserNestedInput = {
+    create?: XOR<VersionHistoryCreateWithoutUserInput, VersionHistoryUncheckedCreateWithoutUserInput> | VersionHistoryCreateWithoutUserInput[] | VersionHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: VersionHistoryCreateOrConnectWithoutUserInput | VersionHistoryCreateOrConnectWithoutUserInput[]
+    upsert?: VersionHistoryUpsertWithWhereUniqueWithoutUserInput | VersionHistoryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: VersionHistoryCreateManyUserInputEnvelope
+    set?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
+    disconnect?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
+    delete?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
+    connect?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
+    update?: VersionHistoryUpdateWithWhereUniqueWithoutUserInput | VersionHistoryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: VersionHistoryUpdateManyWithWhereWithoutUserInput | VersionHistoryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: VersionHistoryScalarWhereInput | VersionHistoryScalarWhereInput[]
+  }
+
+  export type VersionHistoryUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<VersionHistoryCreateWithoutUserInput, VersionHistoryUncheckedCreateWithoutUserInput> | VersionHistoryCreateWithoutUserInput[] | VersionHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: VersionHistoryCreateOrConnectWithoutUserInput | VersionHistoryCreateOrConnectWithoutUserInput[]
+    upsert?: VersionHistoryUpsertWithWhereUniqueWithoutUserInput | VersionHistoryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: VersionHistoryCreateManyUserInputEnvelope
+    set?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
+    disconnect?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
+    delete?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
+    connect?: VersionHistoryWhereUniqueInput | VersionHistoryWhereUniqueInput[]
+    update?: VersionHistoryUpdateWithWhereUniqueWithoutUserInput | VersionHistoryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: VersionHistoryUpdateManyWithWhereWithoutUserInput | VersionHistoryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: VersionHistoryScalarWhereInput | VersionHistoryScalarWhereInput[]
   }
 
   export type QueryAuditCreatedatasetsUsedInput = {
@@ -21459,6 +24483,20 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -21498,6 +24536,34 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -21566,17 +24632,6 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
   export type NestedDecimalFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
@@ -21586,20 +24641,6 @@ export namespace Prisma {
     gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
-  }
-
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
@@ -21616,23 +24657,6 @@ export namespace Prisma {
     _sum?: NestedDecimalFilter<$PrismaModel>
     _min?: NestedDecimalFilter<$PrismaModel>
     _max?: NestedDecimalFilter<$PrismaModel>
-  }
-
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type NestedDecimalNullableFilter<$PrismaModel = never> = {
@@ -21900,6 +24924,7 @@ export namespace Prisma {
     lastLoginAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    versionHistory?: VersionHistoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMunicipalityInput = {
@@ -21910,6 +24935,7 @@ export namespace Prisma {
     lastLoginAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    versionHistory?: VersionHistoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMunicipalityInput = {
@@ -21920,6 +24946,65 @@ export namespace Prisma {
   export type UserCreateManyMunicipalityInputEnvelope = {
     data: UserCreateManyMunicipalityInput | UserCreateManyMunicipalityInput[]
     skipDuplicates?: boolean
+  }
+
+  export type VersionHistoryCreateWithoutMunicipalityInput = {
+    id?: string
+    fromVersion?: string | null
+    notes?: string | null
+    updatedAt?: Date | string
+    softwareVersion: SoftwareVersionCreateNestedOneWithoutVersionHistoryInput
+    user: UserCreateNestedOneWithoutVersionHistoryInput
+  }
+
+  export type VersionHistoryUncheckedCreateWithoutMunicipalityInput = {
+    id?: string
+    fromVersion?: string | null
+    toVersion: string
+    updatedBy: string
+    notes?: string | null
+    updatedAt?: Date | string
+  }
+
+  export type VersionHistoryCreateOrConnectWithoutMunicipalityInput = {
+    where: VersionHistoryWhereUniqueInput
+    create: XOR<VersionHistoryCreateWithoutMunicipalityInput, VersionHistoryUncheckedCreateWithoutMunicipalityInput>
+  }
+
+  export type VersionHistoryCreateManyMunicipalityInputEnvelope = {
+    data: VersionHistoryCreateManyMunicipalityInput | VersionHistoryCreateManyMunicipalityInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SoftwareVersionCreateWithoutMunicipalitiesInput = {
+    id?: string
+    version: string
+    name: string
+    description?: string | null
+    changelog?: string | null
+    releaseDate?: Date | string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    versionHistory?: VersionHistoryCreateNestedManyWithoutSoftwareVersionInput
+  }
+
+  export type SoftwareVersionUncheckedCreateWithoutMunicipalitiesInput = {
+    id?: string
+    version: string
+    name: string
+    description?: string | null
+    changelog?: string | null
+    releaseDate?: Date | string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    versionHistory?: VersionHistoryUncheckedCreateNestedManyWithoutSoftwareVersionInput
+  }
+
+  export type SoftwareVersionCreateOrConnectWithoutMunicipalitiesInput = {
+    where: SoftwareVersionWhereUniqueInput
+    create: XOR<SoftwareVersionCreateWithoutMunicipalitiesInput, SoftwareVersionUncheckedCreateWithoutMunicipalitiesInput>
   }
 
   export type BudgetUpsertWithWhereUniqueWithoutMunicipalityInput = {
@@ -22096,6 +25181,72 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
   }
 
+  export type VersionHistoryUpsertWithWhereUniqueWithoutMunicipalityInput = {
+    where: VersionHistoryWhereUniqueInput
+    update: XOR<VersionHistoryUpdateWithoutMunicipalityInput, VersionHistoryUncheckedUpdateWithoutMunicipalityInput>
+    create: XOR<VersionHistoryCreateWithoutMunicipalityInput, VersionHistoryUncheckedCreateWithoutMunicipalityInput>
+  }
+
+  export type VersionHistoryUpdateWithWhereUniqueWithoutMunicipalityInput = {
+    where: VersionHistoryWhereUniqueInput
+    data: XOR<VersionHistoryUpdateWithoutMunicipalityInput, VersionHistoryUncheckedUpdateWithoutMunicipalityInput>
+  }
+
+  export type VersionHistoryUpdateManyWithWhereWithoutMunicipalityInput = {
+    where: VersionHistoryScalarWhereInput
+    data: XOR<VersionHistoryUpdateManyMutationInput, VersionHistoryUncheckedUpdateManyWithoutMunicipalityInput>
+  }
+
+  export type VersionHistoryScalarWhereInput = {
+    AND?: VersionHistoryScalarWhereInput | VersionHistoryScalarWhereInput[]
+    OR?: VersionHistoryScalarWhereInput[]
+    NOT?: VersionHistoryScalarWhereInput | VersionHistoryScalarWhereInput[]
+    id?: StringFilter<"VersionHistory"> | string
+    municipalityId?: StringFilter<"VersionHistory"> | string
+    fromVersion?: StringNullableFilter<"VersionHistory"> | string | null
+    toVersion?: StringFilter<"VersionHistory"> | string
+    updatedBy?: StringFilter<"VersionHistory"> | string
+    notes?: StringNullableFilter<"VersionHistory"> | string | null
+    updatedAt?: DateTimeFilter<"VersionHistory"> | Date | string
+  }
+
+  export type SoftwareVersionUpsertWithoutMunicipalitiesInput = {
+    update: XOR<SoftwareVersionUpdateWithoutMunicipalitiesInput, SoftwareVersionUncheckedUpdateWithoutMunicipalitiesInput>
+    create: XOR<SoftwareVersionCreateWithoutMunicipalitiesInput, SoftwareVersionUncheckedCreateWithoutMunicipalitiesInput>
+    where?: SoftwareVersionWhereInput
+  }
+
+  export type SoftwareVersionUpdateToOneWithWhereWithoutMunicipalitiesInput = {
+    where?: SoftwareVersionWhereInput
+    data: XOR<SoftwareVersionUpdateWithoutMunicipalitiesInput, SoftwareVersionUncheckedUpdateWithoutMunicipalitiesInput>
+  }
+
+  export type SoftwareVersionUpdateWithoutMunicipalitiesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    version?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    changelog?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    versionHistory?: VersionHistoryUpdateManyWithoutSoftwareVersionNestedInput
+  }
+
+  export type SoftwareVersionUncheckedUpdateWithoutMunicipalitiesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    version?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    changelog?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    versionHistory?: VersionHistoryUncheckedUpdateManyWithoutSoftwareVersionNestedInput
+  }
+
   export type BudgetCreateWithoutFiscalYearInput = {
     id?: string
     department: string
@@ -22225,6 +25376,8 @@ export namespace Prisma {
     projects?: ProjectCreateNestedManyWithoutMunicipalityInput
     contracts?: ContractCreateNestedManyWithoutMunicipalityInput
     users?: UserCreateNestedManyWithoutMunicipalityInput
+    versionHistory?: VersionHistoryCreateNestedManyWithoutMunicipalityInput
+    version?: SoftwareVersionCreateNestedOneWithoutMunicipalitiesInput
   }
 
   export type MunicipalityUncheckedCreateWithoutBudgetsInput = {
@@ -22234,12 +25387,14 @@ export namespace Prisma {
     region: string
     locale?: string
     timezone?: string
+    softwareVersion?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     expenditures?: ExpenditureUncheckedCreateNestedManyWithoutMunicipalityInput
     projects?: ProjectUncheckedCreateNestedManyWithoutMunicipalityInput
     contracts?: ContractUncheckedCreateNestedManyWithoutMunicipalityInput
     users?: UserUncheckedCreateNestedManyWithoutMunicipalityInput
+    versionHistory?: VersionHistoryUncheckedCreateNestedManyWithoutMunicipalityInput
   }
 
   export type MunicipalityCreateOrConnectWithoutBudgetsInput = {
@@ -22292,6 +25447,8 @@ export namespace Prisma {
     projects?: ProjectUpdateManyWithoutMunicipalityNestedInput
     contracts?: ContractUpdateManyWithoutMunicipalityNestedInput
     users?: UserUpdateManyWithoutMunicipalityNestedInput
+    versionHistory?: VersionHistoryUpdateManyWithoutMunicipalityNestedInput
+    version?: SoftwareVersionUpdateOneWithoutMunicipalitiesNestedInput
   }
 
   export type MunicipalityUncheckedUpdateWithoutBudgetsInput = {
@@ -22301,12 +25458,14 @@ export namespace Prisma {
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    softwareVersion?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     expenditures?: ExpenditureUncheckedUpdateManyWithoutMunicipalityNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutMunicipalityNestedInput
     contracts?: ContractUncheckedUpdateManyWithoutMunicipalityNestedInput
     users?: UserUncheckedUpdateManyWithoutMunicipalityNestedInput
+    versionHistory?: VersionHistoryUncheckedUpdateManyWithoutMunicipalityNestedInput
   }
 
   export type FiscalYearUpsertWithoutBudgetsInput = {
@@ -22349,6 +25508,8 @@ export namespace Prisma {
     projects?: ProjectCreateNestedManyWithoutMunicipalityInput
     contracts?: ContractCreateNestedManyWithoutMunicipalityInput
     users?: UserCreateNestedManyWithoutMunicipalityInput
+    versionHistory?: VersionHistoryCreateNestedManyWithoutMunicipalityInput
+    version?: SoftwareVersionCreateNestedOneWithoutMunicipalitiesInput
   }
 
   export type MunicipalityUncheckedCreateWithoutExpendituresInput = {
@@ -22358,12 +25519,14 @@ export namespace Prisma {
     region: string
     locale?: string
     timezone?: string
+    softwareVersion?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     budgets?: BudgetUncheckedCreateNestedManyWithoutMunicipalityInput
     projects?: ProjectUncheckedCreateNestedManyWithoutMunicipalityInput
     contracts?: ContractUncheckedCreateNestedManyWithoutMunicipalityInput
     users?: UserUncheckedCreateNestedManyWithoutMunicipalityInput
+    versionHistory?: VersionHistoryUncheckedCreateNestedManyWithoutMunicipalityInput
   }
 
   export type MunicipalityCreateOrConnectWithoutExpendituresInput = {
@@ -22443,6 +25606,8 @@ export namespace Prisma {
     projects?: ProjectUpdateManyWithoutMunicipalityNestedInput
     contracts?: ContractUpdateManyWithoutMunicipalityNestedInput
     users?: UserUpdateManyWithoutMunicipalityNestedInput
+    versionHistory?: VersionHistoryUpdateManyWithoutMunicipalityNestedInput
+    version?: SoftwareVersionUpdateOneWithoutMunicipalitiesNestedInput
   }
 
   export type MunicipalityUncheckedUpdateWithoutExpendituresInput = {
@@ -22452,12 +25617,14 @@ export namespace Prisma {
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    softwareVersion?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     budgets?: BudgetUncheckedUpdateManyWithoutMunicipalityNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutMunicipalityNestedInput
     contracts?: ContractUncheckedUpdateManyWithoutMunicipalityNestedInput
     users?: UserUncheckedUpdateManyWithoutMunicipalityNestedInput
+    versionHistory?: VersionHistoryUncheckedUpdateManyWithoutMunicipalityNestedInput
   }
 
   export type FiscalYearUpsertWithoutExpendituresInput = {
@@ -22533,6 +25700,8 @@ export namespace Prisma {
     expenditures?: ExpenditureCreateNestedManyWithoutMunicipalityInput
     contracts?: ContractCreateNestedManyWithoutMunicipalityInput
     users?: UserCreateNestedManyWithoutMunicipalityInput
+    versionHistory?: VersionHistoryCreateNestedManyWithoutMunicipalityInput
+    version?: SoftwareVersionCreateNestedOneWithoutMunicipalitiesInput
   }
 
   export type MunicipalityUncheckedCreateWithoutProjectsInput = {
@@ -22542,12 +25711,14 @@ export namespace Prisma {
     region: string
     locale?: string
     timezone?: string
+    softwareVersion?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     budgets?: BudgetUncheckedCreateNestedManyWithoutMunicipalityInput
     expenditures?: ExpenditureUncheckedCreateNestedManyWithoutMunicipalityInput
     contracts?: ContractUncheckedCreateNestedManyWithoutMunicipalityInput
     users?: UserUncheckedCreateNestedManyWithoutMunicipalityInput
+    versionHistory?: VersionHistoryUncheckedCreateNestedManyWithoutMunicipalityInput
   }
 
   export type MunicipalityCreateOrConnectWithoutProjectsInput = {
@@ -22602,6 +25773,8 @@ export namespace Prisma {
     expenditures?: ExpenditureUpdateManyWithoutMunicipalityNestedInput
     contracts?: ContractUpdateManyWithoutMunicipalityNestedInput
     users?: UserUpdateManyWithoutMunicipalityNestedInput
+    versionHistory?: VersionHistoryUpdateManyWithoutMunicipalityNestedInput
+    version?: SoftwareVersionUpdateOneWithoutMunicipalitiesNestedInput
   }
 
   export type MunicipalityUncheckedUpdateWithoutProjectsInput = {
@@ -22611,12 +25784,14 @@ export namespace Prisma {
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    softwareVersion?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     budgets?: BudgetUncheckedUpdateManyWithoutMunicipalityNestedInput
     expenditures?: ExpenditureUncheckedUpdateManyWithoutMunicipalityNestedInput
     contracts?: ContractUncheckedUpdateManyWithoutMunicipalityNestedInput
     users?: UserUncheckedUpdateManyWithoutMunicipalityNestedInput
+    versionHistory?: VersionHistoryUncheckedUpdateManyWithoutMunicipalityNestedInput
   }
 
   export type FundingSourceUpsertWithoutProjectsInput = {
@@ -22839,6 +26014,8 @@ export namespace Prisma {
     expenditures?: ExpenditureCreateNestedManyWithoutMunicipalityInput
     projects?: ProjectCreateNestedManyWithoutMunicipalityInput
     users?: UserCreateNestedManyWithoutMunicipalityInput
+    versionHistory?: VersionHistoryCreateNestedManyWithoutMunicipalityInput
+    version?: SoftwareVersionCreateNestedOneWithoutMunicipalitiesInput
   }
 
   export type MunicipalityUncheckedCreateWithoutContractsInput = {
@@ -22848,12 +26025,14 @@ export namespace Prisma {
     region: string
     locale?: string
     timezone?: string
+    softwareVersion?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     budgets?: BudgetUncheckedCreateNestedManyWithoutMunicipalityInput
     expenditures?: ExpenditureUncheckedCreateNestedManyWithoutMunicipalityInput
     projects?: ProjectUncheckedCreateNestedManyWithoutMunicipalityInput
     users?: UserUncheckedCreateNestedManyWithoutMunicipalityInput
+    versionHistory?: VersionHistoryUncheckedCreateNestedManyWithoutMunicipalityInput
   }
 
   export type MunicipalityCreateOrConnectWithoutContractsInput = {
@@ -22912,6 +26091,8 @@ export namespace Prisma {
     expenditures?: ExpenditureUpdateManyWithoutMunicipalityNestedInput
     projects?: ProjectUpdateManyWithoutMunicipalityNestedInput
     users?: UserUpdateManyWithoutMunicipalityNestedInput
+    versionHistory?: VersionHistoryUpdateManyWithoutMunicipalityNestedInput
+    version?: SoftwareVersionUpdateOneWithoutMunicipalitiesNestedInput
   }
 
   export type MunicipalityUncheckedUpdateWithoutContractsInput = {
@@ -22921,12 +26102,14 @@ export namespace Prisma {
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    softwareVersion?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     budgets?: BudgetUncheckedUpdateManyWithoutMunicipalityNestedInput
     expenditures?: ExpenditureUncheckedUpdateManyWithoutMunicipalityNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutMunicipalityNestedInput
     users?: UserUncheckedUpdateManyWithoutMunicipalityNestedInput
+    versionHistory?: VersionHistoryUncheckedUpdateManyWithoutMunicipalityNestedInput
   }
 
   export type SupplierUpsertWithoutContractsInput = {
@@ -23260,6 +26443,337 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type MunicipalityCreateWithoutVersionInput = {
+    id?: string
+    name: string
+    country?: string
+    region: string
+    locale?: string
+    timezone?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    budgets?: BudgetCreateNestedManyWithoutMunicipalityInput
+    expenditures?: ExpenditureCreateNestedManyWithoutMunicipalityInput
+    projects?: ProjectCreateNestedManyWithoutMunicipalityInput
+    contracts?: ContractCreateNestedManyWithoutMunicipalityInput
+    users?: UserCreateNestedManyWithoutMunicipalityInput
+    versionHistory?: VersionHistoryCreateNestedManyWithoutMunicipalityInput
+  }
+
+  export type MunicipalityUncheckedCreateWithoutVersionInput = {
+    id?: string
+    name: string
+    country?: string
+    region: string
+    locale?: string
+    timezone?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    budgets?: BudgetUncheckedCreateNestedManyWithoutMunicipalityInput
+    expenditures?: ExpenditureUncheckedCreateNestedManyWithoutMunicipalityInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutMunicipalityInput
+    contracts?: ContractUncheckedCreateNestedManyWithoutMunicipalityInput
+    users?: UserUncheckedCreateNestedManyWithoutMunicipalityInput
+    versionHistory?: VersionHistoryUncheckedCreateNestedManyWithoutMunicipalityInput
+  }
+
+  export type MunicipalityCreateOrConnectWithoutVersionInput = {
+    where: MunicipalityWhereUniqueInput
+    create: XOR<MunicipalityCreateWithoutVersionInput, MunicipalityUncheckedCreateWithoutVersionInput>
+  }
+
+  export type MunicipalityCreateManyVersionInputEnvelope = {
+    data: MunicipalityCreateManyVersionInput | MunicipalityCreateManyVersionInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type VersionHistoryCreateWithoutSoftwareVersionInput = {
+    id?: string
+    fromVersion?: string | null
+    notes?: string | null
+    updatedAt?: Date | string
+    municipality: MunicipalityCreateNestedOneWithoutVersionHistoryInput
+    user: UserCreateNestedOneWithoutVersionHistoryInput
+  }
+
+  export type VersionHistoryUncheckedCreateWithoutSoftwareVersionInput = {
+    id?: string
+    municipalityId: string
+    fromVersion?: string | null
+    updatedBy: string
+    notes?: string | null
+    updatedAt?: Date | string
+  }
+
+  export type VersionHistoryCreateOrConnectWithoutSoftwareVersionInput = {
+    where: VersionHistoryWhereUniqueInput
+    create: XOR<VersionHistoryCreateWithoutSoftwareVersionInput, VersionHistoryUncheckedCreateWithoutSoftwareVersionInput>
+  }
+
+  export type VersionHistoryCreateManySoftwareVersionInputEnvelope = {
+    data: VersionHistoryCreateManySoftwareVersionInput | VersionHistoryCreateManySoftwareVersionInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MunicipalityUpsertWithWhereUniqueWithoutVersionInput = {
+    where: MunicipalityWhereUniqueInput
+    update: XOR<MunicipalityUpdateWithoutVersionInput, MunicipalityUncheckedUpdateWithoutVersionInput>
+    create: XOR<MunicipalityCreateWithoutVersionInput, MunicipalityUncheckedCreateWithoutVersionInput>
+  }
+
+  export type MunicipalityUpdateWithWhereUniqueWithoutVersionInput = {
+    where: MunicipalityWhereUniqueInput
+    data: XOR<MunicipalityUpdateWithoutVersionInput, MunicipalityUncheckedUpdateWithoutVersionInput>
+  }
+
+  export type MunicipalityUpdateManyWithWhereWithoutVersionInput = {
+    where: MunicipalityScalarWhereInput
+    data: XOR<MunicipalityUpdateManyMutationInput, MunicipalityUncheckedUpdateManyWithoutVersionInput>
+  }
+
+  export type MunicipalityScalarWhereInput = {
+    AND?: MunicipalityScalarWhereInput | MunicipalityScalarWhereInput[]
+    OR?: MunicipalityScalarWhereInput[]
+    NOT?: MunicipalityScalarWhereInput | MunicipalityScalarWhereInput[]
+    id?: StringFilter<"Municipality"> | string
+    name?: StringFilter<"Municipality"> | string
+    country?: StringFilter<"Municipality"> | string
+    region?: StringFilter<"Municipality"> | string
+    locale?: StringFilter<"Municipality"> | string
+    timezone?: StringFilter<"Municipality"> | string
+    softwareVersion?: StringNullableFilter<"Municipality"> | string | null
+    createdAt?: DateTimeFilter<"Municipality"> | Date | string
+    updatedAt?: DateTimeFilter<"Municipality"> | Date | string
+  }
+
+  export type VersionHistoryUpsertWithWhereUniqueWithoutSoftwareVersionInput = {
+    where: VersionHistoryWhereUniqueInput
+    update: XOR<VersionHistoryUpdateWithoutSoftwareVersionInput, VersionHistoryUncheckedUpdateWithoutSoftwareVersionInput>
+    create: XOR<VersionHistoryCreateWithoutSoftwareVersionInput, VersionHistoryUncheckedCreateWithoutSoftwareVersionInput>
+  }
+
+  export type VersionHistoryUpdateWithWhereUniqueWithoutSoftwareVersionInput = {
+    where: VersionHistoryWhereUniqueInput
+    data: XOR<VersionHistoryUpdateWithoutSoftwareVersionInput, VersionHistoryUncheckedUpdateWithoutSoftwareVersionInput>
+  }
+
+  export type VersionHistoryUpdateManyWithWhereWithoutSoftwareVersionInput = {
+    where: VersionHistoryScalarWhereInput
+    data: XOR<VersionHistoryUpdateManyMutationInput, VersionHistoryUncheckedUpdateManyWithoutSoftwareVersionInput>
+  }
+
+  export type MunicipalityCreateWithoutVersionHistoryInput = {
+    id?: string
+    name: string
+    country?: string
+    region: string
+    locale?: string
+    timezone?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    budgets?: BudgetCreateNestedManyWithoutMunicipalityInput
+    expenditures?: ExpenditureCreateNestedManyWithoutMunicipalityInput
+    projects?: ProjectCreateNestedManyWithoutMunicipalityInput
+    contracts?: ContractCreateNestedManyWithoutMunicipalityInput
+    users?: UserCreateNestedManyWithoutMunicipalityInput
+    version?: SoftwareVersionCreateNestedOneWithoutMunicipalitiesInput
+  }
+
+  export type MunicipalityUncheckedCreateWithoutVersionHistoryInput = {
+    id?: string
+    name: string
+    country?: string
+    region: string
+    locale?: string
+    timezone?: string
+    softwareVersion?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    budgets?: BudgetUncheckedCreateNestedManyWithoutMunicipalityInput
+    expenditures?: ExpenditureUncheckedCreateNestedManyWithoutMunicipalityInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutMunicipalityInput
+    contracts?: ContractUncheckedCreateNestedManyWithoutMunicipalityInput
+    users?: UserUncheckedCreateNestedManyWithoutMunicipalityInput
+  }
+
+  export type MunicipalityCreateOrConnectWithoutVersionHistoryInput = {
+    where: MunicipalityWhereUniqueInput
+    create: XOR<MunicipalityCreateWithoutVersionHistoryInput, MunicipalityUncheckedCreateWithoutVersionHistoryInput>
+  }
+
+  export type SoftwareVersionCreateWithoutVersionHistoryInput = {
+    id?: string
+    version: string
+    name: string
+    description?: string | null
+    changelog?: string | null
+    releaseDate?: Date | string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    municipalities?: MunicipalityCreateNestedManyWithoutVersionInput
+  }
+
+  export type SoftwareVersionUncheckedCreateWithoutVersionHistoryInput = {
+    id?: string
+    version: string
+    name: string
+    description?: string | null
+    changelog?: string | null
+    releaseDate?: Date | string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    municipalities?: MunicipalityUncheckedCreateNestedManyWithoutVersionInput
+  }
+
+  export type SoftwareVersionCreateOrConnectWithoutVersionHistoryInput = {
+    where: SoftwareVersionWhereUniqueInput
+    create: XOR<SoftwareVersionCreateWithoutVersionHistoryInput, SoftwareVersionUncheckedCreateWithoutVersionHistoryInput>
+  }
+
+  export type UserCreateWithoutVersionHistoryInput = {
+    id?: string
+    email: string
+    passwordHash: string
+    role: string
+    lastLoginAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    municipality?: MunicipalityCreateNestedOneWithoutUsersInput
+  }
+
+  export type UserUncheckedCreateWithoutVersionHistoryInput = {
+    id?: string
+    email: string
+    passwordHash: string
+    role: string
+    municipalityId?: string | null
+    lastLoginAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserCreateOrConnectWithoutVersionHistoryInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutVersionHistoryInput, UserUncheckedCreateWithoutVersionHistoryInput>
+  }
+
+  export type MunicipalityUpsertWithoutVersionHistoryInput = {
+    update: XOR<MunicipalityUpdateWithoutVersionHistoryInput, MunicipalityUncheckedUpdateWithoutVersionHistoryInput>
+    create: XOR<MunicipalityCreateWithoutVersionHistoryInput, MunicipalityUncheckedCreateWithoutVersionHistoryInput>
+    where?: MunicipalityWhereInput
+  }
+
+  export type MunicipalityUpdateToOneWithWhereWithoutVersionHistoryInput = {
+    where?: MunicipalityWhereInput
+    data: XOR<MunicipalityUpdateWithoutVersionHistoryInput, MunicipalityUncheckedUpdateWithoutVersionHistoryInput>
+  }
+
+  export type MunicipalityUpdateWithoutVersionHistoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    region?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    budgets?: BudgetUpdateManyWithoutMunicipalityNestedInput
+    expenditures?: ExpenditureUpdateManyWithoutMunicipalityNestedInput
+    projects?: ProjectUpdateManyWithoutMunicipalityNestedInput
+    contracts?: ContractUpdateManyWithoutMunicipalityNestedInput
+    users?: UserUpdateManyWithoutMunicipalityNestedInput
+    version?: SoftwareVersionUpdateOneWithoutMunicipalitiesNestedInput
+  }
+
+  export type MunicipalityUncheckedUpdateWithoutVersionHistoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    region?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    softwareVersion?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    budgets?: BudgetUncheckedUpdateManyWithoutMunicipalityNestedInput
+    expenditures?: ExpenditureUncheckedUpdateManyWithoutMunicipalityNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutMunicipalityNestedInput
+    contracts?: ContractUncheckedUpdateManyWithoutMunicipalityNestedInput
+    users?: UserUncheckedUpdateManyWithoutMunicipalityNestedInput
+  }
+
+  export type SoftwareVersionUpsertWithoutVersionHistoryInput = {
+    update: XOR<SoftwareVersionUpdateWithoutVersionHistoryInput, SoftwareVersionUncheckedUpdateWithoutVersionHistoryInput>
+    create: XOR<SoftwareVersionCreateWithoutVersionHistoryInput, SoftwareVersionUncheckedCreateWithoutVersionHistoryInput>
+    where?: SoftwareVersionWhereInput
+  }
+
+  export type SoftwareVersionUpdateToOneWithWhereWithoutVersionHistoryInput = {
+    where?: SoftwareVersionWhereInput
+    data: XOR<SoftwareVersionUpdateWithoutVersionHistoryInput, SoftwareVersionUncheckedUpdateWithoutVersionHistoryInput>
+  }
+
+  export type SoftwareVersionUpdateWithoutVersionHistoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    version?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    changelog?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    municipalities?: MunicipalityUpdateManyWithoutVersionNestedInput
+  }
+
+  export type SoftwareVersionUncheckedUpdateWithoutVersionHistoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    version?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    changelog?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    municipalities?: MunicipalityUncheckedUpdateManyWithoutVersionNestedInput
+  }
+
+  export type UserUpsertWithoutVersionHistoryInput = {
+    update: XOR<UserUpdateWithoutVersionHistoryInput, UserUncheckedUpdateWithoutVersionHistoryInput>
+    create: XOR<UserCreateWithoutVersionHistoryInput, UserUncheckedCreateWithoutVersionHistoryInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutVersionHistoryInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutVersionHistoryInput, UserUncheckedUpdateWithoutVersionHistoryInput>
+  }
+
+  export type UserUpdateWithoutVersionHistoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    municipality?: MunicipalityUpdateOneWithoutUsersNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutVersionHistoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    municipalityId?: NullableStringFieldUpdateOperationsInput | string | null
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type MunicipalityCreateWithoutUsersInput = {
     id?: string
     name: string
@@ -23273,6 +26787,8 @@ export namespace Prisma {
     expenditures?: ExpenditureCreateNestedManyWithoutMunicipalityInput
     projects?: ProjectCreateNestedManyWithoutMunicipalityInput
     contracts?: ContractCreateNestedManyWithoutMunicipalityInput
+    versionHistory?: VersionHistoryCreateNestedManyWithoutMunicipalityInput
+    version?: SoftwareVersionCreateNestedOneWithoutMunicipalitiesInput
   }
 
   export type MunicipalityUncheckedCreateWithoutUsersInput = {
@@ -23282,17 +26798,47 @@ export namespace Prisma {
     region: string
     locale?: string
     timezone?: string
+    softwareVersion?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     budgets?: BudgetUncheckedCreateNestedManyWithoutMunicipalityInput
     expenditures?: ExpenditureUncheckedCreateNestedManyWithoutMunicipalityInput
     projects?: ProjectUncheckedCreateNestedManyWithoutMunicipalityInput
     contracts?: ContractUncheckedCreateNestedManyWithoutMunicipalityInput
+    versionHistory?: VersionHistoryUncheckedCreateNestedManyWithoutMunicipalityInput
   }
 
   export type MunicipalityCreateOrConnectWithoutUsersInput = {
     where: MunicipalityWhereUniqueInput
     create: XOR<MunicipalityCreateWithoutUsersInput, MunicipalityUncheckedCreateWithoutUsersInput>
+  }
+
+  export type VersionHistoryCreateWithoutUserInput = {
+    id?: string
+    fromVersion?: string | null
+    notes?: string | null
+    updatedAt?: Date | string
+    municipality: MunicipalityCreateNestedOneWithoutVersionHistoryInput
+    softwareVersion: SoftwareVersionCreateNestedOneWithoutVersionHistoryInput
+  }
+
+  export type VersionHistoryUncheckedCreateWithoutUserInput = {
+    id?: string
+    municipalityId: string
+    fromVersion?: string | null
+    toVersion: string
+    notes?: string | null
+    updatedAt?: Date | string
+  }
+
+  export type VersionHistoryCreateOrConnectWithoutUserInput = {
+    where: VersionHistoryWhereUniqueInput
+    create: XOR<VersionHistoryCreateWithoutUserInput, VersionHistoryUncheckedCreateWithoutUserInput>
+  }
+
+  export type VersionHistoryCreateManyUserInputEnvelope = {
+    data: VersionHistoryCreateManyUserInput | VersionHistoryCreateManyUserInput[]
+    skipDuplicates?: boolean
   }
 
   export type MunicipalityUpsertWithoutUsersInput = {
@@ -23319,6 +26865,8 @@ export namespace Prisma {
     expenditures?: ExpenditureUpdateManyWithoutMunicipalityNestedInput
     projects?: ProjectUpdateManyWithoutMunicipalityNestedInput
     contracts?: ContractUpdateManyWithoutMunicipalityNestedInput
+    versionHistory?: VersionHistoryUpdateManyWithoutMunicipalityNestedInput
+    version?: SoftwareVersionUpdateOneWithoutMunicipalitiesNestedInput
   }
 
   export type MunicipalityUncheckedUpdateWithoutUsersInput = {
@@ -23328,12 +26876,30 @@ export namespace Prisma {
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    softwareVersion?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     budgets?: BudgetUncheckedUpdateManyWithoutMunicipalityNestedInput
     expenditures?: ExpenditureUncheckedUpdateManyWithoutMunicipalityNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutMunicipalityNestedInput
     contracts?: ContractUncheckedUpdateManyWithoutMunicipalityNestedInput
+    versionHistory?: VersionHistoryUncheckedUpdateManyWithoutMunicipalityNestedInput
+  }
+
+  export type VersionHistoryUpsertWithWhereUniqueWithoutUserInput = {
+    where: VersionHistoryWhereUniqueInput
+    update: XOR<VersionHistoryUpdateWithoutUserInput, VersionHistoryUncheckedUpdateWithoutUserInput>
+    create: XOR<VersionHistoryCreateWithoutUserInput, VersionHistoryUncheckedCreateWithoutUserInput>
+  }
+
+  export type VersionHistoryUpdateWithWhereUniqueWithoutUserInput = {
+    where: VersionHistoryWhereUniqueInput
+    data: XOR<VersionHistoryUpdateWithoutUserInput, VersionHistoryUncheckedUpdateWithoutUserInput>
+  }
+
+  export type VersionHistoryUpdateManyWithWhereWithoutUserInput = {
+    where: VersionHistoryScalarWhereInput
+    data: XOR<VersionHistoryUpdateManyMutationInput, VersionHistoryUncheckedUpdateManyWithoutUserInput>
   }
 
   export type BudgetCreateManyMunicipalityInput = {
@@ -23407,6 +26973,15 @@ export namespace Prisma {
     role: string
     lastLoginAt?: Date | string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type VersionHistoryCreateManyMunicipalityInput = {
+    id?: string
+    fromVersion?: string | null
+    toVersion: string
+    updatedBy: string
+    notes?: string | null
     updatedAt?: Date | string
   }
 
@@ -23610,6 +27185,7 @@ export namespace Prisma {
     lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    versionHistory?: VersionHistoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMunicipalityInput = {
@@ -23620,6 +27196,7 @@ export namespace Prisma {
     lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    versionHistory?: VersionHistoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutMunicipalityInput = {
@@ -23629,6 +27206,33 @@ export namespace Prisma {
     role?: StringFieldUpdateOperationsInput | string
     lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VersionHistoryUpdateWithoutMunicipalityInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromVersion?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    softwareVersion?: SoftwareVersionUpdateOneRequiredWithoutVersionHistoryNestedInput
+    user?: UserUpdateOneRequiredWithoutVersionHistoryNestedInput
+  }
+
+  export type VersionHistoryUncheckedUpdateWithoutMunicipalityInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromVersion?: NullableStringFieldUpdateOperationsInput | string | null
+    toVersion?: StringFieldUpdateOperationsInput | string
+    updatedBy?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VersionHistoryUncheckedUpdateManyWithoutMunicipalityInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromVersion?: NullableStringFieldUpdateOperationsInput | string | null
+    toVersion?: StringFieldUpdateOperationsInput | string
+    updatedBy?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -24064,6 +27668,134 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type MunicipalityCreateManyVersionInput = {
+    id?: string
+    name: string
+    country?: string
+    region: string
+    locale?: string
+    timezone?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type VersionHistoryCreateManySoftwareVersionInput = {
+    id?: string
+    municipalityId: string
+    fromVersion?: string | null
+    updatedBy: string
+    notes?: string | null
+    updatedAt?: Date | string
+  }
+
+  export type MunicipalityUpdateWithoutVersionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    region?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    budgets?: BudgetUpdateManyWithoutMunicipalityNestedInput
+    expenditures?: ExpenditureUpdateManyWithoutMunicipalityNestedInput
+    projects?: ProjectUpdateManyWithoutMunicipalityNestedInput
+    contracts?: ContractUpdateManyWithoutMunicipalityNestedInput
+    users?: UserUpdateManyWithoutMunicipalityNestedInput
+    versionHistory?: VersionHistoryUpdateManyWithoutMunicipalityNestedInput
+  }
+
+  export type MunicipalityUncheckedUpdateWithoutVersionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    region?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    budgets?: BudgetUncheckedUpdateManyWithoutMunicipalityNestedInput
+    expenditures?: ExpenditureUncheckedUpdateManyWithoutMunicipalityNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutMunicipalityNestedInput
+    contracts?: ContractUncheckedUpdateManyWithoutMunicipalityNestedInput
+    users?: UserUncheckedUpdateManyWithoutMunicipalityNestedInput
+    versionHistory?: VersionHistoryUncheckedUpdateManyWithoutMunicipalityNestedInput
+  }
+
+  export type MunicipalityUncheckedUpdateManyWithoutVersionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    region?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VersionHistoryUpdateWithoutSoftwareVersionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromVersion?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    municipality?: MunicipalityUpdateOneRequiredWithoutVersionHistoryNestedInput
+    user?: UserUpdateOneRequiredWithoutVersionHistoryNestedInput
+  }
+
+  export type VersionHistoryUncheckedUpdateWithoutSoftwareVersionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    municipalityId?: StringFieldUpdateOperationsInput | string
+    fromVersion?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedBy?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VersionHistoryUncheckedUpdateManyWithoutSoftwareVersionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    municipalityId?: StringFieldUpdateOperationsInput | string
+    fromVersion?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedBy?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VersionHistoryCreateManyUserInput = {
+    id?: string
+    municipalityId: string
+    fromVersion?: string | null
+    toVersion: string
+    notes?: string | null
+    updatedAt?: Date | string
+  }
+
+  export type VersionHistoryUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromVersion?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    municipality?: MunicipalityUpdateOneRequiredWithoutVersionHistoryNestedInput
+    softwareVersion?: SoftwareVersionUpdateOneRequiredWithoutVersionHistoryNestedInput
+  }
+
+  export type VersionHistoryUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    municipalityId?: StringFieldUpdateOperationsInput | string
+    fromVersion?: NullableStringFieldUpdateOperationsInput | string | null
+    toVersion?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VersionHistoryUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    municipalityId?: StringFieldUpdateOperationsInput | string
+    fromVersion?: NullableStringFieldUpdateOperationsInput | string | null
+    toVersion?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
 
 
   /**
@@ -24093,6 +27825,14 @@ export namespace Prisma {
      * @deprecated Use ConnectorConfigCountOutputTypeDefaultArgs instead
      */
     export type ConnectorConfigCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ConnectorConfigCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use SoftwareVersionCountOutputTypeDefaultArgs instead
+     */
+    export type SoftwareVersionCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = SoftwareVersionCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use UserCountOutputTypeDefaultArgs instead
+     */
+    export type UserCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use MunicipalityDefaultArgs instead
      */
@@ -24141,6 +27881,14 @@ export namespace Prisma {
      * @deprecated Use ConnectorLogDefaultArgs instead
      */
     export type ConnectorLogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ConnectorLogDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use SoftwareVersionDefaultArgs instead
+     */
+    export type SoftwareVersionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = SoftwareVersionDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use VersionHistoryDefaultArgs instead
+     */
+    export type VersionHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = VersionHistoryDefaultArgs<ExtArgs>
     /**
      * @deprecated Use UserDefaultArgs instead
      */

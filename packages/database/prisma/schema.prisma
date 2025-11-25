@@ -17,23 +17,27 @@ datasource db {
 
 /// Municipality: Entidad municipal
 model Municipality {
-  id        String   @id @default(cuid())
-  name      String
-  country   String   @default("Chile")
-  region    String
-  locale    String   @default("es-CL")
-  timezone  String   @default("America/Santiago")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id              String   @id @default(cuid())
+  name            String
+  country         String   @default("Chile")
+  region          String
+  locale          String   @default("es-CL")
+  timezone        String   @default("America/Santiago")
+  softwareVersion String? // Current software version (e.g., "1.15.2")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 
   // Relations
-  budgets      Budget[]
-  expenditures Expenditure[]
-  projects     Project[]
-  contracts    Contract[]
-  users        User[]
+  budgets        Budget[]
+  expenditures   Expenditure[]
+  projects       Project[]
+  contracts      Contract[]
+  users          User[]
+  versionHistory VersionHistory[]
+  version        SoftwareVersion? @relation(fields: [softwareVersion], references: [version], onDelete: SetNull)
 
   @@index([region])
+  @@index([softwareVersion])
   @@map("municipalities")
 }
 
@@ -258,22 +262,22 @@ model IngestionRun {
 
 /// ConnectorConfig: Configuration for external API connectors
 model ConnectorConfig {
-  id          String    @id @default(cuid())
-  name        String    @unique
+  id          String   @id @default(cuid())
+  name        String   @unique
   type        String // e.g., 'chilecompra', 'budget-source', 'custom'
-  description String?   @db.Text
+  description String?  @db.Text
   baseUrl     String
   apiKey      String? // Encrypted API key
-  authType    String    @default("none") // 'none', 'api-key', 'oauth', 'bearer'
+  authType    String   @default("none") // 'none', 'api-key', 'oauth', 'bearer'
   authConfig  Json? // Additional auth configuration
   config      Json? // Additional connector-specific configuration
   headers     Json? // Custom headers
-  timeout     Int       @default(30000) // Request timeout in ms
-  retryCount  Int       @default(3) // Number of retries
+  timeout     Int      @default(30000) // Request timeout in ms
+  retryCount  Int      @default(3) // Number of retries
   rateLimit   Int? // Requests per minute
-  isActive    Boolean   @default(true)
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   // Relations
   logs ConnectorLog[]
@@ -285,7 +289,7 @@ model ConnectorConfig {
 
 /// ConnectorLog: Request/response logging for API connectors
 model ConnectorLog {
-  id                String    @id @default(cuid())
+  id                String   @id @default(cuid())
   connectorConfigId String
   endpoint          String
   method            String // GET, POST, PUT, DELETE
@@ -295,8 +299,8 @@ model ConnectorLog {
   responseHeaders   Json?
   responseBody      Json?
   duration          Int? // Duration in milliseconds
-  error             String?   @db.Text
-  createdAt         DateTime  @default(now())
+  error             String?  @db.Text
+  createdAt         DateTime @default(now())
 
   // Relations
   connectorConfig ConnectorConfig @relation(fields: [connectorConfigId], references: [id], onDelete: Cascade)
@@ -305,6 +309,51 @@ model ConnectorLog {
   @@index([createdAt])
   @@index([responseStatus])
   @@map("connector_logs")
+}
+
+// ===========================
+// Version Management Entities
+// ===========================
+
+/// SoftwareVersion: Version control for platform releases
+model SoftwareVersion {
+  id          String   @id @default(cuid())
+  version     String   @unique // e.g., "1.15.2"
+  name        String // e.g., "Mejoras en Dashboard"
+  description String?  @db.Text
+  changelog   String?  @db.Text // Markdown format
+  releaseDate DateTime @default(now())
+  status      String   @default("draft") // 'draft', 'stable', 'deprecated'
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  municipalities Municipality[]
+  versionHistory VersionHistory[]
+
+  @@index([version])
+  @@index([status])
+  @@map("software_versions")
+}
+
+/// VersionHistory: Track version changes for municipalities
+model VersionHistory {
+  id             String   @id @default(cuid())
+  municipalityId String
+  fromVersion    String?
+  toVersion      String
+  updatedBy      String
+  notes          String?  @db.Text
+  updatedAt      DateTime @default(now())
+
+  // Relations
+  municipality    Municipality    @relation(fields: [municipalityId], references: [id], onDelete: Cascade)
+  softwareVersion SoftwareVersion @relation(fields: [toVersion], references: [version], onDelete: Restrict)
+  user            User            @relation(fields: [updatedBy], references: [id], onDelete: Restrict)
+
+  @@index([municipalityId, updatedAt])
+  @@index([toVersion])
+  @@map("version_history")
 }
 
 // ===========================
@@ -323,7 +372,8 @@ model User {
   updatedAt      DateTime  @updatedAt
 
   // Relations
-  municipality Municipality? @relation(fields: [municipalityId], references: [id], onDelete: SetNull)
+  municipality   Municipality?    @relation(fields: [municipalityId], references: [id], onDelete: SetNull)
+  versionHistory VersionHistory[]
 
   @@index([email, role])
   @@index([role])

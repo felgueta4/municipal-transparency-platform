@@ -129,6 +129,7 @@ exports.Prisma.MunicipalityScalarFieldEnum = {
   region: 'region',
   locale: 'locale',
   timezone: 'timezone',
+  softwareVersion: 'softwareVersion',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -287,6 +288,28 @@ exports.Prisma.ConnectorLogScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.SoftwareVersionScalarFieldEnum = {
+  id: 'id',
+  version: 'version',
+  name: 'name',
+  description: 'description',
+  changelog: 'changelog',
+  releaseDate: 'releaseDate',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.VersionHistoryScalarFieldEnum = {
+  id: 'id',
+  municipalityId: 'municipalityId',
+  fromVersion: 'fromVersion',
+  toVersion: 'toVersion',
+  updatedBy: 'updatedBy',
+  notes: 'notes',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
@@ -351,6 +374,8 @@ exports.Prisma.ModelName = {
   IngestionRun: 'IngestionRun',
   ConnectorConfig: 'ConnectorConfig',
   ConnectorLog: 'ConnectorLog',
+  SoftwareVersion: 'SoftwareVersion',
+  VersionHistory: 'VersionHistory',
   User: 'User',
   QueryAudit: 'QueryAudit'
 };

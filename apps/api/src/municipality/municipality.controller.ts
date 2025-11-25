@@ -12,10 +12,14 @@ import {
   UseGuards,
   HttpCode,
   HttpStatus,
+  Req,
+  ParseIntPipe,
+  DefaultValuePipe,
 } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth, ApiQuery } from '@nestjs/swagger';
 import { MunicipalityService } from './municipality.service';
 import { CreateMunicipalityDto, UpdateMunicipalityDto, MunicipalityFilterDto } from './dto';
+import { UpdateMunicipalityVersionDto } from '../versions/dto';
 import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../common/guards/roles.guard';
 import { Roles } from '../common/decorators/roles.decorator';
@@ -95,5 +99,79 @@ export class MunicipalityController {
   })
   remove(@Param('id') id: string) {
     return this.municipalityService.remove(id);
+  }
+
+  // ===========================
+  // Version Management Endpoints
+  // ===========================
+
+  @Get(':id/version')
+  @ApiOperation({ summary: 'Obtener la versión actual del municipio' })
+  @ApiResponse({
+    status: 200,
+    description: 'Versión actual del municipio',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Municipio no encontrado',
+  })
+  getVersion(@Param('id') id: string) {
+    return this.municipalityService.getVersion(id);
+  }
+
+  @Patch(':id/version')
+  @Roles('super_admin')
+  @ApiOperation({
+    summary: 'Actualizar la versión del municipio (solo superadmin)',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Versión actualizada exitosamente',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Municipio o versión no encontrados',
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Versión no válida o no estable',
+  })
+  @ApiResponse({
+    status: 403,
+    description: 'No autorizado',
+  })
+  updateVersion(
+    @Param('id') id: string,
+    @Body() updateVersionDto: UpdateMunicipalityVersionDto,
+    @Req() req: any,
+  ) {
+    // El ID del usuario que realiza el cambio viene del JWT
+    const userId = req.user?.id || req.user?.sub;
+    return this.municipalityService.updateVersion(
+      id,
+      updateVersionDto.toVersion,
+      userId,
+      updateVersionDto.notes,
+    );
+  }
+
+  @Get(':id/version-history')
+  @ApiOperation({ summary: 'Obtener el historial de versiones del municipio' })
+  @ApiQuery({ name: 'page', required: false, type: Number })
+  @ApiQuery({ name: 'limit', required: false, type: Number })
+  @ApiResponse({
+    status: 200,
+    description: 'Historial de versiones',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Municipio no encontrado',
+  })
+  getVersionHistory(
+    @Param('id') id: string,
+    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
+    @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
+  ) {
+    return this.municipalityService.getVersionHistory(id, page, limit);
   }
 }

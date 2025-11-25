@@ -1,6 +1,6 @@
 
 
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateMunicipalityDto, UpdateMunicipalityDto, MunicipalityFilterDto } from './dto';
 
@@ -111,5 +111,188 @@ export class MunicipalityService {
     return this.prisma.municipality.delete({
       where: { id },
     });
+  }
+
+  /**
+   * Obtener la versión actual de un municipio
+   */
+  async getVersion(id: string) {
+    const municipality = await this.prisma.municipality.findUnique({
+      where: { id },
+      select: {
+        id: true,
+        name: true,
+        softwareVersion: true,
+        version: {
+          select: {
+            version: true,
+            name: true,
+            description: true,
+            releaseDate: true,
+            status: true,
+          },
+        },
+      },
+    });
+
+    if (!municipality) {
+      throw new NotFoundException(`Municipio con ID ${id} no encontrado`);
+    }
+
+    return municipality;
+  }
+
+  /**
+   * Actualizar la versión de un municipio y registrar el cambio en el historial
+   */
+  async updateVersion(
+    id: string,
+    toVersion: string,
+    updatedBy: string,
+    notes?: string,
+  ) {
+    // Verificar que el municipio existe
+    const municipality = await this.prisma.municipality.findUnique({
+      where: { id },
+    });
+
+    if (!municipality) {
+      throw new NotFoundException(`Municipio con ID ${id} no encontrado`);
+    }
+
+    // Verificar que la versión de destino existe y está en estado estable
+    const targetVersion = await this.prisma.softwareVersion.findUnique({
+      where: { version: toVersion },
+    });
+
+    if (!targetVersion) {
+      throw new NotFoundException(`La versión ${toVersion} no existe`);
+    }
+
+    if (targetVersion.status !== 'stable') {
+      throw new BadRequestException(
+        `La versión ${toVersion} no está en estado estable. Estado actual: ${targetVersion.status}`,
+      );
+    }
+
+    // Verificar que no sea la misma versión
+    if (municipality.softwareVersion === toVersion) {
+      throw new BadRequestException(
+        `El municipio ya está utilizando la versión ${toVersion}`,
+      );
+    }
+
+    // Actualizar la versión del municipio y crear registro de historial en una transacción
+    const result = await this.prisma.$transaction(async (tx) => {
+      // Actualizar el municipio
+      const updatedMunicipality = await tx.municipality.update({
+        where: { id },
+        data: {
+          softwareVersion: toVersion,
+        },
+        include: {
+          version: true,
+        },
+      });
+
+      // Crear registro en el historial
+      const historyRecord = await tx.versionHistory.create({
+        data: {
+          municipalityId: id,
+          fromVersion: municipality.softwareVersion,
+          toVersion,
+          updatedBy,
+          notes,
+        },
+        include: {
+          municipality: {
+            select: {
+              id: true,
+              name: true,
+              region: true,
+            },
+          },
+          softwareVersion: {
+            select: {
+              version: true,
+              name: true,
+              description: true,
+            },
+          },
+          user: {
+            select: {
+              id: true,
+              email: true,
+            },
+          },
+        },
+      });
+
+      return {
+        municipality: updatedMunicipality,
+        historyRecord,
+      };
+    });
+
+    return result;
+  }
+
+  /**
+   * Obtener el historial de versiones de un municipio
+   */
+  async getVersionHistory(id: string, page = 1, limit = 10) {
+    // Verificar que el municipio existe
+    const municipality = await this.prisma.municipality.findUnique({
+      where: { id },
+    });
+
+    if (!municipality) {
+      throw new NotFoundException(`Municipio con ID ${id} no encontrado`);
+    }
+
+    const skip = (page - 1) * limit;
+
+    const [data, total] = await Promise.all([
+      this.prisma.versionHistory.findMany({
+        where: { municipalityId: id },
+        skip,
+        take: limit,
+        orderBy: { updatedAt: 'desc' },
+        include: {
+          softwareVersion: {
+            select: {
+              version: true,
+              name: true,
+              description: true,
+              releaseDate: true,
+            },
+          },
+          user: {
+            select: {
+              id: true,
+              email: true,
+              role: true,
+            },
+          },
+        },
+      }),
+      this.prisma.versionHistory.count({ where: { municipalityId: id } }),
+    ]);
+
+    return {
+      data,
+      municipality: {
+        id: municipality.id,
+        name: municipality.name,
+        region: municipality.region,
+        currentVersion: municipality.softwareVersion,
+      },
+      meta: {
+        page,
+        limit,
+        total,
+        totalPages: Math.ceil(total / limit),
+      },
+    };
   }
 }
