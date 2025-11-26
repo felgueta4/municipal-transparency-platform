@@ -19,6 +19,7 @@ import { VersionHistoryModule } from './version-history/version-history.module';
 import { NotificationsModule } from './notifications/notifications.module';
 import { AnalyticsModule } from './analytics/analytics.module';
 import { FeatureFlagsModule } from './feature-flags/feature-flags.module';
+import { HealthModule } from './health/health.module';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { RolesGuard } from './common/guards/roles.guard';
 import { GlobalExceptionFilter } from './common/filters/http-exception.filter';
@@ -61,6 +62,7 @@ import { envValidationSchema } from './config/env.validation';
 
     // Módulos de la aplicación
     PrismaModule,
+    HealthModule,
     AuthModule,
     BudgetModule,
     ExpenditureModule,
