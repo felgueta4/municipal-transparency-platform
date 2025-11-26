@@ -28,14 +28,15 @@ model Municipality {
   updatedAt       DateTime @updatedAt
 
   // Relations
-  budgets        Budget[]
-  expenditures   Expenditure[]
-  projects       Project[]
-  contracts      Contract[]
-  users          User[]
-  versionHistory VersionHistory[]
-  notifications  Notification[]
-  version        SoftwareVersion? @relation(fields: [softwareVersion], references: [version], onDelete: SetNull)
+  budgets              Budget[]
+  expenditures         Expenditure[]
+  projects             Project[]
+  contracts            Contract[]
+  users                User[]
+  versionHistory       VersionHistory[]
+  notifications        Notification[]
+  municipalityFeatures MunicipalityFeature[]
+  version              SoftwareVersion?      @relation(fields: [softwareVersion], references: [version], onDelete: SetNull)
 
   @@index([region])
   @@index([softwareVersion])
@@ -386,6 +387,49 @@ model Notification {
 }
 
 // ===========================
+// Feature Flags Entities
+// ===========================
+
+/// FeatureFlag: Global feature flags definition
+model FeatureFlag {
+  id             String   @id @default(cuid())
+  key            String   @unique // e.g., "new_dashboard", "mapa_obra", "ia_informes"
+  name           String // Display name
+  description    String?  @db.Text
+  defaultEnabled Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  // Relations
+  municipalityFeatures MunicipalityFeature[]
+
+  @@index([key])
+  @@index([defaultEnabled])
+  @@map("feature_flags")
+}
+
+/// MunicipalityFeature: Feature flag overrides for specific municipalities
+model MunicipalityFeature {
+  id             String   @id @default(cuid())
+  municipalityId String
+  featureFlagId  String
+  enabled        Boolean
+  updatedBy      String
+  updatedAt      DateTime @updatedAt
+
+  // Relations
+  municipality Municipality @relation(fields: [municipalityId], references: [id], onDelete: Cascade)
+  featureFlag  FeatureFlag  @relation(fields: [featureFlagId], references: [id], onDelete: Cascade)
+  user         User         @relation("MunicipalityFeatureUpdater", fields: [updatedBy], references: [id], onDelete: Restrict)
+
+  @@unique([municipalityId, featureFlagId])
+  @@index([municipalityId])
+  @@index([featureFlagId])
+  @@index([updatedAt])
+  @@map("municipality_features")
+}
+
+// ===========================
 // User & Audit Entities
 // ===========================
 
@@ -401,9 +445,10 @@ model User {
   updatedAt      DateTime  @updatedAt
 
   // Relations
-  municipality         Municipality?    @relation(fields: [municipalityId], references: [id], onDelete: SetNull)
+  municipality         Municipality?         @relation(fields: [municipalityId], references: [id], onDelete: SetNull)
   versionHistory       VersionHistory[]
-  createdNotifications Notification[]   @relation("NotificationCreator")
+  createdNotifications Notification[]        @relation("NotificationCreator")
+  updatedFeatures      MunicipalityFeature[] @relation("MunicipalityFeatureUpdater")
 
   @@index([email, role])
   @@index([role])

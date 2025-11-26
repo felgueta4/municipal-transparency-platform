@@ -17,6 +17,8 @@ import { ConnectorsModule } from './connectors/connectors.module';
 import { VersionsModule } from './versions/versions.module';
 import { VersionHistoryModule } from './version-history/version-history.module';
 import { NotificationsModule } from './notifications/notifications.module';
+import { AnalyticsModule } from './analytics/analytics.module';
+import { FeatureFlagsModule } from './feature-flags/feature-flags.module';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { RolesGuard } from './common/guards/roles.guard';
 import { GlobalExceptionFilter } from './common/filters/http-exception.filter';
@@ -72,6 +74,8 @@ import { envValidationSchema } from './config/env.validation';
     VersionsModule,
     VersionHistoryModule,
     NotificationsModule,
+    AnalyticsModule,
+    FeatureFlagsModule,
   ],
   providers: [
     // JWT Guard global (por defecto todos los endpoints requieren autenticación)

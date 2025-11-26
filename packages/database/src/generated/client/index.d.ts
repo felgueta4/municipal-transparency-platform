@@ -89,6 +89,16 @@ export type VersionHistory = $Result.DefaultSelection<Prisma.$VersionHistoryPayl
  */
 export type Notification = $Result.DefaultSelection<Prisma.$NotificationPayload>
 /**
+ * Model FeatureFlag
+ * FeatureFlag: Global feature flags definition
+ */
+export type FeatureFlag = $Result.DefaultSelection<Prisma.$FeatureFlagPayload>
+/**
+ * Model MunicipalityFeature
+ * MunicipalityFeature: Feature flag overrides for specific municipalities
+ */
+export type MunicipalityFeature = $Result.DefaultSelection<Prisma.$MunicipalityFeaturePayload>
+/**
  * Model User
  * User: Usuario del sistema
  */
@@ -371,6 +381,26 @@ export class PrismaClient<
     * ```
     */
   get notification(): Prisma.NotificationDelegate<ExtArgs>;
+
+  /**
+   * `prisma.featureFlag`: Exposes CRUD operations for the **FeatureFlag** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FeatureFlags
+    * const featureFlags = await prisma.featureFlag.findMany()
+    * ```
+    */
+  get featureFlag(): Prisma.FeatureFlagDelegate<ExtArgs>;
+
+  /**
+   * `prisma.municipalityFeature`: Exposes CRUD operations for the **MunicipalityFeature** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MunicipalityFeatures
+    * const municipalityFeatures = await prisma.municipalityFeature.findMany()
+    * ```
+    */
+  get municipalityFeature(): Prisma.MunicipalityFeatureDelegate<ExtArgs>;
 
   /**
    * `prisma.user`: Exposes CRUD operations for the **User** model.
@@ -847,6 +877,8 @@ export namespace Prisma {
     SoftwareVersion: 'SoftwareVersion',
     VersionHistory: 'VersionHistory',
     Notification: 'Notification',
+    FeatureFlag: 'FeatureFlag',
+    MunicipalityFeature: 'MunicipalityFeature',
     User: 'User',
     QueryAudit: 'QueryAudit'
   };
@@ -864,7 +896,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "municipality" | "fiscalYear" | "budget" | "expenditure" | "project" | "fundingSource" | "supplier" | "contract" | "dataset" | "ingestionRun" | "connectorConfig" | "connectorLog" | "softwareVersion" | "versionHistory" | "notification" | "user" | "queryAudit"
+      modelProps: "municipality" | "fiscalYear" | "budget" | "expenditure" | "project" | "fundingSource" | "supplier" | "contract" | "dataset" | "ingestionRun" | "connectorConfig" | "connectorLog" | "softwareVersion" | "versionHistory" | "notification" | "featureFlag" | "municipalityFeature" | "user" | "queryAudit"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1918,6 +1950,146 @@ export namespace Prisma {
           }
         }
       }
+      FeatureFlag: {
+        payload: Prisma.$FeatureFlagPayload<ExtArgs>
+        fields: Prisma.FeatureFlagFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FeatureFlagFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureFlagPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FeatureFlagFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureFlagPayload>
+          }
+          findFirst: {
+            args: Prisma.FeatureFlagFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureFlagPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FeatureFlagFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureFlagPayload>
+          }
+          findMany: {
+            args: Prisma.FeatureFlagFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureFlagPayload>[]
+          }
+          create: {
+            args: Prisma.FeatureFlagCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureFlagPayload>
+          }
+          createMany: {
+            args: Prisma.FeatureFlagCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FeatureFlagCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureFlagPayload>[]
+          }
+          delete: {
+            args: Prisma.FeatureFlagDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureFlagPayload>
+          }
+          update: {
+            args: Prisma.FeatureFlagUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureFlagPayload>
+          }
+          deleteMany: {
+            args: Prisma.FeatureFlagDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FeatureFlagUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.FeatureFlagUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureFlagPayload>
+          }
+          aggregate: {
+            args: Prisma.FeatureFlagAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFeatureFlag>
+          }
+          groupBy: {
+            args: Prisma.FeatureFlagGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FeatureFlagGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FeatureFlagCountArgs<ExtArgs>
+            result: $Utils.Optional<FeatureFlagCountAggregateOutputType> | number
+          }
+        }
+      }
+      MunicipalityFeature: {
+        payload: Prisma.$MunicipalityFeaturePayload<ExtArgs>
+        fields: Prisma.MunicipalityFeatureFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MunicipalityFeatureFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MunicipalityFeaturePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MunicipalityFeatureFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MunicipalityFeaturePayload>
+          }
+          findFirst: {
+            args: Prisma.MunicipalityFeatureFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MunicipalityFeaturePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MunicipalityFeatureFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MunicipalityFeaturePayload>
+          }
+          findMany: {
+            args: Prisma.MunicipalityFeatureFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MunicipalityFeaturePayload>[]
+          }
+          create: {
+            args: Prisma.MunicipalityFeatureCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MunicipalityFeaturePayload>
+          }
+          createMany: {
+            args: Prisma.MunicipalityFeatureCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MunicipalityFeatureCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MunicipalityFeaturePayload>[]
+          }
+          delete: {
+            args: Prisma.MunicipalityFeatureDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MunicipalityFeaturePayload>
+          }
+          update: {
+            args: Prisma.MunicipalityFeatureUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MunicipalityFeaturePayload>
+          }
+          deleteMany: {
+            args: Prisma.MunicipalityFeatureDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MunicipalityFeatureUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.MunicipalityFeatureUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MunicipalityFeaturePayload>
+          }
+          aggregate: {
+            args: Prisma.MunicipalityFeatureAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMunicipalityFeature>
+          }
+          groupBy: {
+            args: Prisma.MunicipalityFeatureGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MunicipalityFeatureGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MunicipalityFeatureCountArgs<ExtArgs>
+            result: $Utils.Optional<MunicipalityFeatureCountAggregateOutputType> | number
+          }
+        }
+      }
       User: {
         payload: Prisma.$UserPayload<ExtArgs>
         fields: Prisma.UserFieldRefs
@@ -2226,6 +2398,7 @@ export namespace Prisma {
     users: number
     versionHistory: number
     notifications: number
+    municipalityFeatures: number
   }
 
   export type MunicipalityCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2236,6 +2409,7 @@ export namespace Prisma {
     users?: boolean | MunicipalityCountOutputTypeCountUsersArgs
     versionHistory?: boolean | MunicipalityCountOutputTypeCountVersionHistoryArgs
     notifications?: boolean | MunicipalityCountOutputTypeCountNotificationsArgs
+    municipalityFeatures?: boolean | MunicipalityCountOutputTypeCountMunicipalityFeaturesArgs
   }
 
   // Custom InputTypes
@@ -2296,6 +2470,13 @@ export namespace Prisma {
    */
   export type MunicipalityCountOutputTypeCountNotificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: NotificationWhereInput
+  }
+
+  /**
+   * MunicipalityCountOutputType without action
+   */
+  export type MunicipalityCountOutputTypeCountMunicipalityFeaturesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MunicipalityFeatureWhereInput
   }
 
 
@@ -2513,17 +2694,50 @@ export namespace Prisma {
 
 
   /**
+   * Count Type FeatureFlagCountOutputType
+   */
+
+  export type FeatureFlagCountOutputType = {
+    municipalityFeatures: number
+  }
+
+  export type FeatureFlagCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    municipalityFeatures?: boolean | FeatureFlagCountOutputTypeCountMunicipalityFeaturesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FeatureFlagCountOutputType without action
+   */
+  export type FeatureFlagCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureFlagCountOutputType
+     */
+    select?: FeatureFlagCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FeatureFlagCountOutputType without action
+   */
+  export type FeatureFlagCountOutputTypeCountMunicipalityFeaturesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MunicipalityFeatureWhereInput
+  }
+
+
+  /**
    * Count Type UserCountOutputType
    */
 
   export type UserCountOutputType = {
     versionHistory: number
     createdNotifications: number
+    updatedFeatures: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     versionHistory?: boolean | UserCountOutputTypeCountVersionHistoryArgs
     createdNotifications?: boolean | UserCountOutputTypeCountCreatedNotificationsArgs
+    updatedFeatures?: boolean | UserCountOutputTypeCountUpdatedFeaturesArgs
   }
 
   // Custom InputTypes
@@ -2549,6 +2763,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountCreatedNotificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: NotificationWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountUpdatedFeaturesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MunicipalityFeatureWhereInput
   }
 
 
@@ -2759,6 +2980,7 @@ export namespace Prisma {
     users?: boolean | Municipality$usersArgs<ExtArgs>
     versionHistory?: boolean | Municipality$versionHistoryArgs<ExtArgs>
     notifications?: boolean | Municipality$notificationsArgs<ExtArgs>
+    municipalityFeatures?: boolean | Municipality$municipalityFeaturesArgs<ExtArgs>
     version?: boolean | Municipality$versionArgs<ExtArgs>
     _count?: boolean | MunicipalityCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["municipality"]>
@@ -2796,6 +3018,7 @@ export namespace Prisma {
     users?: boolean | Municipality$usersArgs<ExtArgs>
     versionHistory?: boolean | Municipality$versionHistoryArgs<ExtArgs>
     notifications?: boolean | Municipality$notificationsArgs<ExtArgs>
+    municipalityFeatures?: boolean | Municipality$municipalityFeaturesArgs<ExtArgs>
     version?: boolean | Municipality$versionArgs<ExtArgs>
     _count?: boolean | MunicipalityCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -2813,6 +3036,7 @@ export namespace Prisma {
       users: Prisma.$UserPayload<ExtArgs>[]
       versionHistory: Prisma.$VersionHistoryPayload<ExtArgs>[]
       notifications: Prisma.$NotificationPayload<ExtArgs>[]
+      municipalityFeatures: Prisma.$MunicipalityFeaturePayload<ExtArgs>[]
       version: Prisma.$SoftwareVersionPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -3196,6 +3420,7 @@ export namespace Prisma {
     users<T extends Municipality$usersArgs<ExtArgs> = {}>(args?: Subset<T, Municipality$usersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany"> | Null>
     versionHistory<T extends Municipality$versionHistoryArgs<ExtArgs> = {}>(args?: Subset<T, Municipality$versionHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VersionHistoryPayload<ExtArgs>, T, "findMany"> | Null>
     notifications<T extends Municipality$notificationsArgs<ExtArgs> = {}>(args?: Subset<T, Municipality$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany"> | Null>
+    municipalityFeatures<T extends Municipality$municipalityFeaturesArgs<ExtArgs> = {}>(args?: Subset<T, Municipality$municipalityFeaturesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MunicipalityFeaturePayload<ExtArgs>, T, "findMany"> | Null>
     version<T extends Municipality$versionArgs<ExtArgs> = {}>(args?: Subset<T, Municipality$versionArgs<ExtArgs>>): Prisma__SoftwareVersionClient<$Result.GetResult<Prisma.$SoftwareVersionPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3690,6 +3915,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * Municipality.municipalityFeatures
+   */
+  export type Municipality$municipalityFeaturesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MunicipalityFeature
+     */
+    select?: MunicipalityFeatureSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityFeatureInclude<ExtArgs> | null
+    where?: MunicipalityFeatureWhereInput
+    orderBy?: MunicipalityFeatureOrderByWithRelationInput | MunicipalityFeatureOrderByWithRelationInput[]
+    cursor?: MunicipalityFeatureWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MunicipalityFeatureScalarFieldEnum | MunicipalityFeatureScalarFieldEnum[]
   }
 
   /**
@@ -18236,6 +18481,1935 @@ export namespace Prisma {
 
 
   /**
+   * Model FeatureFlag
+   */
+
+  export type AggregateFeatureFlag = {
+    _count: FeatureFlagCountAggregateOutputType | null
+    _min: FeatureFlagMinAggregateOutputType | null
+    _max: FeatureFlagMaxAggregateOutputType | null
+  }
+
+  export type FeatureFlagMinAggregateOutputType = {
+    id: string | null
+    key: string | null
+    name: string | null
+    description: string | null
+    defaultEnabled: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FeatureFlagMaxAggregateOutputType = {
+    id: string | null
+    key: string | null
+    name: string | null
+    description: string | null
+    defaultEnabled: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FeatureFlagCountAggregateOutputType = {
+    id: number
+    key: number
+    name: number
+    description: number
+    defaultEnabled: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type FeatureFlagMinAggregateInputType = {
+    id?: true
+    key?: true
+    name?: true
+    description?: true
+    defaultEnabled?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FeatureFlagMaxAggregateInputType = {
+    id?: true
+    key?: true
+    name?: true
+    description?: true
+    defaultEnabled?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FeatureFlagCountAggregateInputType = {
+    id?: true
+    key?: true
+    name?: true
+    description?: true
+    defaultEnabled?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type FeatureFlagAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FeatureFlag to aggregate.
+     */
+    where?: FeatureFlagWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeatureFlags to fetch.
+     */
+    orderBy?: FeatureFlagOrderByWithRelationInput | FeatureFlagOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FeatureFlagWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeatureFlags from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeatureFlags.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FeatureFlags
+    **/
+    _count?: true | FeatureFlagCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FeatureFlagMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FeatureFlagMaxAggregateInputType
+  }
+
+  export type GetFeatureFlagAggregateType<T extends FeatureFlagAggregateArgs> = {
+        [P in keyof T & keyof AggregateFeatureFlag]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFeatureFlag[P]>
+      : GetScalarType<T[P], AggregateFeatureFlag[P]>
+  }
+
+
+
+
+  export type FeatureFlagGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeatureFlagWhereInput
+    orderBy?: FeatureFlagOrderByWithAggregationInput | FeatureFlagOrderByWithAggregationInput[]
+    by: FeatureFlagScalarFieldEnum[] | FeatureFlagScalarFieldEnum
+    having?: FeatureFlagScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FeatureFlagCountAggregateInputType | true
+    _min?: FeatureFlagMinAggregateInputType
+    _max?: FeatureFlagMaxAggregateInputType
+  }
+
+  export type FeatureFlagGroupByOutputType = {
+    id: string
+    key: string
+    name: string
+    description: string | null
+    defaultEnabled: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: FeatureFlagCountAggregateOutputType | null
+    _min: FeatureFlagMinAggregateOutputType | null
+    _max: FeatureFlagMaxAggregateOutputType | null
+  }
+
+  type GetFeatureFlagGroupByPayload<T extends FeatureFlagGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FeatureFlagGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FeatureFlagGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FeatureFlagGroupByOutputType[P]>
+            : GetScalarType<T[P], FeatureFlagGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FeatureFlagSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    key?: boolean
+    name?: boolean
+    description?: boolean
+    defaultEnabled?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    municipalityFeatures?: boolean | FeatureFlag$municipalityFeaturesArgs<ExtArgs>
+    _count?: boolean | FeatureFlagCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["featureFlag"]>
+
+  export type FeatureFlagSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    key?: boolean
+    name?: boolean
+    description?: boolean
+    defaultEnabled?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["featureFlag"]>
+
+  export type FeatureFlagSelectScalar = {
+    id?: boolean
+    key?: boolean
+    name?: boolean
+    description?: boolean
+    defaultEnabled?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type FeatureFlagInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    municipalityFeatures?: boolean | FeatureFlag$municipalityFeaturesArgs<ExtArgs>
+    _count?: boolean | FeatureFlagCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type FeatureFlagIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $FeatureFlagPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FeatureFlag"
+    objects: {
+      municipalityFeatures: Prisma.$MunicipalityFeaturePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      key: string
+      name: string
+      description: string | null
+      defaultEnabled: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["featureFlag"]>
+    composites: {}
+  }
+
+  type FeatureFlagGetPayload<S extends boolean | null | undefined | FeatureFlagDefaultArgs> = $Result.GetResult<Prisma.$FeatureFlagPayload, S>
+
+  type FeatureFlagCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<FeatureFlagFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: FeatureFlagCountAggregateInputType | true
+    }
+
+  export interface FeatureFlagDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FeatureFlag'], meta: { name: 'FeatureFlag' } }
+    /**
+     * Find zero or one FeatureFlag that matches the filter.
+     * @param {FeatureFlagFindUniqueArgs} args - Arguments to find a FeatureFlag
+     * @example
+     * // Get one FeatureFlag
+     * const featureFlag = await prisma.featureFlag.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FeatureFlagFindUniqueArgs>(args: SelectSubset<T, FeatureFlagFindUniqueArgs<ExtArgs>>): Prisma__FeatureFlagClient<$Result.GetResult<Prisma.$FeatureFlagPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one FeatureFlag that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {FeatureFlagFindUniqueOrThrowArgs} args - Arguments to find a FeatureFlag
+     * @example
+     * // Get one FeatureFlag
+     * const featureFlag = await prisma.featureFlag.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FeatureFlagFindUniqueOrThrowArgs>(args: SelectSubset<T, FeatureFlagFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FeatureFlagClient<$Result.GetResult<Prisma.$FeatureFlagPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first FeatureFlag that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeatureFlagFindFirstArgs} args - Arguments to find a FeatureFlag
+     * @example
+     * // Get one FeatureFlag
+     * const featureFlag = await prisma.featureFlag.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FeatureFlagFindFirstArgs>(args?: SelectSubset<T, FeatureFlagFindFirstArgs<ExtArgs>>): Prisma__FeatureFlagClient<$Result.GetResult<Prisma.$FeatureFlagPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first FeatureFlag that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeatureFlagFindFirstOrThrowArgs} args - Arguments to find a FeatureFlag
+     * @example
+     * // Get one FeatureFlag
+     * const featureFlag = await prisma.featureFlag.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FeatureFlagFindFirstOrThrowArgs>(args?: SelectSubset<T, FeatureFlagFindFirstOrThrowArgs<ExtArgs>>): Prisma__FeatureFlagClient<$Result.GetResult<Prisma.$FeatureFlagPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more FeatureFlags that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeatureFlagFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FeatureFlags
+     * const featureFlags = await prisma.featureFlag.findMany()
+     * 
+     * // Get first 10 FeatureFlags
+     * const featureFlags = await prisma.featureFlag.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const featureFlagWithIdOnly = await prisma.featureFlag.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FeatureFlagFindManyArgs>(args?: SelectSubset<T, FeatureFlagFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeatureFlagPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a FeatureFlag.
+     * @param {FeatureFlagCreateArgs} args - Arguments to create a FeatureFlag.
+     * @example
+     * // Create one FeatureFlag
+     * const FeatureFlag = await prisma.featureFlag.create({
+     *   data: {
+     *     // ... data to create a FeatureFlag
+     *   }
+     * })
+     * 
+     */
+    create<T extends FeatureFlagCreateArgs>(args: SelectSubset<T, FeatureFlagCreateArgs<ExtArgs>>): Prisma__FeatureFlagClient<$Result.GetResult<Prisma.$FeatureFlagPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many FeatureFlags.
+     * @param {FeatureFlagCreateManyArgs} args - Arguments to create many FeatureFlags.
+     * @example
+     * // Create many FeatureFlags
+     * const featureFlag = await prisma.featureFlag.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FeatureFlagCreateManyArgs>(args?: SelectSubset<T, FeatureFlagCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FeatureFlags and returns the data saved in the database.
+     * @param {FeatureFlagCreateManyAndReturnArgs} args - Arguments to create many FeatureFlags.
+     * @example
+     * // Create many FeatureFlags
+     * const featureFlag = await prisma.featureFlag.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FeatureFlags and only return the `id`
+     * const featureFlagWithIdOnly = await prisma.featureFlag.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FeatureFlagCreateManyAndReturnArgs>(args?: SelectSubset<T, FeatureFlagCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeatureFlagPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a FeatureFlag.
+     * @param {FeatureFlagDeleteArgs} args - Arguments to delete one FeatureFlag.
+     * @example
+     * // Delete one FeatureFlag
+     * const FeatureFlag = await prisma.featureFlag.delete({
+     *   where: {
+     *     // ... filter to delete one FeatureFlag
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FeatureFlagDeleteArgs>(args: SelectSubset<T, FeatureFlagDeleteArgs<ExtArgs>>): Prisma__FeatureFlagClient<$Result.GetResult<Prisma.$FeatureFlagPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one FeatureFlag.
+     * @param {FeatureFlagUpdateArgs} args - Arguments to update one FeatureFlag.
+     * @example
+     * // Update one FeatureFlag
+     * const featureFlag = await prisma.featureFlag.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FeatureFlagUpdateArgs>(args: SelectSubset<T, FeatureFlagUpdateArgs<ExtArgs>>): Prisma__FeatureFlagClient<$Result.GetResult<Prisma.$FeatureFlagPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more FeatureFlags.
+     * @param {FeatureFlagDeleteManyArgs} args - Arguments to filter FeatureFlags to delete.
+     * @example
+     * // Delete a few FeatureFlags
+     * const { count } = await prisma.featureFlag.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FeatureFlagDeleteManyArgs>(args?: SelectSubset<T, FeatureFlagDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FeatureFlags.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeatureFlagUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FeatureFlags
+     * const featureFlag = await prisma.featureFlag.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FeatureFlagUpdateManyArgs>(args: SelectSubset<T, FeatureFlagUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one FeatureFlag.
+     * @param {FeatureFlagUpsertArgs} args - Arguments to update or create a FeatureFlag.
+     * @example
+     * // Update or create a FeatureFlag
+     * const featureFlag = await prisma.featureFlag.upsert({
+     *   create: {
+     *     // ... data to create a FeatureFlag
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FeatureFlag we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FeatureFlagUpsertArgs>(args: SelectSubset<T, FeatureFlagUpsertArgs<ExtArgs>>): Prisma__FeatureFlagClient<$Result.GetResult<Prisma.$FeatureFlagPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of FeatureFlags.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeatureFlagCountArgs} args - Arguments to filter FeatureFlags to count.
+     * @example
+     * // Count the number of FeatureFlags
+     * const count = await prisma.featureFlag.count({
+     *   where: {
+     *     // ... the filter for the FeatureFlags we want to count
+     *   }
+     * })
+    **/
+    count<T extends FeatureFlagCountArgs>(
+      args?: Subset<T, FeatureFlagCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FeatureFlagCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FeatureFlag.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeatureFlagAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FeatureFlagAggregateArgs>(args: Subset<T, FeatureFlagAggregateArgs>): Prisma.PrismaPromise<GetFeatureFlagAggregateType<T>>
+
+    /**
+     * Group by FeatureFlag.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeatureFlagGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FeatureFlagGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FeatureFlagGroupByArgs['orderBy'] }
+        : { orderBy?: FeatureFlagGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FeatureFlagGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFeatureFlagGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FeatureFlag model
+   */
+  readonly fields: FeatureFlagFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FeatureFlag.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FeatureFlagClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    municipalityFeatures<T extends FeatureFlag$municipalityFeaturesArgs<ExtArgs> = {}>(args?: Subset<T, FeatureFlag$municipalityFeaturesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MunicipalityFeaturePayload<ExtArgs>, T, "findMany"> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FeatureFlag model
+   */ 
+  interface FeatureFlagFieldRefs {
+    readonly id: FieldRef<"FeatureFlag", 'String'>
+    readonly key: FieldRef<"FeatureFlag", 'String'>
+    readonly name: FieldRef<"FeatureFlag", 'String'>
+    readonly description: FieldRef<"FeatureFlag", 'String'>
+    readonly defaultEnabled: FieldRef<"FeatureFlag", 'Boolean'>
+    readonly createdAt: FieldRef<"FeatureFlag", 'DateTime'>
+    readonly updatedAt: FieldRef<"FeatureFlag", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FeatureFlag findUnique
+   */
+  export type FeatureFlagFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureFlag
+     */
+    select?: FeatureFlagSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureFlagInclude<ExtArgs> | null
+    /**
+     * Filter, which FeatureFlag to fetch.
+     */
+    where: FeatureFlagWhereUniqueInput
+  }
+
+  /**
+   * FeatureFlag findUniqueOrThrow
+   */
+  export type FeatureFlagFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureFlag
+     */
+    select?: FeatureFlagSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureFlagInclude<ExtArgs> | null
+    /**
+     * Filter, which FeatureFlag to fetch.
+     */
+    where: FeatureFlagWhereUniqueInput
+  }
+
+  /**
+   * FeatureFlag findFirst
+   */
+  export type FeatureFlagFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureFlag
+     */
+    select?: FeatureFlagSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureFlagInclude<ExtArgs> | null
+    /**
+     * Filter, which FeatureFlag to fetch.
+     */
+    where?: FeatureFlagWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeatureFlags to fetch.
+     */
+    orderBy?: FeatureFlagOrderByWithRelationInput | FeatureFlagOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FeatureFlags.
+     */
+    cursor?: FeatureFlagWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeatureFlags from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeatureFlags.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FeatureFlags.
+     */
+    distinct?: FeatureFlagScalarFieldEnum | FeatureFlagScalarFieldEnum[]
+  }
+
+  /**
+   * FeatureFlag findFirstOrThrow
+   */
+  export type FeatureFlagFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureFlag
+     */
+    select?: FeatureFlagSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureFlagInclude<ExtArgs> | null
+    /**
+     * Filter, which FeatureFlag to fetch.
+     */
+    where?: FeatureFlagWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeatureFlags to fetch.
+     */
+    orderBy?: FeatureFlagOrderByWithRelationInput | FeatureFlagOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FeatureFlags.
+     */
+    cursor?: FeatureFlagWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeatureFlags from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeatureFlags.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FeatureFlags.
+     */
+    distinct?: FeatureFlagScalarFieldEnum | FeatureFlagScalarFieldEnum[]
+  }
+
+  /**
+   * FeatureFlag findMany
+   */
+  export type FeatureFlagFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureFlag
+     */
+    select?: FeatureFlagSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureFlagInclude<ExtArgs> | null
+    /**
+     * Filter, which FeatureFlags to fetch.
+     */
+    where?: FeatureFlagWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeatureFlags to fetch.
+     */
+    orderBy?: FeatureFlagOrderByWithRelationInput | FeatureFlagOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FeatureFlags.
+     */
+    cursor?: FeatureFlagWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeatureFlags from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeatureFlags.
+     */
+    skip?: number
+    distinct?: FeatureFlagScalarFieldEnum | FeatureFlagScalarFieldEnum[]
+  }
+
+  /**
+   * FeatureFlag create
+   */
+  export type FeatureFlagCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureFlag
+     */
+    select?: FeatureFlagSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureFlagInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FeatureFlag.
+     */
+    data: XOR<FeatureFlagCreateInput, FeatureFlagUncheckedCreateInput>
+  }
+
+  /**
+   * FeatureFlag createMany
+   */
+  export type FeatureFlagCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FeatureFlags.
+     */
+    data: FeatureFlagCreateManyInput | FeatureFlagCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FeatureFlag createManyAndReturn
+   */
+  export type FeatureFlagCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureFlag
+     */
+    select?: FeatureFlagSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many FeatureFlags.
+     */
+    data: FeatureFlagCreateManyInput | FeatureFlagCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FeatureFlag update
+   */
+  export type FeatureFlagUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureFlag
+     */
+    select?: FeatureFlagSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureFlagInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FeatureFlag.
+     */
+    data: XOR<FeatureFlagUpdateInput, FeatureFlagUncheckedUpdateInput>
+    /**
+     * Choose, which FeatureFlag to update.
+     */
+    where: FeatureFlagWhereUniqueInput
+  }
+
+  /**
+   * FeatureFlag updateMany
+   */
+  export type FeatureFlagUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FeatureFlags.
+     */
+    data: XOR<FeatureFlagUpdateManyMutationInput, FeatureFlagUncheckedUpdateManyInput>
+    /**
+     * Filter which FeatureFlags to update
+     */
+    where?: FeatureFlagWhereInput
+  }
+
+  /**
+   * FeatureFlag upsert
+   */
+  export type FeatureFlagUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureFlag
+     */
+    select?: FeatureFlagSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureFlagInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FeatureFlag to update in case it exists.
+     */
+    where: FeatureFlagWhereUniqueInput
+    /**
+     * In case the FeatureFlag found by the `where` argument doesn't exist, create a new FeatureFlag with this data.
+     */
+    create: XOR<FeatureFlagCreateInput, FeatureFlagUncheckedCreateInput>
+    /**
+     * In case the FeatureFlag was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FeatureFlagUpdateInput, FeatureFlagUncheckedUpdateInput>
+  }
+
+  /**
+   * FeatureFlag delete
+   */
+  export type FeatureFlagDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureFlag
+     */
+    select?: FeatureFlagSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureFlagInclude<ExtArgs> | null
+    /**
+     * Filter which FeatureFlag to delete.
+     */
+    where: FeatureFlagWhereUniqueInput
+  }
+
+  /**
+   * FeatureFlag deleteMany
+   */
+  export type FeatureFlagDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FeatureFlags to delete
+     */
+    where?: FeatureFlagWhereInput
+  }
+
+  /**
+   * FeatureFlag.municipalityFeatures
+   */
+  export type FeatureFlag$municipalityFeaturesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MunicipalityFeature
+     */
+    select?: MunicipalityFeatureSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityFeatureInclude<ExtArgs> | null
+    where?: MunicipalityFeatureWhereInput
+    orderBy?: MunicipalityFeatureOrderByWithRelationInput | MunicipalityFeatureOrderByWithRelationInput[]
+    cursor?: MunicipalityFeatureWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MunicipalityFeatureScalarFieldEnum | MunicipalityFeatureScalarFieldEnum[]
+  }
+
+  /**
+   * FeatureFlag without action
+   */
+  export type FeatureFlagDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureFlag
+     */
+    select?: FeatureFlagSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureFlagInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model MunicipalityFeature
+   */
+
+  export type AggregateMunicipalityFeature = {
+    _count: MunicipalityFeatureCountAggregateOutputType | null
+    _min: MunicipalityFeatureMinAggregateOutputType | null
+    _max: MunicipalityFeatureMaxAggregateOutputType | null
+  }
+
+  export type MunicipalityFeatureMinAggregateOutputType = {
+    id: string | null
+    municipalityId: string | null
+    featureFlagId: string | null
+    enabled: boolean | null
+    updatedBy: string | null
+    updatedAt: Date | null
+  }
+
+  export type MunicipalityFeatureMaxAggregateOutputType = {
+    id: string | null
+    municipalityId: string | null
+    featureFlagId: string | null
+    enabled: boolean | null
+    updatedBy: string | null
+    updatedAt: Date | null
+  }
+
+  export type MunicipalityFeatureCountAggregateOutputType = {
+    id: number
+    municipalityId: number
+    featureFlagId: number
+    enabled: number
+    updatedBy: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type MunicipalityFeatureMinAggregateInputType = {
+    id?: true
+    municipalityId?: true
+    featureFlagId?: true
+    enabled?: true
+    updatedBy?: true
+    updatedAt?: true
+  }
+
+  export type MunicipalityFeatureMaxAggregateInputType = {
+    id?: true
+    municipalityId?: true
+    featureFlagId?: true
+    enabled?: true
+    updatedBy?: true
+    updatedAt?: true
+  }
+
+  export type MunicipalityFeatureCountAggregateInputType = {
+    id?: true
+    municipalityId?: true
+    featureFlagId?: true
+    enabled?: true
+    updatedBy?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type MunicipalityFeatureAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MunicipalityFeature to aggregate.
+     */
+    where?: MunicipalityFeatureWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MunicipalityFeatures to fetch.
+     */
+    orderBy?: MunicipalityFeatureOrderByWithRelationInput | MunicipalityFeatureOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MunicipalityFeatureWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MunicipalityFeatures from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MunicipalityFeatures.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MunicipalityFeatures
+    **/
+    _count?: true | MunicipalityFeatureCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MunicipalityFeatureMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MunicipalityFeatureMaxAggregateInputType
+  }
+
+  export type GetMunicipalityFeatureAggregateType<T extends MunicipalityFeatureAggregateArgs> = {
+        [P in keyof T & keyof AggregateMunicipalityFeature]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMunicipalityFeature[P]>
+      : GetScalarType<T[P], AggregateMunicipalityFeature[P]>
+  }
+
+
+
+
+  export type MunicipalityFeatureGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MunicipalityFeatureWhereInput
+    orderBy?: MunicipalityFeatureOrderByWithAggregationInput | MunicipalityFeatureOrderByWithAggregationInput[]
+    by: MunicipalityFeatureScalarFieldEnum[] | MunicipalityFeatureScalarFieldEnum
+    having?: MunicipalityFeatureScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MunicipalityFeatureCountAggregateInputType | true
+    _min?: MunicipalityFeatureMinAggregateInputType
+    _max?: MunicipalityFeatureMaxAggregateInputType
+  }
+
+  export type MunicipalityFeatureGroupByOutputType = {
+    id: string
+    municipalityId: string
+    featureFlagId: string
+    enabled: boolean
+    updatedBy: string
+    updatedAt: Date
+    _count: MunicipalityFeatureCountAggregateOutputType | null
+    _min: MunicipalityFeatureMinAggregateOutputType | null
+    _max: MunicipalityFeatureMaxAggregateOutputType | null
+  }
+
+  type GetMunicipalityFeatureGroupByPayload<T extends MunicipalityFeatureGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MunicipalityFeatureGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MunicipalityFeatureGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MunicipalityFeatureGroupByOutputType[P]>
+            : GetScalarType<T[P], MunicipalityFeatureGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MunicipalityFeatureSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    municipalityId?: boolean
+    featureFlagId?: boolean
+    enabled?: boolean
+    updatedBy?: boolean
+    updatedAt?: boolean
+    municipality?: boolean | MunicipalityDefaultArgs<ExtArgs>
+    featureFlag?: boolean | FeatureFlagDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["municipalityFeature"]>
+
+  export type MunicipalityFeatureSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    municipalityId?: boolean
+    featureFlagId?: boolean
+    enabled?: boolean
+    updatedBy?: boolean
+    updatedAt?: boolean
+    municipality?: boolean | MunicipalityDefaultArgs<ExtArgs>
+    featureFlag?: boolean | FeatureFlagDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["municipalityFeature"]>
+
+  export type MunicipalityFeatureSelectScalar = {
+    id?: boolean
+    municipalityId?: boolean
+    featureFlagId?: boolean
+    enabled?: boolean
+    updatedBy?: boolean
+    updatedAt?: boolean
+  }
+
+  export type MunicipalityFeatureInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    municipality?: boolean | MunicipalityDefaultArgs<ExtArgs>
+    featureFlag?: boolean | FeatureFlagDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type MunicipalityFeatureIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    municipality?: boolean | MunicipalityDefaultArgs<ExtArgs>
+    featureFlag?: boolean | FeatureFlagDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $MunicipalityFeaturePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MunicipalityFeature"
+    objects: {
+      municipality: Prisma.$MunicipalityPayload<ExtArgs>
+      featureFlag: Prisma.$FeatureFlagPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      municipalityId: string
+      featureFlagId: string
+      enabled: boolean
+      updatedBy: string
+      updatedAt: Date
+    }, ExtArgs["result"]["municipalityFeature"]>
+    composites: {}
+  }
+
+  type MunicipalityFeatureGetPayload<S extends boolean | null | undefined | MunicipalityFeatureDefaultArgs> = $Result.GetResult<Prisma.$MunicipalityFeaturePayload, S>
+
+  type MunicipalityFeatureCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<MunicipalityFeatureFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: MunicipalityFeatureCountAggregateInputType | true
+    }
+
+  export interface MunicipalityFeatureDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MunicipalityFeature'], meta: { name: 'MunicipalityFeature' } }
+    /**
+     * Find zero or one MunicipalityFeature that matches the filter.
+     * @param {MunicipalityFeatureFindUniqueArgs} args - Arguments to find a MunicipalityFeature
+     * @example
+     * // Get one MunicipalityFeature
+     * const municipalityFeature = await prisma.municipalityFeature.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MunicipalityFeatureFindUniqueArgs>(args: SelectSubset<T, MunicipalityFeatureFindUniqueArgs<ExtArgs>>): Prisma__MunicipalityFeatureClient<$Result.GetResult<Prisma.$MunicipalityFeaturePayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one MunicipalityFeature that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {MunicipalityFeatureFindUniqueOrThrowArgs} args - Arguments to find a MunicipalityFeature
+     * @example
+     * // Get one MunicipalityFeature
+     * const municipalityFeature = await prisma.municipalityFeature.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MunicipalityFeatureFindUniqueOrThrowArgs>(args: SelectSubset<T, MunicipalityFeatureFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MunicipalityFeatureClient<$Result.GetResult<Prisma.$MunicipalityFeaturePayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first MunicipalityFeature that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MunicipalityFeatureFindFirstArgs} args - Arguments to find a MunicipalityFeature
+     * @example
+     * // Get one MunicipalityFeature
+     * const municipalityFeature = await prisma.municipalityFeature.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MunicipalityFeatureFindFirstArgs>(args?: SelectSubset<T, MunicipalityFeatureFindFirstArgs<ExtArgs>>): Prisma__MunicipalityFeatureClient<$Result.GetResult<Prisma.$MunicipalityFeaturePayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first MunicipalityFeature that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MunicipalityFeatureFindFirstOrThrowArgs} args - Arguments to find a MunicipalityFeature
+     * @example
+     * // Get one MunicipalityFeature
+     * const municipalityFeature = await prisma.municipalityFeature.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MunicipalityFeatureFindFirstOrThrowArgs>(args?: SelectSubset<T, MunicipalityFeatureFindFirstOrThrowArgs<ExtArgs>>): Prisma__MunicipalityFeatureClient<$Result.GetResult<Prisma.$MunicipalityFeaturePayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more MunicipalityFeatures that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MunicipalityFeatureFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MunicipalityFeatures
+     * const municipalityFeatures = await prisma.municipalityFeature.findMany()
+     * 
+     * // Get first 10 MunicipalityFeatures
+     * const municipalityFeatures = await prisma.municipalityFeature.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const municipalityFeatureWithIdOnly = await prisma.municipalityFeature.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MunicipalityFeatureFindManyArgs>(args?: SelectSubset<T, MunicipalityFeatureFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MunicipalityFeaturePayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a MunicipalityFeature.
+     * @param {MunicipalityFeatureCreateArgs} args - Arguments to create a MunicipalityFeature.
+     * @example
+     * // Create one MunicipalityFeature
+     * const MunicipalityFeature = await prisma.municipalityFeature.create({
+     *   data: {
+     *     // ... data to create a MunicipalityFeature
+     *   }
+     * })
+     * 
+     */
+    create<T extends MunicipalityFeatureCreateArgs>(args: SelectSubset<T, MunicipalityFeatureCreateArgs<ExtArgs>>): Prisma__MunicipalityFeatureClient<$Result.GetResult<Prisma.$MunicipalityFeaturePayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many MunicipalityFeatures.
+     * @param {MunicipalityFeatureCreateManyArgs} args - Arguments to create many MunicipalityFeatures.
+     * @example
+     * // Create many MunicipalityFeatures
+     * const municipalityFeature = await prisma.municipalityFeature.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MunicipalityFeatureCreateManyArgs>(args?: SelectSubset<T, MunicipalityFeatureCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MunicipalityFeatures and returns the data saved in the database.
+     * @param {MunicipalityFeatureCreateManyAndReturnArgs} args - Arguments to create many MunicipalityFeatures.
+     * @example
+     * // Create many MunicipalityFeatures
+     * const municipalityFeature = await prisma.municipalityFeature.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MunicipalityFeatures and only return the `id`
+     * const municipalityFeatureWithIdOnly = await prisma.municipalityFeature.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MunicipalityFeatureCreateManyAndReturnArgs>(args?: SelectSubset<T, MunicipalityFeatureCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MunicipalityFeaturePayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a MunicipalityFeature.
+     * @param {MunicipalityFeatureDeleteArgs} args - Arguments to delete one MunicipalityFeature.
+     * @example
+     * // Delete one MunicipalityFeature
+     * const MunicipalityFeature = await prisma.municipalityFeature.delete({
+     *   where: {
+     *     // ... filter to delete one MunicipalityFeature
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MunicipalityFeatureDeleteArgs>(args: SelectSubset<T, MunicipalityFeatureDeleteArgs<ExtArgs>>): Prisma__MunicipalityFeatureClient<$Result.GetResult<Prisma.$MunicipalityFeaturePayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one MunicipalityFeature.
+     * @param {MunicipalityFeatureUpdateArgs} args - Arguments to update one MunicipalityFeature.
+     * @example
+     * // Update one MunicipalityFeature
+     * const municipalityFeature = await prisma.municipalityFeature.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MunicipalityFeatureUpdateArgs>(args: SelectSubset<T, MunicipalityFeatureUpdateArgs<ExtArgs>>): Prisma__MunicipalityFeatureClient<$Result.GetResult<Prisma.$MunicipalityFeaturePayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more MunicipalityFeatures.
+     * @param {MunicipalityFeatureDeleteManyArgs} args - Arguments to filter MunicipalityFeatures to delete.
+     * @example
+     * // Delete a few MunicipalityFeatures
+     * const { count } = await prisma.municipalityFeature.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MunicipalityFeatureDeleteManyArgs>(args?: SelectSubset<T, MunicipalityFeatureDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MunicipalityFeatures.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MunicipalityFeatureUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MunicipalityFeatures
+     * const municipalityFeature = await prisma.municipalityFeature.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MunicipalityFeatureUpdateManyArgs>(args: SelectSubset<T, MunicipalityFeatureUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one MunicipalityFeature.
+     * @param {MunicipalityFeatureUpsertArgs} args - Arguments to update or create a MunicipalityFeature.
+     * @example
+     * // Update or create a MunicipalityFeature
+     * const municipalityFeature = await prisma.municipalityFeature.upsert({
+     *   create: {
+     *     // ... data to create a MunicipalityFeature
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MunicipalityFeature we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MunicipalityFeatureUpsertArgs>(args: SelectSubset<T, MunicipalityFeatureUpsertArgs<ExtArgs>>): Prisma__MunicipalityFeatureClient<$Result.GetResult<Prisma.$MunicipalityFeaturePayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of MunicipalityFeatures.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MunicipalityFeatureCountArgs} args - Arguments to filter MunicipalityFeatures to count.
+     * @example
+     * // Count the number of MunicipalityFeatures
+     * const count = await prisma.municipalityFeature.count({
+     *   where: {
+     *     // ... the filter for the MunicipalityFeatures we want to count
+     *   }
+     * })
+    **/
+    count<T extends MunicipalityFeatureCountArgs>(
+      args?: Subset<T, MunicipalityFeatureCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MunicipalityFeatureCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MunicipalityFeature.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MunicipalityFeatureAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MunicipalityFeatureAggregateArgs>(args: Subset<T, MunicipalityFeatureAggregateArgs>): Prisma.PrismaPromise<GetMunicipalityFeatureAggregateType<T>>
+
+    /**
+     * Group by MunicipalityFeature.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MunicipalityFeatureGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MunicipalityFeatureGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MunicipalityFeatureGroupByArgs['orderBy'] }
+        : { orderBy?: MunicipalityFeatureGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MunicipalityFeatureGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMunicipalityFeatureGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MunicipalityFeature model
+   */
+  readonly fields: MunicipalityFeatureFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MunicipalityFeature.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MunicipalityFeatureClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    municipality<T extends MunicipalityDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MunicipalityDefaultArgs<ExtArgs>>): Prisma__MunicipalityClient<$Result.GetResult<Prisma.$MunicipalityPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    featureFlag<T extends FeatureFlagDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FeatureFlagDefaultArgs<ExtArgs>>): Prisma__FeatureFlagClient<$Result.GetResult<Prisma.$FeatureFlagPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MunicipalityFeature model
+   */ 
+  interface MunicipalityFeatureFieldRefs {
+    readonly id: FieldRef<"MunicipalityFeature", 'String'>
+    readonly municipalityId: FieldRef<"MunicipalityFeature", 'String'>
+    readonly featureFlagId: FieldRef<"MunicipalityFeature", 'String'>
+    readonly enabled: FieldRef<"MunicipalityFeature", 'Boolean'>
+    readonly updatedBy: FieldRef<"MunicipalityFeature", 'String'>
+    readonly updatedAt: FieldRef<"MunicipalityFeature", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MunicipalityFeature findUnique
+   */
+  export type MunicipalityFeatureFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MunicipalityFeature
+     */
+    select?: MunicipalityFeatureSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityFeatureInclude<ExtArgs> | null
+    /**
+     * Filter, which MunicipalityFeature to fetch.
+     */
+    where: MunicipalityFeatureWhereUniqueInput
+  }
+
+  /**
+   * MunicipalityFeature findUniqueOrThrow
+   */
+  export type MunicipalityFeatureFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MunicipalityFeature
+     */
+    select?: MunicipalityFeatureSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityFeatureInclude<ExtArgs> | null
+    /**
+     * Filter, which MunicipalityFeature to fetch.
+     */
+    where: MunicipalityFeatureWhereUniqueInput
+  }
+
+  /**
+   * MunicipalityFeature findFirst
+   */
+  export type MunicipalityFeatureFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MunicipalityFeature
+     */
+    select?: MunicipalityFeatureSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityFeatureInclude<ExtArgs> | null
+    /**
+     * Filter, which MunicipalityFeature to fetch.
+     */
+    where?: MunicipalityFeatureWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MunicipalityFeatures to fetch.
+     */
+    orderBy?: MunicipalityFeatureOrderByWithRelationInput | MunicipalityFeatureOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MunicipalityFeatures.
+     */
+    cursor?: MunicipalityFeatureWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MunicipalityFeatures from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MunicipalityFeatures.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MunicipalityFeatures.
+     */
+    distinct?: MunicipalityFeatureScalarFieldEnum | MunicipalityFeatureScalarFieldEnum[]
+  }
+
+  /**
+   * MunicipalityFeature findFirstOrThrow
+   */
+  export type MunicipalityFeatureFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MunicipalityFeature
+     */
+    select?: MunicipalityFeatureSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityFeatureInclude<ExtArgs> | null
+    /**
+     * Filter, which MunicipalityFeature to fetch.
+     */
+    where?: MunicipalityFeatureWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MunicipalityFeatures to fetch.
+     */
+    orderBy?: MunicipalityFeatureOrderByWithRelationInput | MunicipalityFeatureOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MunicipalityFeatures.
+     */
+    cursor?: MunicipalityFeatureWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MunicipalityFeatures from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MunicipalityFeatures.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MunicipalityFeatures.
+     */
+    distinct?: MunicipalityFeatureScalarFieldEnum | MunicipalityFeatureScalarFieldEnum[]
+  }
+
+  /**
+   * MunicipalityFeature findMany
+   */
+  export type MunicipalityFeatureFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MunicipalityFeature
+     */
+    select?: MunicipalityFeatureSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityFeatureInclude<ExtArgs> | null
+    /**
+     * Filter, which MunicipalityFeatures to fetch.
+     */
+    where?: MunicipalityFeatureWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MunicipalityFeatures to fetch.
+     */
+    orderBy?: MunicipalityFeatureOrderByWithRelationInput | MunicipalityFeatureOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MunicipalityFeatures.
+     */
+    cursor?: MunicipalityFeatureWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MunicipalityFeatures from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MunicipalityFeatures.
+     */
+    skip?: number
+    distinct?: MunicipalityFeatureScalarFieldEnum | MunicipalityFeatureScalarFieldEnum[]
+  }
+
+  /**
+   * MunicipalityFeature create
+   */
+  export type MunicipalityFeatureCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MunicipalityFeature
+     */
+    select?: MunicipalityFeatureSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityFeatureInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MunicipalityFeature.
+     */
+    data: XOR<MunicipalityFeatureCreateInput, MunicipalityFeatureUncheckedCreateInput>
+  }
+
+  /**
+   * MunicipalityFeature createMany
+   */
+  export type MunicipalityFeatureCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MunicipalityFeatures.
+     */
+    data: MunicipalityFeatureCreateManyInput | MunicipalityFeatureCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MunicipalityFeature createManyAndReturn
+   */
+  export type MunicipalityFeatureCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MunicipalityFeature
+     */
+    select?: MunicipalityFeatureSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many MunicipalityFeatures.
+     */
+    data: MunicipalityFeatureCreateManyInput | MunicipalityFeatureCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityFeatureIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MunicipalityFeature update
+   */
+  export type MunicipalityFeatureUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MunicipalityFeature
+     */
+    select?: MunicipalityFeatureSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityFeatureInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MunicipalityFeature.
+     */
+    data: XOR<MunicipalityFeatureUpdateInput, MunicipalityFeatureUncheckedUpdateInput>
+    /**
+     * Choose, which MunicipalityFeature to update.
+     */
+    where: MunicipalityFeatureWhereUniqueInput
+  }
+
+  /**
+   * MunicipalityFeature updateMany
+   */
+  export type MunicipalityFeatureUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MunicipalityFeatures.
+     */
+    data: XOR<MunicipalityFeatureUpdateManyMutationInput, MunicipalityFeatureUncheckedUpdateManyInput>
+    /**
+     * Filter which MunicipalityFeatures to update
+     */
+    where?: MunicipalityFeatureWhereInput
+  }
+
+  /**
+   * MunicipalityFeature upsert
+   */
+  export type MunicipalityFeatureUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MunicipalityFeature
+     */
+    select?: MunicipalityFeatureSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityFeatureInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MunicipalityFeature to update in case it exists.
+     */
+    where: MunicipalityFeatureWhereUniqueInput
+    /**
+     * In case the MunicipalityFeature found by the `where` argument doesn't exist, create a new MunicipalityFeature with this data.
+     */
+    create: XOR<MunicipalityFeatureCreateInput, MunicipalityFeatureUncheckedCreateInput>
+    /**
+     * In case the MunicipalityFeature was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MunicipalityFeatureUpdateInput, MunicipalityFeatureUncheckedUpdateInput>
+  }
+
+  /**
+   * MunicipalityFeature delete
+   */
+  export type MunicipalityFeatureDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MunicipalityFeature
+     */
+    select?: MunicipalityFeatureSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityFeatureInclude<ExtArgs> | null
+    /**
+     * Filter which MunicipalityFeature to delete.
+     */
+    where: MunicipalityFeatureWhereUniqueInput
+  }
+
+  /**
+   * MunicipalityFeature deleteMany
+   */
+  export type MunicipalityFeatureDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MunicipalityFeatures to delete
+     */
+    where?: MunicipalityFeatureWhereInput
+  }
+
+  /**
+   * MunicipalityFeature without action
+   */
+  export type MunicipalityFeatureDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MunicipalityFeature
+     */
+    select?: MunicipalityFeatureSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityFeatureInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model User
    */
 
@@ -18426,6 +20600,7 @@ export namespace Prisma {
     municipality?: boolean | User$municipalityArgs<ExtArgs>
     versionHistory?: boolean | User$versionHistoryArgs<ExtArgs>
     createdNotifications?: boolean | User$createdNotificationsArgs<ExtArgs>
+    updatedFeatures?: boolean | User$updatedFeaturesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -18456,6 +20631,7 @@ export namespace Prisma {
     municipality?: boolean | User$municipalityArgs<ExtArgs>
     versionHistory?: boolean | User$versionHistoryArgs<ExtArgs>
     createdNotifications?: boolean | User$createdNotificationsArgs<ExtArgs>
+    updatedFeatures?: boolean | User$updatedFeaturesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -18468,6 +20644,7 @@ export namespace Prisma {
       municipality: Prisma.$MunicipalityPayload<ExtArgs> | null
       versionHistory: Prisma.$VersionHistoryPayload<ExtArgs>[]
       createdNotifications: Prisma.$NotificationPayload<ExtArgs>[]
+      updatedFeatures: Prisma.$MunicipalityFeaturePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -18845,6 +21022,7 @@ export namespace Prisma {
     municipality<T extends User$municipalityArgs<ExtArgs> = {}>(args?: Subset<T, User$municipalityArgs<ExtArgs>>): Prisma__MunicipalityClient<$Result.GetResult<Prisma.$MunicipalityPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     versionHistory<T extends User$versionHistoryArgs<ExtArgs> = {}>(args?: Subset<T, User$versionHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VersionHistoryPayload<ExtArgs>, T, "findMany"> | Null>
     createdNotifications<T extends User$createdNotificationsArgs<ExtArgs> = {}>(args?: Subset<T, User$createdNotificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany"> | Null>
+    updatedFeatures<T extends User$updatedFeaturesArgs<ExtArgs> = {}>(args?: Subset<T, User$updatedFeaturesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MunicipalityFeaturePayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -19252,6 +21430,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * User.updatedFeatures
+   */
+  export type User$updatedFeaturesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MunicipalityFeature
+     */
+    select?: MunicipalityFeatureSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityFeatureInclude<ExtArgs> | null
+    where?: MunicipalityFeatureWhereInput
+    orderBy?: MunicipalityFeatureOrderByWithRelationInput | MunicipalityFeatureOrderByWithRelationInput[]
+    cursor?: MunicipalityFeatureWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MunicipalityFeatureScalarFieldEnum | MunicipalityFeatureScalarFieldEnum[]
   }
 
   /**
@@ -20494,6 +22692,31 @@ export namespace Prisma {
   export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
 
 
+  export const FeatureFlagScalarFieldEnum: {
+    id: 'id',
+    key: 'key',
+    name: 'name',
+    description: 'description',
+    defaultEnabled: 'defaultEnabled',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type FeatureFlagScalarFieldEnum = (typeof FeatureFlagScalarFieldEnum)[keyof typeof FeatureFlagScalarFieldEnum]
+
+
+  export const MunicipalityFeatureScalarFieldEnum: {
+    id: 'id',
+    municipalityId: 'municipalityId',
+    featureFlagId: 'featureFlagId',
+    enabled: 'enabled',
+    updatedBy: 'updatedBy',
+    updatedAt: 'updatedAt'
+  };
+
+  export type MunicipalityFeatureScalarFieldEnum = (typeof MunicipalityFeatureScalarFieldEnum)[keyof typeof MunicipalityFeatureScalarFieldEnum]
+
+
   export const UserScalarFieldEnum: {
     id: 'id',
     email: 'email',
@@ -20677,6 +22900,7 @@ export namespace Prisma {
     users?: UserListRelationFilter
     versionHistory?: VersionHistoryListRelationFilter
     notifications?: NotificationListRelationFilter
+    municipalityFeatures?: MunicipalityFeatureListRelationFilter
     version?: XOR<SoftwareVersionNullableRelationFilter, SoftwareVersionWhereInput> | null
   }
 
@@ -20697,6 +22921,7 @@ export namespace Prisma {
     users?: UserOrderByRelationAggregateInput
     versionHistory?: VersionHistoryOrderByRelationAggregateInput
     notifications?: NotificationOrderByRelationAggregateInput
+    municipalityFeatures?: MunicipalityFeatureOrderByRelationAggregateInput
     version?: SoftwareVersionOrderByWithRelationInput
   }
 
@@ -20720,6 +22945,7 @@ export namespace Prisma {
     users?: UserListRelationFilter
     versionHistory?: VersionHistoryListRelationFilter
     notifications?: NotificationListRelationFilter
+    municipalityFeatures?: MunicipalityFeatureListRelationFilter
     version?: XOR<SoftwareVersionNullableRelationFilter, SoftwareVersionWhereInput> | null
   }, "id">
 
@@ -21962,6 +24188,138 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Notification"> | Date | string
   }
 
+  export type FeatureFlagWhereInput = {
+    AND?: FeatureFlagWhereInput | FeatureFlagWhereInput[]
+    OR?: FeatureFlagWhereInput[]
+    NOT?: FeatureFlagWhereInput | FeatureFlagWhereInput[]
+    id?: StringFilter<"FeatureFlag"> | string
+    key?: StringFilter<"FeatureFlag"> | string
+    name?: StringFilter<"FeatureFlag"> | string
+    description?: StringNullableFilter<"FeatureFlag"> | string | null
+    defaultEnabled?: BoolFilter<"FeatureFlag"> | boolean
+    createdAt?: DateTimeFilter<"FeatureFlag"> | Date | string
+    updatedAt?: DateTimeFilter<"FeatureFlag"> | Date | string
+    municipalityFeatures?: MunicipalityFeatureListRelationFilter
+  }
+
+  export type FeatureFlagOrderByWithRelationInput = {
+    id?: SortOrder
+    key?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    defaultEnabled?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    municipalityFeatures?: MunicipalityFeatureOrderByRelationAggregateInput
+  }
+
+  export type FeatureFlagWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    key?: string
+    AND?: FeatureFlagWhereInput | FeatureFlagWhereInput[]
+    OR?: FeatureFlagWhereInput[]
+    NOT?: FeatureFlagWhereInput | FeatureFlagWhereInput[]
+    name?: StringFilter<"FeatureFlag"> | string
+    description?: StringNullableFilter<"FeatureFlag"> | string | null
+    defaultEnabled?: BoolFilter<"FeatureFlag"> | boolean
+    createdAt?: DateTimeFilter<"FeatureFlag"> | Date | string
+    updatedAt?: DateTimeFilter<"FeatureFlag"> | Date | string
+    municipalityFeatures?: MunicipalityFeatureListRelationFilter
+  }, "id" | "key">
+
+  export type FeatureFlagOrderByWithAggregationInput = {
+    id?: SortOrder
+    key?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    defaultEnabled?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: FeatureFlagCountOrderByAggregateInput
+    _max?: FeatureFlagMaxOrderByAggregateInput
+    _min?: FeatureFlagMinOrderByAggregateInput
+  }
+
+  export type FeatureFlagScalarWhereWithAggregatesInput = {
+    AND?: FeatureFlagScalarWhereWithAggregatesInput | FeatureFlagScalarWhereWithAggregatesInput[]
+    OR?: FeatureFlagScalarWhereWithAggregatesInput[]
+    NOT?: FeatureFlagScalarWhereWithAggregatesInput | FeatureFlagScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FeatureFlag"> | string
+    key?: StringWithAggregatesFilter<"FeatureFlag"> | string
+    name?: StringWithAggregatesFilter<"FeatureFlag"> | string
+    description?: StringNullableWithAggregatesFilter<"FeatureFlag"> | string | null
+    defaultEnabled?: BoolWithAggregatesFilter<"FeatureFlag"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"FeatureFlag"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"FeatureFlag"> | Date | string
+  }
+
+  export type MunicipalityFeatureWhereInput = {
+    AND?: MunicipalityFeatureWhereInput | MunicipalityFeatureWhereInput[]
+    OR?: MunicipalityFeatureWhereInput[]
+    NOT?: MunicipalityFeatureWhereInput | MunicipalityFeatureWhereInput[]
+    id?: StringFilter<"MunicipalityFeature"> | string
+    municipalityId?: StringFilter<"MunicipalityFeature"> | string
+    featureFlagId?: StringFilter<"MunicipalityFeature"> | string
+    enabled?: BoolFilter<"MunicipalityFeature"> | boolean
+    updatedBy?: StringFilter<"MunicipalityFeature"> | string
+    updatedAt?: DateTimeFilter<"MunicipalityFeature"> | Date | string
+    municipality?: XOR<MunicipalityRelationFilter, MunicipalityWhereInput>
+    featureFlag?: XOR<FeatureFlagRelationFilter, FeatureFlagWhereInput>
+    user?: XOR<UserRelationFilter, UserWhereInput>
+  }
+
+  export type MunicipalityFeatureOrderByWithRelationInput = {
+    id?: SortOrder
+    municipalityId?: SortOrder
+    featureFlagId?: SortOrder
+    enabled?: SortOrder
+    updatedBy?: SortOrder
+    updatedAt?: SortOrder
+    municipality?: MunicipalityOrderByWithRelationInput
+    featureFlag?: FeatureFlagOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type MunicipalityFeatureWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    municipalityId_featureFlagId?: MunicipalityFeatureMunicipalityIdFeatureFlagIdCompoundUniqueInput
+    AND?: MunicipalityFeatureWhereInput | MunicipalityFeatureWhereInput[]
+    OR?: MunicipalityFeatureWhereInput[]
+    NOT?: MunicipalityFeatureWhereInput | MunicipalityFeatureWhereInput[]
+    municipalityId?: StringFilter<"MunicipalityFeature"> | string
+    featureFlagId?: StringFilter<"MunicipalityFeature"> | string
+    enabled?: BoolFilter<"MunicipalityFeature"> | boolean
+    updatedBy?: StringFilter<"MunicipalityFeature"> | string
+    updatedAt?: DateTimeFilter<"MunicipalityFeature"> | Date | string
+    municipality?: XOR<MunicipalityRelationFilter, MunicipalityWhereInput>
+    featureFlag?: XOR<FeatureFlagRelationFilter, FeatureFlagWhereInput>
+    user?: XOR<UserRelationFilter, UserWhereInput>
+  }, "id" | "municipalityId_featureFlagId">
+
+  export type MunicipalityFeatureOrderByWithAggregationInput = {
+    id?: SortOrder
+    municipalityId?: SortOrder
+    featureFlagId?: SortOrder
+    enabled?: SortOrder
+    updatedBy?: SortOrder
+    updatedAt?: SortOrder
+    _count?: MunicipalityFeatureCountOrderByAggregateInput
+    _max?: MunicipalityFeatureMaxOrderByAggregateInput
+    _min?: MunicipalityFeatureMinOrderByAggregateInput
+  }
+
+  export type MunicipalityFeatureScalarWhereWithAggregatesInput = {
+    AND?: MunicipalityFeatureScalarWhereWithAggregatesInput | MunicipalityFeatureScalarWhereWithAggregatesInput[]
+    OR?: MunicipalityFeatureScalarWhereWithAggregatesInput[]
+    NOT?: MunicipalityFeatureScalarWhereWithAggregatesInput | MunicipalityFeatureScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MunicipalityFeature"> | string
+    municipalityId?: StringWithAggregatesFilter<"MunicipalityFeature"> | string
+    featureFlagId?: StringWithAggregatesFilter<"MunicipalityFeature"> | string
+    enabled?: BoolWithAggregatesFilter<"MunicipalityFeature"> | boolean
+    updatedBy?: StringWithAggregatesFilter<"MunicipalityFeature"> | string
+    updatedAt?: DateTimeWithAggregatesFilter<"MunicipalityFeature"> | Date | string
+  }
+
   export type UserWhereInput = {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
@@ -21977,6 +24335,7 @@ export namespace Prisma {
     municipality?: XOR<MunicipalityNullableRelationFilter, MunicipalityWhereInput> | null
     versionHistory?: VersionHistoryListRelationFilter
     createdNotifications?: NotificationListRelationFilter
+    updatedFeatures?: MunicipalityFeatureListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -21991,6 +24350,7 @@ export namespace Prisma {
     municipality?: MunicipalityOrderByWithRelationInput
     versionHistory?: VersionHistoryOrderByRelationAggregateInput
     createdNotifications?: NotificationOrderByRelationAggregateInput
+    updatedFeatures?: MunicipalityFeatureOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -22008,6 +24368,7 @@ export namespace Prisma {
     municipality?: XOR<MunicipalityNullableRelationFilter, MunicipalityWhereInput> | null
     versionHistory?: VersionHistoryListRelationFilter
     createdNotifications?: NotificationListRelationFilter
+    updatedFeatures?: MunicipalityFeatureListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -22133,6 +24494,7 @@ export namespace Prisma {
     users?: UserCreateNestedManyWithoutMunicipalityInput
     versionHistory?: VersionHistoryCreateNestedManyWithoutMunicipalityInput
     notifications?: NotificationCreateNestedManyWithoutMunicipalityInput
+    municipalityFeatures?: MunicipalityFeatureCreateNestedManyWithoutMunicipalityInput
     version?: SoftwareVersionCreateNestedOneWithoutMunicipalitiesInput
   }
 
@@ -22153,6 +24515,7 @@ export namespace Prisma {
     users?: UserUncheckedCreateNestedManyWithoutMunicipalityInput
     versionHistory?: VersionHistoryUncheckedCreateNestedManyWithoutMunicipalityInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutMunicipalityInput
+    municipalityFeatures?: MunicipalityFeatureUncheckedCreateNestedManyWithoutMunicipalityInput
   }
 
   export type MunicipalityUpdateInput = {
@@ -22171,6 +24534,7 @@ export namespace Prisma {
     users?: UserUpdateManyWithoutMunicipalityNestedInput
     versionHistory?: VersionHistoryUpdateManyWithoutMunicipalityNestedInput
     notifications?: NotificationUpdateManyWithoutMunicipalityNestedInput
+    municipalityFeatures?: MunicipalityFeatureUpdateManyWithoutMunicipalityNestedInput
     version?: SoftwareVersionUpdateOneWithoutMunicipalitiesNestedInput
   }
 
@@ -22191,6 +24555,7 @@ export namespace Prisma {
     users?: UserUncheckedUpdateManyWithoutMunicipalityNestedInput
     versionHistory?: VersionHistoryUncheckedUpdateManyWithoutMunicipalityNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutMunicipalityNestedInput
+    municipalityFeatures?: MunicipalityFeatureUncheckedUpdateManyWithoutMunicipalityNestedInput
   }
 
   export type MunicipalityCreateManyInput = {
@@ -23578,6 +25943,140 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type FeatureFlagCreateInput = {
+    id?: string
+    key: string
+    name: string
+    description?: string | null
+    defaultEnabled?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    municipalityFeatures?: MunicipalityFeatureCreateNestedManyWithoutFeatureFlagInput
+  }
+
+  export type FeatureFlagUncheckedCreateInput = {
+    id?: string
+    key: string
+    name: string
+    description?: string | null
+    defaultEnabled?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    municipalityFeatures?: MunicipalityFeatureUncheckedCreateNestedManyWithoutFeatureFlagInput
+  }
+
+  export type FeatureFlagUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultEnabled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    municipalityFeatures?: MunicipalityFeatureUpdateManyWithoutFeatureFlagNestedInput
+  }
+
+  export type FeatureFlagUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultEnabled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    municipalityFeatures?: MunicipalityFeatureUncheckedUpdateManyWithoutFeatureFlagNestedInput
+  }
+
+  export type FeatureFlagCreateManyInput = {
+    id?: string
+    key: string
+    name: string
+    description?: string | null
+    defaultEnabled?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FeatureFlagUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultEnabled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeatureFlagUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultEnabled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MunicipalityFeatureCreateInput = {
+    id?: string
+    enabled: boolean
+    updatedAt?: Date | string
+    municipality: MunicipalityCreateNestedOneWithoutMunicipalityFeaturesInput
+    featureFlag: FeatureFlagCreateNestedOneWithoutMunicipalityFeaturesInput
+    user: UserCreateNestedOneWithoutUpdatedFeaturesInput
+  }
+
+  export type MunicipalityFeatureUncheckedCreateInput = {
+    id?: string
+    municipalityId: string
+    featureFlagId: string
+    enabled: boolean
+    updatedBy: string
+    updatedAt?: Date | string
+  }
+
+  export type MunicipalityFeatureUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    municipality?: MunicipalityUpdateOneRequiredWithoutMunicipalityFeaturesNestedInput
+    featureFlag?: FeatureFlagUpdateOneRequiredWithoutMunicipalityFeaturesNestedInput
+    user?: UserUpdateOneRequiredWithoutUpdatedFeaturesNestedInput
+  }
+
+  export type MunicipalityFeatureUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    municipalityId?: StringFieldUpdateOperationsInput | string
+    featureFlagId?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    updatedBy?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MunicipalityFeatureCreateManyInput = {
+    id?: string
+    municipalityId: string
+    featureFlagId: string
+    enabled: boolean
+    updatedBy: string
+    updatedAt?: Date | string
+  }
+
+  export type MunicipalityFeatureUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MunicipalityFeatureUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    municipalityId?: StringFieldUpdateOperationsInput | string
+    featureFlagId?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    updatedBy?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -23589,6 +26088,7 @@ export namespace Prisma {
     municipality?: MunicipalityCreateNestedOneWithoutUsersInput
     versionHistory?: VersionHistoryCreateNestedManyWithoutUserInput
     createdNotifications?: NotificationCreateNestedManyWithoutCreatorInput
+    updatedFeatures?: MunicipalityFeatureCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -23602,6 +26102,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     versionHistory?: VersionHistoryUncheckedCreateNestedManyWithoutUserInput
     createdNotifications?: NotificationUncheckedCreateNestedManyWithoutCreatorInput
+    updatedFeatures?: MunicipalityFeatureUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -23615,6 +26116,7 @@ export namespace Prisma {
     municipality?: MunicipalityUpdateOneWithoutUsersNestedInput
     versionHistory?: VersionHistoryUpdateManyWithoutUserNestedInput
     createdNotifications?: NotificationUpdateManyWithoutCreatorNestedInput
+    updatedFeatures?: MunicipalityFeatureUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -23628,6 +26130,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     versionHistory?: VersionHistoryUncheckedUpdateManyWithoutUserNestedInput
     createdNotifications?: NotificationUncheckedUpdateManyWithoutCreatorNestedInput
+    updatedFeatures?: MunicipalityFeatureUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -23836,6 +26339,12 @@ export namespace Prisma {
     none?: NotificationWhereInput
   }
 
+  export type MunicipalityFeatureListRelationFilter = {
+    every?: MunicipalityFeatureWhereInput
+    some?: MunicipalityFeatureWhereInput
+    none?: MunicipalityFeatureWhereInput
+  }
+
   export type SoftwareVersionNullableRelationFilter = {
     is?: SoftwareVersionWhereInput | null
     isNot?: SoftwareVersionWhereInput | null
@@ -23871,6 +26380,10 @@ export namespace Prisma {
   }
 
   export type NotificationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MunicipalityFeatureOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -24861,6 +27374,73 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type FeatureFlagCountOrderByAggregateInput = {
+    id?: SortOrder
+    key?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    defaultEnabled?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FeatureFlagMaxOrderByAggregateInput = {
+    id?: SortOrder
+    key?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    defaultEnabled?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FeatureFlagMinOrderByAggregateInput = {
+    id?: SortOrder
+    key?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    defaultEnabled?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FeatureFlagRelationFilter = {
+    is?: FeatureFlagWhereInput
+    isNot?: FeatureFlagWhereInput
+  }
+
+  export type MunicipalityFeatureMunicipalityIdFeatureFlagIdCompoundUniqueInput = {
+    municipalityId: string
+    featureFlagId: string
+  }
+
+  export type MunicipalityFeatureCountOrderByAggregateInput = {
+    id?: SortOrder
+    municipalityId?: SortOrder
+    featureFlagId?: SortOrder
+    enabled?: SortOrder
+    updatedBy?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MunicipalityFeatureMaxOrderByAggregateInput = {
+    id?: SortOrder
+    municipalityId?: SortOrder
+    featureFlagId?: SortOrder
+    enabled?: SortOrder
+    updatedBy?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MunicipalityFeatureMinOrderByAggregateInput = {
+    id?: SortOrder
+    municipalityId?: SortOrder
+    featureFlagId?: SortOrder
+    enabled?: SortOrder
+    updatedBy?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
@@ -24994,6 +27574,13 @@ export namespace Prisma {
     connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
   }
 
+  export type MunicipalityFeatureCreateNestedManyWithoutMunicipalityInput = {
+    create?: XOR<MunicipalityFeatureCreateWithoutMunicipalityInput, MunicipalityFeatureUncheckedCreateWithoutMunicipalityInput> | MunicipalityFeatureCreateWithoutMunicipalityInput[] | MunicipalityFeatureUncheckedCreateWithoutMunicipalityInput[]
+    connectOrCreate?: MunicipalityFeatureCreateOrConnectWithoutMunicipalityInput | MunicipalityFeatureCreateOrConnectWithoutMunicipalityInput[]
+    createMany?: MunicipalityFeatureCreateManyMunicipalityInputEnvelope
+    connect?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
+  }
+
   export type SoftwareVersionCreateNestedOneWithoutMunicipalitiesInput = {
     create?: XOR<SoftwareVersionCreateWithoutMunicipalitiesInput, SoftwareVersionUncheckedCreateWithoutMunicipalitiesInput>
     connectOrCreate?: SoftwareVersionCreateOrConnectWithoutMunicipalitiesInput
@@ -25047,6 +27634,13 @@ export namespace Prisma {
     connectOrCreate?: NotificationCreateOrConnectWithoutMunicipalityInput | NotificationCreateOrConnectWithoutMunicipalityInput[]
     createMany?: NotificationCreateManyMunicipalityInputEnvelope
     connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+  }
+
+  export type MunicipalityFeatureUncheckedCreateNestedManyWithoutMunicipalityInput = {
+    create?: XOR<MunicipalityFeatureCreateWithoutMunicipalityInput, MunicipalityFeatureUncheckedCreateWithoutMunicipalityInput> | MunicipalityFeatureCreateWithoutMunicipalityInput[] | MunicipalityFeatureUncheckedCreateWithoutMunicipalityInput[]
+    connectOrCreate?: MunicipalityFeatureCreateOrConnectWithoutMunicipalityInput | MunicipalityFeatureCreateOrConnectWithoutMunicipalityInput[]
+    createMany?: MunicipalityFeatureCreateManyMunicipalityInputEnvelope
+    connect?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -25153,6 +27747,20 @@ export namespace Prisma {
     update?: NotificationUpdateWithWhereUniqueWithoutMunicipalityInput | NotificationUpdateWithWhereUniqueWithoutMunicipalityInput[]
     updateMany?: NotificationUpdateManyWithWhereWithoutMunicipalityInput | NotificationUpdateManyWithWhereWithoutMunicipalityInput[]
     deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
+  }
+
+  export type MunicipalityFeatureUpdateManyWithoutMunicipalityNestedInput = {
+    create?: XOR<MunicipalityFeatureCreateWithoutMunicipalityInput, MunicipalityFeatureUncheckedCreateWithoutMunicipalityInput> | MunicipalityFeatureCreateWithoutMunicipalityInput[] | MunicipalityFeatureUncheckedCreateWithoutMunicipalityInput[]
+    connectOrCreate?: MunicipalityFeatureCreateOrConnectWithoutMunicipalityInput | MunicipalityFeatureCreateOrConnectWithoutMunicipalityInput[]
+    upsert?: MunicipalityFeatureUpsertWithWhereUniqueWithoutMunicipalityInput | MunicipalityFeatureUpsertWithWhereUniqueWithoutMunicipalityInput[]
+    createMany?: MunicipalityFeatureCreateManyMunicipalityInputEnvelope
+    set?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
+    disconnect?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
+    delete?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
+    connect?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
+    update?: MunicipalityFeatureUpdateWithWhereUniqueWithoutMunicipalityInput | MunicipalityFeatureUpdateWithWhereUniqueWithoutMunicipalityInput[]
+    updateMany?: MunicipalityFeatureUpdateManyWithWhereWithoutMunicipalityInput | MunicipalityFeatureUpdateManyWithWhereWithoutMunicipalityInput[]
+    deleteMany?: MunicipalityFeatureScalarWhereInput | MunicipalityFeatureScalarWhereInput[]
   }
 
   export type SoftwareVersionUpdateOneWithoutMunicipalitiesNestedInput = {
@@ -25265,6 +27873,20 @@ export namespace Prisma {
     update?: NotificationUpdateWithWhereUniqueWithoutMunicipalityInput | NotificationUpdateWithWhereUniqueWithoutMunicipalityInput[]
     updateMany?: NotificationUpdateManyWithWhereWithoutMunicipalityInput | NotificationUpdateManyWithWhereWithoutMunicipalityInput[]
     deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
+  }
+
+  export type MunicipalityFeatureUncheckedUpdateManyWithoutMunicipalityNestedInput = {
+    create?: XOR<MunicipalityFeatureCreateWithoutMunicipalityInput, MunicipalityFeatureUncheckedCreateWithoutMunicipalityInput> | MunicipalityFeatureCreateWithoutMunicipalityInput[] | MunicipalityFeatureUncheckedCreateWithoutMunicipalityInput[]
+    connectOrCreate?: MunicipalityFeatureCreateOrConnectWithoutMunicipalityInput | MunicipalityFeatureCreateOrConnectWithoutMunicipalityInput[]
+    upsert?: MunicipalityFeatureUpsertWithWhereUniqueWithoutMunicipalityInput | MunicipalityFeatureUpsertWithWhereUniqueWithoutMunicipalityInput[]
+    createMany?: MunicipalityFeatureCreateManyMunicipalityInputEnvelope
+    set?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
+    disconnect?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
+    delete?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
+    connect?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
+    update?: MunicipalityFeatureUpdateWithWhereUniqueWithoutMunicipalityInput | MunicipalityFeatureUpdateWithWhereUniqueWithoutMunicipalityInput[]
+    updateMany?: MunicipalityFeatureUpdateManyWithWhereWithoutMunicipalityInput | MunicipalityFeatureUpdateManyWithWhereWithoutMunicipalityInput[]
+    deleteMany?: MunicipalityFeatureScalarWhereInput | MunicipalityFeatureScalarWhereInput[]
   }
 
   export type BudgetCreateNestedManyWithoutFiscalYearInput = {
@@ -25915,6 +28537,90 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCreatedNotificationsInput, UserUpdateWithoutCreatedNotificationsInput>, UserUncheckedUpdateWithoutCreatedNotificationsInput>
   }
 
+  export type MunicipalityFeatureCreateNestedManyWithoutFeatureFlagInput = {
+    create?: XOR<MunicipalityFeatureCreateWithoutFeatureFlagInput, MunicipalityFeatureUncheckedCreateWithoutFeatureFlagInput> | MunicipalityFeatureCreateWithoutFeatureFlagInput[] | MunicipalityFeatureUncheckedCreateWithoutFeatureFlagInput[]
+    connectOrCreate?: MunicipalityFeatureCreateOrConnectWithoutFeatureFlagInput | MunicipalityFeatureCreateOrConnectWithoutFeatureFlagInput[]
+    createMany?: MunicipalityFeatureCreateManyFeatureFlagInputEnvelope
+    connect?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
+  }
+
+  export type MunicipalityFeatureUncheckedCreateNestedManyWithoutFeatureFlagInput = {
+    create?: XOR<MunicipalityFeatureCreateWithoutFeatureFlagInput, MunicipalityFeatureUncheckedCreateWithoutFeatureFlagInput> | MunicipalityFeatureCreateWithoutFeatureFlagInput[] | MunicipalityFeatureUncheckedCreateWithoutFeatureFlagInput[]
+    connectOrCreate?: MunicipalityFeatureCreateOrConnectWithoutFeatureFlagInput | MunicipalityFeatureCreateOrConnectWithoutFeatureFlagInput[]
+    createMany?: MunicipalityFeatureCreateManyFeatureFlagInputEnvelope
+    connect?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
+  }
+
+  export type MunicipalityFeatureUpdateManyWithoutFeatureFlagNestedInput = {
+    create?: XOR<MunicipalityFeatureCreateWithoutFeatureFlagInput, MunicipalityFeatureUncheckedCreateWithoutFeatureFlagInput> | MunicipalityFeatureCreateWithoutFeatureFlagInput[] | MunicipalityFeatureUncheckedCreateWithoutFeatureFlagInput[]
+    connectOrCreate?: MunicipalityFeatureCreateOrConnectWithoutFeatureFlagInput | MunicipalityFeatureCreateOrConnectWithoutFeatureFlagInput[]
+    upsert?: MunicipalityFeatureUpsertWithWhereUniqueWithoutFeatureFlagInput | MunicipalityFeatureUpsertWithWhereUniqueWithoutFeatureFlagInput[]
+    createMany?: MunicipalityFeatureCreateManyFeatureFlagInputEnvelope
+    set?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
+    disconnect?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
+    delete?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
+    connect?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
+    update?: MunicipalityFeatureUpdateWithWhereUniqueWithoutFeatureFlagInput | MunicipalityFeatureUpdateWithWhereUniqueWithoutFeatureFlagInput[]
+    updateMany?: MunicipalityFeatureUpdateManyWithWhereWithoutFeatureFlagInput | MunicipalityFeatureUpdateManyWithWhereWithoutFeatureFlagInput[]
+    deleteMany?: MunicipalityFeatureScalarWhereInput | MunicipalityFeatureScalarWhereInput[]
+  }
+
+  export type MunicipalityFeatureUncheckedUpdateManyWithoutFeatureFlagNestedInput = {
+    create?: XOR<MunicipalityFeatureCreateWithoutFeatureFlagInput, MunicipalityFeatureUncheckedCreateWithoutFeatureFlagInput> | MunicipalityFeatureCreateWithoutFeatureFlagInput[] | MunicipalityFeatureUncheckedCreateWithoutFeatureFlagInput[]
+    connectOrCreate?: MunicipalityFeatureCreateOrConnectWithoutFeatureFlagInput | MunicipalityFeatureCreateOrConnectWithoutFeatureFlagInput[]
+    upsert?: MunicipalityFeatureUpsertWithWhereUniqueWithoutFeatureFlagInput | MunicipalityFeatureUpsertWithWhereUniqueWithoutFeatureFlagInput[]
+    createMany?: MunicipalityFeatureCreateManyFeatureFlagInputEnvelope
+    set?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
+    disconnect?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
+    delete?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
+    connect?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
+    update?: MunicipalityFeatureUpdateWithWhereUniqueWithoutFeatureFlagInput | MunicipalityFeatureUpdateWithWhereUniqueWithoutFeatureFlagInput[]
+    updateMany?: MunicipalityFeatureUpdateManyWithWhereWithoutFeatureFlagInput | MunicipalityFeatureUpdateManyWithWhereWithoutFeatureFlagInput[]
+    deleteMany?: MunicipalityFeatureScalarWhereInput | MunicipalityFeatureScalarWhereInput[]
+  }
+
+  export type MunicipalityCreateNestedOneWithoutMunicipalityFeaturesInput = {
+    create?: XOR<MunicipalityCreateWithoutMunicipalityFeaturesInput, MunicipalityUncheckedCreateWithoutMunicipalityFeaturesInput>
+    connectOrCreate?: MunicipalityCreateOrConnectWithoutMunicipalityFeaturesInput
+    connect?: MunicipalityWhereUniqueInput
+  }
+
+  export type FeatureFlagCreateNestedOneWithoutMunicipalityFeaturesInput = {
+    create?: XOR<FeatureFlagCreateWithoutMunicipalityFeaturesInput, FeatureFlagUncheckedCreateWithoutMunicipalityFeaturesInput>
+    connectOrCreate?: FeatureFlagCreateOrConnectWithoutMunicipalityFeaturesInput
+    connect?: FeatureFlagWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutUpdatedFeaturesInput = {
+    create?: XOR<UserCreateWithoutUpdatedFeaturesInput, UserUncheckedCreateWithoutUpdatedFeaturesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUpdatedFeaturesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type MunicipalityUpdateOneRequiredWithoutMunicipalityFeaturesNestedInput = {
+    create?: XOR<MunicipalityCreateWithoutMunicipalityFeaturesInput, MunicipalityUncheckedCreateWithoutMunicipalityFeaturesInput>
+    connectOrCreate?: MunicipalityCreateOrConnectWithoutMunicipalityFeaturesInput
+    upsert?: MunicipalityUpsertWithoutMunicipalityFeaturesInput
+    connect?: MunicipalityWhereUniqueInput
+    update?: XOR<XOR<MunicipalityUpdateToOneWithWhereWithoutMunicipalityFeaturesInput, MunicipalityUpdateWithoutMunicipalityFeaturesInput>, MunicipalityUncheckedUpdateWithoutMunicipalityFeaturesInput>
+  }
+
+  export type FeatureFlagUpdateOneRequiredWithoutMunicipalityFeaturesNestedInput = {
+    create?: XOR<FeatureFlagCreateWithoutMunicipalityFeaturesInput, FeatureFlagUncheckedCreateWithoutMunicipalityFeaturesInput>
+    connectOrCreate?: FeatureFlagCreateOrConnectWithoutMunicipalityFeaturesInput
+    upsert?: FeatureFlagUpsertWithoutMunicipalityFeaturesInput
+    connect?: FeatureFlagWhereUniqueInput
+    update?: XOR<XOR<FeatureFlagUpdateToOneWithWhereWithoutMunicipalityFeaturesInput, FeatureFlagUpdateWithoutMunicipalityFeaturesInput>, FeatureFlagUncheckedUpdateWithoutMunicipalityFeaturesInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutUpdatedFeaturesNestedInput = {
+    create?: XOR<UserCreateWithoutUpdatedFeaturesInput, UserUncheckedCreateWithoutUpdatedFeaturesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUpdatedFeaturesInput
+    upsert?: UserUpsertWithoutUpdatedFeaturesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutUpdatedFeaturesInput, UserUpdateWithoutUpdatedFeaturesInput>, UserUncheckedUpdateWithoutUpdatedFeaturesInput>
+  }
+
   export type MunicipalityCreateNestedOneWithoutUsersInput = {
     create?: XOR<MunicipalityCreateWithoutUsersInput, MunicipalityUncheckedCreateWithoutUsersInput>
     connectOrCreate?: MunicipalityCreateOrConnectWithoutUsersInput
@@ -25935,6 +28641,13 @@ export namespace Prisma {
     connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
   }
 
+  export type MunicipalityFeatureCreateNestedManyWithoutUserInput = {
+    create?: XOR<MunicipalityFeatureCreateWithoutUserInput, MunicipalityFeatureUncheckedCreateWithoutUserInput> | MunicipalityFeatureCreateWithoutUserInput[] | MunicipalityFeatureUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MunicipalityFeatureCreateOrConnectWithoutUserInput | MunicipalityFeatureCreateOrConnectWithoutUserInput[]
+    createMany?: MunicipalityFeatureCreateManyUserInputEnvelope
+    connect?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
+  }
+
   export type VersionHistoryUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<VersionHistoryCreateWithoutUserInput, VersionHistoryUncheckedCreateWithoutUserInput> | VersionHistoryCreateWithoutUserInput[] | VersionHistoryUncheckedCreateWithoutUserInput[]
     connectOrCreate?: VersionHistoryCreateOrConnectWithoutUserInput | VersionHistoryCreateOrConnectWithoutUserInput[]
@@ -25947,6 +28660,13 @@ export namespace Prisma {
     connectOrCreate?: NotificationCreateOrConnectWithoutCreatorInput | NotificationCreateOrConnectWithoutCreatorInput[]
     createMany?: NotificationCreateManyCreatorInputEnvelope
     connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+  }
+
+  export type MunicipalityFeatureUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<MunicipalityFeatureCreateWithoutUserInput, MunicipalityFeatureUncheckedCreateWithoutUserInput> | MunicipalityFeatureCreateWithoutUserInput[] | MunicipalityFeatureUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MunicipalityFeatureCreateOrConnectWithoutUserInput | MunicipalityFeatureCreateOrConnectWithoutUserInput[]
+    createMany?: MunicipalityFeatureCreateManyUserInputEnvelope
+    connect?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
   }
 
   export type MunicipalityUpdateOneWithoutUsersNestedInput = {
@@ -25987,6 +28707,20 @@ export namespace Prisma {
     deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
   }
 
+  export type MunicipalityFeatureUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MunicipalityFeatureCreateWithoutUserInput, MunicipalityFeatureUncheckedCreateWithoutUserInput> | MunicipalityFeatureCreateWithoutUserInput[] | MunicipalityFeatureUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MunicipalityFeatureCreateOrConnectWithoutUserInput | MunicipalityFeatureCreateOrConnectWithoutUserInput[]
+    upsert?: MunicipalityFeatureUpsertWithWhereUniqueWithoutUserInput | MunicipalityFeatureUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MunicipalityFeatureCreateManyUserInputEnvelope
+    set?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
+    disconnect?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
+    delete?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
+    connect?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
+    update?: MunicipalityFeatureUpdateWithWhereUniqueWithoutUserInput | MunicipalityFeatureUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MunicipalityFeatureUpdateManyWithWhereWithoutUserInput | MunicipalityFeatureUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MunicipalityFeatureScalarWhereInput | MunicipalityFeatureScalarWhereInput[]
+  }
+
   export type VersionHistoryUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<VersionHistoryCreateWithoutUserInput, VersionHistoryUncheckedCreateWithoutUserInput> | VersionHistoryCreateWithoutUserInput[] | VersionHistoryUncheckedCreateWithoutUserInput[]
     connectOrCreate?: VersionHistoryCreateOrConnectWithoutUserInput | VersionHistoryCreateOrConnectWithoutUserInput[]
@@ -26013,6 +28747,20 @@ export namespace Prisma {
     update?: NotificationUpdateWithWhereUniqueWithoutCreatorInput | NotificationUpdateWithWhereUniqueWithoutCreatorInput[]
     updateMany?: NotificationUpdateManyWithWhereWithoutCreatorInput | NotificationUpdateManyWithWhereWithoutCreatorInput[]
     deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
+  }
+
+  export type MunicipalityFeatureUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MunicipalityFeatureCreateWithoutUserInput, MunicipalityFeatureUncheckedCreateWithoutUserInput> | MunicipalityFeatureCreateWithoutUserInput[] | MunicipalityFeatureUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MunicipalityFeatureCreateOrConnectWithoutUserInput | MunicipalityFeatureCreateOrConnectWithoutUserInput[]
+    upsert?: MunicipalityFeatureUpsertWithWhereUniqueWithoutUserInput | MunicipalityFeatureUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MunicipalityFeatureCreateManyUserInputEnvelope
+    set?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
+    disconnect?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
+    delete?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
+    connect?: MunicipalityFeatureWhereUniqueInput | MunicipalityFeatureWhereUniqueInput[]
+    update?: MunicipalityFeatureUpdateWithWhereUniqueWithoutUserInput | MunicipalityFeatureUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MunicipalityFeatureUpdateManyWithWhereWithoutUserInput | MunicipalityFeatureUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MunicipalityFeatureScalarWhereInput | MunicipalityFeatureScalarWhereInput[]
   }
 
   export type QueryAuditCreatedatasetsUsedInput = {
@@ -26479,6 +29227,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     versionHistory?: VersionHistoryCreateNestedManyWithoutUserInput
     createdNotifications?: NotificationCreateNestedManyWithoutCreatorInput
+    updatedFeatures?: MunicipalityFeatureCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMunicipalityInput = {
@@ -26491,6 +29240,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     versionHistory?: VersionHistoryUncheckedCreateNestedManyWithoutUserInput
     createdNotifications?: NotificationUncheckedCreateNestedManyWithoutCreatorInput
+    updatedFeatures?: MunicipalityFeatureUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMunicipalityInput = {
@@ -26564,6 +29314,32 @@ export namespace Prisma {
 
   export type NotificationCreateManyMunicipalityInputEnvelope = {
     data: NotificationCreateManyMunicipalityInput | NotificationCreateManyMunicipalityInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MunicipalityFeatureCreateWithoutMunicipalityInput = {
+    id?: string
+    enabled: boolean
+    updatedAt?: Date | string
+    featureFlag: FeatureFlagCreateNestedOneWithoutMunicipalityFeaturesInput
+    user: UserCreateNestedOneWithoutUpdatedFeaturesInput
+  }
+
+  export type MunicipalityFeatureUncheckedCreateWithoutMunicipalityInput = {
+    id?: string
+    featureFlagId: string
+    enabled: boolean
+    updatedBy: string
+    updatedAt?: Date | string
+  }
+
+  export type MunicipalityFeatureCreateOrConnectWithoutMunicipalityInput = {
+    where: MunicipalityFeatureWhereUniqueInput
+    create: XOR<MunicipalityFeatureCreateWithoutMunicipalityInput, MunicipalityFeatureUncheckedCreateWithoutMunicipalityInput>
+  }
+
+  export type MunicipalityFeatureCreateManyMunicipalityInputEnvelope = {
+    data: MunicipalityFeatureCreateManyMunicipalityInput | MunicipalityFeatureCreateManyMunicipalityInput[]
     skipDuplicates?: boolean
   }
 
@@ -26834,6 +29610,34 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Notification"> | Date | string
   }
 
+  export type MunicipalityFeatureUpsertWithWhereUniqueWithoutMunicipalityInput = {
+    where: MunicipalityFeatureWhereUniqueInput
+    update: XOR<MunicipalityFeatureUpdateWithoutMunicipalityInput, MunicipalityFeatureUncheckedUpdateWithoutMunicipalityInput>
+    create: XOR<MunicipalityFeatureCreateWithoutMunicipalityInput, MunicipalityFeatureUncheckedCreateWithoutMunicipalityInput>
+  }
+
+  export type MunicipalityFeatureUpdateWithWhereUniqueWithoutMunicipalityInput = {
+    where: MunicipalityFeatureWhereUniqueInput
+    data: XOR<MunicipalityFeatureUpdateWithoutMunicipalityInput, MunicipalityFeatureUncheckedUpdateWithoutMunicipalityInput>
+  }
+
+  export type MunicipalityFeatureUpdateManyWithWhereWithoutMunicipalityInput = {
+    where: MunicipalityFeatureScalarWhereInput
+    data: XOR<MunicipalityFeatureUpdateManyMutationInput, MunicipalityFeatureUncheckedUpdateManyWithoutMunicipalityInput>
+  }
+
+  export type MunicipalityFeatureScalarWhereInput = {
+    AND?: MunicipalityFeatureScalarWhereInput | MunicipalityFeatureScalarWhereInput[]
+    OR?: MunicipalityFeatureScalarWhereInput[]
+    NOT?: MunicipalityFeatureScalarWhereInput | MunicipalityFeatureScalarWhereInput[]
+    id?: StringFilter<"MunicipalityFeature"> | string
+    municipalityId?: StringFilter<"MunicipalityFeature"> | string
+    featureFlagId?: StringFilter<"MunicipalityFeature"> | string
+    enabled?: BoolFilter<"MunicipalityFeature"> | boolean
+    updatedBy?: StringFilter<"MunicipalityFeature"> | string
+    updatedAt?: DateTimeFilter<"MunicipalityFeature"> | Date | string
+  }
+
   export type SoftwareVersionUpsertWithoutMunicipalitiesInput = {
     update: XOR<SoftwareVersionUpdateWithoutMunicipalitiesInput, SoftwareVersionUncheckedUpdateWithoutMunicipalitiesInput>
     create: XOR<SoftwareVersionCreateWithoutMunicipalitiesInput, SoftwareVersionUncheckedCreateWithoutMunicipalitiesInput>
@@ -27002,6 +29806,7 @@ export namespace Prisma {
     users?: UserCreateNestedManyWithoutMunicipalityInput
     versionHistory?: VersionHistoryCreateNestedManyWithoutMunicipalityInput
     notifications?: NotificationCreateNestedManyWithoutMunicipalityInput
+    municipalityFeatures?: MunicipalityFeatureCreateNestedManyWithoutMunicipalityInput
     version?: SoftwareVersionCreateNestedOneWithoutMunicipalitiesInput
   }
 
@@ -27021,6 +29826,7 @@ export namespace Prisma {
     users?: UserUncheckedCreateNestedManyWithoutMunicipalityInput
     versionHistory?: VersionHistoryUncheckedCreateNestedManyWithoutMunicipalityInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutMunicipalityInput
+    municipalityFeatures?: MunicipalityFeatureUncheckedCreateNestedManyWithoutMunicipalityInput
   }
 
   export type MunicipalityCreateOrConnectWithoutBudgetsInput = {
@@ -27075,6 +29881,7 @@ export namespace Prisma {
     users?: UserUpdateManyWithoutMunicipalityNestedInput
     versionHistory?: VersionHistoryUpdateManyWithoutMunicipalityNestedInput
     notifications?: NotificationUpdateManyWithoutMunicipalityNestedInput
+    municipalityFeatures?: MunicipalityFeatureUpdateManyWithoutMunicipalityNestedInput
     version?: SoftwareVersionUpdateOneWithoutMunicipalitiesNestedInput
   }
 
@@ -27094,6 +29901,7 @@ export namespace Prisma {
     users?: UserUncheckedUpdateManyWithoutMunicipalityNestedInput
     versionHistory?: VersionHistoryUncheckedUpdateManyWithoutMunicipalityNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutMunicipalityNestedInput
+    municipalityFeatures?: MunicipalityFeatureUncheckedUpdateManyWithoutMunicipalityNestedInput
   }
 
   export type FiscalYearUpsertWithoutBudgetsInput = {
@@ -27138,6 +29946,7 @@ export namespace Prisma {
     users?: UserCreateNestedManyWithoutMunicipalityInput
     versionHistory?: VersionHistoryCreateNestedManyWithoutMunicipalityInput
     notifications?: NotificationCreateNestedManyWithoutMunicipalityInput
+    municipalityFeatures?: MunicipalityFeatureCreateNestedManyWithoutMunicipalityInput
     version?: SoftwareVersionCreateNestedOneWithoutMunicipalitiesInput
   }
 
@@ -27157,6 +29966,7 @@ export namespace Prisma {
     users?: UserUncheckedCreateNestedManyWithoutMunicipalityInput
     versionHistory?: VersionHistoryUncheckedCreateNestedManyWithoutMunicipalityInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutMunicipalityInput
+    municipalityFeatures?: MunicipalityFeatureUncheckedCreateNestedManyWithoutMunicipalityInput
   }
 
   export type MunicipalityCreateOrConnectWithoutExpendituresInput = {
@@ -27238,6 +30048,7 @@ export namespace Prisma {
     users?: UserUpdateManyWithoutMunicipalityNestedInput
     versionHistory?: VersionHistoryUpdateManyWithoutMunicipalityNestedInput
     notifications?: NotificationUpdateManyWithoutMunicipalityNestedInput
+    municipalityFeatures?: MunicipalityFeatureUpdateManyWithoutMunicipalityNestedInput
     version?: SoftwareVersionUpdateOneWithoutMunicipalitiesNestedInput
   }
 
@@ -27257,6 +30068,7 @@ export namespace Prisma {
     users?: UserUncheckedUpdateManyWithoutMunicipalityNestedInput
     versionHistory?: VersionHistoryUncheckedUpdateManyWithoutMunicipalityNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutMunicipalityNestedInput
+    municipalityFeatures?: MunicipalityFeatureUncheckedUpdateManyWithoutMunicipalityNestedInput
   }
 
   export type FiscalYearUpsertWithoutExpendituresInput = {
@@ -27334,6 +30146,7 @@ export namespace Prisma {
     users?: UserCreateNestedManyWithoutMunicipalityInput
     versionHistory?: VersionHistoryCreateNestedManyWithoutMunicipalityInput
     notifications?: NotificationCreateNestedManyWithoutMunicipalityInput
+    municipalityFeatures?: MunicipalityFeatureCreateNestedManyWithoutMunicipalityInput
     version?: SoftwareVersionCreateNestedOneWithoutMunicipalitiesInput
   }
 
@@ -27353,6 +30166,7 @@ export namespace Prisma {
     users?: UserUncheckedCreateNestedManyWithoutMunicipalityInput
     versionHistory?: VersionHistoryUncheckedCreateNestedManyWithoutMunicipalityInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutMunicipalityInput
+    municipalityFeatures?: MunicipalityFeatureUncheckedCreateNestedManyWithoutMunicipalityInput
   }
 
   export type MunicipalityCreateOrConnectWithoutProjectsInput = {
@@ -27409,6 +30223,7 @@ export namespace Prisma {
     users?: UserUpdateManyWithoutMunicipalityNestedInput
     versionHistory?: VersionHistoryUpdateManyWithoutMunicipalityNestedInput
     notifications?: NotificationUpdateManyWithoutMunicipalityNestedInput
+    municipalityFeatures?: MunicipalityFeatureUpdateManyWithoutMunicipalityNestedInput
     version?: SoftwareVersionUpdateOneWithoutMunicipalitiesNestedInput
   }
 
@@ -27428,6 +30243,7 @@ export namespace Prisma {
     users?: UserUncheckedUpdateManyWithoutMunicipalityNestedInput
     versionHistory?: VersionHistoryUncheckedUpdateManyWithoutMunicipalityNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutMunicipalityNestedInput
+    municipalityFeatures?: MunicipalityFeatureUncheckedUpdateManyWithoutMunicipalityNestedInput
   }
 
   export type FundingSourceUpsertWithoutProjectsInput = {
@@ -27652,6 +30468,7 @@ export namespace Prisma {
     users?: UserCreateNestedManyWithoutMunicipalityInput
     versionHistory?: VersionHistoryCreateNestedManyWithoutMunicipalityInput
     notifications?: NotificationCreateNestedManyWithoutMunicipalityInput
+    municipalityFeatures?: MunicipalityFeatureCreateNestedManyWithoutMunicipalityInput
     version?: SoftwareVersionCreateNestedOneWithoutMunicipalitiesInput
   }
 
@@ -27671,6 +30488,7 @@ export namespace Prisma {
     users?: UserUncheckedCreateNestedManyWithoutMunicipalityInput
     versionHistory?: VersionHistoryUncheckedCreateNestedManyWithoutMunicipalityInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutMunicipalityInput
+    municipalityFeatures?: MunicipalityFeatureUncheckedCreateNestedManyWithoutMunicipalityInput
   }
 
   export type MunicipalityCreateOrConnectWithoutContractsInput = {
@@ -27731,6 +30549,7 @@ export namespace Prisma {
     users?: UserUpdateManyWithoutMunicipalityNestedInput
     versionHistory?: VersionHistoryUpdateManyWithoutMunicipalityNestedInput
     notifications?: NotificationUpdateManyWithoutMunicipalityNestedInput
+    municipalityFeatures?: MunicipalityFeatureUpdateManyWithoutMunicipalityNestedInput
     version?: SoftwareVersionUpdateOneWithoutMunicipalitiesNestedInput
   }
 
@@ -27750,6 +30569,7 @@ export namespace Prisma {
     users?: UserUncheckedUpdateManyWithoutMunicipalityNestedInput
     versionHistory?: VersionHistoryUncheckedUpdateManyWithoutMunicipalityNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutMunicipalityNestedInput
+    municipalityFeatures?: MunicipalityFeatureUncheckedUpdateManyWithoutMunicipalityNestedInput
   }
 
   export type SupplierUpsertWithoutContractsInput = {
@@ -28099,6 +30919,7 @@ export namespace Prisma {
     users?: UserCreateNestedManyWithoutMunicipalityInput
     versionHistory?: VersionHistoryCreateNestedManyWithoutMunicipalityInput
     notifications?: NotificationCreateNestedManyWithoutMunicipalityInput
+    municipalityFeatures?: MunicipalityFeatureCreateNestedManyWithoutMunicipalityInput
   }
 
   export type MunicipalityUncheckedCreateWithoutVersionInput = {
@@ -28117,6 +30938,7 @@ export namespace Prisma {
     users?: UserUncheckedCreateNestedManyWithoutMunicipalityInput
     versionHistory?: VersionHistoryUncheckedCreateNestedManyWithoutMunicipalityInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutMunicipalityInput
+    municipalityFeatures?: MunicipalityFeatureUncheckedCreateNestedManyWithoutMunicipalityInput
   }
 
   export type MunicipalityCreateOrConnectWithoutVersionInput = {
@@ -28219,6 +31041,7 @@ export namespace Prisma {
     contracts?: ContractCreateNestedManyWithoutMunicipalityInput
     users?: UserCreateNestedManyWithoutMunicipalityInput
     notifications?: NotificationCreateNestedManyWithoutMunicipalityInput
+    municipalityFeatures?: MunicipalityFeatureCreateNestedManyWithoutMunicipalityInput
     version?: SoftwareVersionCreateNestedOneWithoutMunicipalitiesInput
   }
 
@@ -28238,6 +31061,7 @@ export namespace Prisma {
     contracts?: ContractUncheckedCreateNestedManyWithoutMunicipalityInput
     users?: UserUncheckedCreateNestedManyWithoutMunicipalityInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutMunicipalityInput
+    municipalityFeatures?: MunicipalityFeatureUncheckedCreateNestedManyWithoutMunicipalityInput
   }
 
   export type MunicipalityCreateOrConnectWithoutVersionHistoryInput = {
@@ -28286,6 +31110,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     municipality?: MunicipalityCreateNestedOneWithoutUsersInput
     createdNotifications?: NotificationCreateNestedManyWithoutCreatorInput
+    updatedFeatures?: MunicipalityFeatureCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutVersionHistoryInput = {
@@ -28298,6 +31123,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     createdNotifications?: NotificationUncheckedCreateNestedManyWithoutCreatorInput
+    updatedFeatures?: MunicipalityFeatureUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutVersionHistoryInput = {
@@ -28331,6 +31157,7 @@ export namespace Prisma {
     contracts?: ContractUpdateManyWithoutMunicipalityNestedInput
     users?: UserUpdateManyWithoutMunicipalityNestedInput
     notifications?: NotificationUpdateManyWithoutMunicipalityNestedInput
+    municipalityFeatures?: MunicipalityFeatureUpdateManyWithoutMunicipalityNestedInput
     version?: SoftwareVersionUpdateOneWithoutMunicipalitiesNestedInput
   }
 
@@ -28350,6 +31177,7 @@ export namespace Prisma {
     contracts?: ContractUncheckedUpdateManyWithoutMunicipalityNestedInput
     users?: UserUncheckedUpdateManyWithoutMunicipalityNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutMunicipalityNestedInput
+    municipalityFeatures?: MunicipalityFeatureUncheckedUpdateManyWithoutMunicipalityNestedInput
   }
 
   export type SoftwareVersionUpsertWithoutVersionHistoryInput = {
@@ -28410,6 +31238,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     municipality?: MunicipalityUpdateOneWithoutUsersNestedInput
     createdNotifications?: NotificationUpdateManyWithoutCreatorNestedInput
+    updatedFeatures?: MunicipalityFeatureUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutVersionHistoryInput = {
@@ -28422,6 +31251,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdNotifications?: NotificationUncheckedUpdateManyWithoutCreatorNestedInput
+    updatedFeatures?: MunicipalityFeatureUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type MunicipalityCreateWithoutNotificationsInput = {
@@ -28439,6 +31269,7 @@ export namespace Prisma {
     contracts?: ContractCreateNestedManyWithoutMunicipalityInput
     users?: UserCreateNestedManyWithoutMunicipalityInput
     versionHistory?: VersionHistoryCreateNestedManyWithoutMunicipalityInput
+    municipalityFeatures?: MunicipalityFeatureCreateNestedManyWithoutMunicipalityInput
     version?: SoftwareVersionCreateNestedOneWithoutMunicipalitiesInput
   }
 
@@ -28458,6 +31289,7 @@ export namespace Prisma {
     contracts?: ContractUncheckedCreateNestedManyWithoutMunicipalityInput
     users?: UserUncheckedCreateNestedManyWithoutMunicipalityInput
     versionHistory?: VersionHistoryUncheckedCreateNestedManyWithoutMunicipalityInput
+    municipalityFeatures?: MunicipalityFeatureUncheckedCreateNestedManyWithoutMunicipalityInput
   }
 
   export type MunicipalityCreateOrConnectWithoutNotificationsInput = {
@@ -28475,6 +31307,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     municipality?: MunicipalityCreateNestedOneWithoutUsersInput
     versionHistory?: VersionHistoryCreateNestedManyWithoutUserInput
+    updatedFeatures?: MunicipalityFeatureCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCreatedNotificationsInput = {
@@ -28487,6 +31320,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     versionHistory?: VersionHistoryUncheckedCreateNestedManyWithoutUserInput
+    updatedFeatures?: MunicipalityFeatureUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCreatedNotificationsInput = {
@@ -28520,6 +31354,7 @@ export namespace Prisma {
     contracts?: ContractUpdateManyWithoutMunicipalityNestedInput
     users?: UserUpdateManyWithoutMunicipalityNestedInput
     versionHistory?: VersionHistoryUpdateManyWithoutMunicipalityNestedInput
+    municipalityFeatures?: MunicipalityFeatureUpdateManyWithoutMunicipalityNestedInput
     version?: SoftwareVersionUpdateOneWithoutMunicipalitiesNestedInput
   }
 
@@ -28539,6 +31374,7 @@ export namespace Prisma {
     contracts?: ContractUncheckedUpdateManyWithoutMunicipalityNestedInput
     users?: UserUncheckedUpdateManyWithoutMunicipalityNestedInput
     versionHistory?: VersionHistoryUncheckedUpdateManyWithoutMunicipalityNestedInput
+    municipalityFeatures?: MunicipalityFeatureUncheckedUpdateManyWithoutMunicipalityNestedInput
   }
 
   export type UserUpsertWithoutCreatedNotificationsInput = {
@@ -28562,6 +31398,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     municipality?: MunicipalityUpdateOneWithoutUsersNestedInput
     versionHistory?: VersionHistoryUpdateManyWithoutUserNestedInput
+    updatedFeatures?: MunicipalityFeatureUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCreatedNotificationsInput = {
@@ -28574,6 +31411,265 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     versionHistory?: VersionHistoryUncheckedUpdateManyWithoutUserNestedInput
+    updatedFeatures?: MunicipalityFeatureUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type MunicipalityFeatureCreateWithoutFeatureFlagInput = {
+    id?: string
+    enabled: boolean
+    updatedAt?: Date | string
+    municipality: MunicipalityCreateNestedOneWithoutMunicipalityFeaturesInput
+    user: UserCreateNestedOneWithoutUpdatedFeaturesInput
+  }
+
+  export type MunicipalityFeatureUncheckedCreateWithoutFeatureFlagInput = {
+    id?: string
+    municipalityId: string
+    enabled: boolean
+    updatedBy: string
+    updatedAt?: Date | string
+  }
+
+  export type MunicipalityFeatureCreateOrConnectWithoutFeatureFlagInput = {
+    where: MunicipalityFeatureWhereUniqueInput
+    create: XOR<MunicipalityFeatureCreateWithoutFeatureFlagInput, MunicipalityFeatureUncheckedCreateWithoutFeatureFlagInput>
+  }
+
+  export type MunicipalityFeatureCreateManyFeatureFlagInputEnvelope = {
+    data: MunicipalityFeatureCreateManyFeatureFlagInput | MunicipalityFeatureCreateManyFeatureFlagInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MunicipalityFeatureUpsertWithWhereUniqueWithoutFeatureFlagInput = {
+    where: MunicipalityFeatureWhereUniqueInput
+    update: XOR<MunicipalityFeatureUpdateWithoutFeatureFlagInput, MunicipalityFeatureUncheckedUpdateWithoutFeatureFlagInput>
+    create: XOR<MunicipalityFeatureCreateWithoutFeatureFlagInput, MunicipalityFeatureUncheckedCreateWithoutFeatureFlagInput>
+  }
+
+  export type MunicipalityFeatureUpdateWithWhereUniqueWithoutFeatureFlagInput = {
+    where: MunicipalityFeatureWhereUniqueInput
+    data: XOR<MunicipalityFeatureUpdateWithoutFeatureFlagInput, MunicipalityFeatureUncheckedUpdateWithoutFeatureFlagInput>
+  }
+
+  export type MunicipalityFeatureUpdateManyWithWhereWithoutFeatureFlagInput = {
+    where: MunicipalityFeatureScalarWhereInput
+    data: XOR<MunicipalityFeatureUpdateManyMutationInput, MunicipalityFeatureUncheckedUpdateManyWithoutFeatureFlagInput>
+  }
+
+  export type MunicipalityCreateWithoutMunicipalityFeaturesInput = {
+    id?: string
+    name: string
+    country?: string
+    region: string
+    locale?: string
+    timezone?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    budgets?: BudgetCreateNestedManyWithoutMunicipalityInput
+    expenditures?: ExpenditureCreateNestedManyWithoutMunicipalityInput
+    projects?: ProjectCreateNestedManyWithoutMunicipalityInput
+    contracts?: ContractCreateNestedManyWithoutMunicipalityInput
+    users?: UserCreateNestedManyWithoutMunicipalityInput
+    versionHistory?: VersionHistoryCreateNestedManyWithoutMunicipalityInput
+    notifications?: NotificationCreateNestedManyWithoutMunicipalityInput
+    version?: SoftwareVersionCreateNestedOneWithoutMunicipalitiesInput
+  }
+
+  export type MunicipalityUncheckedCreateWithoutMunicipalityFeaturesInput = {
+    id?: string
+    name: string
+    country?: string
+    region: string
+    locale?: string
+    timezone?: string
+    softwareVersion?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    budgets?: BudgetUncheckedCreateNestedManyWithoutMunicipalityInput
+    expenditures?: ExpenditureUncheckedCreateNestedManyWithoutMunicipalityInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutMunicipalityInput
+    contracts?: ContractUncheckedCreateNestedManyWithoutMunicipalityInput
+    users?: UserUncheckedCreateNestedManyWithoutMunicipalityInput
+    versionHistory?: VersionHistoryUncheckedCreateNestedManyWithoutMunicipalityInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutMunicipalityInput
+  }
+
+  export type MunicipalityCreateOrConnectWithoutMunicipalityFeaturesInput = {
+    where: MunicipalityWhereUniqueInput
+    create: XOR<MunicipalityCreateWithoutMunicipalityFeaturesInput, MunicipalityUncheckedCreateWithoutMunicipalityFeaturesInput>
+  }
+
+  export type FeatureFlagCreateWithoutMunicipalityFeaturesInput = {
+    id?: string
+    key: string
+    name: string
+    description?: string | null
+    defaultEnabled?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FeatureFlagUncheckedCreateWithoutMunicipalityFeaturesInput = {
+    id?: string
+    key: string
+    name: string
+    description?: string | null
+    defaultEnabled?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FeatureFlagCreateOrConnectWithoutMunicipalityFeaturesInput = {
+    where: FeatureFlagWhereUniqueInput
+    create: XOR<FeatureFlagCreateWithoutMunicipalityFeaturesInput, FeatureFlagUncheckedCreateWithoutMunicipalityFeaturesInput>
+  }
+
+  export type UserCreateWithoutUpdatedFeaturesInput = {
+    id?: string
+    email: string
+    passwordHash: string
+    role: string
+    lastLoginAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    municipality?: MunicipalityCreateNestedOneWithoutUsersInput
+    versionHistory?: VersionHistoryCreateNestedManyWithoutUserInput
+    createdNotifications?: NotificationCreateNestedManyWithoutCreatorInput
+  }
+
+  export type UserUncheckedCreateWithoutUpdatedFeaturesInput = {
+    id?: string
+    email: string
+    passwordHash: string
+    role: string
+    municipalityId?: string | null
+    lastLoginAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    versionHistory?: VersionHistoryUncheckedCreateNestedManyWithoutUserInput
+    createdNotifications?: NotificationUncheckedCreateNestedManyWithoutCreatorInput
+  }
+
+  export type UserCreateOrConnectWithoutUpdatedFeaturesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutUpdatedFeaturesInput, UserUncheckedCreateWithoutUpdatedFeaturesInput>
+  }
+
+  export type MunicipalityUpsertWithoutMunicipalityFeaturesInput = {
+    update: XOR<MunicipalityUpdateWithoutMunicipalityFeaturesInput, MunicipalityUncheckedUpdateWithoutMunicipalityFeaturesInput>
+    create: XOR<MunicipalityCreateWithoutMunicipalityFeaturesInput, MunicipalityUncheckedCreateWithoutMunicipalityFeaturesInput>
+    where?: MunicipalityWhereInput
+  }
+
+  export type MunicipalityUpdateToOneWithWhereWithoutMunicipalityFeaturesInput = {
+    where?: MunicipalityWhereInput
+    data: XOR<MunicipalityUpdateWithoutMunicipalityFeaturesInput, MunicipalityUncheckedUpdateWithoutMunicipalityFeaturesInput>
+  }
+
+  export type MunicipalityUpdateWithoutMunicipalityFeaturesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    region?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    budgets?: BudgetUpdateManyWithoutMunicipalityNestedInput
+    expenditures?: ExpenditureUpdateManyWithoutMunicipalityNestedInput
+    projects?: ProjectUpdateManyWithoutMunicipalityNestedInput
+    contracts?: ContractUpdateManyWithoutMunicipalityNestedInput
+    users?: UserUpdateManyWithoutMunicipalityNestedInput
+    versionHistory?: VersionHistoryUpdateManyWithoutMunicipalityNestedInput
+    notifications?: NotificationUpdateManyWithoutMunicipalityNestedInput
+    version?: SoftwareVersionUpdateOneWithoutMunicipalitiesNestedInput
+  }
+
+  export type MunicipalityUncheckedUpdateWithoutMunicipalityFeaturesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    region?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    softwareVersion?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    budgets?: BudgetUncheckedUpdateManyWithoutMunicipalityNestedInput
+    expenditures?: ExpenditureUncheckedUpdateManyWithoutMunicipalityNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutMunicipalityNestedInput
+    contracts?: ContractUncheckedUpdateManyWithoutMunicipalityNestedInput
+    users?: UserUncheckedUpdateManyWithoutMunicipalityNestedInput
+    versionHistory?: VersionHistoryUncheckedUpdateManyWithoutMunicipalityNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutMunicipalityNestedInput
+  }
+
+  export type FeatureFlagUpsertWithoutMunicipalityFeaturesInput = {
+    update: XOR<FeatureFlagUpdateWithoutMunicipalityFeaturesInput, FeatureFlagUncheckedUpdateWithoutMunicipalityFeaturesInput>
+    create: XOR<FeatureFlagCreateWithoutMunicipalityFeaturesInput, FeatureFlagUncheckedCreateWithoutMunicipalityFeaturesInput>
+    where?: FeatureFlagWhereInput
+  }
+
+  export type FeatureFlagUpdateToOneWithWhereWithoutMunicipalityFeaturesInput = {
+    where?: FeatureFlagWhereInput
+    data: XOR<FeatureFlagUpdateWithoutMunicipalityFeaturesInput, FeatureFlagUncheckedUpdateWithoutMunicipalityFeaturesInput>
+  }
+
+  export type FeatureFlagUpdateWithoutMunicipalityFeaturesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultEnabled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeatureFlagUncheckedUpdateWithoutMunicipalityFeaturesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultEnabled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUpsertWithoutUpdatedFeaturesInput = {
+    update: XOR<UserUpdateWithoutUpdatedFeaturesInput, UserUncheckedUpdateWithoutUpdatedFeaturesInput>
+    create: XOR<UserCreateWithoutUpdatedFeaturesInput, UserUncheckedCreateWithoutUpdatedFeaturesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutUpdatedFeaturesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutUpdatedFeaturesInput, UserUncheckedUpdateWithoutUpdatedFeaturesInput>
+  }
+
+  export type UserUpdateWithoutUpdatedFeaturesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    municipality?: MunicipalityUpdateOneWithoutUsersNestedInput
+    versionHistory?: VersionHistoryUpdateManyWithoutUserNestedInput
+    createdNotifications?: NotificationUpdateManyWithoutCreatorNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutUpdatedFeaturesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    municipalityId?: NullableStringFieldUpdateOperationsInput | string | null
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    versionHistory?: VersionHistoryUncheckedUpdateManyWithoutUserNestedInput
+    createdNotifications?: NotificationUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type MunicipalityCreateWithoutUsersInput = {
@@ -28591,6 +31687,7 @@ export namespace Prisma {
     contracts?: ContractCreateNestedManyWithoutMunicipalityInput
     versionHistory?: VersionHistoryCreateNestedManyWithoutMunicipalityInput
     notifications?: NotificationCreateNestedManyWithoutMunicipalityInput
+    municipalityFeatures?: MunicipalityFeatureCreateNestedManyWithoutMunicipalityInput
     version?: SoftwareVersionCreateNestedOneWithoutMunicipalitiesInput
   }
 
@@ -28610,6 +31707,7 @@ export namespace Prisma {
     contracts?: ContractUncheckedCreateNestedManyWithoutMunicipalityInput
     versionHistory?: VersionHistoryUncheckedCreateNestedManyWithoutMunicipalityInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutMunicipalityInput
+    municipalityFeatures?: MunicipalityFeatureUncheckedCreateNestedManyWithoutMunicipalityInput
   }
 
   export type MunicipalityCreateOrConnectWithoutUsersInput = {
@@ -28681,6 +31779,32 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type MunicipalityFeatureCreateWithoutUserInput = {
+    id?: string
+    enabled: boolean
+    updatedAt?: Date | string
+    municipality: MunicipalityCreateNestedOneWithoutMunicipalityFeaturesInput
+    featureFlag: FeatureFlagCreateNestedOneWithoutMunicipalityFeaturesInput
+  }
+
+  export type MunicipalityFeatureUncheckedCreateWithoutUserInput = {
+    id?: string
+    municipalityId: string
+    featureFlagId: string
+    enabled: boolean
+    updatedAt?: Date | string
+  }
+
+  export type MunicipalityFeatureCreateOrConnectWithoutUserInput = {
+    where: MunicipalityFeatureWhereUniqueInput
+    create: XOR<MunicipalityFeatureCreateWithoutUserInput, MunicipalityFeatureUncheckedCreateWithoutUserInput>
+  }
+
+  export type MunicipalityFeatureCreateManyUserInputEnvelope = {
+    data: MunicipalityFeatureCreateManyUserInput | MunicipalityFeatureCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type MunicipalityUpsertWithoutUsersInput = {
     update: XOR<MunicipalityUpdateWithoutUsersInput, MunicipalityUncheckedUpdateWithoutUsersInput>
     create: XOR<MunicipalityCreateWithoutUsersInput, MunicipalityUncheckedCreateWithoutUsersInput>
@@ -28707,6 +31831,7 @@ export namespace Prisma {
     contracts?: ContractUpdateManyWithoutMunicipalityNestedInput
     versionHistory?: VersionHistoryUpdateManyWithoutMunicipalityNestedInput
     notifications?: NotificationUpdateManyWithoutMunicipalityNestedInput
+    municipalityFeatures?: MunicipalityFeatureUpdateManyWithoutMunicipalityNestedInput
     version?: SoftwareVersionUpdateOneWithoutMunicipalitiesNestedInput
   }
 
@@ -28726,6 +31851,7 @@ export namespace Prisma {
     contracts?: ContractUncheckedUpdateManyWithoutMunicipalityNestedInput
     versionHistory?: VersionHistoryUncheckedUpdateManyWithoutMunicipalityNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutMunicipalityNestedInput
+    municipalityFeatures?: MunicipalityFeatureUncheckedUpdateManyWithoutMunicipalityNestedInput
   }
 
   export type VersionHistoryUpsertWithWhereUniqueWithoutUserInput = {
@@ -28758,6 +31884,22 @@ export namespace Prisma {
   export type NotificationUpdateManyWithWhereWithoutCreatorInput = {
     where: NotificationScalarWhereInput
     data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyWithoutCreatorInput>
+  }
+
+  export type MunicipalityFeatureUpsertWithWhereUniqueWithoutUserInput = {
+    where: MunicipalityFeatureWhereUniqueInput
+    update: XOR<MunicipalityFeatureUpdateWithoutUserInput, MunicipalityFeatureUncheckedUpdateWithoutUserInput>
+    create: XOR<MunicipalityFeatureCreateWithoutUserInput, MunicipalityFeatureUncheckedCreateWithoutUserInput>
+  }
+
+  export type MunicipalityFeatureUpdateWithWhereUniqueWithoutUserInput = {
+    where: MunicipalityFeatureWhereUniqueInput
+    data: XOR<MunicipalityFeatureUpdateWithoutUserInput, MunicipalityFeatureUncheckedUpdateWithoutUserInput>
+  }
+
+  export type MunicipalityFeatureUpdateManyWithWhereWithoutUserInput = {
+    where: MunicipalityFeatureScalarWhereInput
+    data: XOR<MunicipalityFeatureUpdateManyMutationInput, MunicipalityFeatureUncheckedUpdateManyWithoutUserInput>
   }
 
   export type BudgetCreateManyMunicipalityInput = {
@@ -28853,6 +31995,14 @@ export namespace Prisma {
     readAt?: Date | string | null
     metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MunicipalityFeatureCreateManyMunicipalityInput = {
+    id?: string
+    featureFlagId: string
+    enabled: boolean
+    updatedBy: string
     updatedAt?: Date | string
   }
 
@@ -29058,6 +32208,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     versionHistory?: VersionHistoryUpdateManyWithoutUserNestedInput
     createdNotifications?: NotificationUpdateManyWithoutCreatorNestedInput
+    updatedFeatures?: MunicipalityFeatureUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMunicipalityInput = {
@@ -29070,6 +32221,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     versionHistory?: VersionHistoryUncheckedUpdateManyWithoutUserNestedInput
     createdNotifications?: NotificationUncheckedUpdateManyWithoutCreatorNestedInput
+    updatedFeatures?: MunicipalityFeatureUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutMunicipalityInput = {
@@ -29145,6 +32297,30 @@ export namespace Prisma {
     readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MunicipalityFeatureUpdateWithoutMunicipalityInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    featureFlag?: FeatureFlagUpdateOneRequiredWithoutMunicipalityFeaturesNestedInput
+    user?: UserUpdateOneRequiredWithoutUpdatedFeaturesNestedInput
+  }
+
+  export type MunicipalityFeatureUncheckedUpdateWithoutMunicipalityInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    featureFlagId?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    updatedBy?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MunicipalityFeatureUncheckedUpdateManyWithoutMunicipalityInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    featureFlagId?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    updatedBy?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -29616,6 +32792,7 @@ export namespace Prisma {
     users?: UserUpdateManyWithoutMunicipalityNestedInput
     versionHistory?: VersionHistoryUpdateManyWithoutMunicipalityNestedInput
     notifications?: NotificationUpdateManyWithoutMunicipalityNestedInput
+    municipalityFeatures?: MunicipalityFeatureUpdateManyWithoutMunicipalityNestedInput
   }
 
   export type MunicipalityUncheckedUpdateWithoutVersionInput = {
@@ -29634,6 +32811,7 @@ export namespace Prisma {
     users?: UserUncheckedUpdateManyWithoutMunicipalityNestedInput
     versionHistory?: VersionHistoryUncheckedUpdateManyWithoutMunicipalityNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutMunicipalityNestedInput
+    municipalityFeatures?: MunicipalityFeatureUncheckedUpdateManyWithoutMunicipalityNestedInput
   }
 
   export type MunicipalityUncheckedUpdateManyWithoutVersionInput = {
@@ -29674,6 +32852,38 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type MunicipalityFeatureCreateManyFeatureFlagInput = {
+    id?: string
+    municipalityId: string
+    enabled: boolean
+    updatedBy: string
+    updatedAt?: Date | string
+  }
+
+  export type MunicipalityFeatureUpdateWithoutFeatureFlagInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    municipality?: MunicipalityUpdateOneRequiredWithoutMunicipalityFeaturesNestedInput
+    user?: UserUpdateOneRequiredWithoutUpdatedFeaturesNestedInput
+  }
+
+  export type MunicipalityFeatureUncheckedUpdateWithoutFeatureFlagInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    municipalityId?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    updatedBy?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MunicipalityFeatureUncheckedUpdateManyWithoutFeatureFlagInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    municipalityId?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    updatedBy?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type VersionHistoryCreateManyUserInput = {
     id?: string
     municipalityId: string
@@ -29693,6 +32903,14 @@ export namespace Prisma {
     readAt?: Date | string | null
     metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MunicipalityFeatureCreateManyUserInput = {
+    id?: string
+    municipalityId: string
+    featureFlagId: string
+    enabled: boolean
     updatedAt?: Date | string
   }
 
@@ -29762,6 +32980,30 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type MunicipalityFeatureUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    municipality?: MunicipalityUpdateOneRequiredWithoutMunicipalityFeaturesNestedInput
+    featureFlag?: FeatureFlagUpdateOneRequiredWithoutMunicipalityFeaturesNestedInput
+  }
+
+  export type MunicipalityFeatureUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    municipalityId?: StringFieldUpdateOperationsInput | string
+    featureFlagId?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MunicipalityFeatureUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    municipalityId?: StringFieldUpdateOperationsInput | string
+    featureFlagId?: StringFieldUpdateOperationsInput | string
+    enabled?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
 
 
   /**
@@ -29795,6 +33037,10 @@ export namespace Prisma {
      * @deprecated Use SoftwareVersionCountOutputTypeDefaultArgs instead
      */
     export type SoftwareVersionCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = SoftwareVersionCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use FeatureFlagCountOutputTypeDefaultArgs instead
+     */
+    export type FeatureFlagCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = FeatureFlagCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use UserCountOutputTypeDefaultArgs instead
      */
@@ -29859,6 +33105,14 @@ export namespace Prisma {
      * @deprecated Use NotificationDefaultArgs instead
      */
     export type NotificationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = NotificationDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use FeatureFlagDefaultArgs instead
+     */
+    export type FeatureFlagArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = FeatureFlagDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use MunicipalityFeatureDefaultArgs instead
+     */
+    export type MunicipalityFeatureArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = MunicipalityFeatureDefaultArgs<ExtArgs>
     /**
      * @deprecated Use UserDefaultArgs instead
      */

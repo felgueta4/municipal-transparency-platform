@@ -324,6 +324,25 @@ exports.Prisma.NotificationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.FeatureFlagScalarFieldEnum = {
+  id: 'id',
+  key: 'key',
+  name: 'name',
+  description: 'description',
+  defaultEnabled: 'defaultEnabled',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.MunicipalityFeatureScalarFieldEnum = {
+  id: 'id',
+  municipalityId: 'municipalityId',
+  featureFlagId: 'featureFlagId',
+  enabled: 'enabled',
+  updatedBy: 'updatedBy',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
@@ -391,6 +410,8 @@ exports.Prisma.ModelName = {
   SoftwareVersion: 'SoftwareVersion',
   VersionHistory: 'VersionHistory',
   Notification: 'Notification',
+  FeatureFlag: 'FeatureFlag',
+  MunicipalityFeature: 'MunicipalityFeature',
   User: 'User',
   QueryAudit: 'QueryAudit'
 };
