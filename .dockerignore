@@ -4,6 +4,12 @@
 **/yarn-error.log*
 **/pnpm-debug.log*
 
+# Prisma generated files (force regeneration in Docker)
+**/src/generated/
+**/.prisma/
+**/node_modules/.prisma/
+packages/database/src/generated/
+
 # Build outputs
 **/dist
 **/build

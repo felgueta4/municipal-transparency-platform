@@ -24,7 +24,12 @@ COPY apps/api ./apps/api
 # Install all dependencies (including workspace dependencies)
 RUN npm ci
 
-# Generate Prisma Client
+# Clean up any existing Prisma binaries and generated files to force fresh generation
+RUN rm -rf packages/database/src/generated/client && \
+    rm -rf node_modules/.prisma && \
+    find . -name ".prisma" -type d -exec rm -rf {} + 2>/dev/null || true
+
+# Generate Prisma Client with correct Debian binaries
 RUN cd packages/database && npx prisma generate
 
 # Build the API
@@ -59,7 +64,12 @@ COPY apps/api/package*.json ./apps/api/
 # Install only production dependencies
 RUN npm ci --only=production --workspace=@municipal-platform/api
 
-# Generate Prisma Client in production
+# Clean up any existing Prisma binaries to force fresh generation
+RUN rm -rf packages/database/src/generated/client && \
+    rm -rf node_modules/.prisma && \
+    find . -name ".prisma" -type d -exec rm -rf {} + 2>/dev/null || true
+
+# Generate Prisma Client in production with correct Debian binaries
 RUN cd packages/database && npx prisma generate
 
 # Copy built application from builder stage
