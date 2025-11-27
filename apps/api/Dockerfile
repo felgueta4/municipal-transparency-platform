@@ -1,89 +1,70 @@
-# ==================================
-# Multi-stage Dockerfile for NestJS API
-# ==================================
+# Multi-stage Dockerfile for NestJS API in a monorepo
 
-# Stage 1: Base dependencies
-FROM node:18-alpine AS base
+# Stage 1: Build stage
+FROM node:18-alpine AS builder
+
+# Set working directory
 WORKDIR /app
-
-# Install dependencies needed for native modules
-RUN apk add --no-cache libc6-compat openssl
 
 # Copy root package files
 COPY package*.json ./
-COPY turbo.json ./
 
-# Stage 2: Install all dependencies
-FROM base AS deps
-WORKDIR /app
+# Copy workspace packages
+COPY packages ./packages
 
-# Copy workspace configuration
-COPY package*.json ./
-COPY packages/config/package.json ./packages/config/
-COPY packages/database/package.json ./packages/database/
-COPY apps/api/package.json ./apps/api/
+# Copy api app
+COPY apps/api ./apps/api
 
-# Install all dependencies including devDependencies for build
+# Install all dependencies (including workspace dependencies)
 RUN npm ci
 
-# Stage 3: Build application
-FROM base AS builder
-WORKDIR /app
-
-# Copy dependencies from deps stage
-COPY --from=deps /app/node_modules ./node_modules
-
-# Copy all source files
-COPY packages/config ./packages/config
-COPY packages/database ./packages/database
-COPY apps/api ./apps/api
-COPY package*.json ./
-COPY tsconfig.json ./
-
-# Generate Prisma client
-RUN npx prisma generate --schema=./packages/database/prisma/schema.prisma
+# Generate Prisma Client
+RUN cd packages/database && npx prisma generate
 
 # Build the API
-RUN npm run build --workspace=apps/api
+RUN cd apps/api && npm run build
 
-# Stage 4: Production runtime
+# Stage 2: Production stage
 FROM node:18-alpine AS runner
+
+# Set working directory
 WORKDIR /app
 
-# Install production dependencies only
-RUN apk add --no-cache libc6-compat openssl curl
-
-# Create non-root user for security
-RUN addgroup --system --gid 1001 nodejs && \
-    adduser --system --uid 1001 nestjs
-
-# Copy workspace configuration
+# Copy root package files
 COPY package*.json ./
-COPY packages/config/package.json ./packages/config/
-COPY packages/database/package.json ./packages/database/
-COPY apps/api/package.json ./apps/api/
 
-# Install production dependencies only
-RUN npm ci --omit=dev && npm cache clean --force
+# Copy workspace packages (source and package.json files needed for resolution)
+COPY packages/config/package*.json ./packages/config/
+COPY packages/config/src ./packages/config/src
 
-# Copy built application from builder
-COPY --from=builder --chown=nestjs:nodejs /app/apps/api/dist ./apps/api/dist
-COPY --from=builder --chown=nestjs:nodejs /app/packages/config ./packages/config
-COPY --from=builder --chown=nestjs:nodejs /app/packages/database ./packages/database
+COPY packages/database/package*.json ./packages/database/
+COPY packages/database/src ./packages/database/src
+COPY packages/database/prisma ./packages/database/prisma
 
-# Copy Prisma files for migrations
-COPY --from=builder --chown=nestjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
-COPY --from=builder --chown=nestjs:nodejs /app/node_modules/@prisma ./node_modules/@prisma
+# Copy api package.json
+COPY apps/api/package*.json ./apps/api/
 
-# Switch to non-root user
-USER nestjs
+# Install only production dependencies
+RUN npm ci --only=production --workspace=@municipal-platform/api
 
-# Expose API port
-EXPOSE 3001
+# Generate Prisma Client in production
+RUN cd packages/database && npx prisma generate
+
+# Copy built application from builder stage
+COPY --from=builder /app/apps/api/dist ./apps/api/dist
+
+# Set working directory to api
+WORKDIR /app/apps/api
+
+# Expose port
+EXPOSE 3000
+
+# Set environment to production
+ENV NODE_ENV=production
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-  CMD curl -f http://localhost:3001/health || exit 1
+  CMD node -e "require('http').get('http://localhost:3000/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"
 
 # Start the application
-CMD ["node", "apps/api/dist/main.js"]
+CMD ["node", "dist/main.js"]
