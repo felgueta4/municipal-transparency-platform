@@ -44,3 +44,8 @@ packages/database/prisma/migrations/
 .turbo
 .cache
 .temp
+
+# Core dumps
+**/core
+**/core.*
+
