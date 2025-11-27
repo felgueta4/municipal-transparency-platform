@@ -2,10 +2,16 @@
 # This should be placed at the ROOT of the repository
 
 # Stage 1: Dependencies and Build
-FROM node:18-alpine AS builder
+FROM node:18-slim AS builder
 
-# Install build essentials for native modules
-RUN apk add --no-cache python3 make g++
+# Install build essentials and OpenSSL for Prisma (Debian-based)
+RUN apt-get update && apt-get install -y \
+    python3 \
+    make \
+    g++ \
+    openssl \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
@@ -23,7 +29,12 @@ COPY packages ./packages
 COPY apps/api ./apps/api
 COPY tsconfig.json ./
 
-# Generate Prisma Client
+# Clean up any existing Prisma binaries to force fresh generation
+RUN rm -rf packages/database/src/generated/client && \
+    rm -rf node_modules/.prisma && \
+    find . -name ".prisma" -type d -exec rm -rf {} + 2>/dev/null || true
+
+# Generate Prisma Client with correct Debian binaries
 WORKDIR /app/packages/database
 RUN npx prisma generate
 
@@ -32,10 +43,14 @@ WORKDIR /app/apps/api
 RUN npm run build
 
 # Stage 2: Production Runtime
-FROM node:18-alpine AS runner
+FROM node:18-slim AS runner
 
-# Install dumb-init for proper signal handling
-RUN apk add --no-cache dumb-init
+# Install OpenSSL and dumb-init for Prisma and proper signal handling (Debian-based)
+RUN apt-get update && apt-get install -y \
+    openssl \
+    ca-certificates \
+    dumb-init \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
@@ -53,7 +68,12 @@ COPY packages/config/src ./packages/config/src
 COPY packages/database/src ./packages/database/src
 COPY packages/database/prisma ./packages/database/prisma
 
-# Generate Prisma Client in production
+# Clean up any existing Prisma binaries to force fresh generation
+RUN rm -rf packages/database/src/generated/client && \
+    rm -rf node_modules/.prisma && \
+    find . -name ".prisma" -type d -exec rm -rf {} + 2>/dev/null || true
+
+# Generate Prisma Client in production with correct Debian binaries
 WORKDIR /app/packages/database
 RUN npx prisma generate
 
@@ -61,9 +81,9 @@ RUN npx prisma generate
 WORKDIR /app/apps/api
 COPY --from=builder /app/apps/api/dist ./dist
 
-# Create non-root user for security
-RUN addgroup -g 1001 -S nodejs && \
-    adduser -S nestjs -u 1001 && \
+# Create non-root user for security (Debian-based)
+RUN groupadd -g 1001 nodejs && \
+    useradd -r -u 1001 -g nodejs nestjs && \
     chown -R nestjs:nodejs /app
 
 USER nestjs
