@@ -3,6 +3,12 @@
 # Stage 1: Build stage
 FROM node:18-slim AS builder
 
+# Install OpenSSL and ca-certificates for Prisma
+RUN apt-get update && apt-get install -y \
+    openssl \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
 # Set working directory
 WORKDIR /app
 
@@ -26,6 +32,12 @@ RUN cd apps/api && npm run build
 
 # Stage 2: Production stage
 FROM node:18-slim AS runner
+
+# Install OpenSSL and ca-certificates for Prisma
+RUN apt-get update && apt-get install -y \
+    openssl \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
 WORKDIR /app
