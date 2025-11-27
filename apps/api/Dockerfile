@@ -27,6 +27,9 @@ RUN cd apps/api && npm run build
 # Stage 2: Production stage
 FROM node:18-alpine AS runner
 
+# Install required system dependencies for Prisma
+RUN apk add --no-cache openssl1.1-compat
+
 # Set working directory
 WORKDIR /app
 
