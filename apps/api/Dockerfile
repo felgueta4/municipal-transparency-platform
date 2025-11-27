@@ -1,7 +1,7 @@
 # Multi-stage Dockerfile for NestJS API in a monorepo
 
 # Stage 1: Build stage
-FROM node:18-alpine AS builder
+FROM node:18-slim AS builder
 
 # Set working directory
 WORKDIR /app
@@ -25,10 +25,7 @@ RUN cd packages/database && npx prisma generate
 RUN cd apps/api && npm run build
 
 # Stage 2: Production stage
-FROM node:18-alpine AS runner
-
-# Install required system dependencies for Prisma
-RUN apk add --no-cache openssl1.1-compat
+FROM node:18-slim AS runner
 
 # Set working directory
 WORKDIR /app
