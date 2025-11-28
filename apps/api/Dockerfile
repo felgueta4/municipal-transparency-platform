@@ -93,4 +93,4 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
   CMD node -e "require('http').get('http://localhost:3000/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"
 
 # Use start script to run migrations before starting the application
-CMD ["/app/start.sh"]
+CMD ["/bin/sh", "/app/start.sh"]
