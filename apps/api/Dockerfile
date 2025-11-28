@@ -75,6 +75,10 @@ RUN cd packages/database && npx prisma generate
 # Copy built application from builder stage
 COPY --from=builder /app/apps/api/dist ./apps/api/dist
 
+# Copy start script from root (contains migration logic)
+COPY start.sh /app/start.sh
+RUN chmod +x /app/start.sh
+
 # Set working directory to api
 WORKDIR /app/apps/api
 
@@ -88,5 +92,5 @@ ENV NODE_ENV=production
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
   CMD node -e "require('http').get('http://localhost:3000/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"
 
-# Start the application
-CMD ["node", "dist/main.js"]
+# Use start script to run migrations before starting the application
+CMD ["/app/start.sh"]
