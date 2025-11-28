@@ -81,6 +81,11 @@ RUN npx prisma generate
 WORKDIR /app/apps/api
 COPY --from=builder /app/apps/api/dist ./dist
 
+# Copy startup script
+WORKDIR /app
+COPY start.sh ./start.sh
+RUN chmod +x ./start.sh
+
 # Create non-root user for security (Debian-based)
 RUN groupadd -g 1001 nodejs && \
     useradd -r -u 1001 -g nodejs nestjs && \
@@ -102,5 +107,5 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
 # Use dumb-init to handle signals properly
 ENTRYPOINT ["dumb-init", "--"]
 
-# Start application
-CMD ["node", "dist/main.js"]
+# Start application with migrations
+CMD ["/app/start.sh"]
