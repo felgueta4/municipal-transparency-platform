@@ -1,0 +1,450 @@
+
+import { PrismaClient } from '@prisma/client';
+import * as bcrypt from 'bcryptjs';
+
+const prisma = new PrismaClient();
+
+// Datos de municipalidades chilenas reales
+const municipalities = [
+  {
+    name: 'Santiago',
+    code: 'MUN-001',
+    region: 'Metropolitana',
+    province: 'Santiago',
+    population: 404495,
+    area: 22.4,
+    latitude: -33.4489,
+    longitude: -70.6693,
+    website: 'https://www.municipalidaddesantiago.cl',
+    phone: '+56 2 2913 9393',
+    email: 'contacto@munistgo.cl',
+    address: 'Plaza de Armas S/N, Santiago',
+    mayor: 'Irací Hassler'
+  },
+  {
+    name: 'Valparaíso',
+    code: 'MUN-002',
+    region: 'Valparaíso',
+    province: 'Valparaíso',
+    population: 296655,
+    area: 401.6,
+    latitude: -33.0472,
+    longitude: -71.6127,
+    website: 'https://www.municipalidaddevalparaiso.cl',
+    phone: '+56 32 2939 300',
+    email: 'municipalidad@munivalpo.cl',
+    address: 'Condell 1490, Valparaíso',
+    mayor: 'Jorge Sharp'
+  },
+  {
+    name: 'Concepción',
+    code: 'MUN-003',
+    region: 'Biobío',
+    province: 'Concepción',
+    population: 223574,
+    area: 221.6,
+    latitude: -36.8270,
+    longitude: -73.0498,
+    website: 'https://www.concepcion.cl',
+    phone: '+56 41 2484 100',
+    email: 'info@concepcion.cl',
+    address: 'Aníbal Pinto 460, Concepción',
+    mayor: 'Álvaro Ortiz'
+  },
+  {
+    name: 'La Florida',
+    code: 'MUN-004',
+    region: 'Metropolitana',
+    province: 'Santiago',
+    population: 402433,
+    area: 70.8,
+    latitude: -33.5213,
+    longitude: -70.5989,
+    website: 'https://www.laflorida.cl',
+    phone: '+56 2 2520 4000',
+    email: 'oirs@laflorida.cl',
+    address: 'Av. Vicuña Mackenna 7255, La Florida',
+    mayor: 'Rodolfo Carter'
+  },
+  {
+    name: 'Viña del Mar',
+    code: 'MUN-005',
+    region: 'Valparaíso',
+    province: 'Valparaíso',
+    population: 334248,
+    area: 121.6,
+    latitude: -33.0246,
+    longitude: -71.5518,
+    website: 'https://www.vinadelmar.cl',
+    phone: '+56 32 2184 700',
+    email: 'alcaldia@municipalidaddevina.cl',
+    address: 'Arlegui 88, Viña del Mar',
+    mayor: 'Macarena Ripamonti'
+  }
+];
+
+// Departamentos y programas
+const departments = [
+  'Educación',
+  'Salud',
+  'Obras Públicas',
+  'Seguridad Ciudadana',
+  'Desarrollo Social',
+  'Medio Ambiente',
+  'Cultura y Deporte',
+  'Administración y Finanzas'
+];
+
+const programs = {
+  'Educación': ['Educación Básica', 'Educación Media', 'Educación Parvularia', 'Infraestructura Educativa'],
+  'Salud': ['Atención Primaria', 'Programas Preventivos', 'Salud Mental', 'Farmacia Municipal'],
+  'Obras Públicas': ['Mantención de Calles', 'Alumbrado Público', 'Parques y Jardines', 'Construcción de Infraestructura'],
+  'Seguridad Ciudadana': ['Vigilancia', 'Prevención del Delito', 'Emergencias', 'Tránsito y Transporte'],
+  'Desarrollo Social': ['Apoyo a Familias', 'Programas de Empleo', 'Vivienda Social', 'Apoyo al Adulto Mayor'],
+  'Medio Ambiente': ['Gestión de Residuos', 'Áreas Verdes', 'Educación Ambiental', 'Eficiencia Energética'],
+  'Cultura y Deporte': ['Actividades Culturales', 'Deporte Recreativo', 'Bibliotecas', 'Eventos Comunitarios'],
+  'Administración y Finanzas': ['Administración General', 'Recursos Humanos', 'Tecnología', 'Contabilidad']
+};
+
+const categories = {
+  'Personal': ['Sueldos y Salarios', 'Honorarios', 'Otros Gastos en Personal'],
+  'Bienes y Servicios': ['Materiales', 'Servicios Básicos', 'Mantenimiento', 'Publicidad', 'Servicios de Consultoría'],
+  'Inversión': ['Equipamiento', 'Construcción', 'Vehículos', 'Tecnología'],
+  'Transferencias': ['Subsidios', 'Ayudas Sociales', 'Becas']
+};
+
+const projectStatuses = ['Planificación', 'En Ejecución', 'Completado', 'Suspendido', 'Evaluación'];
+const contractStatuses = ['Vigente', 'Finalizado', 'En Proceso', 'Cancelado'];
+
+// Proveedores ficticios
+const suppliers = [
+  { id: 'SUP-001', name: 'Constructora Andes S.A.' },
+  { id: 'SUP-002', name: 'Tecnología e Innovación Ltda.' },
+  { id: 'SUP-003', name: 'Servicios Municipales Unidos' },
+  { id: 'SUP-004', name: 'Distribuidora de Materiales Chile' },
+  { id: 'SUP-005', name: 'Empresa de Aseo y Mantención' },
+  { id: 'SUP-006', name: 'Suministros de Oficina Pro' },
+  { id: 'SUP-007', name: 'Consultoría y Gestión SpA' },
+  { id: 'SUP-008', name: 'Ingeniería Civil del Sur' },
+  { id: 'SUP-009', name: 'Equipamiento Médico Chile' },
+  { id: 'SUP-010', name: 'Soluciones Ambientales Verdes' }
+];
+
+// Función para generar fecha aleatoria en un rango
+function randomDate(start: Date, end: Date): Date {
+  return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+}
+
+// Función para generar monto aleatorio
+function randomAmount(min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+// Función para seleccionar elemento aleatorio
+function randomChoice<T>(arr: T[]): T {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+async function main() {
+  console.log('🌱 Iniciando seed de datos de prueba...');
+
+  // 1. Limpiar datos existentes (excepto usuarios admin)
+  console.log('\n📦 Limpiando datos previos...');
+  await prisma.contract.deleteMany({});
+  await prisma.project.deleteMany({});
+  await prisma.expenditure.deleteMany({});
+  await prisma.budget.deleteMany({});
+  await prisma.user.deleteMany({
+    where: {
+      email: {
+        not: 'admin@muni.cl'
+      }
+    }
+  });
+  await prisma.municipality.deleteMany({});
+
+  // 2. Crear municipalidades
+  console.log('\n🏛️  Creando municipalidades...');
+  const createdMunicipalities = [];
+  for (const muni of municipalities) {
+    const created = await prisma.municipality.create({
+      data: muni
+    });
+    createdMunicipalities.push(created);
+    console.log(`   ✓ ${muni.name}`);
+  }
+
+  // 3. Crear usuarios para cada municipalidad
+  console.log('\n👥 Creando usuarios...');
+  const passwordHash = await bcrypt.hash('password123', 10);
+  
+  // Actualizar el usuario admin existente
+  const adminUser = await prisma.user.upsert({
+    where: { email: 'admin@muni.cl' },
+    update: {
+      municipalityId: createdMunicipalities[0].id
+    },
+    create: {
+      email: 'admin@muni.cl',
+      passwordHash: await bcrypt.hash('admin123', 10),
+      role: 'admin',
+      municipalityId: createdMunicipalities[0].id
+    }
+  });
+  console.log(`   ✓ admin@muni.cl (admin)`);
+
+  // Crear usuarios para cada municipalidad
+  for (const muni of createdMunicipalities) {
+    const muniCode = muni.code?.toLowerCase().replace('mun-', '') || '000';
+    
+    // Funcionario
+    await prisma.user.create({
+      data: {
+        email: `funcionario${muniCode}@${muni.name.toLowerCase().replace(/\s+/g, '')}.cl`,
+        passwordHash,
+        role: 'funcionario',
+        municipalityId: muni.id
+      }
+    });
+    
+    // Visualizador
+    await prisma.user.create({
+      data: {
+        email: `viewer${muniCode}@${muni.name.toLowerCase().replace(/\s+/g, '')}.cl`,
+        passwordHash,
+        role: 'visualizador',
+        municipalityId: muni.id
+      }
+    });
+    
+    console.log(`   ✓ Usuarios para ${muni.name}`);
+  }
+
+  // 4. Crear presupuestos
+  console.log('\n💰 Creando presupuestos...');
+  const fiscalYears = ['2023', '2024', '2025'];
+  const budgets = [];
+  
+  for (const muni of createdMunicipalities) {
+    for (const year of fiscalYears) {
+      for (const dept of departments) {
+        const deptPrograms = programs[dept as keyof typeof programs];
+        for (const program of deptPrograms) {
+          for (const [categoryName, subcategories] of Object.entries(categories)) {
+            for (const subcategory of subcategories) {
+              const budget = await prisma.budget.create({
+                data: {
+                  municipalityId: muni.id,
+                  fiscalYearId: year,
+                  department: dept,
+                  program: program,
+                  category: categoryName,
+                  subcategory: subcategory,
+                  amountPlanned: randomAmount(5000000, 50000000),
+                  currency: 'CLP',
+                  notes: `Presupuesto ${year} para ${program} - ${subcategory}`
+                }
+              });
+              budgets.push(budget);
+            }
+          }
+        }
+      }
+    }
+    console.log(`   ✓ Presupuestos para ${muni.name}`);
+  }
+  console.log(`   Total: ${budgets.length} partidas presupuestarias`);
+
+  // 5. Crear gastos/expenditures
+  console.log('\n💸 Creando gastos...');
+  let expendituresCount = 0;
+  
+  for (const muni of createdMunicipalities) {
+    // Crear entre 50-100 gastos por municipalidad
+    const numExpenses = randomAmount(50, 100);
+    
+    for (let i = 0; i < numExpenses; i++) {
+      const dept = randomChoice(departments);
+      const program = randomChoice(programs[dept as keyof typeof programs]);
+      const categoryName = randomChoice(Object.keys(categories));
+      const subcategory = randomChoice(categories[categoryName as keyof typeof categories]);
+      const year = randomChoice(fiscalYears);
+      
+      await prisma.expenditure.create({
+        data: {
+          municipalityId: muni.id,
+          fiscalYearId: year,
+          date: randomDate(new Date(`${year}-01-01`), new Date(`${year}-12-31`)),
+          department: dept,
+          program: program,
+          category: categoryName,
+          subcategory: subcategory,
+          concept: `Gasto ${subcategory} - ${program}`,
+          amountActual: randomAmount(100000, 10000000),
+          currency: 'CLP',
+          supplierId: randomChoice(suppliers).id,
+          procurementRef: `PROC-${year}-${String(i + 1).padStart(4, '0')}`,
+          location: muni.name
+        }
+      });
+      expendituresCount++;
+    }
+    console.log(`   ✓ Gastos para ${muni.name}`);
+  }
+  console.log(`   Total: ${expendituresCount} gastos registrados`);
+
+  // 6. Crear proyectos
+  console.log('\n🏗️  Creando proyectos...');
+  const projectTemplates = [
+    {
+      title: 'Mejoramiento de Plaza',
+      description: 'Renovación integral de plaza comunitaria con nuevos juegos, áreas verdes y equipamiento urbano',
+      department: 'Obras Públicas',
+      category: 'Infraestructura Pública'
+    },
+    {
+      title: 'Digitalización de Servicios',
+      description: 'Implementación de plataforma digital para trámites municipales en línea',
+      department: 'Administración y Finanzas',
+      category: 'Tecnología'
+    },
+    {
+      title: 'Centro de Salud Familiar',
+      description: 'Construcción de nuevo CESFAM para atención primaria de salud',
+      department: 'Salud',
+      category: 'Infraestructura de Salud'
+    },
+    {
+      title: 'Programa de Reciclaje',
+      description: 'Implementación de sistema de reciclaje domiciliario y puntos verdes',
+      department: 'Medio Ambiente',
+      category: 'Gestión Ambiental'
+    },
+    {
+      title: 'Escuela Básica Nueva',
+      description: 'Construcción de establecimiento educacional con capacidad para 500 alumnos',
+      department: 'Educación',
+      category: 'Infraestructura Educativa'
+    },
+    {
+      title: 'Centro Cultural Comunitario',
+      description: 'Habilitación de espacio para actividades culturales y talleres',
+      department: 'Cultura y Deporte',
+      category: 'Infraestructura Cultural'
+    },
+    {
+      title: 'Sistema de Videovigilancia',
+      description: 'Instalación de cámaras de seguridad en puntos estratégicos',
+      department: 'Seguridad Ciudadana',
+      category: 'Seguridad'
+    },
+    {
+      title: 'Programa Adulto Mayor',
+      description: 'Centro diurno para actividades recreativas y apoyo al adulto mayor',
+      department: 'Desarrollo Social',
+      category: 'Programas Sociales'
+    }
+  ];
+
+  let projectsCount = 0;
+  for (const muni of createdMunicipalities) {
+    for (const template of projectTemplates) {
+      const status = randomChoice(projectStatuses);
+      const startDate = randomDate(new Date('2023-01-01'), new Date('2024-12-31'));
+      const endDate = status === 'Completado' 
+        ? randomDate(startDate, new Date('2025-12-31'))
+        : null;
+
+      await prisma.project.create({
+        data: {
+          municipalityId: muni.id,
+          title: `${template.title} - ${muni.name}`,
+          description: template.description,
+          status: status,
+          startDate: startDate,
+          endDate: endDate,
+          department: template.department,
+          category: template.category,
+          requestedBudget: randomAmount(50000000, 500000000),
+          approvedBudget: randomAmount(40000000, 450000000),
+          fundingSourceId: `FUND-${randomAmount(1, 10)}`,
+          location: muni.name
+        }
+      });
+      projectsCount++;
+    }
+    console.log(`   ✓ Proyectos para ${muni.name}`);
+  }
+  console.log(`   Total: ${projectsCount} proyectos creados`);
+
+  // 7. Crear contratos
+  console.log('\n📄 Creando contratos...');
+  const contractTemplates = [
+    'Servicio de Aseo y Mantención de Edificios Municipales',
+    'Suministro de Materiales de Oficina',
+    'Servicio de Mantención de Áreas Verdes',
+    'Construcción de Veredas y Soleras',
+    'Suministro e Instalación de Luminarias LED',
+    'Servicio de Consultoría en Gestión Pública',
+    'Adquisición de Equipamiento Computacional',
+    'Servicio de Transporte Escolar',
+    'Mantención de Vehículos Municipales',
+    'Suministro de Medicamentos para Farmacia Municipal'
+  ];
+
+  let contractsCount = 0;
+  for (const muni of createdMunicipalities) {
+    for (let i = 0; i < 15; i++) {
+      const supplier = randomChoice(suppliers);
+      const template = randomChoice(contractTemplates);
+      const status = randomChoice(contractStatuses);
+      const startDate = randomDate(new Date('2023-01-01'), new Date('2024-12-31'));
+      const endDate = randomDate(startDate, new Date('2025-12-31'));
+
+      await prisma.contract.create({
+        data: {
+          municipalityId: muni.id,
+          supplierId: supplier.id,
+          title: `${template}`,
+          description: `Contrato con ${supplier.name} para ${template.toLowerCase()}. Incluye todas las especificaciones técnicas y condiciones de servicio.`,
+          amount: randomAmount(5000000, 100000000),
+          currency: 'CLP',
+          startDate: startDate,
+          endDate: endDate,
+          status: status,
+          contractNumber: `CONT-${muni.code}-${new Date().getFullYear()}-${String(i + 1).padStart(4, '0')}`
+        }
+      });
+      contractsCount++;
+    }
+    console.log(`   ✓ Contratos para ${muni.name}`);
+  }
+  console.log(`   Total: ${contractsCount} contratos creados`);
+
+  console.log('\n✅ Seed completado exitosamente!');
+  console.log('\n📊 Resumen de datos creados:');
+  console.log(`   • ${createdMunicipalities.length} Municipalidades`);
+  console.log(`   • ${await prisma.user.count()} Usuarios`);
+  console.log(`   • ${budgets.length} Partidas Presupuestarias`);
+  console.log(`   • ${expendituresCount} Gastos`);
+  console.log(`   • ${projectsCount} Proyectos`);
+  console.log(`   • ${contractsCount} Contratos`);
+  
+  console.log('\n🔑 Credenciales de acceso:');
+  console.log('   Admin Global:');
+  console.log('   • Email: admin@muni.cl');
+  console.log('   • Password: admin123');
+  console.log('\n   Usuarios por municipalidad:');
+  console.log('   • Funcionario: funcionario###@[municipalidad].cl');
+  console.log('   • Visualizador: viewer###@[municipalidad].cl');
+  console.log('   • Password: password123');
+}
+
+main()
+  .catch((e) => {
+    console.error('❌ Error durante el seed:', e);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });

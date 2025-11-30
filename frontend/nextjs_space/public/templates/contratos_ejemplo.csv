@@ -1,0 +1,5 @@
+numeroContrato,proveedor,monto,descripcion,fechaInicio,esPublico
+CT-2024-001,Constructora Aconcagua SpA,35000000,Construcción de centro comunitario,2024-01-15,true
+CT-2024-002,Servicios de Aseo Metropolitano,12000000,Servicio de recolección de residuos,2024-01-01,true
+CT-2024-003,Tecnología e Innovación SA,8500000,Implementación de sistema de gestión,2024-02-10,true
+CT-2024-004,Mantención y Servicios Urbanos,15000000,Mantención de espacios públicos,2024-03-01,true

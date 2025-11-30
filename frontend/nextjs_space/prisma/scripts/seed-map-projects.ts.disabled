@@ -1,0 +1,65 @@
+
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
+
+async function main() {
+  console.log('Seeding municipal map projects...')
+
+  // Eliminar proyectos existentes
+  await prisma.municipalMapProject.deleteMany({})
+
+  // Crear proyectos de prueba para Renca
+  const projects = [
+    {
+      name: 'Construcción de Plaza Los Aromos',
+      description: 'Proyecto de mejoramiento de áreas verdes y mobiliario urbano.',
+      category: 'Infraestructura',
+      latitude: -33.4028,
+      longitude: -70.7345,
+      progress: 60,
+      amount: 120000000,
+      comuna: 'Renca',
+      isActive: true,
+    },
+    {
+      name: 'Centro Comunitario Las Torres',
+      description: 'Espacio para talleres y actividades vecinales.',
+      category: 'Cultura',
+      latitude: -33.3921,
+      longitude: -70.7252,
+      progress: 40,
+      amount: 85000000,
+      comuna: 'Renca',
+      isActive: true,
+    },
+    {
+      name: 'Reemplazo de luminarias públicas',
+      description: 'Instalación de luminarias LED para mejorar seguridad nocturna.',
+      category: 'Seguridad',
+      latitude: -33.4085,
+      longitude: -70.7421,
+      progress: 85,
+      amount: 67000000,
+      comuna: 'Renca',
+      isActive: true,
+    },
+  ]
+
+  for (const project of projects) {
+    await prisma.municipalMapProject.create({
+      data: project,
+    })
+  }
+
+  console.log('✅ Seeding completed successfully!')
+}
+
+main()
+  .catch((e) => {
+    console.error(e)
+    process.exit(1)
+  })
+  .finally(async () => {
+    await prisma.$disconnect()
+  })

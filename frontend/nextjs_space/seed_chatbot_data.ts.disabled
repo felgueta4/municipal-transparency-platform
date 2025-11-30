@@ -1,0 +1,165 @@
+import { config } from 'dotenv'
+import { PrismaClient } from '@prisma/client'
+
+config()
+
+const prisma = new PrismaClient()
+
+async function seedChatbotData() {
+  try {
+    console.log('🌱 Generando datos de prueba para el chatbot...')
+
+    const interactions = [
+      // Proyectos
+      {
+        userMessage: '¿Cuáles son los proyectos activos en Renca?',
+        botResponse: 'Según los registros de proyectos públicos, actualmente hay 3 proyectos activos en Renca: Plaza de la Cultura (70% avance), Mejoramiento Vial Av. Dorsal ($500M), y Centro Deportivo Municipal ($800M).',
+        intent: 'proyectos_renca_activos',
+        category: 'Proyectos',
+        hasData: true,
+        filters: { municipality: 'Renca', status: 'activo' },
+        responseTime: 1250
+      },
+      {
+        userMessage: 'Dime sobre los proyectos en ejecución',
+        botResponse: 'De acuerdo a los datos de proyectos, hay 12 proyectos en ejecución con una inversión total de $5.2 mil millones.',
+        intent: 'proyectos_en_ejecucion',
+        category: 'Proyectos',
+        hasData: true,
+        filters: { status: 'en ejecución' },
+        responseTime: 980
+      },
+      {
+        userMessage: '¿Qué proyectos hay en la comuna?',
+        botResponse: 'Según los registros públicos, hay 25 proyectos registrados en total, de los cuales 12 están en ejecución, 8 completados y 5 en planificación.',
+        intent: 'proyectos_totales',
+        category: 'Proyectos',
+        hasData: true,
+        filters: {},
+        responseTime: 1100
+      },
+      
+      // Presupuestos
+      {
+        userMessage: 'Cuál es el presupuesto para el año 2024',
+        botResponse: 'El presupuesto municipal para 2024 asciende a $8.500 millones de pesos, distribuido en: Educación (35%), Salud (25%), Obras Públicas (20%), y otros (20%).',
+        intent: 'presupuesto_2024',
+        category: 'Presupuestos',
+        hasData: true,
+        filters: { year: '2024' },
+        responseTime: 1050
+      },
+      {
+        userMessage: 'Presupuesto de educación 2025',
+        botResponse: 'Según los datos de presupuestos públicos, el presupuesto destinado a educación para 2025 es de $3.200 millones, un incremento del 12% respecto al año anterior.',
+        intent: 'presupuesto_educacion_2025',
+        category: 'Presupuestos',
+        hasData: true,
+        filters: { year: '2025', department: 'Educación' },
+        responseTime: 950
+      },
+      {
+        userMessage: '¿Cuánto se presupuestó para obras públicas?',
+        botResponse: 'De acuerdo a los registros de presupuestos, para obras públicas se asignaron $1.800 millones en el presupuesto vigente.',
+        intent: 'presupuesto_obras_publicas',
+        category: 'Presupuestos',
+        hasData: true,
+        filters: { department: 'Obras Públicas' },
+        responseTime: 890
+      },
+      
+      // Contratos
+      {
+        userMessage: 'Muéstrame los contratos vigentes',
+        botResponse: 'Actualmente hay 18 contratos vigentes registrados en el sistema, con un valor total de $2.100 millones. Los principales contratos son: Mantención de Áreas Verdes ($450M), Limpieza Municipal ($380M), y Seguridad ($320M).',
+        intent: 'contratos_vigentes',
+        category: 'Contratos',
+        hasData: true,
+        filters: { status: 'vigente' },
+        responseTime: 1300
+      },
+      {
+        userMessage: '¿Qué contratos tiene la municipalidad?',
+        botResponse: 'Según los datos de contratos públicos, la municipalidad tiene 35 contratos registrados en total, de los cuales 18 están vigentes, 12 finalizados y 5 en proceso de renovación.',
+        intent: 'contratos_totales',
+        category: 'Contratos',
+        hasData: true,
+        filters: {},
+        responseTime: 1150
+      },
+      
+      // Gastos
+      {
+        userMessage: 'Cuáles fueron los gastos del último mes',
+        botResponse: 'De acuerdo a los registros de gastos públicos, el mes pasado se ejecutaron gastos por $650 millones, principalmente en: Personal (40%), Servicios Básicos (25%), y Mantención (20%).',
+        intent: 'gastos_ultimo_mes',
+        category: 'Gastos',
+        hasData: true,
+        filters: {},
+        responseTime: 1050
+      },
+      {
+        userMessage: 'Gastos en mantención',
+        botResponse: 'Según los datos de gastos, se han ejecutado $280 millones en mantención durante el año fiscal actual, distribuidos en mantención de edificios, vehículos y equipamiento.',
+        intent: 'gastos_mantencion',
+        category: 'Gastos',
+        hasData: true,
+        filters: { category: 'Mantención' },
+        responseTime: 920
+      },
+      
+      // Estadísticas
+      {
+        userMessage: 'Dame un resumen general de la gestión municipal',
+        botResponse: 'De acuerdo a las estadísticas generales: Presupuesto total: $8.5B, Gastos ejecutados: $6.2B (73%), 25 proyectos totales (12 activos), 35 contratos (18 vigentes). La ejecución presupuestaria está dentro de lo planificado.',
+        intent: 'resumen_general',
+        category: 'Estadísticas',
+        hasData: true,
+        filters: {},
+        responseTime: 1400
+      },
+      
+      // Consultas sin datos
+      {
+        userMessage: '¿Cuánto gasta el alcalde en viajes?',
+        botResponse: 'No encuentro información pública para esa consulta específica. Puedes revisar los módulos en el sitio o realizar una solicitud formal de información.',
+        intent: 'gastos_alcalde_viajes',
+        category: 'Gastos',
+        hasData: false,
+        filters: { category: 'Viajes' },
+        responseTime: 650
+      },
+      {
+        userMessage: 'Información sobre licitaciones pendientes',
+        botResponse: 'No encuentro información pública para esa consulta. Puedes revisar los módulos en el sitio o realizar una solicitud formal de información.',
+        intent: 'licitaciones_pendientes',
+        category: 'Contratos',
+        hasData: false,
+        filters: { status: 'pendiente' },
+        responseTime: 580
+      }
+    ]
+
+    for (const interaction of interactions) {
+      await prisma.chatbotInteraction.create({
+        data: {
+          ...interaction,
+          timestamp: new Date(Date.now() - Math.random() * 7 * 24 * 60 * 60 * 1000) // Últimos 7 días
+        }
+      })
+    }
+
+    console.log(`✅ Se crearon ${interactions.length} interacciones de prueba`)
+    
+    // Verificar que se crearon
+    const count = await prisma.chatbotInteraction.count()
+    console.log(`📊 Total de interacciones en la base de datos: ${count}`)
+    
+  } catch (error) {
+    console.error('❌ Error:', error)
+  } finally {
+    await prisma.$disconnect()
+  }
+}
+
+seedChatbotData()
