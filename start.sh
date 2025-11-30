@@ -1,27 +1,23 @@
 #!/bin/sh
+set -e
 
 echo "🚀 Starting deployment process..."
 
-# Run Prisma migrations from the database package directory
-echo "📦 Running Prisma migrations..."
+# Navigate to database directory and run migrations
+echo "📦 Running Prisma migrations from: $(pwd)"
 cd /app/packages/database
-if npx prisma migrate deploy; then
-    echo "✅ Migrations applied successfully"
-else
-    echo "❌ Error applying migrations"
-    exit 1
-fi
 
-# Run database seed to ensure superadmin user and demo data exist
-echo "🌱 Running database seed..."
-if npm run seed; then
-    echo "✅ Database seeded successfully (superadmin and demo data created)"
-else
-    echo "⚠️  Warning: Seed encountered errors (data may already exist)"
-    echo "   Continuing with application startup..."
-fi
+echo "📋 DATABASE_URL: ${DATABASE_URL:0:50}..."  # Print first 50 chars only for security
 
-# Start the application from the API directory
-echo "🎯 Starting the application..."
+# Deploy migrations
+echo "▶️  Executing: npx prisma migrate deploy"
+npx prisma migrate deploy
+
+echo "✅ Migrations completed successfully"
+
+# Navigate back to app root and start the application
+echo "🎯 Starting the application from /app/apps/api..."
 cd /app/apps/api
+
+echo "▶️  Executing: node dist/main.js"
 exec node dist/main.js

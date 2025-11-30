@@ -10,6 +10,7 @@
     "studio": "prisma studio",
     "generate": "prisma generate",
     "seed": "tsx prisma/seed.ts",
+    "seed:prod": "node prisma/seed.js",
     "format": "prisma format"
   },
   "dependencies": {
