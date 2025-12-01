@@ -1,0 +1,73 @@
+═══════════════════════════════════════════════════════════════════
+  ⚠️  ACCIÓN INMEDIATA REQUERIDA - Fix Deployment Vercel
+═══════════════════════════════════════════════════════════════════
+
+✅ LO QUE YA SE HIZO:
+  - Se actualizó vercel.json con la URL correcta del backend Railway
+  - Se integró el frontend al repositorio principal (eliminando submódulo)
+  - Se creó el commit: 0cc96ad
+
+🚨 LO QUE NECESITAS HACER AHORA:
+
+PASO 1: Push a GitHub (ELIGE UNA OPCIÓN)
+─────────────────────────────────────────────────────────────────
+
+OPCIÓN A - Script Automático (MÁS FÁCIL):
+  cd /home/ubuntu/municipal_transparency_platform
+  ./push-to-github.sh
+
+OPCIÓN B - Personal Access Token:
+  1. Ve a: https://github.com/settings/tokens
+  2. Genera un token con permisos 'repo'
+  3. Ejecuta:
+     cd /home/ubuntu/municipal_transparency_platform
+     git remote set-url origin https://TU_TOKEN@github.com/felgueta4/municipal-transparency-platform.git
+     git push origin main
+
+OPCIÓN C - SSH:
+  1. Genera clave SSH:
+     ssh-keygen -t ed25519 -C "tu_email@ejemplo.com"
+  2. Copia la clave pública:
+     cat ~/.ssh/id_ed25519.pub
+  3. Agrégala en: https://github.com/settings/keys
+  4. Ejecuta:
+     cd /home/ubuntu/municipal_transparency_platform
+     git remote set-url origin git@github.com:felgueta4/municipal-transparency-platform.git
+     git push origin main
+
+─────────────────────────────────────────────────────────────────
+
+PASO 2: Configurar Root Directory en Vercel (CRÍTICO)
+─────────────────────────────────────────────────────────────────
+
+  1. Ve a: https://vercel.com/dashboard
+  2. Selecciona tu proyecto: municipal-transparency-platform-api
+  3. Settings → General
+  4. Root Directory: Cambiar de "apps/api" a "frontend/nextjs_space"
+  5. Click en "Save"
+  6. En el dashboard principal, click en "Redeploy"
+
+─────────────────────────────────────────────────────────────────
+
+PASO 3: Verificación
+─────────────────────────────────────────────────────────────────
+
+Una vez completados los pasos anteriores:
+
+  1. Backend health check:
+     curl https://municipal-transparency-platform-production.up.railway.app/api/health
+  
+  2. Frontend:
+     https://admin.transparenciaciudadana.com
+  
+  3. Login superadmin:
+     Email: superadmin@transparencia.cl
+     Password: demo12345
+
+═══════════════════════════════════════════════════════════════════
+
+⏱️  TIEMPO ESTIMADO: 5-10 minutos
+
+📖 DOCUMENTACIÓN COMPLETA: Ver VERCEL_FIX_SUMMARY.md
+
+═══════════════════════════════════════════════════════════════════
