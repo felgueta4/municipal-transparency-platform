@@ -21,7 +21,7 @@ async function GET(request: Request) {
     })
     
     // Map database fields to expected frontend format
-    const mappedBudgets = budgets.map(budget => ({
+    const mappedBudgets = budgets.map((budget: any) => ({
       ...budget,
       year: parseInt(budget.fiscalYearId),
       totalAmount: budget.amountPlanned,

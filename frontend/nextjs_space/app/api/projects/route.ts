@@ -21,7 +21,7 @@ async function GET(request: Request) {
     })
     
     // Map database fields to expected frontend format
-    const mappedProjects = projects.map(project => ({
+    const mappedProjects = projects.map((project: any) => ({
       ...project,
       name: project.title,
       budget: project.approvedBudget || project.requestedBudget || 0

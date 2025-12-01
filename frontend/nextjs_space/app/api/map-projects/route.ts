@@ -25,7 +25,7 @@ export async function GET(request: Request) {
 
     const geojson = {
       type: 'FeatureCollection',
-      features: projects.map((project) => ({
+      features: projects.map((project: any) => ({
         type: 'Feature',
         properties: {
           id: project.id,
