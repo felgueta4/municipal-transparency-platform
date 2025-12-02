@@ -1,13 +1,16 @@
-# Vercel ignore file
-node_modules
-.env
-.env.*
-!.env.production
-*.log
-coverage
-.vscode
-.idea
-test
-*.spec.ts
-*.test.ts
-.git
+# Exclude API backup directory from deployment
+app/api.backup/
+
+# Exclude development files
+.env.local
+.env.development.local
+
+# Exclude test files
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
+**/*.spec.tsx
+
+# Exclude documentation
+*.md
+!README.md
