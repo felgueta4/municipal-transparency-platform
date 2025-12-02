@@ -2790,10 +2790,13 @@ export namespace Prisma {
   export type MunicipalityMinAggregateOutputType = {
     id: string | null
     name: string | null
+    slug: string | null
     country: string | null
     region: string | null
     locale: string | null
     timezone: string | null
+    currency: string | null
+    status: string | null
     softwareVersion: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -2802,10 +2805,13 @@ export namespace Prisma {
   export type MunicipalityMaxAggregateOutputType = {
     id: string | null
     name: string | null
+    slug: string | null
     country: string | null
     region: string | null
     locale: string | null
     timezone: string | null
+    currency: string | null
+    status: string | null
     softwareVersion: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -2814,10 +2820,13 @@ export namespace Prisma {
   export type MunicipalityCountAggregateOutputType = {
     id: number
     name: number
+    slug: number
     country: number
     region: number
     locale: number
     timezone: number
+    currency: number
+    status: number
     softwareVersion: number
     createdAt: number
     updatedAt: number
@@ -2828,10 +2837,13 @@ export namespace Prisma {
   export type MunicipalityMinAggregateInputType = {
     id?: true
     name?: true
+    slug?: true
     country?: true
     region?: true
     locale?: true
     timezone?: true
+    currency?: true
+    status?: true
     softwareVersion?: true
     createdAt?: true
     updatedAt?: true
@@ -2840,10 +2852,13 @@ export namespace Prisma {
   export type MunicipalityMaxAggregateInputType = {
     id?: true
     name?: true
+    slug?: true
     country?: true
     region?: true
     locale?: true
     timezone?: true
+    currency?: true
+    status?: true
     softwareVersion?: true
     createdAt?: true
     updatedAt?: true
@@ -2852,10 +2867,13 @@ export namespace Prisma {
   export type MunicipalityCountAggregateInputType = {
     id?: true
     name?: true
+    slug?: true
     country?: true
     region?: true
     locale?: true
     timezone?: true
+    currency?: true
+    status?: true
     softwareVersion?: true
     createdAt?: true
     updatedAt?: true
@@ -2937,10 +2955,13 @@ export namespace Prisma {
   export type MunicipalityGroupByOutputType = {
     id: string
     name: string
+    slug: string | null
     country: string
     region: string
     locale: string
     timezone: string
+    currency: string | null
+    status: string | null
     softwareVersion: string | null
     createdAt: Date
     updatedAt: Date
@@ -2966,10 +2987,13 @@ export namespace Prisma {
   export type MunicipalitySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    slug?: boolean
     country?: boolean
     region?: boolean
     locale?: boolean
     timezone?: boolean
+    currency?: boolean
+    status?: boolean
     softwareVersion?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2988,10 +3012,13 @@ export namespace Prisma {
   export type MunicipalitySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    slug?: boolean
     country?: boolean
     region?: boolean
     locale?: boolean
     timezone?: boolean
+    currency?: boolean
+    status?: boolean
     softwareVersion?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -3001,10 +3028,13 @@ export namespace Prisma {
   export type MunicipalitySelectScalar = {
     id?: boolean
     name?: boolean
+    slug?: boolean
     country?: boolean
     region?: boolean
     locale?: boolean
     timezone?: boolean
+    currency?: boolean
+    status?: boolean
     softwareVersion?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -3042,10 +3072,13 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
+      slug: string | null
       country: string
       region: string
       locale: string
       timezone: string
+      currency: string | null
+      status: string | null
       softwareVersion: string | null
       createdAt: Date
       updatedAt: Date
@@ -3453,10 +3486,13 @@ export namespace Prisma {
   interface MunicipalityFieldRefs {
     readonly id: FieldRef<"Municipality", 'String'>
     readonly name: FieldRef<"Municipality", 'String'>
+    readonly slug: FieldRef<"Municipality", 'String'>
     readonly country: FieldRef<"Municipality", 'String'>
     readonly region: FieldRef<"Municipality", 'String'>
     readonly locale: FieldRef<"Municipality", 'String'>
     readonly timezone: FieldRef<"Municipality", 'String'>
+    readonly currency: FieldRef<"Municipality", 'String'>
+    readonly status: FieldRef<"Municipality", 'String'>
     readonly softwareVersion: FieldRef<"Municipality", 'String'>
     readonly createdAt: FieldRef<"Municipality", 'DateTime'>
     readonly updatedAt: FieldRef<"Municipality", 'DateTime'>
@@ -22448,10 +22484,13 @@ export namespace Prisma {
   export const MunicipalityScalarFieldEnum: {
     id: 'id',
     name: 'name',
+    slug: 'slug',
     country: 'country',
     region: 'region',
     locale: 'locale',
     timezone: 'timezone',
+    currency: 'currency',
+    status: 'status',
     softwareVersion: 'softwareVersion',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -22886,10 +22925,13 @@ export namespace Prisma {
     NOT?: MunicipalityWhereInput | MunicipalityWhereInput[]
     id?: StringFilter<"Municipality"> | string
     name?: StringFilter<"Municipality"> | string
+    slug?: StringNullableFilter<"Municipality"> | string | null
     country?: StringFilter<"Municipality"> | string
     region?: StringFilter<"Municipality"> | string
     locale?: StringFilter<"Municipality"> | string
     timezone?: StringFilter<"Municipality"> | string
+    currency?: StringNullableFilter<"Municipality"> | string | null
+    status?: StringNullableFilter<"Municipality"> | string | null
     softwareVersion?: StringNullableFilter<"Municipality"> | string | null
     createdAt?: DateTimeFilter<"Municipality"> | Date | string
     updatedAt?: DateTimeFilter<"Municipality"> | Date | string
@@ -22907,10 +22949,13 @@ export namespace Prisma {
   export type MunicipalityOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
+    slug?: SortOrderInput | SortOrder
     country?: SortOrder
     region?: SortOrder
     locale?: SortOrder
     timezone?: SortOrder
+    currency?: SortOrderInput | SortOrder
+    status?: SortOrderInput | SortOrder
     softwareVersion?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -22927,6 +22972,7 @@ export namespace Prisma {
 
   export type MunicipalityWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    slug?: string
     AND?: MunicipalityWhereInput | MunicipalityWhereInput[]
     OR?: MunicipalityWhereInput[]
     NOT?: MunicipalityWhereInput | MunicipalityWhereInput[]
@@ -22935,6 +22981,8 @@ export namespace Prisma {
     region?: StringFilter<"Municipality"> | string
     locale?: StringFilter<"Municipality"> | string
     timezone?: StringFilter<"Municipality"> | string
+    currency?: StringNullableFilter<"Municipality"> | string | null
+    status?: StringNullableFilter<"Municipality"> | string | null
     softwareVersion?: StringNullableFilter<"Municipality"> | string | null
     createdAt?: DateTimeFilter<"Municipality"> | Date | string
     updatedAt?: DateTimeFilter<"Municipality"> | Date | string
@@ -22947,15 +22995,18 @@ export namespace Prisma {
     notifications?: NotificationListRelationFilter
     municipalityFeatures?: MunicipalityFeatureListRelationFilter
     version?: XOR<SoftwareVersionNullableRelationFilter, SoftwareVersionWhereInput> | null
-  }, "id">
+  }, "id" | "slug">
 
   export type MunicipalityOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
+    slug?: SortOrderInput | SortOrder
     country?: SortOrder
     region?: SortOrder
     locale?: SortOrder
     timezone?: SortOrder
+    currency?: SortOrderInput | SortOrder
+    status?: SortOrderInput | SortOrder
     softwareVersion?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -22970,10 +23021,13 @@ export namespace Prisma {
     NOT?: MunicipalityScalarWhereWithAggregatesInput | MunicipalityScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Municipality"> | string
     name?: StringWithAggregatesFilter<"Municipality"> | string
+    slug?: StringNullableWithAggregatesFilter<"Municipality"> | string | null
     country?: StringWithAggregatesFilter<"Municipality"> | string
     region?: StringWithAggregatesFilter<"Municipality"> | string
     locale?: StringWithAggregatesFilter<"Municipality"> | string
     timezone?: StringWithAggregatesFilter<"Municipality"> | string
+    currency?: StringNullableWithAggregatesFilter<"Municipality"> | string | null
+    status?: StringNullableWithAggregatesFilter<"Municipality"> | string | null
     softwareVersion?: StringNullableWithAggregatesFilter<"Municipality"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Municipality"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Municipality"> | Date | string
@@ -24481,10 +24535,13 @@ export namespace Prisma {
   export type MunicipalityCreateInput = {
     id?: string
     name: string
+    slug?: string | null
     country?: string
     region: string
     locale?: string
     timezone?: string
+    currency?: string | null
+    status?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     budgets?: BudgetCreateNestedManyWithoutMunicipalityInput
@@ -24501,10 +24558,13 @@ export namespace Prisma {
   export type MunicipalityUncheckedCreateInput = {
     id?: string
     name: string
+    slug?: string | null
     country?: string
     region: string
     locale?: string
     timezone?: string
+    currency?: string | null
+    status?: string | null
     softwareVersion?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -24521,10 +24581,13 @@ export namespace Prisma {
   export type MunicipalityUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     budgets?: BudgetUpdateManyWithoutMunicipalityNestedInput
@@ -24541,10 +24604,13 @@ export namespace Prisma {
   export type MunicipalityUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
     softwareVersion?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24561,10 +24627,13 @@ export namespace Prisma {
   export type MunicipalityCreateManyInput = {
     id?: string
     name: string
+    slug?: string | null
     country?: string
     region: string
     locale?: string
     timezone?: string
+    currency?: string | null
+    status?: string | null
     softwareVersion?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -24573,10 +24642,13 @@ export namespace Prisma {
   export type MunicipalityUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -24584,10 +24656,13 @@ export namespace Prisma {
   export type MunicipalityUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
     softwareVersion?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -26390,10 +26465,13 @@ export namespace Prisma {
   export type MunicipalityCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    slug?: SortOrder
     country?: SortOrder
     region?: SortOrder
     locale?: SortOrder
     timezone?: SortOrder
+    currency?: SortOrder
+    status?: SortOrder
     softwareVersion?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -26402,10 +26480,13 @@ export namespace Prisma {
   export type MunicipalityMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    slug?: SortOrder
     country?: SortOrder
     region?: SortOrder
     locale?: SortOrder
     timezone?: SortOrder
+    currency?: SortOrder
+    status?: SortOrder
     softwareVersion?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -26414,10 +26495,13 @@ export namespace Prisma {
   export type MunicipalityMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    slug?: SortOrder
     country?: SortOrder
     region?: SortOrder
     locale?: SortOrder
     timezone?: SortOrder
+    currency?: SortOrder
+    status?: SortOrder
     softwareVersion?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -27647,6 +27731,10 @@ export namespace Prisma {
     set?: string
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
   }
@@ -27771,10 +27859,6 @@ export namespace Prisma {
     delete?: SoftwareVersionWhereInput | boolean
     connect?: SoftwareVersionWhereUniqueInput
     update?: XOR<XOR<SoftwareVersionUpdateToOneWithWhereWithoutMunicipalitiesInput, SoftwareVersionUpdateWithoutMunicipalitiesInput>, SoftwareVersionUncheckedUpdateWithoutMunicipalitiesInput>
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type BudgetUncheckedUpdateManyWithoutMunicipalityNestedInput = {
@@ -29794,10 +29878,13 @@ export namespace Prisma {
   export type MunicipalityCreateWithoutBudgetsInput = {
     id?: string
     name: string
+    slug?: string | null
     country?: string
     region: string
     locale?: string
     timezone?: string
+    currency?: string | null
+    status?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     expenditures?: ExpenditureCreateNestedManyWithoutMunicipalityInput
@@ -29813,10 +29900,13 @@ export namespace Prisma {
   export type MunicipalityUncheckedCreateWithoutBudgetsInput = {
     id?: string
     name: string
+    slug?: string | null
     country?: string
     region: string
     locale?: string
     timezone?: string
+    currency?: string | null
+    status?: string | null
     softwareVersion?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -29869,10 +29959,13 @@ export namespace Prisma {
   export type MunicipalityUpdateWithoutBudgetsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     expenditures?: ExpenditureUpdateManyWithoutMunicipalityNestedInput
@@ -29888,10 +29981,13 @@ export namespace Prisma {
   export type MunicipalityUncheckedUpdateWithoutBudgetsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
     softwareVersion?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29934,10 +30030,13 @@ export namespace Prisma {
   export type MunicipalityCreateWithoutExpendituresInput = {
     id?: string
     name: string
+    slug?: string | null
     country?: string
     region: string
     locale?: string
     timezone?: string
+    currency?: string | null
+    status?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     budgets?: BudgetCreateNestedManyWithoutMunicipalityInput
@@ -29953,10 +30052,13 @@ export namespace Prisma {
   export type MunicipalityUncheckedCreateWithoutExpendituresInput = {
     id?: string
     name: string
+    slug?: string | null
     country?: string
     region: string
     locale?: string
     timezone?: string
+    currency?: string | null
+    status?: string | null
     softwareVersion?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -30036,10 +30138,13 @@ export namespace Prisma {
   export type MunicipalityUpdateWithoutExpendituresInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     budgets?: BudgetUpdateManyWithoutMunicipalityNestedInput
@@ -30055,10 +30160,13 @@ export namespace Prisma {
   export type MunicipalityUncheckedUpdateWithoutExpendituresInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
     softwareVersion?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -30134,10 +30242,13 @@ export namespace Prisma {
   export type MunicipalityCreateWithoutProjectsInput = {
     id?: string
     name: string
+    slug?: string | null
     country?: string
     region: string
     locale?: string
     timezone?: string
+    currency?: string | null
+    status?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     budgets?: BudgetCreateNestedManyWithoutMunicipalityInput
@@ -30153,10 +30264,13 @@ export namespace Prisma {
   export type MunicipalityUncheckedCreateWithoutProjectsInput = {
     id?: string
     name: string
+    slug?: string | null
     country?: string
     region: string
     locale?: string
     timezone?: string
+    currency?: string | null
+    status?: string | null
     softwareVersion?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -30211,10 +30325,13 @@ export namespace Prisma {
   export type MunicipalityUpdateWithoutProjectsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     budgets?: BudgetUpdateManyWithoutMunicipalityNestedInput
@@ -30230,10 +30347,13 @@ export namespace Prisma {
   export type MunicipalityUncheckedUpdateWithoutProjectsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
     softwareVersion?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -30456,10 +30576,13 @@ export namespace Prisma {
   export type MunicipalityCreateWithoutContractsInput = {
     id?: string
     name: string
+    slug?: string | null
     country?: string
     region: string
     locale?: string
     timezone?: string
+    currency?: string | null
+    status?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     budgets?: BudgetCreateNestedManyWithoutMunicipalityInput
@@ -30475,10 +30598,13 @@ export namespace Prisma {
   export type MunicipalityUncheckedCreateWithoutContractsInput = {
     id?: string
     name: string
+    slug?: string | null
     country?: string
     region: string
     locale?: string
     timezone?: string
+    currency?: string | null
+    status?: string | null
     softwareVersion?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -30537,10 +30663,13 @@ export namespace Prisma {
   export type MunicipalityUpdateWithoutContractsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     budgets?: BudgetUpdateManyWithoutMunicipalityNestedInput
@@ -30556,10 +30685,13 @@ export namespace Prisma {
   export type MunicipalityUncheckedUpdateWithoutContractsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
     softwareVersion?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -30906,10 +31038,13 @@ export namespace Prisma {
   export type MunicipalityCreateWithoutVersionInput = {
     id?: string
     name: string
+    slug?: string | null
     country?: string
     region: string
     locale?: string
     timezone?: string
+    currency?: string | null
+    status?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     budgets?: BudgetCreateNestedManyWithoutMunicipalityInput
@@ -30925,10 +31060,13 @@ export namespace Prisma {
   export type MunicipalityUncheckedCreateWithoutVersionInput = {
     id?: string
     name: string
+    slug?: string | null
     country?: string
     region: string
     locale?: string
     timezone?: string
+    currency?: string | null
+    status?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     budgets?: BudgetUncheckedCreateNestedManyWithoutMunicipalityInput
@@ -31001,10 +31139,13 @@ export namespace Prisma {
     NOT?: MunicipalityScalarWhereInput | MunicipalityScalarWhereInput[]
     id?: StringFilter<"Municipality"> | string
     name?: StringFilter<"Municipality"> | string
+    slug?: StringNullableFilter<"Municipality"> | string | null
     country?: StringFilter<"Municipality"> | string
     region?: StringFilter<"Municipality"> | string
     locale?: StringFilter<"Municipality"> | string
     timezone?: StringFilter<"Municipality"> | string
+    currency?: StringNullableFilter<"Municipality"> | string | null
+    status?: StringNullableFilter<"Municipality"> | string | null
     softwareVersion?: StringNullableFilter<"Municipality"> | string | null
     createdAt?: DateTimeFilter<"Municipality"> | Date | string
     updatedAt?: DateTimeFilter<"Municipality"> | Date | string
@@ -31029,10 +31170,13 @@ export namespace Prisma {
   export type MunicipalityCreateWithoutVersionHistoryInput = {
     id?: string
     name: string
+    slug?: string | null
     country?: string
     region: string
     locale?: string
     timezone?: string
+    currency?: string | null
+    status?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     budgets?: BudgetCreateNestedManyWithoutMunicipalityInput
@@ -31048,10 +31192,13 @@ export namespace Prisma {
   export type MunicipalityUncheckedCreateWithoutVersionHistoryInput = {
     id?: string
     name: string
+    slug?: string | null
     country?: string
     region: string
     locale?: string
     timezone?: string
+    currency?: string | null
+    status?: string | null
     softwareVersion?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -31145,10 +31292,13 @@ export namespace Prisma {
   export type MunicipalityUpdateWithoutVersionHistoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     budgets?: BudgetUpdateManyWithoutMunicipalityNestedInput
@@ -31164,10 +31314,13 @@ export namespace Prisma {
   export type MunicipalityUncheckedUpdateWithoutVersionHistoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
     softwareVersion?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31257,10 +31410,13 @@ export namespace Prisma {
   export type MunicipalityCreateWithoutNotificationsInput = {
     id?: string
     name: string
+    slug?: string | null
     country?: string
     region: string
     locale?: string
     timezone?: string
+    currency?: string | null
+    status?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     budgets?: BudgetCreateNestedManyWithoutMunicipalityInput
@@ -31276,10 +31432,13 @@ export namespace Prisma {
   export type MunicipalityUncheckedCreateWithoutNotificationsInput = {
     id?: string
     name: string
+    slug?: string | null
     country?: string
     region: string
     locale?: string
     timezone?: string
+    currency?: string | null
+    status?: string | null
     softwareVersion?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -31342,10 +31501,13 @@ export namespace Prisma {
   export type MunicipalityUpdateWithoutNotificationsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     budgets?: BudgetUpdateManyWithoutMunicipalityNestedInput
@@ -31361,10 +31523,13 @@ export namespace Prisma {
   export type MunicipalityUncheckedUpdateWithoutNotificationsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
     softwareVersion?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31459,10 +31624,13 @@ export namespace Prisma {
   export type MunicipalityCreateWithoutMunicipalityFeaturesInput = {
     id?: string
     name: string
+    slug?: string | null
     country?: string
     region: string
     locale?: string
     timezone?: string
+    currency?: string | null
+    status?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     budgets?: BudgetCreateNestedManyWithoutMunicipalityInput
@@ -31478,10 +31646,13 @@ export namespace Prisma {
   export type MunicipalityUncheckedCreateWithoutMunicipalityFeaturesInput = {
     id?: string
     name: string
+    slug?: string | null
     country?: string
     region: string
     locale?: string
     timezone?: string
+    currency?: string | null
+    status?: string | null
     softwareVersion?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -31569,10 +31740,13 @@ export namespace Prisma {
   export type MunicipalityUpdateWithoutMunicipalityFeaturesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     budgets?: BudgetUpdateManyWithoutMunicipalityNestedInput
@@ -31588,10 +31762,13 @@ export namespace Prisma {
   export type MunicipalityUncheckedUpdateWithoutMunicipalityFeaturesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
     softwareVersion?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31675,10 +31852,13 @@ export namespace Prisma {
   export type MunicipalityCreateWithoutUsersInput = {
     id?: string
     name: string
+    slug?: string | null
     country?: string
     region: string
     locale?: string
     timezone?: string
+    currency?: string | null
+    status?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     budgets?: BudgetCreateNestedManyWithoutMunicipalityInput
@@ -31694,10 +31874,13 @@ export namespace Prisma {
   export type MunicipalityUncheckedCreateWithoutUsersInput = {
     id?: string
     name: string
+    slug?: string | null
     country?: string
     region: string
     locale?: string
     timezone?: string
+    currency?: string | null
+    status?: string | null
     softwareVersion?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -31819,10 +32002,13 @@ export namespace Prisma {
   export type MunicipalityUpdateWithoutUsersInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     budgets?: BudgetUpdateManyWithoutMunicipalityNestedInput
@@ -31838,10 +32024,13 @@ export namespace Prisma {
   export type MunicipalityUncheckedUpdateWithoutUsersInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
     softwareVersion?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32759,10 +32948,13 @@ export namespace Prisma {
   export type MunicipalityCreateManyVersionInput = {
     id?: string
     name: string
+    slug?: string | null
     country?: string
     region: string
     locale?: string
     timezone?: string
+    currency?: string | null
+    status?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -32779,10 +32971,13 @@ export namespace Prisma {
   export type MunicipalityUpdateWithoutVersionInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     budgets?: BudgetUpdateManyWithoutMunicipalityNestedInput
@@ -32798,10 +32993,13 @@ export namespace Prisma {
   export type MunicipalityUncheckedUpdateWithoutVersionInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     budgets?: BudgetUncheckedUpdateManyWithoutMunicipalityNestedInput
@@ -32817,10 +33015,13 @@ export namespace Prisma {
   export type MunicipalityUncheckedUpdateManyWithoutVersionInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
     locale?: StringFieldUpdateOperationsInput | string
     timezone?: StringFieldUpdateOperationsInput | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

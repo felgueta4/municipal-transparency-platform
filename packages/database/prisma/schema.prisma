@@ -20,10 +20,13 @@ datasource db {
 model Municipality {
   id              String   @id @default(cuid())
   name            String
+  slug            String?  @unique // URL-friendly identifier (e.g., "santiago", "demo")
   country         String   @default("Chile")
   region          String
   locale          String   @default("es-CL")
   timezone        String   @default("America/Santiago")
+  currency        String?  @default("CLP")
+  status          String?  @default("active") // active, inactive, maintenance
   softwareVersion String? // Current software version (e.g., "1.15.2")
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
@@ -41,6 +44,7 @@ model Municipality {
 
   @@index([region])
   @@index([softwareVersion])
+  @@index([slug])
   @@map("municipalities")
 }
 

@@ -125,10 +125,13 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 exports.Prisma.MunicipalityScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  slug: 'slug',
   country: 'country',
   region: 'region',
   locale: 'locale',
   timezone: 'timezone',
+  currency: 'currency',
+  status: 'status',
   softwareVersion: 'softwareVersion',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
