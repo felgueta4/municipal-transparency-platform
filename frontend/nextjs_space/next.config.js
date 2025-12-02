@@ -4,13 +4,6 @@ const path = require('path');
 const nextConfig = {
   distDir: process.env.NEXT_DIST_DIR || '.next',
   output: process.env.NEXT_OUTPUT_MODE,
-  // Only use outputFileTracingRoot in local development, not in Vercel
-  // This prevents "Cannot read properties of undefined (reading 'fsPath')" error
-  ...(process.env.VERCEL ? {} : {
-    experimental: {
-      outputFileTracingRoot: path.join(__dirname, '../'),
-    },
-  }),
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -18,6 +11,16 @@ const nextConfig = {
     ignoreBuildErrors: false,
   },
   images: { unoptimized: true },
+  
+  // Rewrite API requests to Railway backend
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'https://municipal-transparency-platform-production.up.railway.app/api/:path*',
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
